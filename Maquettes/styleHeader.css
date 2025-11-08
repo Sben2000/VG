@@ -1,0 +1,194 @@
+/***************************************CSS Commun au 2 types (Large/Hamburger)*******************************************/
+
+header{
+    text-decoration: none;
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
+    background-color: rosybrown;
+
+}
+
+
+/**********************************************CSS Menu Large*******************************************/
+.large-menu{
+    display: flex;
+    justify-content: space-between;/*espace entre le logo/Texte Marque et les liens */
+    margin: 20px;
+    height: 30px;
+    align-items: center;/*Aligne chacun des éléments ("brand"+"links") verticalement au centre*/
+}
+
+.links {
+        display: flex;
+        justify-content: space-evenly;/*définit un espace  équivalent entre les liens du menu*/
+        
+    }
+
+.flex-item {/*liste des li contenant les liens du menu */
+    display: inline-block;
+    list-style: none;
+    }
+
+nav{/*comprend le menu large et la croix du logo du hamburger menu */
+
+    box-shadow: 0 5px 5px rgba(0,0,0,0.15); /*effet ombré de la nav avec une opacité de 0.15*/
+    position: sticky;/*garde la barre de nav fixe en position*/
+    top: 0;/*à la position en hauteur 0*/
+    /*background-color: white;*/
+    padding-left: 20px; 
+    padding-right: 20px;
+    padding: 1rem; /*écart par rapport au bord du conteneur pour intégrer n'importe quelle élément*/
+    display: flex;/*car on pousse le hamburger menu à l'extrémité droite (ou gauche) de la nav-bar*/
+    background-color: rosybrown;
+    z-index: 10; /*permet à la croix du ham-menu de rester au dessus du panneau latéral*/
+}
+
+nav .brand{/*Text/logo*/
+    font-size: 30px;
+    font-weight: 600;
+    color: #551A8B;
+}
+
+.flex-item a{ /*Texte des liens */
+    text-decoration: none;
+    display:inline-block;/*block ligne pour tout les liens*/
+    padding: 10px 35px; /*écarte les liens entre eux de 35 px en élargissant leurs cellule et 10px en haut et bas */
+    transition : background-color 0.3s , color 0.3s; /*ajoute une transition background et color font lorsque le :hover sera appliqué*/
+    color: #551A8B;
+    font-size: 25px;
+}
+nav a:hover,
+nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
+    background-color: #954dd7;
+    color: #fff;
+    border-radius: 3px; 
+
+}
+/****************************************CSS Menu Hamburger******************************************************/
+
+
+
+/* off-screen-menu (fenêtre translatant) contenant les liens*/
+
+    .off-screen-menu{
+        background-color: rgba(188, 143, 143, 0.8);/*même couleur que la nav mais avec opacité de 0.8 pour contraster*/
+        height: 100vh; /*100% viewheight (étirée sur toute la hauteur de l'écran)*/
+        width: 100%; /*toute la largeur permise */
+        max-width: 450px;/*avec un max à 450 px*/
+        top: 0;/*positionnée au point haut horizontale 0 par rapport au parent(body)*/
+        position:fixed; /*on fixe la position caché ci dessous à -450px*/
+        right:-450px /*retrait de -450px sur la droite =>soit sa max-width, donc caché de base*/; 
+        display: flex;
+        flex-direction: column; /*dispose les liens li en colonne avec contenu justifié au centre et élément alignés centrés , ainsi que texte*/
+        justify-content: flex-start; /*peut être mis à start si besoin de le mettre en haut*/
+        align-items: left;
+        text-align: left;/*peut être mis en left, right ou justify également*/
+        font-size: 45px; /*3 root element qui est le body*/
+        transition: .3s ease; /*transition lors de l'animation, translation de la fenêtre*/
+    }
+    
+    .off-screen-menu, .allUsers a{
+        
+        text-decoration: none;
+    }
+        
+    .off-screen-menu .allUsers>li, .vgTeam>li, .adminAccess>li{ /*li contenant les liens*/
+        list-style:none;
+        margin-left: 0px;
+        /*transition: background-color 0.5s ease-in-out;/*transition de 0,5 s pour la fonction hover lorsque l on passe la souris dessus lente-rapide-lente*/
+        transition : background-color 0.3s , color 0.3s; /*ajoute une transition background et color font lorsque le :hover sera appliqué*/
+        margin-bottom: 5px;
+    }
+    .vgTeam>li, .adminAccess>li{/*afin de centrer les liens de la partie Team/Access en conservant la longueur de li*/
+        display: flex;
+        justify-content: center;
+       
+    }
+    
+    .vgTeam>hr{
+        height: 2px;
+        border: 0;
+        background-color: #551A8B;
+    }
+
+    .off-screen-menu ul{
+        margin-top: 6rem;/*5 rem au min permet dans tout les cas de mobile ne pas se faire empiéter par le bandeau de la nav bar lorsque le menu est active*/
+    }
+    .off-screen-menu>ul li:hover{ 
+    background-color: #954dd7; /*background change de coleur avec transition*/
+    
+}
+.off-screen-menu>ul li:hover a{
+    color: #fff;
+    border-radius: 3px;
+     
+}
+    .off-screen-menu.active {/*active =>quand il sera appelé via le JS , le parametre right sera =0 de sorte qu'il apparaitra*/
+        right: 0px;/*fera apparaitre le menu en forçant right=0 via le JS*/
+        
+    }
+
+/* ham-menu dans la <nav> bar et consistant en logo hamburger-croix */
+    .ham-menu {
+        height: 50px;
+        width : 50px;
+        display: flex;
+        margin-left: auto;/*on aura ainsi le logo complètement à droite*/
+        position: relative; /*car ses enfants (span) se positionneront en absolu par rapport à ce parent relatif et non pas le body*/
+        z-index: 10;
+    }
+
+    .ham-menu span{/*les 3 spans enfant de la div précédente et qui auront la forme du logo*/
+        height: 5px;/*hauteur d'une span (son épaisseur)*/
+        width: 100%;/*100% de la div parent ->soit 50px*/
+        background-color: #551A8B;
+        border-radius: 25px;/*rayon des bords*/
+        position: absolute;/*sur leur parent .ham-menu qui fait 50x50px*/
+        top: 50%; /*centré en haut et à gauche sur la div parent en positionnant le haut du span et son extrémité gauche*/
+        left: 50%;
+        transform: translate(-50%, -50%);/*réajustement du centrage*/
+        transition: 0.3s ease;/*transition lors de l'animation, transfo croix*/
+    }
+
+    .ham-menu span:nth-child(1){ /*le 1er enfant span de la liste de 3 de la div .ham-menu*/
+        top:25%; /*situé à 25% absolu au top de la div parent .ham-menu de 50x50px*/
+    }
+
+        .ham-menu span:nth-child(3){ /*le 3ème enfant span de la liste de 3 de la div .ham-menu*/
+        top:75%; /*situé à 75% absolu au top de la div parent .ham-menu de 50x50px*/
+    }/*note: le 2e span n'a pas besoin d'être ajusté car il est déjà au centre (comme les autres auparavant avant repositionnement)*/
+
+    /*********ajout d'une classe active (géré en JS) au span et chgt de la forme en X ******************/
+
+    .ham-menu.active span:nth-child(1){
+        top:50%; /*placé à 50%  avant réajustement*/
+        transform: translate(-50%, -50%) rotate(45deg); /*réajusté au centre et tourné à 45 deg pour avoir la première branche du X */
+    }
+
+    .ham-menu.active span:nth-child(2){
+    opacity:0; /*on cache le second span pour n'avoir que 2 branches*/
+    }
+
+    .ham-menu.active span:nth-child(3){ /*autre branche du X à -45deg*/
+        top:50%; /*placé à 50%  avant réajustement*/
+        transform: translate(-50%, -50%) rotate(-45deg); /*réajusté au centre et tourné à 45 deg pour avoir la première branche du X */
+    }    
+
+/*****************************************************GESTION RESPONSIVE*****************************************/
+/***************Au dessus de 700px : Affichage Ordinateur (>1100px) et Affichage Tablet(700px<A<1100px)*********/
+
+@media screen and (min-width: 701px){
+
+/*on cache le menu hamburger*/
+.ham-menu, .off-screen-menu{
+    display: none;
+}
+}
+/******************Sous 700px: Affichage Téléphone*/
+
+@media screen and (max-width: 700px){
+
+/*on cache le menu large*/
+.large-menu{
+    display: none;
+}
+}
