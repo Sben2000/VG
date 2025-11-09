@@ -1,0 +1,115 @@
+body{
+    background-color: orange;
+}
+
+.main{
+    width: 80%;
+    height: 100%;
+    margin: 50px auto;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color: aliceblue;
+    }
+
+.presentation{
+    width: 100%;
+    height: 100vh;
+    margin: 50px auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+    }
+
+.presBlocks{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:red;
+    }
+
+.presLeft{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    }
+.presRight{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    }
+
+
+
+.ourTeam{
+    width: 100%;
+    height: 100vh;
+    margin: 50px auto;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+    }
+
+.reachUs{
+    width: 100%;
+    height: 100vh;
+    margin: 50px auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+    }
+
+.reachUsBlocks{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:red;
+    }
+
+.reachUsLeft{
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    }
+.reachUsRight{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    }
+
+
+
+.comments{
+    width: 100%;
+    height: 100vh;
+    margin: 50px auto;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+    }
+
