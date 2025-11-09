@@ -4,34 +4,92 @@ header{
     text-decoration: none;
     font-family: "Lobster",Arial, Helvetica, sans-serif;
     background-color: rosybrown;
-
+    position:relative;
+}
+nav{/*commun aux nav largeMenu et ham-menu*/
+   
+    box-shadow: 0 5px 5px rgba(0,0,0,0.15);
+    
 }
 
 
 /**********************************************CSS Menu Large*******************************************/
 .large-menu{
     display: flex;
-    justify-content: space-between;/*espace entre le logo/Texte Marque et les liens */
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     margin: 20px;
-    height: 30px;
     align-items: center;/*Aligne chacun des éléments ("brand"+"links") verticalement au centre*/
+    box-sizing: border-box;
+    border: 1px black solid;
+    padding: 20px;
+    
 }
 
-.links {
-        display: flex;
-        justify-content: space-evenly;/*définit un espace  équivalent entre les liens du menu*/
-        
-    }
+.brand{/*Text/logo*/
+    font-size: 30px;
+    font-weight: 600;
+    color: #551A8B;
+    margin-right: 20px;
+    position: fixed;
+    left:30px
+}
 
-.flex-item {/*liste des li contenant les liens du menu */
-    display: inline-block;
+.inlineLinks{
+    box-sizing: border-box;
+    border: 1px red solid;
+    
+    
+}
+#allUsersLM{
+    box-sizing: border-box;
+    border: 1px green solid;
+    display: flex;
+
+}
+
+.rollingMenu{
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: 1px blue solid;
+    align-items: center;
+    position: relative;
+
+    
+    
+}
+
+
+
+#vgTeamLM{
+    border: 1px orange solid;
+    position: absolute;
+    top: 100%;
+    display: none;
+    opacity: 0;
+}
+
+#vgTeamLM.active{/*Gère l'apparition du sous menu via JS*/
+    display: block;
+    
+}
+
+.inlineLinks>.allUsers {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;/*définit un espace  équivalent entre les liens du menu*/
+        align-items: center;
+    }
+.allUsers>li, .rollingMenu>li{
     list-style: none;
     }
 
-nav{/*comprend le menu large et la croix du logo du hamburger menu */
+.ham-menu{/*menu comprenant la croix du logo du hamburger menu */
 
     box-shadow: 0 5px 5px rgba(0,0,0,0.15); /*effet ombré de la nav avec une opacité de 0.15*/
-    position: sticky;/*garde la barre de nav fixe en position*/
+    position: fixed;/*garde la barre de nav fixe en position*/
     top: 0;/*à la position en hauteur 0*/
     /*background-color: white;*/
     padding-left: 20px; 
@@ -40,21 +98,19 @@ nav{/*comprend le menu large et la croix du logo du hamburger menu */
     display: flex;/*car on pousse le hamburger menu à l'extrémité droite (ou gauche) de la nav-bar*/
     background-color: rosybrown;
     z-index: 10; /*permet à la croix du ham-menu de rester au dessus du panneau latéral*/
+    
 }
 
-nav .brand{/*Text/logo*/
-    font-size: 30px;
-    font-weight: 600;
-    color: #551A8B;
-}
 
-.flex-item a{ /*Texte des liens */
+
+.inlineLinks a{ /*Texte des liens se trouvant dans le menu des Liens*/
     text-decoration: none;
-    display:inline-block;/*block ligne pour tout les liens*/
+    display:inline-block;/*block ligne pour tout les textes de liens*/
     padding: 10px 35px; /*écarte les liens entre eux de 35 px en élargissant leurs cellule et 10px en haut et bas */
     transition : background-color 0.3s , color 0.3s; /*ajoute une transition background et color font lorsque le :hover sera appliqué*/
     color: #551A8B;
     font-size: 25px;
+    
 }
 nav a:hover,
 nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
@@ -63,6 +119,14 @@ nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
     border-radius: 3px; 
 
 }
+/*Dans le cas d'un traitement particulier sur les couleurs lors de l'ouverture du Menu Gestion*/
+.gestionLink:hover,
+.gestionLink.active{
+    background-color: #954dd7;
+    color: #fff;
+    border-radius: 3px;
+}
+
 /****************************************CSS Menu Hamburger******************************************************/
 
 
@@ -76,7 +140,7 @@ nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
         max-width: 450px;/*avec un max à 450 px*/
         top: 0;/*positionnée au point haut horizontale 0 par rapport au parent(body)*/
         position:fixed; /*on fixe la position caché ci dessous à -450px*/
-        right:-450px /*retrait de -450px sur la droite =>soit sa max-width, donc caché de base*/; 
+        right:-450px; /*retrait de -450px sur la droite =>soit sa max-width, donc caché de base*/
         display: flex;
         flex-direction: column; /*dispose les liens li en colonne avec contenu justifié au centre et élément alignés centrés , ainsi que texte*/
         justify-content: flex-start; /*peut être mis à start si besoin de le mettre en haut*/
@@ -91,7 +155,7 @@ nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
         text-decoration: none;
     }
         
-    .off-screen-menu .allUsers>li, .vgTeam>li, .adminAccess>li{ /*li contenant les liens*/
+    .off-screen-menu .panelLinks>.allUsers>li, .panelLinks>.vgTeam>li, .panelLinks>.adminAccess>li{ /*li contenant les liens*/
         list-style:none;
         margin-left: 0px;
         /*transition: background-color 0.5s ease-in-out;/*transition de 0,5 s pour la fonction hover lorsque l on passe la souris dessus lente-rapide-lente*/
@@ -104,7 +168,7 @@ nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
        
     }
     
-    .vgTeam>hr{
+    .panelLinks .vgTeam>hr{
         height: 2px;
         border: 0;
         background-color: #551A8B;
@@ -174,15 +238,49 @@ nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
     }    
 
 /*****************************************************GESTION RESPONSIVE*****************************************/
-/***************Au dessus de 700px : Affichage Ordinateur (>1100px) et Affichage Tablet(700px<A<1100px)*********/
 
-@media screen and (min-width: 701px){
+/***************Au dessus 1100px: Affichage Ordinateur*/
 
 /*on cache le menu hamburger*/
 .ham-menu, .off-screen-menu{
     display: none;
+    }
+
+/*Autres Règles CSS défini plus haut par défaut
+
+/***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
+
+@media screen and (min-width: 701px) and (max-width: 1100px) {
+
+/*on cache le menu hamburger*/
+.ham-menu, .off-screen-menu{
+    display: none;
+    }
+/*changement des tailles caractères et caractéristiques*/
+
+.large-menu{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
+
+
+nav .brand{/*Text/logo*/
+    font-size: 25px;
+    font-weight: 400;
+    position:initial;
+    margin-bottom: 5px;
 }
+
+.inlineLinks a{
+    font-size: 20px;
+}
+
+}
+
+
 /******************Sous 700px: Affichage Téléphone*/
 
 @media screen and (max-width: 700px){
@@ -191,4 +289,9 @@ nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
 .large-menu{
     display: none;
 }
+/*on affiche le menu hamburger*/
+.ham-menu, .off-screen-menu{
+    display: block;
+    }
+
 }

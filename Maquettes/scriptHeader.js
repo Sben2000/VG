@@ -2,25 +2,82 @@
 /******************************JS APPLIQUE AU MENU NAVBAR ECRAN ET TABLET*************************/
 
 
-
-/*on apelle tout les liens a de la nav bar intégré */
+/*
+//on apelle tout les liens a de la nav bar intégré 
 
 let navLinks = document.querySelectorAll(".links a");
 
-/*on récupère l'id du body de la page cliquée*/
+//on récupère l'id du body de la page cliquée
 
 let bodyId = document.querySelector("body").id;
 
-/*on utilise une for of loop pour parcourir tous les links de la nav bar*/
+//on utilise une for of loop pour parcourir tous les links de la nav bar
 for (let link of navLinks){
     /*dans la loop on vérifie si pour le lien, l'id du dataset.active attribut (data-active) est égale à celui de l'id du Body en cours de consultation
     ex: data-active = "index" et body id="index" => les deux font mentions de l'id "index" , on ajoute la class "active" au lien */
-   if(link.dataset.active == bodyId){
-        /**si c'est le cas, on ajoute au lien, la class "active" */
+/*   if(link.dataset.active == bodyId){
+        //si c'est le cas, on ajoute au lien, la class "active" 
         link.classList.add("active");
    }
-}
+}*/
 
+// Gestion de l'apparition du sous Menu Gestion en Mode Large
+
+const gestion =document.querySelector('.gestion');
+
+const vgTeamLM = document.querySelector('#vgTeamLM');
+
+const gestionLink =document.querySelector('.gestionLink');
+
+//lorsque l'on clique sur le hamMenu,
+    
+
+gestion.addEventListener('click', ()=>{
+
+
+    /*Ajoute en cliquant et enlève en recliquant le terme sous menu de la classe .VgTeam (.classList.toggle())
+    Ajout de transition via une gestion asynchrone de l'apparition et de l'opacité (initié à 0 par défaut dans le CSS)
+    */
+    setTimeout(timeoutActive,50);
+    vgTeamLM.style.opacity = 0.6;
+    setTimeout(timeoutOpacity,150);
+
+
+    })
+
+    function timeoutActive(){
+    vgTeamLM.classList.toggle('active');
+    }
+    function timeoutOpacity(){
+    vgTeamLM.style.opacity = 1;
+
+    }
+
+//Cas ou le lien 'Gestion' n'est plus actif -> à travers click sur Body
+
+
+
+
+/*Le code ci dessous ne fonctionne pas, à retravailler ou inclure une invitation à fermer
+    document.body.addEventListener('click', ()=>{
+    gestionLink.classList.remove('active');
+            if(gestionLink.classList != 'active'){
+                console.log('not active');
+        vgTeam.style.display = 'none'};
+    setTimeout(timeoutlinkActive,2000);
+    
+        if(gestionLink.classList != ('active')){
+        console.log(' active');
+        vgTeam.style.display = 'block';
+    };
+    
+    })
+
+    function timeoutlinkActive(){
+   gestionLink.classList.add('active');
+
+    }
+*/
 /******************************JS APPLIQUE AU HAMBURGER MENU*************************/
 
 const hamMenu =document.querySelector('.ham-menu');
