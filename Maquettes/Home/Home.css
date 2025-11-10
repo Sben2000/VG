@@ -1,7 +1,32 @@
+/*********************************COMMMUN********************************************/
+:root{      /*palette couleurs*/
+
+    --dark-color:#222222;
+    --light-color:#dddddd;
+    --aliceblue: aliceblue;
+    /*--highlight-color: #eeeeee;*/
+    --rosy: rosybrown;
+    --elmDeco:#551A8B;
+    --textClick:#fff;
+    --hover:#954dd7;
+}
+
+*{ /*par défaut si rien de précisé*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
+}
+
 body{
     background-color: orange;
 }
 
+p{
+    font-size: 20px;
+}
+
+/*************************SECTIONS****************************************************/
 .main{
     width: 80%;
     height: 100%;
@@ -11,98 +36,157 @@ body{
     background-color: aliceblue;
     }
 
-.presentation{
+.separator {
+    height: 3px;
+    background-color: var(--elmDeco);
     width: 100%;
-    height: 100vh;
-    margin: 50px auto;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    border: solid black 2px;
-    background-color:blue
-    }
+    margin: 20px 0px;
+    position: relative;
+}
+
+.sectionTitle{
+/*en réf au tag séparator parent précédent*/
+    position: absolute;
+    top:50%; /*place le texte à 50% en bas du centre du séparator*/
+    left: 50%;/*place le texte à 50% à la gauche du centre du séparator (droite du point de vue user)*/
+    transform: translate(-50%,-50%);/*on rattrape les 50% décalés auquel on rajoute 50% pour avoir le texte au centre exact=> soit (-50%, -50%) */
+    z-index: 10;/*placé au dessus du séparator*/
+    background-color: aliceblue;
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
+    color: var(--elmDeco);
+}
+
 
 .presBlocks{
     width: 100%;
     height: 100%;
-    display:flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    border: solid black 2px;
-    background-color:red;
-    }
-
-.presLeft{
-    width: 100%;
-    height: 100%;
-    display:flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    border: solid black 2px;
-    background-color:green;
-    }
-.presRight{
-    width: 100%;
-    display:flex;
-    flex-direction: row;
-    box-sizing: border-box;
-    border: solid black 2px;
-    background-color:green;
-    }
-
-
-
-.ourTeam{
-    width: 100%;
-    height: 100vh;
     margin: 50px auto;
-    box-sizing: border-box;
-    border: solid black 2px;
-    background-color:blue
-    }
-
-.reachUs{
-    width: 100%;
-    height: 100vh;
-    margin: 50px auto;
-    display:flex;
-    flex-direction: column;
+    display: flex;
+    flex-direction:row;
     justify-content: center;
     box-sizing: border-box;
     border: solid black 2px;
     background-color:blue
+}
+
+.presLeft{
+    width: 50%;
+    display:flex;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
     }
+
+.presLeft>img{
+    width: 90%;
+    height: auto;
+    margin: auto;
+    align-self: center;
+    border-radius:5px;
+}    
+
+.presRight{
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    margin-left:10px;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    }
+.presRight>h1{
+    text-align: center;
+}
+
+.presRight>p{
+    margin-top: 30px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+
+.ourTeam{
+    width: 100%;
+    height: 100%;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;   
+    justify-content: space-around; 
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+    }
+
+.teamMember{
+    border: 2px solid black;
+    background-color: aliceblue;
+    padding: 10px;
+    text-align:justify;
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    
+}
+
+.memberPicture{   
+    border: 3px ridge var(--elmDeco);
+    border-radius:5px;      
+}
+
+.membertitle, .memberDesc{
+    margin: 10px 0;
+    font-size: 16px;                 
+}
+
+
+
 
 .reachUsBlocks{
     width: 100%;
     height: 100%;
+    margin: 50px auto;
     display:flex;
     flex-direction: row;
     box-sizing: border-box;
     border: solid black 2px;
     background-color:red;
     }
-
+.reachUsBlocks h3{
+    text-align: center;
+}
 .reachUsLeft{
-    width: 100%;
-    height: 100%;
+    width: 50%;
     display:flex;
-    flex-direction: row;
+    flex-direction:column;
     box-sizing: border-box;
     border: solid black 2px;
     background-color:green;
     }
 .reachUsRight{
-    width: 100%;
+    width: 50%;
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     box-sizing: border-box;
     border: solid black 2px;
     background-color:green;
+    align-items: center;
+    
     }
+.timeTable{
+    justify-self: center;
+}
+.reachUsRight p{
+    font-size: 16px;
+    margin: 10px auto;
+}
+.reachUsRight li{
+    font-weight: bold;
+}
 
-
+.orderType{
+    margin-left: 20px;
+    margin-top: 20px;
+}
 
 .comments{
     width: 100%;
@@ -113,3 +197,73 @@ body{
     background-color:blue
     }
 
+
+
+
+
+    
+/*****************************************************GESTION RESPONSIVE*****************************************/
+
+/***************Au dessus 1100px: Affichage Ordinateur*/
+
+
+
+/*Autres Règles CSS défini plus haut par défaut
+
+/***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
+
+@media screen and (min-width: 701px) and (max-width: 1100px) {
+
+    body {
+        
+        margin: 0 auto;
+    }
+
+    .ourTeam{
+    display: flex;
+    flex-wrap: wrap;
+        }
+
+    .teamMember{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        text-align:justify;
+        
+        
+    }
+    .memberPicture{
+    height: auto;
+    max-width: 80%;
+    margin: 0px auto;
+
+    }
+
+}
+
+
+/******************Sous 700px: Affichage Téléphone*/
+
+@media screen and (max-width: 700px){
+
+    .ourTeam{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    
+        
+    }
+    .teamMember{
+        width: 100%; 
+        padding: 20px;
+        text-align:justify;
+        
+        
+    }
+
+    .memberPicture{
+    height: auto;
+    width: 100%;
+    }
+
+}
