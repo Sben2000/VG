@@ -5,6 +5,7 @@ header{
     font-family: "Lobster",Arial, Helvetica, sans-serif;
     background-color: rosybrown;
     position:relative;
+    top: 0;
 }
 nav{/*commun aux nav largeMenu et ham-menu*/
    
@@ -114,7 +115,7 @@ nav{/*commun aux nav largeMenu et ham-menu*/
     
 }
 nav a:hover,
-nav a.active{ /*lors du hover et lorsque la classe active sera appliqué en JS*/
+nav a.active{ /*lors du hover*/
     background-color: #954dd7;
     color: #fff;
     border-radius: 3px; 

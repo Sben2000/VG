@@ -30,10 +30,17 @@ const vgTeamClose = document.getElementById('vgTeamClose');
     */
    async function vgTeamLMShow(){
     vgTeamLM.style.display='block';
+    /*refactorisé en loop
     await wait(()=>{vgTeamLM.style.opacity = 0.3}, 100);
     await wait(()=>{vgTeamLM.style.opacity = 0.5}, 100);
     await wait(()=>{vgTeamLM.style.opacity = 0.8}, 100);
-    await wait(()=>{vgTeamLM.style.opacity = 1}, 100);
+    await wait(()=>{vgTeamLM.style.opacity = 1}, 100);*/
+  let x =0;
+  do {
+        x=x+0.2;
+        await wait(()=>{vgTeamLM.style.opacity = x}, 100);
+} while (x <1);
+
    }
 
 gestion.addEventListener('click', vgTeamLMShow);
@@ -41,10 +48,17 @@ gestion.addEventListener('click', vgTeamLMShow);
 //Fermer VgTeam Menu List (avec effet de transition géré par la function Asynchrone vgTeamLMHide())
 
    async function vgTeamLMHide(){
+    /*refactorisé en une boucle
     await wait(()=>{vgTeamLM.style.opacity = 0.8}, 100);
     await wait(()=>{vgTeamLM.style.opacity = 0.5}, 100);
     await wait(()=>{vgTeamLM.style.opacity = 0.3}, 100);
-    await wait(()=>{vgTeamLM.style.opacity = 0}, 100);
+    await wait(()=>{vgTeamLM.style.opacity = 0}, 100);*/
+let x =1;
+do {
+    x=x-0.2;
+    await wait(()=>{vgTeamLM.style.opacity=x},100);
+} while (x>0);
+
     vgTeamLM.style.display='none';
    }
 vgTeamClose.addEventListener('click',vgTeamLMHide)

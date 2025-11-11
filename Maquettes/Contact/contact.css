@@ -1,0 +1,186 @@
+/*********************************COMMMUN********************************************/
+:root{      /*palette couleurs*/
+
+    --dark-color:#222222;
+    --light-color:#dddddd;
+    --aliceblue: aliceblue;
+    /*--highlight-color: #eeeeee;*/
+    --rosy: rosybrown;
+    --elmDeco:#551A8B;
+    --TextClick:#fff;
+    --hover:#954dd7;
+    --rosyLight:rgb(205, 178, 178);
+}
+
+*{ /*par défaut si rien de précisé*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
+}
+
+p, textarea, input, label{
+    font-size: 20px;
+}
+/*************************SECTIONS-COMMUN****************************************************/
+body{
+    background-color: var(--rosyLight);
+
+}
+
+.main{
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+
+
+}
+
+.separator {
+    height: 3px;
+    background-color: var(--elmDeco);
+    width: 100%;
+    margin: 20px 0px;
+    position: relative;
+    
+}
+
+.sectionTitle{
+/*en réf au tag séparator parent précédent*/
+    position: absolute;
+    top:50%; /*place le texte à 50% en bas du centre du séparator*/
+    left: 50%;/*place le texte à 50% à la gauche du centre du séparator (droite du point de vue user)*/
+    transform: translate(-50%,-50%);/*on rattrape les 50% décalés auquel on rajoute 50% pour avoir le texte au centre exact=> soit (-50%, -50%) */
+    z-index: 10;/*placé au dessus du séparator*/
+    background-color: var(--rosyLight);
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
+    color: var(--elmDeco);
+}
+
+
+/*************************FORM CONTACT****************************************************/
+.contact{
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.contactForm{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+
+/****Form Top**********/
+.formTop {
+    display: flex;
+    flex-direction: column;
+    position: relative;/*en prévision d'utilisation d'un absolute par la suite pour un enfant*/
+    justify-content: center;/*séparation des block left et right avec un espace au milieu en les poussant à chaque extrémité*/
+}
+
+
+label {
+    margin-bottom: 10px;
+    font-weight: 600;/*equivaut au semi bold environ*/
+}
+
+input:not(input[type="submit"]), textarea{ /*tout les input du doc (sauf du type submit) et le textarea*/
+    border: none; /*retrait des bordures par défaut sur les input*/
+    border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalisée*/
+    resize: none; /*pas de possibilité de redimensionnement possible du textarea manuellement*/
+    outline: none;/*par défaut lorsque l on clique sur l'input , va mettre la bordure de celui ci en noir/bold pour montrer que l on a cliqué dessus ->on l'enlève donc*/
+    width: 40vw;/*largeur de 30 ViewWidth pour la police (30% largeur de la div parent (100% de l'écran dans notre cas)) */
+    margin-bottom: 20px;
+    
+}
+
+/********Input type submit************/
+.formBottom{
+    display: flex;
+    justify-content: end;
+}
+
+input[type="submit"]{ 
+    background-color: var(--rosy);
+    border-radius: 20px;
+    border: none;
+    padding: 10px;/*autour du texte*/
+    font-weight: 600;
+    color: var(--elmDeco);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);/*ombre de 0px en hor, au top, et 5px vers le bas=>opacité de 0.5 en noir)   */
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;/*effet de 0.5s sur la fonction hover dédiée, ease-in-out = lent rapide-lent*/
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:var(--hover);
+    color: var(--TextClick);
+
+}
+
+    
+/*****************************************************GESTION RESPONSIVE*****************************************/
+
+/***************Au dessus 1100px: Affichage Ordinateur*/
+
+
+
+/*Autres Règles CSS défini plus haut par défaut
+
+/***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
+
+@media screen  and (max-width: 1100px) {
+
+/*Commun*/
+    body {
+        
+        margin: 0 auto;
+    }
+
+p, textarea, input, label{
+        font-size: 16px;
+    }
+    h3{
+        font-size: 20px;
+    }
+
+/*Sections*/
+
+input:not(input[type="submit"]), textarea{
+width: 55vw; /*augmenté pour convenir à la taille de l'écran*/
+}
+
+
+
+}
+
+
+/******************Sous 700px: Affichage Téléphone*/
+
+@media screen and (max-width: 700px){
+
+/*Commun*/
+
+p, textarea, input, label{
+        font-size: 12px;
+    }
+    h3{
+        font-size: 14px;
+    }
+    h1{
+        font-size: 20px;
+    }
+
+/*Sections*/
+    input:not(input[type="submit"]), textarea{
+width: 75vw; /*augmenté pour convenir à la taille de l'écran*/
+}
+
+}
