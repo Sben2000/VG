@@ -7,7 +7,7 @@
     /*--highlight-color: #eeeeee;*/
     --rosy: rosybrown;
     --elmDeco:#551A8B;
-    --textClick:#fff;
+    -TextClick:#fff;
     --hover:#954dd7;
 }
 
@@ -26,7 +26,7 @@ p{
     font-size: 20px;
 }
 
-/*************************SECTIONS****************************************************/
+/*************************SECTIONS-COMMUN****************************************************/
 .main{
     width: 80%;
     height: 100%;
@@ -56,6 +56,7 @@ p{
     color: var(--elmDeco);
 }
 
+/*************************A propos de nous****************************************************/
 
 .presBlocks{
     width: 100%;
@@ -78,7 +79,7 @@ p{
     }
 
 .presLeft>img{
-    width: 90%;
+    width: 600px;
     height: auto;
     margin: auto;
     align-self: center;
@@ -89,7 +90,6 @@ p{
     width: 50%;
     display:flex;
     flex-direction: column;
-    margin-left:10px;
     box-sizing: border-box;
     border: solid black 2px;
     background-color:green;
@@ -104,7 +104,7 @@ p{
     font-size: 20px;
 }
 
-
+/*************************Notre équipe****************************************************/
 .ourTeam{
     width: 100%;
     height: 100%;
@@ -139,7 +139,7 @@ p{
 }
 
 
-
+/*************************Nous joindre****************************************************/
 
 .reachUsBlocks{
     width: 100%;
@@ -153,6 +153,7 @@ p{
     }
 .reachUsBlocks h3{
     text-align: center;
+    margin: 10px;
 }
 .reachUsLeft{
     width: 50%;
@@ -161,7 +162,43 @@ p{
     box-sizing: border-box;
     border: solid black 2px;
     background-color:green;
+    align-items: center;
+    
     }
+
+.reachUsLeftContent{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.mapResponsive{
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    
+    
+}
+
+.mapResponsive iframe{
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    
+}
+.reachUsLeftContent>p{
+    margin-bottom: 20px;
+    
+}
+
 .reachUsRight{
     width: 50%;
     display:flex;
@@ -172,9 +209,14 @@ p{
     align-items: center;
     
     }
-.timeTable{
-    justify-self: center;
+
+.reachUsRightContent{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
+
 .reachUsRight p{
     font-size: 16px;
     margin: 10px auto;
@@ -183,21 +225,51 @@ p{
     font-weight: bold;
 }
 
-.orderType{
+.orderType, .orderTypeContact{
     margin-left: 20px;
     margin-top: 20px;
 }
 
+.orderTypeContact li{
+font-weight: normal;
+}
+
+/***************************Nos retours clients****************************************/
+
 .comments{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     margin: 50px auto;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     border: solid black 2px;
     background-color:blue
+    
     }
 
+.comment{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 20px auto;
+    
+    
+}
 
+.commentPP{ /*image*/
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.commentText{
+    margin-left: 20px;
+}
+
+.commentText p{
+    text-align: justify;
+}
 
 
 
@@ -212,12 +284,44 @@ p{
 
 /***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
 
-@media screen and (min-width: 701px) and (max-width: 1100px) {
+@media screen  and (max-width: 1100px) {
 
+/*Commun*/
     body {
         
         margin: 0 auto;
     }
+
+    p{
+        font-size: 16px;
+    }
+    h3{
+        font-size: 20px;
+    }
+
+/*Sections*/
+
+.presBlocks{
+    display: flex;
+    flex-direction:column;
+
+}
+
+.presLeft{
+    width: 100%;
+    height: auto;
+}
+
+.presLeft>img{
+    height: auto;
+    max-width: 80%;
+    margin: 0px auto;
+}
+
+.presRight{
+    width: 100%;
+    height: auto;
+}
 
     .ourTeam{
     display: flex;
@@ -239,6 +343,38 @@ p{
 
     }
 
+.reachUsBlocks{
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:red;
+    }
+
+.reachUsLeft{
+    width: 100%;
+    height: auto;
+}
+
+.reachUsLeftContent>p{
+    margin-top: 20px;
+    
+}
+
+.presLeft>img{
+    height: auto;
+    max-width: 80%;
+    margin: 0px auto;
+}
+
+.reachUsRight{
+    width: 100%;
+    height: auto;
+}
+
+
+
+
 }
 
 
@@ -246,6 +382,19 @@ p{
 
 @media screen and (max-width: 700px){
 
+/*Commun*/
+
+    p{
+        font-size: 12px;
+    }
+    h3{
+        font-size: 14px;
+    }
+    h1{
+        font-size: 20px;
+    }
+
+/*Sections*/
     .ourTeam{
     display: flex;
     flex-direction: column;
@@ -263,7 +412,7 @@ p{
 
     .memberPicture{
     height: auto;
-    width: 100%;
+    width: 80%;
     }
 
 }
