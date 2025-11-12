@@ -22,9 +22,12 @@
 p, textarea, input, label{
     font-size: 20px;
 }
-
 h1, h2{
     color: var(--elmDeco);
+}
+
+p{
+    font-weight: 500;
 }
 /*************************SECTIONS-COMMUN****************************************************/
 body{
@@ -38,7 +41,7 @@ body{
     display: flex;
     flex-direction: column;
     align-content: center;
-
+    box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
 
 }
 
@@ -61,81 +64,32 @@ body{
     background-color: var(--rosyLight);
     font-family: "Lobster",Arial, Helvetica, sans-serif;
     color: var(--elmDeco);
+    margin-bottom: 20px;
 }
 
 
 /*************************FORM CONTACT****************************************************/
-.contact{
-    display: flex;
+
+.Ml{
     width: 100%;
     height: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
-    
-}
-
-.contactForm{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 50px;
-    
-}
-
-
-/****Form Top**********/
-.formTop {
     display: flex;
     flex-direction: column;
-    position: relative;/*en prévision d'utilisation d'un absolute par la suite pour un enfant*/
-    justify-content: center;/*séparation des block left et right avec un espace au milieu en les poussant à chaque extrémité*/
+    
+
+}
+.MlTitle{
+    margin-left:10vw;
+}
+.MlContent{
+    margin: 5px 5vw 20px ;
+    text-align: justify;
     
 }
 
-
-label {
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: var(--elmDeco);
+.Source{
+    font-size: larger;
 }
-
-input:not(input[type="submit"]), textarea{ /*tout les input du doc (sauf du type submit) et le textarea*/
-    border: none; /*retrait des bordures par défaut sur les input*/
-    border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalisée*/
-    resize: none; /*pas de possibilité de redimensionnement possible du textarea manuellement*/
-    outline: none;/*par défaut lorsque l on clique sur l'input , va mettre la bordure de celui ci en noir/bold pour montrer que l on a cliqué dessus ->on l'enlève donc*/
-    width: 30vw;/*largeur de 30 ViewWidth pour la police (30% largeur de la div parent (100% de l'écran dans notre cas)) */
-    margin-bottom: 20px;
-    padding: 12px;
-    margin-top: 5px;
-    
-}
-
-/********Input type submit************/
-.formBottom{
-    display: flex;
-    justify-content: end;
-}
-
-input[type="submit"]{ 
-    background-color: var(--rosy);
-    border-radius: 20px;
-    border: none;
-    padding: 10px;/*autour du texte*/
-    font-weight: 600;
-    color: var(--elmDeco);
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);/*ombre de 0px en hor, au top, et 5px vers le bas=>opacité de 0.5 en noir)   */
-    margin-bottom: 20px;
-    cursor: pointer;
-    transition: transform 0.5s ease-in-out;/*effet de 0.5s sur la fonction hover dédiée, ease-in-out = lent rapide-lent*/
-}
-
-input[type="submit"]:hover {
-    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
-    background-color:var(--hover);
-    color: var(--TextClick);
-
-}
-
     
 /*****************************************************GESTION RESPONSIVE*****************************************/
 
@@ -162,16 +116,7 @@ p, textarea, input, label{
         font-size: 20px;
     }
 
-/*Sections*/
-
-input:not(input[type="submit"]), textarea{
-width: 55vw; /*augmenté pour convenir à la taille de l'écran*/
 }
-
-
-
-}
-
 
 /******************Sous 700px: Affichage Téléphone*/
 
@@ -182,16 +127,12 @@ width: 55vw; /*augmenté pour convenir à la taille de l'écran*/
 p, textarea, input, label{
         font-size: 12px;
     }
-    h3{
+    h2, h3{
         font-size: 14px;
     }
     h1{
-        font-size: 20px;
+        font-size: 16px;
     }
 
-/*Sections*/
-    input:not(input[type="submit"]), textarea{
-width: 75vw; /*augmenté pour convenir à la taille de l'écran*/
-}
 
 }
