@@ -62,6 +62,9 @@ body{
     color: var(--elmDeco);
 }
 
+.note{
+    font-size: small;
+}
 
 
 /*************************CONNEXION****************************************************/
@@ -92,6 +95,7 @@ body{
     margin-top: 0;
     color: var(--elmDeco);
     text-align: center;
+    margin-bottom: 20px;
 }
 
 /*Style des éléments des groupes input (hors submit)*/
@@ -100,6 +104,20 @@ body{
     display: block;
     font-weight: bold;
     color: var(--elmDeco);
+}
+
+#showPass{
+    display: flex;
+    width: 75%;
+}
+#showPass label{
+    width: 75%;
+    font-size: small;
+}
+
+#passCheckbox{
+    width: 25%;
+
 }
 
 input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) et le textarea*/

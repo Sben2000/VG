@@ -20,36 +20,51 @@
 	</head>
   <body>
     <div class="main">
-	<div class="separator"><h1 class="sectionTitle">Se connecter</h1></div>
-    <!-- Container for the login form -->
+	<div class="separator"><h1 class="sectionTitle">S'enregistrer</h1></div>
+   
     <section class="mailSection">
       <div class="mailSectionContent">
-        <h2>Admin Login</h2>
-        <!-- Login form with fields for username and password -->
+        <h2>Je crée mes identifiants</h2>
+         
         <form id="loginForm">
           <!-- Input group for the username field -->
+        <div class="mailInput">
+                <label for="email">Email *</label>
+                <input type="text" name="email" value="" placeholder="Mon email" required>
+        </div>
           <div class="mailInput">
-            <label for="username">Nom d'utilisateur</label>
+            <label for="username">Nom d'utilisateur *</label>
             <input
               type="text"
               id="username"
               name="username"
-              placeholder="Mon nom d'utilisateur V&Go"
+              value =""
+              placeholder="Mon choix de nom d'utilisateur"
               required
             />
           </div>
-          <!-- Input group for the password field -->
+          
           <div class="mailInput">
-            <label for="password">Mot de passe</label>
+            <label for="password">Mot de passe *</label>
             <input
               type="password"
-              id="password"
+              id="pass1"
               name="password"
-              placeholder="Mon mot de passe"
+              value =""
+              placeholder="Mon choix de mot de passe"
               required
             />
           </div>
-          <!-- Submit button to trigger the form submission -->
+          <div class="mailInput">
+            <label for="confirmPassword">Confirmation du mot de passe *</label>
+            <input type="password" name="confirmPassword" value="" id="pass2" required placeholder="Mon choix de mot de passe">
+        </div>          
+        <div class="note" id="showPass">
+          <label for="checkbox">Montrer les mots de passe</label>   
+            <input type="checkbox" name ="checkbox" id ="passCheckbox">
+        </div> 
+          <span class="note"><em>*Champs requis</em></span>
+          
                 <div class="formBottom">
                     <input type="submit" name="login" value="Se connecter" />
                 </div>
@@ -58,6 +73,6 @@
     </section>
 </div>
     <!-- JavaScript file that handles the login functionality -->
-    <script type="module" src="./script_login.js"></script>
+    <script type="module" src="./signUP.js"></script>
   </body>
 </html>
