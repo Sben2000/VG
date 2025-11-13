@@ -68,7 +68,33 @@ body{
 }
 
 
-/*************************CONNEXION****************************************************/
+/*************************Sections****************************************************/
+
+.multiSectionsTop{
+display: flex;
+justify-content: space-between;
+}
+
+.multiSectionsBottom{
+display: flex;
+}
+
+.multiSectionsLeft{
+width: 50%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+
+.multiSectionsRight{
+width: 50%;
+display: flex;
+flex-direction: column;
+align-content: flex-start;
+
+}
+
 
 
 .Section{
@@ -76,10 +102,12 @@ body{
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100%;
-    margin-top: 200px;
+    margin-top: 150px;
     /*height:calc(100vh - 60px);/*réglage pour régler la position de la section à 60px de la totalité de la view height */
 
+}
+.multiSectionsBottom .Section{
+    margin-top: 50px;
 }
 
 .SectionContent{
@@ -92,7 +120,7 @@ body{
     
 }
 
-input[type="text"], input[type="password"], input[type="textarea"] {
+input[type="text"], input[type="password"], input[type="textarea"], input[type="email"] {
     max-width: 500px;/*en rapport avec la taille max du parent*/
 
 
@@ -105,7 +133,8 @@ input[type="text"], input[type="password"], input[type="textarea"] {
     margin-bottom: 20px;
 }
 
-/*Style des éléments des groupes input (hors submit)*/
+
+
 
 .detailedInput label{
     display: block;
@@ -113,7 +142,11 @@ input[type="text"], input[type="password"], input[type="textarea"] {
     color: var(--elmDeco);
 }
 
-
+.fetch input{
+background-color:rgb(205, 178, 178);
+display: flex;
+text-align: end;
+}
 
 #showPass{
     display: flex;
@@ -150,6 +183,12 @@ input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) e
     justify-content: end;
 }
 
+.accessManagement{
+        display: flex;
+        flex-direction: row;
+    justify-content: space-between;
+}
+
 input[type="submit"]{ 
     background-color: var(--rosy);
     border-radius: 20px;
@@ -171,8 +210,18 @@ input[type="submit"]:hover {
 
 }
 
+#deleteAccount{
+    background-color: darkred;
+}
 
+#deleteAccount:hover {
+    background-color:red;
+    color: var(--TextClick);
+}
 
+#disconnect{
+    background-color: lightgrey;
+}
 
 
 

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--import des fonts  lobster et montserrat depuis googlefonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+
+	<!--link css-->
+	<link rel="stylesheet" href="./connexion.css" />
+</head>
+
+<body>
+	<div class="main">
+		<div class="separator">
+			<h1 class="sectionTitle">Mon compte</h1>
+		</div>
+		<div class="multiSectionsTop">
+			<div class="multiSectionsLeft">
+				<section class="Section">
+					<div class="SectionContent">
+						<h2>Mes informations Vite&Go</h2>
+						<form id="accountForm">
+							<div class="detailedInput fetch">
+								<label for="username">Nom d'utilisateur: </label>
+								<input type="text" id="username" name="username" value="ggfhgfhghg" autocomplete="off"
+									readonly required />
+							</div>
+							<div class="detailedInput fetch">
+								<label for="email">Email: </label>
+								<input type="email" name="email" value="sdfsdfsdfsdfds" readonly autocomplete="off" />
+								<!-- Submit boutton  -->
+								<div class="formBottom">
+									<input type="submit" name="modifierGeneral" value="Modifier" />
+								</div>
+						</form>
+					</div>
+				</section>
+				<section class="Section">
+<div class="SectionContent">
+					<h2>Voir mes commandes</h2>
+					<div class="formBottom">
+						<input type="submit" name="myOrder" value="Commandes" />
+					</div>
+				</div>					
+				</section>
+
+			</div>
+			<div class="multiSectionsRight">
+				<section class="Section">
+					<div class="SectionContent">
+						<h2>Mes coordonnées</h2>
+
+						<form id="userContactForm">
+
+							<div class="detailedInput fetch">
+								<label for="nom">Nom: </label>
+								<input type="text" name="nom" value="" readonly autocomplete="off" required>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="prenom">Prénom: </label>
+								<input type="text" name="prenom" value="" readonly required>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="tel">Numéro de téléphone: </label>
+
+								<input type="text" name="prenom" value="" readonly>
+
+							</div>
+							<div class="detailedInput fetch">
+								<label for="adresse">Adresse: </label>
+								<input type="text" name="adresse" value="" readonly>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="ville">Ville: </label>
+								<input type="text" name="ville" value="" readonly>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="codePostal">Code Postal: </label>
+								<input type="text" name="codePostal" value="" readonly>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="pays">Pays: </label>
+								<input type="text" name="pays" value="" readonly>
+							</div>
+							<div class="formBottom">
+								<input type="submit" name="modifierDetails" value="Modifier" />
+							</div>
+						</form>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div class="multiSectionsBottom">
+			<section class="Section">
+								<div class="SectionContent">
+					<h2>Gérer mes accès</h2>
+					<div class="accessManagement">
+						<input type="submit" name="delete" value="Supprimer" id="deleteAccount"/>
+										
+						<input type="submit" name="disconnect" value="Me déconnecter" id="disconnect"/>
+					</div>
+				</div>
+				</div>
+
+			</section>
+
+		</div>
+
+	</div>
+	<script type="module" src="./userAccount.js"></script>
+</body>
+
+</html>
