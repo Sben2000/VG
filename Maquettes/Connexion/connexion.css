@@ -22,9 +22,10 @@
 p, input, label{
     font-size: 20px;
 }
-h1, h2{
+h1, h2, a{
     color: var(--elmDeco);
 }
+
 
 /*************************SECTIONS-COMMUN****************************************************/
 body{
@@ -70,7 +71,7 @@ body{
 /*************************CONNEXION****************************************************/
 
 
-.mailSection{
+.Section{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -81,7 +82,7 @@ body{
 
 }
 
-.mailSectionContent{
+.SectionContent{
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
     justify-content: center;
@@ -91,7 +92,13 @@ body{
     
 }
 
-.mailSectionContent h2{
+input[type="text"], input[type="password"], input[type="textarea"] {
+    max-width: 500px;/*en rapport avec la taille max du parent*/
+
+
+}
+
+.SectionContent h2{
     margin-top: 0;
     color: var(--elmDeco);
     text-align: center;
@@ -100,11 +107,13 @@ body{
 
 /*Style des éléments des groupes input (hors submit)*/
 
-.mailInput label{
+.detailedInput label{
     display: block;
     font-weight: bold;
     color: var(--elmDeco);
 }
+
+
 
 #showPass{
     display: flex;

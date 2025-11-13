@@ -30,7 +30,7 @@
           <!-- Input group for the username field -->
         <div class="mailInput">
                 <label for="email">Email *</label>
-                <input type="text" name="email" value="" placeholder="Mon email" required>
+                <input type="email" name="email" value="" placeholder="Mon email" required>
         </div>
           <div class="mailInput">
             <label for="username">Nom d'utilisateur *</label>
@@ -40,6 +40,7 @@
               name="username"
               value =""
               placeholder="Mon choix de nom d'utilisateur"
+              autocomplete ="off"
               required
             />
           </div>
@@ -52,12 +53,13 @@
               name="password"
               value =""
               placeholder="Mon choix de mot de passe"
+              autocomplete ="off"
               required
             />
           </div>
           <div class="mailInput">
             <label for="confirmPassword">Confirmation du mot de passe *</label>
-            <input type="password" name="confirmPassword" value="" id="pass2" required placeholder="Mon choix de mot de passe">
+            <input type="password" name="confirmPassword" value="" id="pass2" autocomplete ="off" placeholder="Mon choix de mot de passe" required >
         </div>          
         <div class="note" id="showPass">
           <label for="checkbox">Montrer les mots de passe</label>   
@@ -66,9 +68,13 @@
           <span class="note"><em>*Champs requis</em></span>
           
                 <div class="formBottom">
-                    <input type="submit" name="login" value="Se connecter" />
+                    <input type="submit" name="login" value="Créer mon compte" />
                 </div>
         </form>
+        <p>
+             <span>Déjà en possession d'un compte?</span>
+            <a href="login.html">Se connecter ici</a>
+        </p>
       </div>
     </section>
 </div>

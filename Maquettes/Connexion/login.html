@@ -27,7 +27,7 @@
 					<h2>Login</h2>
 					<!-- Login form avec champs pour username and password -->
 					<form id="loginForm">
-						<div class="mailInput">
+						<div class="detailedInput">
 							<label for="username">Nom d'utilisateur *</label>
 							<input
 								type="text"
@@ -35,22 +35,27 @@
 								name="username"
 								placeholder="Mon nom d'utilisateur V&Go"
 								value=""
+								autocomplete ="off"
 								required
+								
 							/>
 						</div>
-						<div class="mailInput">
+						<div class="detailedInput">
 							<label for="password">Mot de passe *</label>
-            <input
-              type="password"
-              id="pass1"
-              name="password"
-              value =""
-              placeholder="Mon choix de mot de passe"
-              required
-            />
+							<input
+								type="password"
+								id="pass1"
+								name="password"
+								value=""
+								placeholder="Mon choix de mot de passe"
+								autocomplete ="off"
+								required
+								
+								
+							/>
 							<div class="note" id="showPass">
 								<label for="checkbox">Montrer le mot de passe</label>
-								<input type="checkbox" name ="checkbox" id ="passCheckbox">
+								<input type="checkbox" name="checkbox" id="passCheckbox" />
 							</div>
 							<span class="note"><em>*Champs requis</em></span>
 						</div>
@@ -59,6 +64,16 @@
 							<input type="submit" name="login" value="Se connecter" />
 						</div>
 					</form>
+					<p>
+						<span>Pas encore de compte?</span>
+						<a href="signUP.html">S'inscrire ici</a>
+					</p>
+
+					<p>
+						<a href="forgotPassword.html">Mot de passe oublié?</a>
+					</p>
+					<!--dans le cas d'erreur de login, celle ci sera postée dans le paragraphe ci dessous-->
+					<p class="error" style="color: darkred"><?=@$response?></p>
 				</div>
 			</section>
 		</div>
