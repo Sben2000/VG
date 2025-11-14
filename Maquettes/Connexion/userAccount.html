@@ -45,7 +45,9 @@
 <div class="SectionContent">
 					<h2>Voir mes commandes</h2>
 					<div class="formBottom">
-						<input type="submit" name="myOrder" value="Commandes" />
+						<input type="submit" name="myOrder" value="Afficher mes Commandes ↓ " id="showMyOrders"/>
+						<input type="submit" name="myOrder" value="Masquer mes Commandes ↑" id="hideMyOrders"/>
+						
 					</div>
 				</div>					
 				</section>
@@ -97,6 +99,56 @@
 			</div>
 		</div>
 		<div class="multiSectionsBottom">
+			<section class="Section myOrders" id="myOrders"> 
+				
+			<div class="SectionContent">
+					<h2>Commande N° xxxxx</h2>
+<div class="tables">
+<table class="myOrderTable">
+    <thead>
+        <tr>
+            <th scope="col">date_cde</th>
+            <th scope="col">prix_menu</th>
+            <th scope="col">nbre_pers</th>
+            <th scope="col">statut</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>xxxxxx</td>
+                <td>xxxxxx</td>
+                <td>xxxxxxx</td>
+                <td>xxxxxxx</td>
+			</tr>
+             </tbody>
+</table>
+</div>
+<div class="orderDetailsButtons">
+	<input type="submit" name="showDetails" value="Voir détails ↓" id="showDetails"/>
+	<input type="submit" name="HideDetails" value="Masquer détails ↑" id="hideDetails"/>
+</div>
+<div class="orderDetails">
+<table>
+        <tr>
+            <th scope="row">date_presta</th>
+			<td>xxxxxx</td>
+		</tr>
+		<tr>
+            <th scope="row">heure_livraison</th>
+			<td>xxxxxx</td>
+		</tr>
+		<tr>
+            <th scope="row">prêt_matériel</th>
+			<td>xxxxxx</td>
+		</tr>
+		<tr>
+            <th scope="row">restitution</th>
+			<td>xxxxxx</td>
+		</tr>
+        
+</table>
+</div>
+			</section>
 			<section class="Section">
 								<div class="SectionContent">
 					<h2>Gérer mes accès</h2>

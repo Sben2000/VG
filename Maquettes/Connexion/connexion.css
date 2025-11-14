@@ -22,7 +22,7 @@
 p, input, label{
     font-size: 20px;
 }
-h1, h2, a{
+h1, h2, a, th{
     color: var(--elmDeco);
 }
 
@@ -77,6 +77,9 @@ justify-content: space-between;
 
 .multiSectionsBottom{
 display: flex;
+flex-direction: column;
+
+
 }
 
 .multiSectionsLeft{
@@ -110,6 +113,12 @@ align-content: flex-start;
     margin-top: 50px;
 }
 
+#myOrders{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 .SectionContent{
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
@@ -119,6 +128,40 @@ align-content: flex-start;
     width: 100%;/*espace complet occupé jusqu'au max-width*/
     
 }
+
+
+.myOrders .SectionContent .myOrdersTable{
+    width: 100%;
+    text-align: center;
+    
+}
+
+.myOrders .SectionContent .orderDetails>table{
+    width: 100%;
+    text-align:end;
+}
+.tables{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.myOrderTable thead tr th,td{
+    text-align: center;
+    padding: 5px 15px;
+}
+
+
+
+.myOrders .SectionContent .orderDetails td{
+    border-bottom: var(--hover) 0.5px solid;
+}
+
+.myOrders, #hideMyOrders, #hideDetails{
+    display: none;
+}
+
+
+
 
 input[type="text"], input[type="password"], input[type="textarea"], input[type="email"] {
     max-width: 500px;/*en rapport avec la taille max du parent*/
@@ -183,10 +226,10 @@ input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) e
     justify-content: end;
 }
 
-.accessManagement{
+.accessManagement, .orderDetailsButtons{
         display: flex;
         flex-direction: row;
-    justify-content: space-between;
+        justify-content: space-between;
 }
 
 input[type="submit"]{ 
@@ -219,7 +262,7 @@ input[type="submit"]:hover {
     color: var(--TextClick);
 }
 
-#disconnect{
+#disconnect, #hideDetails, #hideMyOrders{
     background-color: lightgrey;
 }
 
