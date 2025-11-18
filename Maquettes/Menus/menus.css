@@ -1,0 +1,172 @@
+/*********************************DEFAULT********************************************/
+:root{      /*palette couleurs*/
+
+    --dark-color:#222222;
+    --light-color:#dddddd;
+    --aliceblue: aliceblue;
+    /*--highlight-color: #eeeeee;*/
+    --rosy: rosybrown;
+    --elmDeco:#551A8B;
+    --TextClick:#fff;
+    --hover:#954dd7;
+    --rosyLight:rgb(205, 178, 178);
+}
+
+*{ /*par défaut si rien de précisé*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
+}
+
+p, input, label,a {
+    font-size: 20px;
+}
+h1, h2, a, th{
+    color: var(--elmDeco);
+}
+
+
+/*************************SECTIONS-COMMUN****************************************************/
+body{
+    background-color: var(--rosyLight);
+    min-height: 100%;
+
+}
+
+.main{
+    width: 80%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+
+.separator {
+    height: 3px;
+    background-color: var(--elmDeco);
+    width: 100%;
+    margin: 20px 0px;
+    position: relative;
+    
+}
+
+.sectionTitle{
+/*en réf au tag séparator parent précédent*/
+    position: absolute;
+    top:50%; /*place le texte à 50% en bas du centre du séparator*/
+    left: 50%;/*place le texte à 50% à la gauche du centre du séparator (droite du point de vue user)*/
+    transform: translate(-50%,-50%);/*on rattrape les 50% décalés auquel on rajoute 50% pour avoir le texte au centre exact=> soit (-50%, -50%) */
+    z-index: 10;/*placé au dessus du séparator*/
+    background-color: var(--rosyLight);
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
+    color: var(--elmDeco);
+}
+
+.note{
+    font-size: small;
+}
+
+
+/*************************Sections****************************************************/
+
+.SectionContent{
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+    justify-content: center;
+    padding: 40px;/*A augmenter si nécessaire pour plus d'espace*/
+    width: 100%;/*espace complet occupé jusqu'au max-width*/
+    
+}
+
+.SectionContent h2{
+    margin-bottom: 15px;
+}
+
+.multiSectionsCentral{
+display: flex;
+justify-content: space-between;
+width: 100%;
+
+}
+
+.multiSectionsBottom{
+display: flex;
+flex-direction: column;
+
+
+}
+
+.multiSectionsLeft{
+width: 25%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding-right: 20px;
+}
+
+.multiSectionsLeft .SectionContent{
+    position: fixed;
+    width: 20%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+}
+
+.multiSectionsLeft a{/*tout les liens affichés dans la div de gauche */
+    display:block; /*permet d'avoir chaque lien occupant toute la div -> sont affichés alors l'un au dessus de l'autre*/
+    text-decoration: none;
+    font-size: 20px;
+    margin-bottom: 10px; /*marge entre les liens*/
+    
+}
+
+.multiSectionsLeft a:hover{
+    text-decoration: underline;/*soulignement lors du hover sur le lien*/
+    color:var(--hover);
+    
+
+}
+
+.multiSectionsRight{
+width: 75%;
+display: flex;
+flex-direction: column;
+
+}
+
+
+.multiSectionsRight .product{
+    display: flex;
+    align-content: space-between;  
+}
+.product .productLeft{
+    margin: 0 15px;
+}
+
+.multiSectionsRight .productLeft img{
+    height: 200px; /*limitation de la hauteur*/
+    display: block;
+    margin: 10px auto; 
+}
+
+.multiSectionsLeft .productRight{
+position: relative;
+}
+.multiSectionsRight .title  {
+    margin-top: 10px; 
+}
+
+.multiSectionsRight .description  {
+    text-align: justify;
+}
+
+.multiSectionsRight  .price{
+    font-size: 24px;
+    margin-top: 30px;
+    color: darkred;
+    transform: translateY(100%);
+    text-align: end;
+    
+    
+}
+
