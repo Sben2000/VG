@@ -40,22 +40,58 @@
 		<div class="multiSectionsCentral">
 			<div class="multiSectionsLeft">
 				<section class="Section">
+
 					<div class="SectionContent">
-						<h2>Catégories</h2>
-
-						<a href="">Régime</a>
+						<div class="filterTheme">
+						<h2>Thèmes</h2>
+						<a href="">Les Spécifiques</a>
 						<a href="">Du Jour</a>
-						<a href="">Week end</a>
-						<a href="">Gouter</a>
-						<a href="">Pasta</a>
-
+						<a href="">Du Week end</a>
+						<a href="">Nos Gouters</a>
+						<a href="">Nos Pastas</a>
+					</div>
 					</div>
 				</section>
 			</div>
 			<div class="multiSectionsRight">
 				<section class="Section">
+					<div class="SectionContent Criterias">
+						<h2>Veuillez sélectionner un thème ou un filtre: </h2>
+						<div class="rollingMenuCriterias">
+							<select name="products" id="products">
+								<option class="none" value="" disabled selected>Thèmes et Filtres</option>
+								<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+								<optgroup label="Par Thème">
+								<option value="specifiques">Les spécifiques</option>
+								<option value="jour">Du Jour</option>
+								<option value="weekend">Du Week End</option>
+								<option value="gouter">Nos Gouter</option>
+								<option value="pasta">Nos Pastas</option>
+								</optgroup>
+								<optgroup label="Par plages de prix">
+								<option value="15">0-15 €</option>
+								<option value="30">15-30 €</option>
+								<option value="45">30-45 €</option>
+								<option value="46">> 45 €</option>
+								</optgroup>
+								<optgroup label="Par prix max">
+								<option value="20">20 €</option>
+								<option value="35">35 €</option>
+								<option value="50">50 €</option>
+								<option value="1000">> 50 €</option>
+								</optgroup>
+								<optgroup label="Par régime">
+								<option value="vegan">végétarien</option>
+								<option value="sansGluten">sans Gluten</option>
+								<option value="arachideFree">sans arachide</option>
+								</optgroup>
+							</select>
+						</div>
+					</div>
+				</section>
+				<section class="Section">
 					<div class="SectionContent">
-						<h2>Menus de la catégorie</h2>
+						<h2>Menus</h2>
 						<div class="product">
 
 							<div class="productLeft">
@@ -78,12 +114,12 @@
 						</div>
 
 
-						</div>
 					</div>
-				</section>
 			</div>
+			</section>
+		</div>
 
-			<script src="./javascript/script.js"></script>
+		<script src="./javascript/script.js"></script>
 </body>
 
 </html>
