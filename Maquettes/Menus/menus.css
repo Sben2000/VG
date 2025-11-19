@@ -19,10 +19,10 @@
     font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
 }
 
-p, input, label,a {
+p, input, label,a,h3 {
     font-size: 20px;
 }
-h1, h2, a, th, option{
+h1, h2,h3,h4, h5, h6, a, th, option{
     color: var(--elmDeco);
 }
 
@@ -129,18 +129,25 @@ flex-direction: column;
 }
 .multiSectionsRight .Criterias{
 display: flex;
+flex-direction: column;
+
 }
 
 .rollingMenuCriterias{
+width: 100%;
 padding: 10px ;
+display: flex;
+flex: row;
+text-align: center;
+justify-content: space-between;
+
 }
-.rollingMenuCriterias #products{
+.rollingMenuCriterias .filter{
     text-decoration: underline;
     color:var(--light-color);
     background-color: rosybrown;
     font-size: 14px;
     font-weight: bold;
-       
     
 }
 
@@ -201,7 +208,7 @@ h2{
 font-size: 16px;
 }
 
-p,textarea input, label, h3,a, .rollingMenuCriterias #products{
+p,textarea input, label, h3,a, .filter, option{
         font-size: 14px;
     }
 
@@ -255,7 +262,7 @@ p,textarea input, label, h3,a, .rollingMenuCriterias #products{
 
 /*Commun*/
 
-p, textarea, input, label, .rollingMenuCriterias #products{
+p, textarea, input, label, .filter, option, optgroup{
         font-size: 12px;
     }
     h3,h2{
@@ -276,6 +283,17 @@ p, textarea, input, label, .rollingMenuCriterias #products{
     align-items: center;
     text-align: center;
     width: 100%;
+}
+
+.rollingMenuCriterias{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.filter{
+    margin: 5px;
 }
 
 }
