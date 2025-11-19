@@ -233,6 +233,10 @@ input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) e
         justify-content: space-between;
 }
 
+input[type="date"], input[type="time"],input[type="text"],input[type="tel"], input[type="email"]   {
+    color: var(--elmDeco);
+}
+
 input[type="submit"]{ 
     background-color: var(--rosy);
     border-radius: 20px;

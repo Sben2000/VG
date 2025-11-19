@@ -22,7 +22,7 @@
 p, input, label,a,h3 {
     font-size: 20px;
 }
-h1, h2,h3,h4, h5, h6, a, th, option{
+h1, h2,h3,h4, h5, h6, a, th, option,hr {
     color: var(--elmDeco);
 }
 
@@ -179,18 +179,84 @@ position: relative;
 .multiSectionsRight  .price{
     font-size: 24px;
     margin-top: 30px;
+    margin-bottom: 30px;
     color: darkred;
     transform: translateY(100%);
     text-align: end;
     
     
 }
+.multiSectionsRight .orderFormInfo{
+    display: flex;
+    justify-content: space-around;
 
+}
+
+input[type="date"], input[type="time"],input[type="text"],input[type="tel"], input[type="email"]   {
+    color: var(--elmDeco);
+}
+
+input[type="submit"]{ 
+    background-color: var(--rosy);
+    border-radius: 20px;
+    border: none;
+    padding: 10px;/*autour du texte*/
+    font-weight: 600;
+    color: var(--elmDeco);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);/*ombre de 0px en hor, au top, et 5px vers le bas=>opacité de 0.5 en noir)   */
+    margin: 10px 0px;
+
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;/*effet de 0.5s sur la fonction hover dédiée, ease-in-out = lent rapide-lent*/
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:var(--hover);
+    color: var(--TextClick);
+
+}
+#resetFilters{
+    max-width:200px ;
+    font-size: 16px;
+    align-self: end;
+    margin-top: 30px;
+}
+
+.detailedInput label{
+    display: block;
+    font-weight: bold;
+    color: var(--elmDeco);
+}
+
+.fetch input{
+background-color:rgb(205, 178, 178);
+display: flex;
+text-align: end;
+border: none; /*retrait des bordures par défaut sur les input*/
+border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalisée*/
+
+}
+
+
+#orderForm h3{
+text-align: center;
+}
+#orderForm label, #orderForm input [type="text"] {
+font-size: 16px;
+}
+
+.formBottom{
+    margin-top: 20px;
+    text-align: end; 
+}
 /*****************************************************GESTION RESPONSIVE*****************************************/
 
 /***************Au dessus 1100px: Affichage Ordinateur*/
 
-
+.smallScreen, #hideOrderForm, #orderSectionForm{
+    display: none;
+}
 
 /*Autres Règles CSS défini plus haut par défaut
 
@@ -204,11 +270,11 @@ position: relative;
         margin: 0 auto;
     }
 
-h2{
+h2, .price{
 font-size: 16px;
 }
 
-p,textarea input, label, h3,a, .filter, option{
+p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch input{
         font-size: 14px;
     }
 
@@ -253,19 +319,31 @@ p,textarea input, label, h3,a, .filter, option{
     margin: 10px auto; 
 }
 
+.smallScreen{
+    display: block;
 }
 
+#orderSectionForm>.SectionContent>#orderForm>.orderFormInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+}
 
 /******************Sous 700px: Affichage Téléphone*/
 
 @media screen and (max-width: 700px){
 
 /*Commun*/
+.note{
+    font-size: 10px;
+}
 
-p, textarea, input, label, .filter, option, optgroup{
+p, textarea, input, label, .filter, option, optgroup, .detailedInput label, .fetch input{
         font-size: 12px;
     }
-    h3,h2{
+    h3,h2, .price{
         font-size: 14px;
     }
     h1{
