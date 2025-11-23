@@ -162,7 +162,7 @@ nav a.active{ /*lors du hover*/
         margin-left: 0px;
         /*transition: background-color 0.5s ease-in-out;/*transition de 0,5 s pour la fonction hover lorsque l on passe la souris dessus lente-rapide-lente*/
         transition : background-color 0.3s , color 0.3s; /*ajoute une transition background et color font lorsque le :hover sera appliqué*/
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
     .vgTeam>li, .adminAccess>li{/*afin de centrer les liens de la partie Team/Access en conservant la longueur de li*/
         display: flex;
