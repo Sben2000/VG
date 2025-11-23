@@ -10,6 +10,14 @@ CREATE TABLE horaire(
   CONSTRAINT horaire_PK PRIMARY KEY (horaire_id)
 )ENGINE=InnoDB;
 
+CREATE TABLE avis (
+  avis_id INT NOT NULL AUTO_INCREMENT,
+  note VARCHAR(50), /*pas de contrainte NOT NULL car facultatif et  sera vérifié */
+  description VARCHAR(50), /*pas de contrainte NOT NULL car facultatif et  sera vérifié */
+  statut VARCHAR(50) DEFAULT 'A vérifier', /*par défaut ‘à vérifier’*/
+  CONSTRAINT avis_PK PRIMARY KEY (avis_id)
+)ENGINE=InnoDB;
+
 
 CREATE TABLE IF NOT EXISTS role (
   role_id INT NOT NULL AUTO_INCREMENT,
