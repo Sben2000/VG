@@ -1,0 +1,418 @@
+/*********************************COMMMUN********************************************/
+:root{      /*palette couleurs*/
+
+    --dark-color:#222222;
+    --light-color:#dddddd;
+    --aliceblue: aliceblue;
+    /*--highlight-color: #eeeeee;*/
+    --rosy: rosybrown;
+    --elmDeco:#551A8B;
+    -TextClick:#fff;
+    --hover:#954dd7;
+}
+
+*{ /*par défaut si rien de précisé*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
+}
+
+body{
+    background-color: orange;
+}
+
+p{
+    font-size: 20px;
+}
+
+/*************************SECTIONS-COMMUN****************************************************/
+.main{
+    width: 80%;
+    height: 100%;
+    margin: 50px auto;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color: aliceblue;
+    }
+
+.separator {
+    height: 3px;
+    background-color: var(--elmDeco);
+    width: 100%;
+    margin: 20px 0px;
+    position: relative;
+}
+
+.sectionTitle{
+/*en réf au tag séparator parent précédent*/
+    position: absolute;
+    top:50%; /*place le texte à 50% en bas du centre du séparator*/
+    left: 50%;/*place le texte à 50% à la gauche du centre du séparator (droite du point de vue user)*/
+    transform: translate(-50%,-50%);/*on rattrape les 50% décalés auquel on rajoute 50% pour avoir le texte au centre exact=> soit (-50%, -50%) */
+    z-index: 10;/*placé au dessus du séparator*/
+    background-color: aliceblue;
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
+    color: var(--elmDeco);
+}
+
+/*************************A propos de nous****************************************************/
+
+.presBlocks{
+    width: 100%;
+    height: 100%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+}
+
+.presLeft{
+    width: 50%;
+    display:flex;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    }
+
+.presLeft>img{
+    width: 600px;
+    height: auto;
+    margin: auto;
+    align-self: center;
+    border-radius:5px;
+}    
+
+.presRight{
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    }
+.presRight>h1{
+    text-align: center;
+}
+
+.presRight>p{
+    margin-top: 30px;
+    text-align: justify;
+    font-size: 20px;
+}
+
+/*************************Notre équipe****************************************************/
+.ourTeam{
+    width: 100%;
+    height: 100%;
+    margin: 50px auto;
+    display: flex;
+    flex-wrap: wrap;   
+    justify-content: space-around; 
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+    }
+
+.teamMember{
+    border: 2px solid black;
+    background-color: aliceblue;
+    padding: 10px;
+    text-align:justify;
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    
+}
+
+.memberPicture{   
+    border: 3px ridge var(--elmDeco);
+    border-radius:5px;      
+}
+
+.membertitle, .memberDesc{
+    margin: 10px 0;
+    font-size: 16px;                 
+}
+
+
+/*************************Nous joindre****************************************************/
+
+.reachUsBlocks{
+    width: 100%;
+    height: 100%;
+    margin: 50px auto;
+    display:flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:red;
+    }
+.reachUsBlocks h3{
+    text-align: center;
+    margin: 10px;
+}
+.reachUsLeft{
+    width: 50%;
+    display:flex;
+    flex-direction:column;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    align-items: center;
+    
+    }
+
+.reachUsLeftContent{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.mapResponsive{
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    
+    
+}
+
+.mapResponsive iframe{
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    
+}
+.reachUsLeftContent>p{
+    margin-bottom: 20px;
+    
+}
+
+.reachUsRight{
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:green;
+    align-items: center;
+    
+    }
+
+.reachUsRightContent{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.reachUsRight p{
+    font-size: 16px;
+    margin: 10px auto;
+}
+.reachUsRight li{
+    font-weight: bold;
+}
+
+.orderType, .orderTypeContact{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.orderTypeContact li{
+font-weight: normal;
+}
+
+/***************************Nos retours clients****************************************/
+
+.comments{
+    width: 100%;
+    height: 100%;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:blue
+    
+    }
+
+.comment{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 20px auto;
+    
+    
+}
+
+.commentPP{ /*image*/
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+}
+
+.commentText{
+    margin-left: 20px;
+}
+
+.commentText p{
+    text-align: justify;
+}
+
+
+
+    
+/*****************************************************GESTION RESPONSIVE*****************************************/
+
+/***************Au dessus 1100px: Affichage Ordinateur*/
+
+
+
+/*Autres Règles CSS défini plus haut par défaut
+
+/***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
+
+@media screen  and (max-width: 1100px) {
+
+/*Commun*/
+    body {
+        
+        margin: 0 auto;
+    }
+
+    p{
+        font-size: 16px;
+    }
+    h3{
+        font-size: 20px;
+    }
+
+/*Sections*/
+
+.presBlocks{
+    display: flex;
+    flex-direction:column;
+
+}
+
+.presLeft{
+    width: 100%;
+    height: auto;
+}
+
+.presLeft>img{
+    height: auto;
+    max-width: 80%;
+    margin: 0px auto;
+}
+
+.presRight{
+    width: 100%;
+    height: auto;
+}
+
+    .ourTeam{
+    display: flex;
+    flex-wrap: wrap;
+        }
+
+    .teamMember{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        text-align:justify;
+        
+        
+    }
+    .memberPicture{
+    height: auto;
+    max-width: 80%;
+    margin: 0px auto;
+
+    }
+
+.reachUsBlocks{
+    display:flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: solid black 2px;
+    background-color:red;
+    }
+
+.reachUsLeft{
+    width: 100%;
+    height: auto;
+}
+
+.reachUsLeftContent>p{
+    margin-top: 20px;
+    
+}
+
+.presLeft>img{
+    height: auto;
+    max-width: 80%;
+    margin: 0px auto;
+}
+
+.reachUsRight{
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+}
+
+
+/******************Sous 700px: Affichage Téléphone*/
+
+@media screen and (max-width: 700px){
+
+/*Commun*/
+
+    p{
+        font-size: 12px;
+    }
+    h3{
+        font-size: 14px;
+    }
+    h1{
+        font-size: 20px;
+    }
+
+/*Sections*/
+    .ourTeam{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    
+        
+    }
+    .teamMember{
+        width: 100%; 
+        padding: 20px;
+        text-align:justify;
+        
+        
+    }
+
+    .memberPicture{
+    height: auto;
+    width: 80%;
+    }
+
+}
