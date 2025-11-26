@@ -16,6 +16,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
+    z-index: 30;
 }
 
 
@@ -34,12 +35,14 @@
     background-color: var(--rosy);
     position:fixed;
     bottom: 0;
+    z-index: 30;
 }
 
 .footerLink{
     width: 100%;
     display: flex;
     justify-content: space-evenly;
+    
 
 }
 

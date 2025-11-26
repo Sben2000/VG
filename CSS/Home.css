@@ -76,7 +76,7 @@ h1, h2, a{
 .presLeft{
     width: 50%;
     display:flex;
-    margin: 0px 10px;
+
     
     }
 
@@ -85,6 +85,7 @@ h1, h2, a{
     height: auto;
     align-self: center;
     border-radius:5px;
+    margin: 0px auto;
     
 }    
 
