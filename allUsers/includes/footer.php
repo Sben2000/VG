@@ -2,7 +2,7 @@
 		<footer class="footer">
             <div class="footerLink">
 			<a href="./home.php" >Home</a>
-			<a href="./PHP/Mlegales.php">Mentions Légales</a>
+			<a href="./Mlegales.php">Mentions Légales</a>
 			<a href="#contact">Contact</a>
             </div>
             <div class="fastdev">

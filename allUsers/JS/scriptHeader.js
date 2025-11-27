@@ -31,6 +31,7 @@ const vgTeamClose = document.getElementById('vgTeamClose');
     Ajout de transition via une gestion asynchrone de l'apparition et de l'opacité (initié à 0 par défaut dans le CSS)
     */
    async function vgTeamLMShow(){
+    vgTeamLM.style.opacity = 0;
     vgTeamLM.style.display='block';
     /*refactorisé en loop
     await wait(()=>{vgTeamLM.style.opacity = 0.3}, 100);
@@ -42,7 +43,8 @@ const vgTeamClose = document.getElementById('vgTeamClose');
         x=x+0.2;
         await wait(()=>{vgTeamLM.style.opacity = x}, 100);
 } while (x <1);
-
+    vgTeamLM.style.opacity = 1;
+    vgTeamLM.style.zIndex = 30;
    }
 
 gestion.addEventListener('click', vgTeamLMShow);
@@ -50,6 +52,8 @@ gestion.addEventListener('click', vgTeamLMShow);
 //Fermer VgTeam Menu List (avec effet de transition géré par la function Asynchrone vgTeamLMHide())
 
    async function vgTeamLMHide(){
+    vgTeamLM.style.opacity = 1;
+    vgTeamLM.style.display='block';
     /*refactorisé en une boucle
     await wait(()=>{vgTeamLM.style.opacity = 0.8}, 100);
     await wait(()=>{vgTeamLM.style.opacity = 0.5}, 100);
@@ -60,7 +64,7 @@ do {
     x=x-0.2;
     await wait(()=>{vgTeamLM.style.opacity=x},100);
 } while (x>0);
-
+    vgTeamLM.style.opacity = 0;
     vgTeamLM.style.display='none';
    }
 vgTeamClose.addEventListener('click',vgTeamLMHide)

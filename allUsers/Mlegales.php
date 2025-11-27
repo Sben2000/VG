@@ -1,5 +1,3 @@
-<?php 
-include_once "./_allUsers/rootPath.php"?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -26,7 +24,8 @@ include_once "./_allUsers/rootPath.php"?>
 </head>
 
 <body>
-	<?php include_once "__ROOT__/includes/header.php" ?>
+	<?php include_once "includes/header.php"?>;
+
 	<div class="main">
 		<div class="separator">
 			<h1 class="sectionTitle">Nos Mentions Légales</h1>
@@ -200,7 +199,7 @@ include_once "./_allUsers/rootPath.php"?>
 	</div>
 
 	</div>
-	<?php include_once "__ROOT__/includes/footer.php" ?>
+	<?php require_once "includes/footer.php"?>;
 </body>
 
 </html>
