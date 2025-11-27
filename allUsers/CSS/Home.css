@@ -35,7 +35,8 @@ h1, h2, a{
 .main{
     width: 80%;
     height: 100%;
-    margin: 150px 100px auto;
+    margin: 50px auto;
+    margin-top: 150px;
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
     }

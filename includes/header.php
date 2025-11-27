@@ -6,11 +6,11 @@
 			<!--<div class="brand">Vite&Go</div>-->
 			<div class="inlineLinks">
 				<div class="allUsers" id="allUsersLM">
-					<li><a href="#">Home</a></li>
+					<li><a href="./index.php">Home</a></li>
 					<li><a href="#">Nos menus</a></li>
-					<li><a href="#">Contact</a></li>
-					<li><a href="#">Connexion</a></li>
-					<li><a href="#">Mon compte</a></li>
+					<li><a href="./allUsers/contact.php">Contact</a></li>
+					<li><a href="./allUsers/login.php">Connexion</a></li>
+					<li><a href="./allUsers/userAccount.php">Mon compte</a></li>
 					<li><a href="#">Déconnexion</a></li>
 					<div class="rollingMenu">
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
@@ -40,11 +40,11 @@
 			<!--Menu translatant lors que le logo Hamburger est activé/Gestion des niveaux d'accès -->
 			<ul class="panelLinks">
 				<div class="allUsers" id="allUsersHM">
-					<li><a href="#">Home</a></li>
+					<li><a href="./index.php">Home</a></li>
 					<li><a href="#">Nos menus</a></li>
-					<li><a href="#">Contact</a></li>
-					<li><a href="#">Connexion</a></li>
-					<li><a href="#">Mon compte</a></li>
+					<li><a href="./allUsers/contact.php">Contact</a></li>
+					<li><a href="./allUsers/login.php">Connexion</a></li>
+					<li><a href="./allUsers/userAccount.php">Mon compte</a></li>
 					<li><a href="#">Déconnexion</a></li>
 					<div class="vgTeam" id="vgTeamHM">
 						<hr />
