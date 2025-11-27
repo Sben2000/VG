@@ -1,33 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!--import des fonts  lobster et montserrat depuis googlefonts-->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-			rel="stylesheet"
-		/>
-		<link
-			href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
-			rel="stylesheet"
-		/>
 
-		<!--link css-->
-		<link rel="stylesheet" href="./Home.css" />
-
-		<title>Home</title>
-	</head>
-	<body>
-		<div class="main">
+<div class="main">
 			<div class="separator"><h1 class="sectionTitle">A propos de Nous</h1></div>
             <section class="presentation">
 			<!--Initialement ligne pour titre, désormais intégré au séparator, reserve pour autre div si besoin sans modif la structure de la section-->
                 <div class="presBlocks">
                     <div class="presLeft">
-				<img src="./PhotoFrame.jpg" alt="Vit&Go" />
+				<img src="./CSS/default_pictures/PhotoFrame.jpg" alt="Vit&Go" />
 					</div>
                    <div class="presRight">
                 <h1>Bienvenue chez nous!</h1>
@@ -50,32 +28,32 @@
 				
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./PIC_Bgd.png" alt="placeholder image" >
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
                     <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./PIC_Bgd.png" alt="placeholder image" >
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
                     <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./PIC_Bgd.png" alt="placeholder image" >
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
                     <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>				
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./PIC_Bgd.png" alt="placeholder image" >
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
                     <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./PIC_Bgd.png" alt="placeholder image" >
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
                     <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./PIC_Bgd.png" alt="placeholder image" >
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
                     <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>								
 			</section>
@@ -128,7 +106,7 @@
 			<div class="separator"><h1 class="sectionTitle">Nos retours clients</h1></div>
 			<section class="comments" id="comments">
             <div class="comment">
-                <img src="./user.png" alt="user pic" class="commentPP">
+                <img src="./CSS/default_pictures/user.png" alt="user pic" class="commentPP">
                 <div class="commentText">
                     <h3 class="commentName">Jean Dupont</h3>
                     <p class="commentMessage">Vivamus commodo augue gravida nisi tincidunt, nec gravida massa
@@ -144,7 +122,7 @@
                 </div>
             </div>
             <div class="comment">
-                <img src="./user.png" alt="user pic" class="commentPP">
+                <img src="./CSS/default_pictures/user.png" alt="user pic" class="commentPP">
                 <div class="commentText">
                     <h3 class="commentName">Jean Dupont</h3>
                     <p class="commentMessage">Vivamus commodo augue gravida nisi tincidunt, nec gravida
@@ -164,5 +142,5 @@
             </div>
           </section>
 		</div>
-	</body>
-</html>
+
+

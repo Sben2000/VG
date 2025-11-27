@@ -16,20 +16,18 @@
 		/>
 
 		<!--link css de la page-->
-		<link rel="stylesheet" href="./allUsers/CSS/Home.css" />
+		<link rel="stylesheet" href="./CSS/Home.css" />
         <!--link css de la navBar header-->
-        <link rel="stylesheet" href="./allUsers/CSS/styleHeader.css" />
+        <link rel="stylesheet" href="./CSS/styleHeader.css" />
         <!--link css footer-->
-		<link rel="stylesheet" href="./allUsers/CSS/footer.css" />
-		<title>Acceuil</title>
+		<link rel="stylesheet" href="./CSS/footer.css" />
+		<title>Home</title>
 	</head>
 	<body>
 <?php require_once "./includes/header.php"?>
- <?php require_once "./allUsers/home.php"?>
+<?php require_once "home.php"?>
 <?php require_once "./includes/footer.php"?>
 
-<script type="module"  src="./allUsers/JS/Home.js"></script>
+<script type="module"  src="./JS/Home.js"></script>
 </body>
 </html>
-
- 

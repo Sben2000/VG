@@ -53,10 +53,10 @@ nav{/*commun aux nav largeMenu et ham-menu*/
     position: absolute;
     top: 100%;
     display: none;
-    opacity: 0;
     background-color: rosybrown;
     border-bottom: #954dd7 solid 2px;
     z-index: 30;
+    
     
 }
 
@@ -109,8 +109,8 @@ nav a.active{ /*lors du hover*/
 
 }
 /*Dans le cas d'un traitement particulier sur les couleurs lors de l'ouverture du Menu Gestion*/
-.gestionLink:hover,
-.gestionLink.active{
+.gestionLink a:hover,
+.gestionLink a.active{
     background-color: #954dd7;
     color: #fff;
     border-radius: 3px;
