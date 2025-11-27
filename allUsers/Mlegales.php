@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,15 +15,15 @@
 		rel="stylesheet" />
 
 	<!--link css de la page-->
-	<link rel="stylesheet" href="/VG/CSS/Mlegales.css" />
+	<link rel="stylesheet" href="CSS/Mlegales.css" />
 	<!--link css de la navBar header-->
-	<link rel="stylesheet" href="/VG/CSS/styleHeader.css" />
+	<link rel="stylesheet" href="CSS/styleHeader.css" />
 	<!--link css footer-->
-	<link rel="stylesheet" href="/VG/CSS/footer.css" />
+	<link rel="stylesheet" href="CSS/footer.css" />
 </head>
 
 <body>
-	<?php include_once "includes/header.php"?>;
+	<?php include_once "includes/header.php" ?>
 
 	<div class="main">
 		<div class="separator">
@@ -199,7 +198,7 @@
 	</div>
 
 	</div>
-	<?php require_once "includes/footer.php"?>;
+	<?php require_once "includes/footer.php" ?>
 </body>
 
 </html>

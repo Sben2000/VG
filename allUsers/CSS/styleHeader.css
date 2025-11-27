@@ -6,11 +6,12 @@ header{
     background-color: rosybrown;
     position:relative;
     top: 0;
-    z-index: 30;
+    z-index: 1000;
 }
 nav{/*commun aux nav largeMenu et ham-menu*/
    
     box-shadow: 0 5px 5px rgba(0,0,0,0.15);
+    
     
 }
 
@@ -22,6 +23,7 @@ nav{/*commun aux nav largeMenu et ham-menu*/
     align-items: center;
     justify-content: center;
     align-items: center;/*Aligne chacun des éléments ("brand"+"links") verticalement au centre*/
+    z-index: 30;
 }
 
 .brand{/*Text/logo*/
@@ -29,6 +31,7 @@ nav{/*commun aux nav largeMenu et ham-menu*/
     font-weight: 600;
     color: #551A8B;
     margin: 0px 20px;
+    z-index: 30;
 }
 
 
@@ -55,7 +58,7 @@ nav{/*commun aux nav largeMenu et ham-menu*/
     display: none;
     background-color: rosybrown;
     border-bottom: #954dd7 solid 2px;
-    z-index: 30;
+    
     
     
 }
@@ -137,7 +140,7 @@ nav a.active{ /*lors du hover*/
         text-align: left;/*peut être mis en left, right ou justify également*/
         font-size: 45px; /*3 root element qui est le body*/
         transition: .3s ease; /*transition lors de l'animation, translation de la fenêtre*/
-        z-index: 20;
+        z-index: 25;
         
     }
     
