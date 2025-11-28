@@ -55,14 +55,6 @@
 		</section>
 		<section class="Ml">
 			<div class="MlTitle">
-				<h2>Hébergement</h2>
-			</div>
-			<div class="MlContent">
-				<p>Hébergeur : XX XX</p>
-			</div>
-		</section>
-		<section class="Ml">
-			<div class="MlTitle">
 				<h2>Développement</h2>
 			</div>
 			<div class="MlContent">

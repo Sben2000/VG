@@ -1,11 +1,11 @@
 <?php
 
 require_once "./Functions/fctAccount.php";
-//execution de la function loginUser lors du submit
+//execution de la function passwordReset lors du reset
 	//Note: variables traitées/nettoyées dans la function, $response=retour du traitement
 
-	if(isset($_POST['submit'])){
-	$response = loginUser($_POST['email'], $_POST['password']);
+	if(isset($_POST['reset'])){
+	$response = passwordReset($_POST['email']);
 	
 }
 
@@ -40,57 +40,57 @@ require_once "./Functions/fctAccount.php";
 	<?php include_once "includes/header.php" ?>
 	<div class="main">
 		<div class="separator">
-			<h1 class="sectionTitle">Se connecter</h1>
+			<h1 class="sectionTitle">Réinitialiser mon mot de passe</h1>
 		</div>
 		<!-- Container pour le login form -->
 		<section class="Section">
 			<div class="SectionContent">
-				<h2>Login</h2>
+				<h2>Reinitialisation mot de Passe</h2>
 				<!-- Login form avec champs pour email & password -->
 				<form id="loginForm" action="" autocomplete="off"><!--response envoyé dans la même page en cas d'échec-->
 					<div class="detailedInput">
-						<!-- email plutôt que username car plus simple à retenir -->
 						<label for="email">Email *</label>
 						<input
 							type="text"
 							id="email"
 							name="email"
-							placeholder="Mon email"
+							placeholder="Mon email pour reinitialiser le mot de passe"
 							value="<?= @$_POST['email'] /*@ évite les warning si champs vide*/?>"
 							autocomplete="off"
 							required />
+							<span class="note"><em>*Champs requis</em></span>
 					</div>
-					<div class="detailedInput">
-						<label for="password">Mot de passe *</label>
-						<input
-							type="password"
-							id="pass1"
-							name="password"
-							value="<?php echo @$_POST["password"]?>"
-							placeholder="Mon mot de passe V&Go"
-							autocomplete="off"
-							required />
-						<div class="note" id="showPass">
-							<label for="checkbox">Montrer le mot de passe</label>
-							<input type="checkbox" name="checkbox" id="passCheckbox" />
-						</div>
-						<span class="note"><em>*Champs requis</em></span>
-					</div>
+					
 					<!-- Submit boutton  -->
 					<div class="formBottom">
-						<input type="submit" name="login" value="Se connecter" />
+						<input type="submit" name="reset" value="Reinitialiser" />
 					</div>
+					
 				</form>
 				<p>
-					<span>Pas encore de compte?</span>
-					<a href="./signUP.php">S'inscrire ici</a>
+					<span>Annuler?</span>
+					<a href="indexLocal.php">Accueil</a>
 				</p>
-
 				<p>
-					<a href="forgotPassword.php">Mot de passe oublié?</a>
+					<span>Réessayer avant?</span>
+					<a href="login.php">Connexion</a>
 				</p>
-				<!--dans le cas d'erreur de login, retour de $response-->
-				<p class="error" style="color: darkred"><?= @$response ?></p>
+        <?php
+            //retour du resultat $response affiché à l'utilisateur
+                //si le resultat de la function est success =>newPassword est bien enregistré dans la dB
+                //=>on signifie à l'utilisateur de récupérer le newPassword dans son mail 
+            if(@$response == "success"){
+                ?>
+                <!--afficher : inscription réussi-->
+                <p class="success" style='color:green'>Le mot de passe a été réinitialisé et envoyé avec succès, veuillez le récupérer depuis votre email pour vous connecter</p>
+                <p class="success" style='font-style:italic'>Si nécessaire, vérifier le dossier spam</p>
+                <?php
+            }else{
+                ?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur dans resetPassword()-->
+                    <p class="error" style ='color:darkred'><?=@$response?></p>
+                <?php
+            }
+        ?>
 			</div>
 		</section>
 	</div>

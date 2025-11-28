@@ -36,7 +36,7 @@
 
 					<p> Nous sommes désolé de vous voir partir :-( ... </p><br>
 					<p>Si vous changer d'avis:</p><br>
-					<p style="text-align: end;">n'hésitez pas à <a href="login.html">Recréer un compte</a></p>
+					<p style="text-align: end;">n'hésitez pas à <a href="login.php">Recréer un compte</a></p>
 
 			</div>
 		</section>

@@ -78,7 +78,7 @@
         </form>
         <p>
           <span>Déjà en possession d'un compte?</span>
-          <a href="./login.php">Se connecter ici</a>
+          <a href="login.php">Se connecter ici</a>
         </p>
       </div>
     </section>
