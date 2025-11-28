@@ -167,10 +167,10 @@
 				<div class="SectionContent">
 					<h2>Gérer mes accès</h2>
 					<div class="accessManagement">
-						<form action="./deleteMessage.html">
+						<form action="./deleteMessage.php">
 							<input type="submit" name="delete" value="Supprimer" id="deleteAccount" />
 						</form>
-						<form action="../Home/index.html">
+						<form action="./indexLocal.php">
 							<input type="submit" name="disconnect" value="Me déconnecter" id="disconnect" />
 						</form>
 					</div>
