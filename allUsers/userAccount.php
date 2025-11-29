@@ -1,3 +1,33 @@
+<?php
+
+require ("./Functions/fctAccount.php");
+//sécurisation de la page afin que seul l'utilisateur identifié ait accès à sa page
+/*si session non active, redirection de l'utilisateur automatiquement  vers la page de login.php */
+	    if(!isset($_SESSION["user"])){
+        header("location: login.php");
+        //puis on sort de cette page
+        exit;
+    }
+/*
+//si l'utilisateur clique sur deconnexion dans la navBar => appele la clé logout(href="?logout") via le lien du formulaire ci dessous =>clé/variable récupérant($GET_["logout"])), 
+//on appelle la function logout qui détruit la session et redirige vers la page login.php
+
+if (isset($_GET["logout"])){
+    logoutUser();
+}
+*/
+//3) cas ou l'utilisateur confirme  la suppression du compte défini en fin de page
+
+if(isset($_GET["confirm-account-deletion"])){
+    /*on apelle alors la function deleteAccount() qui supprimera celui ci définitivement et 
+    renverra vers la page de confirmation de compte supprimé (delete-message.php) qui contient également
+    un lien pour recréer un compte sur la page index.php*/
+    deleteAccount();
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -17,6 +47,8 @@
 	<link rel="stylesheet" href="CSS/styleHeader.css" />
 	<!--link css footer-->
 	<link rel="stylesheet" href="CSS/footer.css" />
+	<!--link css disconnect (modal)-->
+	<link rel="stylesheet" href="./allUsers/CSS/disconnectMod.css" />
 </head>
 
 <body>
@@ -39,12 +71,16 @@
 							<div class="detailedInput fetch">
 								<label for="email">Email: </label>
 								<input type="email" name="email" value="" readonly autocomplete="off" />
+							</div>
+							<span class="note"><em>*Par sécurité, seul le nom d'utilisateur est modifiable,<br> → Nous contacter pour modifier l'email</em></span>
 								<!-- Submit boutton  -->
 								<div class="formBottom">
-									<input type="submit" name="modifierGeneral" value="Modifier" />
+									<form action="./userContact.php">
+									<input type="submit" name="modifierGeneral" value="Modifier" formaction="./userContact.php"/>
+									</form>
 								</div>
 						</form>
-					</div>
+					
 				</section>
 
 
@@ -66,8 +102,7 @@
 							</div>
 							<div class="detailedInput fetch">
 								<label for="tel">Numéro de téléphone: </label>
-
-								<input type="tel" name="tel" value="" readonly>
+								<input type="text" name="tel" value="" readonly>
 
 							</div>
 							<div class="detailedInput fetch">
@@ -87,7 +122,7 @@
 								<input type="text" name="pays" value="" readonly>
 							</div>
 							<div class="formBottom">
-								<input type="submit" name="modifierDetails" value="Modifier" />
+								<input type="submit" name="modifierDetails" value="Modifier" formaction="./userContact.php"/>
 							</div>
 						</form>
 					</div>

@@ -21,6 +21,10 @@
         <link rel="stylesheet" href="./allUsers/CSS/styleHeader.css" />
         <!--link css footer-->
 		<link rel="stylesheet" href="./allUsers/CSS/footer.css" />
+		<!--link css disconnect (modal)-->
+		<link rel="stylesheet" href="./allUsers/CSS/disconnectMod.css" />
+
+
 		<title>Acceuil</title>
 	</head>
 	<body>
