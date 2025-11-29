@@ -3,11 +3,11 @@
 require_once "./Functions/fctAccount.php";
 //execution de la function registerUser lors du submit
 	//Note: variables traitées/nettoyées dans la function, $response=retour du traitement
-
 	if(isset($_POST['createAccount'])){
 	$response = registerUser($_POST['email'], $_POST['username'], $_POST['password'], $_POST['confirmPassword']);
 	
 }
+
 
 ?>
 
@@ -48,11 +48,11 @@ require_once "./Functions/fctAccount.php";
       <div class="SectionContent">
         <h2>Je crée mes identifiants</h2>
 
-        <form id="loginForm" action="" autocomplete="off"><!--response envoyée dans la même page -->
+        <form id="loginForm" action="" method="post" autocomplete="off"><!--response envoyée dans la même page -->
           <!-- Input group  -->
           <div class="detailedInput">
             <label for="email">Email *</label>
-            <input type="email" name="email" value="" placeholder="Mon email" required>
+            <input type="email" name="email" value="<?=@$_POST['email']  /*@ évite les warning si champs vide*/ ?>" placeholder="Mon email" required>
           </div>
           <div class="detailedInput">
             <label for="username">Nom d'utilisateur *</label>
@@ -60,7 +60,7 @@ require_once "./Functions/fctAccount.php";
               type="text"
               id="username"
               name="username"
-              value="<?= @$_POST['email']  /*@ évite les warning si champs vide*/ ?>>"
+              value="<?= @$_POST['username']  /*@ évite les warning si champs vide*/ ?>"
               placeholder="Mon choix de nom d'utilisateur"
               autocomplete="off"
               required />
@@ -89,6 +89,7 @@ require_once "./Functions/fctAccount.php";
 
           <div class="formBottom">
             <input type="submit" name="createAccount" value="Créer mon compte" />
+            <button type="submit" name="submit">Submit</button>
           </div>
         </form>
         <p>

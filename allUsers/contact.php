@@ -32,7 +32,7 @@
 		</div>
 		<section class="contact" id="contact">
 			<div class="contactForm">
-				<form action="" method="" class="form-contact">
+				<form action="" method="post" class="form-contact">
 					<div class="formTop">
 
 						<label for="nom">Nom / Prénom</label>

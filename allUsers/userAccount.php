@@ -62,7 +62,7 @@ if(isset($_GET["confirm-account-deletion"])){
 				<section class="Section">
 					<div class="SectionContent">
 						<h2>Mes informations Vite&Go</h2>
-						<form id="accountForm">
+						<form id="accountForm" method="post" action="">
 							<div class="detailedInput fetch">
 								<label for="username">Nom d'utilisateur: </label>
 								<input type="text" id="username" name="username" value="" autocomplete="off"

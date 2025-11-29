@@ -16,7 +16,7 @@ function registerUser($email, $username, $password, $confirm_password){
     if(!$conn){
         return false;
     }
-
+echo "hello";
     //récupération des arguments de la function et trim des valeurs
     
     $args=func_get_args();//=>récupère l'ensemble des arguments placés dans la fonction dans $args (qui devient un tableau contenant les entrées utilisateurs passés en argument)
@@ -40,13 +40,98 @@ function registerUser($email, $username, $password, $confirm_password){
             //via un preg_match
             preg_match_all($masque, $arg, $resultat);
 
-            //via un controle complémentaire htmchars
+            //via un controle complémentaire htmlchars
             $secureInput = htmlspecialchars($arg,  ENT_QUOTES | ENT_HTML5, 'UTF-8');
 
             //si carctères trouvés dans les deux cas=>avertir l'utilisateur
             if((count($resultat[0])>0) | ($arg != $secureInput)){
                 return " Les caractères spéciaux: < > \" \' ne sont pas autorisé, Veuillez corriger {$arg}";
             }
+        }
+
+        //Vérification du format de l'email (fonction filter_var() avec option FILTER_VALIDATE_EMAIL)
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return "le format de l'email n'est pas valide";
+        }
+
+        //Vérification de l'exitence d'un email similaire dans la DB
+        $sql = "SELECT email FROM utilisateur where email= :email";
+        $query = $conn->prepare($sql);
+        $query->bindParam(":email", $email);
+        $query->execute();
+        $results =$query->fetch(PDO::FETCH_ASSOC);
+            //si résultat trouvé =>envoyé un message d'erreur
+        if ($results[$email] !=NULL){
+            return "l'email existe déjà dans notre base, veuillez choisir un email différent";
+        }
+
+        
+
+        //Vérification de la longueur du nom d'utilisateur
+        if(strlen($username)>10){
+            return "le nom d'utilisateur ne doit pas dépasser 10 caractères";
+        }
+
+        if(strlen($username)<3){
+            return "le nom d'utilisateur doit comporter au moins 3 caractères";
+        }
+        //Vérification de l'exitence d'un nom d'utilisateur similaire dans la DB
+        $sql = "SELECT nom_utilisateur FROM utilisateur where email= :email";
+        $query = $conn->prepare($sql);
+        $query->bindParam(":email", $email);
+        $query->execute();
+        $results =$query->fetch(PDO::FETCH_ASSOC);
+            //si résultat trouvé =>envoyé un message d'erreur
+        if ($results[$email] !=NULL){
+            return "l'email existe déjà dans notre base, veuillez choisir un email différent";
+        }
+
+/* REGEX A TRAVAILLER
+        //Vérification des caractères alphanumériques uniquement (Upper&Lowercase)
+        $masque ="/[a-zA-Z0-9]/+";
+        preg_match_all($masque, $username, $resultat);
+        if ($resultat)
+        return "le nom d'utilisateur ne doit comporter que des caractères alphanumériques";
+*/
+        //Vérification de la longueur du mot de passe
+
+        if(strlen($password)>20){
+            return "le mot de passe ne doit pas dépasser 20 caractères";
+        }
+
+        if(strlen($password)<8){
+            return "le mot de passe doit comporter au moins 8 caractères";
+        }
+/*      REGEX A TRAVAILLER
+        //Vérification des caractères alphanumériques uniquement (Upper&Lowercase)
+        $masque ="/[a-zA-Z0-9]/+";
+        preg_match_all($masque, $username, $resultat);
+        return "le nom d'utilisateur ne doit comporter que des caractères alphanumériques";
+*/
+        //Vérification équvalence le Mot de Passe et la confirmation du Mot de Passe 
+            if($password !== $confirm_password){
+        return "les mots de passe ne correspondent pas, veuillez vérifier";
+         }
+
+        //Hashage&Encryption du mot de passe (en Bcrypt=>également algo par défaut PHP via PASSWORD_DEFAULT)
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        //echo "{$hashedPassword}\n"; vérification encrypt du mode passe , uncomment pour voir le résultat
+
+        //Insertion des data finaux dans la DB
+        $SQL = "INSERT INTO utilisateur (nom_utilisateur, password, email) VALUES (:username, :password, :email)";
+        $query=$conn->prepare($sql);
+        $query->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
+        $query->bindParam(":username", $username, PDO::PARAM_STR);
+        $query->bindParam(":email", $email, PDO::PARAM_STR);
+        $query->execute();
+
+        //Vérification que le dernier ID enregistré est > 0 (confirmation enregistrement)
+        $lastInserted = $conn->lastInsertId();
+
+        if($lastInserted>0){
+            return "success"; //affichera le message associé dans le fichier d'execution de la réponse
+        }else{
+            return "l'enregistrement a échoué, veuillez recommencer";
         }
 
 }

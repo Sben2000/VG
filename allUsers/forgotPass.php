@@ -48,7 +48,7 @@ require_once "./Functions/fctAccount.php";
 			<div class="SectionContent">
 				<h2>Reinitialisation mot de Passe</h2>
 				<!-- Login form avec champs pour email & password -->
-				<form id="loginForm" action="" autocomplete="off"><!--response envoyé dans la même page en cas d'échec-->
+				<form id="loginForm" action="" method="post" autocomplete="off"><!--response envoyé dans la même page en cas d'échec-->
 					<div class="detailedInput">
 						<label for="email">Email *</label>
 						<input
