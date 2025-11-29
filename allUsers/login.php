@@ -48,7 +48,7 @@ require_once "./Functions/fctAccount.php";
 			<div class="SectionContent">
 				<h2>Login</h2>
 				<!-- Login form avec champs pour email & password -->
-				<form id="loginForm" action="" autocomplete="off"><!--response envoyée dans la même page -->
+				<form id="loginForm" action="" method="post" autocomplete="off"><!--response envoyée dans la même page -->
 					<div class="detailedInput">
 						<!-- email plutôt que username car plus simple à retenir -->
 						<label for="email">Email *</label>

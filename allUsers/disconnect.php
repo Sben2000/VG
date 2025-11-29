@@ -1,3 +1,16 @@
+<?php
+/*
+require_once "./Functions/fctAccount.php";
+//execution de la function logoutUser lors du submit
+
+	if(isset($_POST['disconnect'])){
+	logoutUser();
+	
+}
+*/
+?> 
+ 
+ 
  <div class="modalGroup">
     <div class="modal" id="modal">
         <div class="modalContainer">
@@ -5,7 +18,7 @@
             <h2>Je confirme la deconnexion</h2>
             <form action="" method="POST">
                 <div class="modalInputs">
-                    <input type="submit" value="Me déconnecter">
+                    <input type="submit" name="disconnect" value="Me déconnecter">
                 </div>
             </form>
         </div>

@@ -64,7 +64,7 @@ if(isset($_GET["enregistrer"])){
       <div class="SectionContent">
         <h2>Je renseigne ou modifie mes coordonnées</h2>
 
-        <form id="userContactForm">
+        <form id="userContactForm" action ="" method="post">
           <div class="detailedInput">
             <label for="nom">Mon email </label>
             <input type="text" name="email" value="" placeholder="Email" autocomplete="off" disabled >
