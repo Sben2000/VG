@@ -98,4 +98,26 @@ rappel:
 
 }
 
+
+/*****************************Gestion de la Modal de deconnexion liée à la page diconnect.php et accessible via le lien deconnexion********************************/
+
+
+/*Gestion Ouverture de la modale de deconnexion*/
+const disconnectModal = document.querySelector(".disconnectModal");
+const modal = document.getElementById("modal")
+disconnectModal.addEventListener("click",()=>{
+    console.log('clicked');
+     modal.style.display ="block";
+})
+
+/*Gestion Fermeture de la modale de déconnextion*/
+const imgCloseModal= document.getElementById("imgCloseModal");
+imgCloseModal.addEventListener("click",()=>{
+     modal.style.display = "none";
+})
+
+/******************************************************************************************************************************************************************* */
+
+
+
 export {scriptHeader as mainNav};

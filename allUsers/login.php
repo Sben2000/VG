@@ -4,7 +4,7 @@ require_once "./Functions/fctAccount.php";
 //execution de la function loginUser lors du submit
 	//Note: variables traitées/nettoyées dans la function, $response=retour du traitement
 
-	if(isset($_POST['submit'])){
+	if(isset($_POST['login'])){
 	$response = loginUser($_POST['email'], $_POST['password']);
 	
 }
@@ -33,7 +33,8 @@ require_once "./Functions/fctAccount.php";
 	<link rel="stylesheet" href="CSS/styleHeader.css" />
 	<!--link css footer-->
 	<link rel="stylesheet" href="CSS/footer.css" />
-	
+	<!--link css disconnect (modal)-->
+	<link rel="stylesheet" href="./allUsers/CSS/disconnectMod.css" />	
 </head>
 
 <body>
@@ -47,7 +48,7 @@ require_once "./Functions/fctAccount.php";
 			<div class="SectionContent">
 				<h2>Login</h2>
 				<!-- Login form avec champs pour email & password -->
-				<form id="loginForm" action="" autocomplete="off"><!--response envoyé dans la même page en cas d'échec-->
+				<form id="loginForm" action="" autocomplete="off"><!--response envoyée dans la même page -->
 					<div class="detailedInput">
 						<!-- email plutôt que username car plus simple à retenir -->
 						<label for="email">Email *</label>

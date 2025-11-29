@@ -1,4 +1,4 @@
-
+<?php require_once "./disconnect.php"?>
 	<header>
 		<!-----------------------------------------HTML du Menu Ecran------------------------->
 	<div class="brand">Vite&Go</div>
@@ -11,7 +11,7 @@
 					<li><a href="./contact.php">Contact</a></li>
 					<li><a href="./login.php">Connexion</a></li>
 					<li><a href="./userAccount.php">Mon compte</a></li>
-					<li><a href="#">Déconnexion</a></li>
+					<li class=disconnectModal><a href="#">Déconnexion</a></li>
 					<div class="rollingMenu">
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
 						<div class="vgTeam" id="vgTeamLM">
@@ -45,7 +45,7 @@
 					<li><a href="./contact.php">Contact</a></li>
 					<li><a href="./login.php">Connexion</a></li>
 					<li><a href="./userAccount.php">Mon compte</a></li>
-					<li><a href="#">Déconnexion</a></li>
+					<li class=disconnectModal><a href="#">Déconnexion</a></li>
 					<div class="vgTeam" id="vgTeamHM">
 						<hr />
 						<span>Gestion:</span>
@@ -60,5 +60,6 @@
 			</ul>
 		</div>
 	</header>
+
 
 
