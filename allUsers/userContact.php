@@ -50,7 +50,7 @@ if(isset($_GET["enregistrer"])){
 	<!--link css footer-->
 	<link rel="stylesheet" href="CSS/footer.css" />
 	<!--link css disconnect (modal)-->
-	<link rel="stylesheet" href="./allUsers/CSS/disconnectMod.css" />
+	<link rel="stylesheet" href="CSS/disconnectMod.css" />
 </head>
 
 <body>
