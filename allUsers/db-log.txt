@@ -1,0 +1,20 @@
+30/11/2025_12:34:41 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:34:47 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:08 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:16 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:29 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:44 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:53 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:36:02 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:36:06 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 

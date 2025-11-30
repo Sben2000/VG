@@ -60,8 +60,9 @@ echo "hello";
         $query->bindParam(":email", $email);
         $query->execute();
         $results =$query->fetch(PDO::FETCH_ASSOC);
+        var_dump($results[$email]);
             //si résultat trouvé =>envoyé un message d'erreur
-        if ($results[$email] !=NULL){
+            if (($results[$email] != NULL)){
             return "l'email existe déjà dans notre base, veuillez choisir un email différent";
         }
 
@@ -76,14 +77,14 @@ echo "hello";
             return "le nom d'utilisateur doit comporter au moins 3 caractères";
         }
         //Vérification de l'exitence d'un nom d'utilisateur similaire dans la DB
-        $sql = "SELECT nom_utilisateur FROM utilisateur where email= :email";
+        $sql = "SELECT nom_utilisateur FROM utilisateur where nom_utilisateur= :username";
         $query = $conn->prepare($sql);
-        $query->bindParam(":email", $email);
+        $query->bindParam(":username", $username);
         $query->execute();
         $results =$query->fetch(PDO::FETCH_ASSOC);
             //si résultat trouvé =>envoyé un message d'erreur
-        if ($results[$email] !=NULL){
-            return "l'email existe déjà dans notre base, veuillez choisir un email différent";
+        if ($results[$username] != ""){
+            return "le nom d'utilisateur existe déjà dans notre base, veuillez en choisir un différent";
         }
 
 /* REGEX A TRAVAILLER
@@ -117,8 +118,9 @@ echo "hello";
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         //echo "{$hashedPassword}\n"; vérification encrypt du mode passe , uncomment pour voir le résultat
 
+
         //Insertion des data finaux dans la DB
-        $SQL = "INSERT INTO utilisateur (nom_utilisateur, password, email) VALUES (:username, :password, :email)";
+        $sql = "INSERT INTO utilisateur (role_id, nom_utilisateur, password, email) VALUES (1, :username, :password, :email)";//role_id =1 =>utilisateut par défaut (allUsers)
         $query=$conn->prepare($sql);
         $query->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
         $query->bindParam(":username", $username, PDO::PARAM_STR);
