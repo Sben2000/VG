@@ -122,7 +122,7 @@ function registerUser($email, $username, $password, $confirm_password){
             //éléments constituant l'email (sujet et corps) géré ensuite par la function sendMail() de PHPMailer
             $recipient =$email;//destinataire défini dans la function
             $subject="Votre inscription chez Vite&Go";//sujet envoyé dans le mail
-            $body= "<p> Bonjour `{$username}`, nous vous confirmons votre inscription chez Vite&GO.</p><br>\r\n
+            $body= "<p> Bonjour {$username}, nous vous confirmons votre inscription chez Vite&GO.</p><br>\r\n
                      <p>Bienvenue chez nous, nous espérons avoir de vos nouvelles très vite </p>\r\n"; //texte du mail puis retour à la ligne , curseur en début de ligne
         //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
                 

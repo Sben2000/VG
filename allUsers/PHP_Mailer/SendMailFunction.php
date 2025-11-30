@@ -50,7 +50,7 @@
             $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
             $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
             */
-
+            $mail->CharSet='utf-8'; //mis à utf-8 car par défaut en ISO88591 -> cf public $CharSet = self::CHARSET_ISO88591 (fichier PHPMailer.php)
             //Content
             $mail->isHTML(true);         //Set email format to HTML ->possibilité d'envoi de code HTML (dans le cas ou on met du style html à notre mail)
             $mail->Subject = $subject; /*'Here is the subject';*/    //sujet/objet de l'envoi apparaissant dans le mail->cf ds function 
@@ -64,8 +64,7 @@
 
 
             $mail->send(); /*fait l'execution du programme en envoyant le mail*/
-            //return "<h4 style ='color:rgba(22, 180, 67, 1)'>Message successfully sent!</h4>";//Message de confirmation que le mail a été envoyé, peut être masqué si ne doit pas apparaitre
-            //gestion des erreurs d'envoi avec affichage du message d'erreur ->peut être masqué si ne doit pas apparaitre ->intégré dans index.php
+ 
         }
     
 ?>
