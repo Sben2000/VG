@@ -134,3 +134,5 @@ VALUES
     ('adminAccess') ;
 
 /**Le reste sera ajouté au fur et à mesure via les interfaces de création/mises à jour intégrés dans les dossiers du projet*/
+
+SELECT email FROM utilisateur where email = "soufyane2000@hotmail.fr";
