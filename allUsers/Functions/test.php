@@ -1,9 +1,9 @@
 <?php
 
-$username = "aa11&";
+$password = "aa11&AA.";
         //Vérification des caractères autorisés 
-        $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_&%$!]).+$)";
-        preg_match_all($masque, $username, $resultat);
+        $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_&%$!.]).+$)";
+        preg_match_all($masque, $password, $resultat);
         var_dump($resultat[0]);
         if (empty($resultat[0])){
         echo "le mot de passe doit contenir au moins 1 Maj., 1 minusc.  un caractère spécial autorisé: $%!.&@*  ";

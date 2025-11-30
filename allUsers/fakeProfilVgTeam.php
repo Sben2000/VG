@@ -1,12 +1,18 @@
 <?php
+require_once "./Functions/fctFakeTeamProfil.php";
 
-require_once "./Functions/fctAccount.php";
 //execution de la function registerUser lors du submit
 	//Note: variables traitées/nettoyées dans la function, $response=retour du traitement
-	if(isset($_POST['createAccount'])){
-	$response = registerUser($_POST['email'], $_POST['username'], $_POST['password'], $_POST['confirmPassword']);
+	if(isset($_POST['createAccountAdmin'])){
+	$response = registerAdmin($_POST['email'], $_POST['username'], $_POST['password'], $_POST['confirmPassword']);
 	
 }
+
+	if(isset($_POST['createAccountEmployee'])){
+	$response = registerEmployee($_POST['email'], $_POST['username'], $_POST['password'], $_POST['confirmPassword']);
+	
+}
+
 
 
 ?>
@@ -41,7 +47,7 @@ require_once "./Functions/fctAccount.php";
   <?php include_once "includes/header.php" ?>
   <div class="main">
     <div class="separator">
-      <h1 class="sectionTitle">S'enregistrer</h1>
+      <h1 class="sectionTitle">Créer de faux profils Admin ou Employés</h1>
     </div>
 
     <section class="Section">
@@ -88,10 +94,13 @@ require_once "./Functions/fctAccount.php";
             <input type="checkbox" name="checkbox" id="passCheckbox">
           </div>
           <span class="note"><em>*Champs requis</em></span>
-
           <div class="formBottom">
-            <input type="submit" name="createAccount" value="Créer mon compte" />
+            <input type="submit" name="createAccountAdmin" value="Créer compte Admin" />
           </div>
+          <div class="formBottom">
+            <input type="submit" name="createAccountEmployee" value="Créer compte Employé" />
+          </div>
+          
         </form>
         <p>
           <span>Déjà en possession d'un compte?</span>
