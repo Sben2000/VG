@@ -183,7 +183,7 @@ input[type="text"], input[type="password"], input[type="textarea"], input[type="
     display: block;
     font-weight: bold;
     color: var(--elmDeco);
-}
+    }
 
 .fetch input{
 background-color:rgb(205, 178, 178);
@@ -191,6 +191,8 @@ display: flex;
 text-align: end;
 
 }
+
+
 
 #showPass{
     display: flex;
@@ -218,7 +220,16 @@ input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) e
     
 }
 
+#username, #passCrea{
+    margin-bottom: 0px;
+}
 
+.requirement{
+    font-style: italic;
+    font-size: 12px;
+    color: darkblue;
+    margin-bottom: 20px;
+}
 
 /********Input type submit************/
 

@@ -68,13 +68,20 @@ function registerUser($email, $username, $password, $confirm_password){
         
 
         //Vérification de la longueur du nom d'utilisateur
-        if(strlen($username)>10){
+        if(strlen($username)>15){
             return "le nom d'utilisateur ne doit pas dépasser 10 caractères";
         }
 
         if(strlen($username)<3){
             return "le nom d'utilisateur doit comporter au moins 3 caractères";
         }
+        //Vérification des caractères autorisés (alphanumériques (case insensitive) , - et _) uniquement (Upper&Lowercase)
+        $masque ="/[^a-z_\-0-9]/i"; //classe:[], ne contenant pas: ^(interne), les caractères: aàz - _ 0à9, minuscule ou majuscule:/i
+        preg_match_all($masque, $username, $resultat);
+        if (count($resultat[0])!=0){
+        return "le nom d'utilisateur ne doit comporter que des caractères alphanumériques ,sont également admis '-' et '_'";
+        }
+
         //Vérification de l'exitence d'un nom d'utilisateur similaire dans la DB
         $sql = "SELECT nom_utilisateur FROM utilisateur where nom_utilisateur= :username";
         $query = $conn->prepare($sql);
@@ -86,28 +93,24 @@ function registerUser($email, $username, $password, $confirm_password){
             return "le nom d'utilisateur existe déjà dans notre base, veuillez en choisir un différent";
         }
 
-/* REGEX A TRAVAILLER
-        //Vérification des caractères alphanumériques uniquement (Upper&Lowercase)
-        $masque ="/[a-zA-Z0-9]/+";
-        preg_match_all($masque, $username, $resultat);
-        if ($resultat)
-        return "le nom d'utilisateur ne doit comporter que des caractères alphanumériques";
-*/
+
         //Vérification de la longueur du mot de passe
 
         if(strlen($password)>20){
             return "le mot de passe ne doit pas dépasser 20 caractères";
         }
 
-        if(strlen($password)<8){
-            return "le mot de passe doit comporter au moins 8 caractères";
+        if(strlen($password)<10){
+            return "le mot de passe doit comporter au moins 10 caractères";
         }
-/*      REGEX A TRAVAILLER
-        //Vérification des caractères alphanumériques uniquement (Upper&Lowercase)
-        $masque ="/[a-zA-Z0-9]/+";
+        //Vérification des caractères autorisés 
+        $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_&%$!]).+$)"; // du début ^ à la fin $ =>(?=.*)match la position si elle est suivie par au moins un caractère de type \d (digit) a-z A-Z caractères spéciaux:$%!.&@*,au moins une fois +
         preg_match_all($masque, $username, $resultat);
-        return "le nom d'utilisateur ne doit comporter que des caractères alphanumériques";
-*/
+        if (empty($resultat[0])){
+        return "le mot de passe doit contenir au moins 1 Maj., 1 minusc.  un caractère spécial autorisé: $%!.&@*  ";
+        }
+
+
         //Vérification équvalence le Mot de Passe et la confirmation du Mot de Passe 
             if($password !== $confirm_password){
         return "les mots de passe ne correspondent pas, veuillez vérifier";
