@@ -89,13 +89,13 @@ require_once "./Functions/fctAccount.php";
 
           <div class="formBottom">
             <input type="submit" name="createAccount" value="Créer mon compte" />
-            <button type="submit" name="submit">Submit</button>
           </div>
         </form>
         <p>
           <span>Déjà en possession d'un compte?</span>
           <a href="login.php">Se connecter ici</a>
         </p>
+        <br>
          <?php
             //retour du resultat $response affiché à l'utilisateur
                 //si  success =>retourner le message des balises <p> class= success ci dessous

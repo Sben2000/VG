@@ -63,7 +63,7 @@ nom_utilisateur VARCHAR(50) NOT NULL, /*ajouté , pas dans le MCD de départ, se
   ville VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON' , /*peut etre null si pas de commande à livrer*/
   pays VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', /*peut etre null si pas de commande à livrer*/
   adresse_postale VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', /*peut etre null si pas de commande à livrer*/
-  role_id INT NOT NULL ,
+  role_id INT ,
   CONSTRAINT utilisateur_PK PRIMARY KEY (utilisateur_id),
   CONSTRAINT utilisateur_role_id_FK FOREIGN KEY (role_id) REFERENCES role (role_id)
 )ENGINE=InnoDB;
