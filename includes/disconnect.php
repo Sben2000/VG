@@ -3,7 +3,7 @@
 
 	if(isset($_POST['disconnect'])){
     //Suppression des variables de sessions (la session existe encore)
-    //session_unset();
+    session_unset();
     //Destruction complète de la session active
     session_destroy();
     //redirection vers la page index

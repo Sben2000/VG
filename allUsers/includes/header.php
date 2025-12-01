@@ -27,19 +27,29 @@ session_start();
 					?> 
 					<li><a href="./userAccount.php">Mon compte</a></li>
 					<li class=disconnectModal><a href="#">Déconnexion</a></li>
+					<?php 
+					//Si il y a un niveau d'accès 2 (employé) ou 3 (admin)=>activation des options supplémentaires employé
+					if(($_SESSION['accessLevel'])>1){
+						?>
 					<div class="rollingMenu">
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
 						<div class="vgTeam" id="vgTeamLM">
 							<li><a class="gestionLink" href="#">Menus</a></li>
 							<li><a class="gestionLink" href="#">Commandes</a></li>
+					<?php 
+					//Si il y a un niveau d'accès 3 (admin) =>activation des options supplémentaires admin
+					if(($_SESSION['accessLevel'])>2){
+						?>
 							<div class="adminAccess">
 								<li><a class="gestionLink" href="#">Employés</a></li>
 								<li><a class="gestionLink" href="#">Libellés</a></li>
 							</div>
+					<?php } ?>
 							<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<</a></li>
 						</div>
 						</select>
 					</div>
+					<?php } ?>
 					<?php } ?>
 				</div>
 			</div>
