@@ -219,14 +219,17 @@ function loginUser($email,$password){
     //sinon =>ouverture de la session avec le username
     else{
 
-        //récupération du fetch OBJ du nom_utilisateur et assignation à $username
+        //récupération des fetch OBJ pour assignation à variables de session
         $username =$result->nom_utilisateur;
-        //ouverture d'une session user avec la valeur de la variable $username
+        $accessLevel =$result->role_id;
+        $emailAccount = $result->email;
+        //Affectation des variables de session
         $_SESSION["user"] = $username;
+        $_SESSION["accessLevel"] = $accessLevel;
+        $_SESSION["emailAccount"] = $emailAccount;
         //renvoi vers une autre page du site
         header("location: indexLocal.php");
         exit();
-
     }
 
 }
@@ -235,7 +238,7 @@ function loginUser($email,$password){
 
 function logoutUser(){
     //Suppression des variables de sessions (la session existe encore)
-//    session_unset();
+    session_unset();
     //Destruction complète de la session active
     session_destroy();
     //redirection vers la page index
