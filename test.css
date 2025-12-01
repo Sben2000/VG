@@ -1,0 +1,13 @@
+.sessionClosed{
+    display: none;
+}
+
+.sessionOpened{
+    display:block;
+}
+
+.nomdeClasse{
+
+    color: red;
+
+}
