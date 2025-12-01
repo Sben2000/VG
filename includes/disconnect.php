@@ -1,15 +1,19 @@
 <?php
-
-require_once "./Functions/fctAccount.php";
 //execution de la function logoutUser lors du submit
 
 	if(isset($_POST['disconnect'])){
-	logoutUser();
+    //Suppression des variables de sessions (la session existe encore)
+    //session_unset();
+    //Destruction complète de la session active
+    session_destroy();
+    //redirection vers la page index
+    header("location: indexLocal.php");
+    //Sortie du script sans rien retourner
+    exit();
 	
 }
 ?> 
- 
- 
+  
  <div class="modalGroup">
     <div class="modal" id="modal">
         <div class="modalContainer">

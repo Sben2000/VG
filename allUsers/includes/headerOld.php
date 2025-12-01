@@ -1,4 +1,7 @@
-<?php require_once "disconnect.php"?>
+<?php 
+require_once "./disconnect.php";
+
+?>
 	<header>
 		<!-----------------------------------------HTML du Menu Ecran------------------------->
 	<div class="brand">Vite&Go</div>
@@ -6,22 +9,22 @@
 			<!--<div class="brand">Vite&Go</div>-->
 			<div class="inlineLinks">
 				<div class="allUsers" id="allUsersLM">
-					<li><a href="./index.php">Home</a></li>
+					<li><a href="./indexLocal.php">Home</a></li>
 					<li><a href="#">Nos menus</a></li>
-					<li><a href="./allUsers/contact.php">Contact</a></li>
-					<li><a href="./allUsers/login.php">Connexion</a></li>
-					<li><a href="./allUsers/userAccount.php">Mon compte</a></li>
+					<li><a href="./contact.php">Contact</a></li>
+					<li><a href="./login.php">Connexion</a></li>
+					<li><a href="./userAccount.php">Mon compte</a></li>
 					<li class=disconnectModal><a href="#">Déconnexion</a></li>
 					<div class="rollingMenu">
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
 						<div class="vgTeam" id="vgTeamLM">
-							<li><a href="#">Menus</a></li>
-							<li><a href="#">Commandes</a></li>
+							<li><a class="gestionLink" href="#">Menus</a></li>
+							<li><a class="gestionLink" href="#">Commandes</a></li>
 							<div class="adminAccess">
-								<li><a href="#">Employés</a></li>
-								<li><a href="#">Libellés</a></li>
+								<li><a class="gestionLink" href="#">Employés</a></li>
+								<li><a class="gestionLink" href="#">Libellés</a></li>
 							</div>
-							<li id="vgTeamClose"><a href="#">>> Fermer <<</a></li>
+							<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<</a></li>
 						</div>
 						</select>
 					</div>
@@ -40,11 +43,11 @@
 			<!--Menu translatant lors que le logo Hamburger est activé/Gestion des niveaux d'accès -->
 			<ul class="panelLinks">
 				<div class="allUsers" id="allUsersHM">
-					<li><a href="./index.php">Home</a></li>
+					<li><a href="./indexLocal.php">Home</a></li>
 					<li><a href="#">Nos menus</a></li>
-					<li><a href="./allUsers/contact.php">Contact</a></li>
-					<li><a href="./allUsers/login.php">Connexion</a></li>
-					<li><a href="./allUsers/userAccount.php">Mon compte</a></li>
+					<li><a href="./contact.php">Contact</a></li>
+					<li><a href="./login.php">Connexion</a></li>
+					<li><a href="./userAccount.php">Mon compte</a></li>
 					<li class=disconnectModal><a href="#">Déconnexion</a></li>
 					<div class="vgTeam" id="vgTeamHM">
 						<hr />
@@ -61,7 +64,6 @@
 		</div>
 	</header>
 
-
 <!--si la session est ouverte avec le nom d'utilisateur-->
 <?php if(isset($_SESSION['user'])){ ?>
 	<!--Un message de Bienvenue est affiché avec son username-->
@@ -69,3 +71,5 @@
 <?php
 } 
 ?>
+
+

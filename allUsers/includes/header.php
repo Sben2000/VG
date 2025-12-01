@@ -1,4 +1,11 @@
-<?php require_once "./disconnect.php"?>
+<?php 
+require_once "./disconnect.php";
+
+//Conditionnement du démarrage de session (Session déjà active?) pour éviter les doublons (et Notices)
+if(session_status() !== PHP_SESSION_ACTIVE){
+session_start();
+}
+?>
 	<header>
 		<!-----------------------------------------HTML du Menu Ecran------------------------->
 	<div class="brand">Vite&Go</div>
@@ -9,7 +16,15 @@
 					<li><a href="./indexLocal.php">Home</a></li>
 					<li><a href="#">Nos menus</a></li>
 					<li><a href="./contact.php">Contact</a></li>
+					<?php 
+					//Si aucune session (user,employé, admin) activé
+					if(!isset($_SESSION['user'])){
+						?>
 					<li><a href="./login.php">Connexion</a></li>
+					<?php 
+					//Sinon, si session (user,employé, admin) activé
+						}else{
+					?> 
 					<li><a href="./userAccount.php">Mon compte</a></li>
 					<li class=disconnectModal><a href="#">Déconnexion</a></li>
 					<div class="rollingMenu">
@@ -25,6 +40,7 @@
 						</div>
 						</select>
 					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</nav>
@@ -43,7 +59,14 @@
 					<li><a href="./indexLocal.php">Home</a></li>
 					<li><a href="#">Nos menus</a></li>
 					<li><a href="./contact.php">Contact</a></li>
+					<?php 
+					//si session pas active => Connexion
+					if(!isset($_SESSION["user"])){ 
+						?>
 					<li><a href="./login.php">Connexion</a></li>
+					<?php 
+					}else{ 
+					?>
 					<li><a href="./userAccount.php">Mon compte</a></li>
 					<li class=disconnectModal><a href="#">Déconnexion</a></li>
 					<div class="vgTeam" id="vgTeamHM">
@@ -56,10 +79,20 @@
 							<li><a href="#">Libellés</a></li>
 						</div>
 					</div>
+				<?php 
+					} 
+				?>
 				</div>
 			</ul>
 		</div>
 	</header>
 
+<!--si la session est ouverte avec le nom d'utilisateur-->
+<?php if(isset($_SESSION['user'])){ ?>
+	<!--Un message de Bienvenue est affiché avec son username-->
+	<p class="welcome">Bienvenue <?=$_SESSION['user'] ?></p> 
+<?php
+} 
+?>
 
 
