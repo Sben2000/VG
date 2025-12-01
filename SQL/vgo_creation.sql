@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS utilisateur (
   utilisateur_id INT NOT NULL AUTO_INCREMENT,
 nom_utilisateur VARCHAR(50) NOT NULL, /*ajouté , pas dans le MCD de départ, sera exigé dans la création de compte*/
   email VARCHAR(50) NOT NULL,
-  password VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL, 
   nom VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', /*ajouté , pas dans le MCD de départ*/
   prenom VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', /*peut etre null si pas de commande à livrer*/
   telephone VARCHAR(50) NOT NULL,
@@ -121,7 +121,7 @@ restitution_materiel BOOLEAN NOT NULL DEFAULT FALSE,
 
 ALTER TABLE commande MODIFY statut VARCHAR(50) NOT NULL DEFAULT 'créée'; /**modification crée en créée (s'agissant de la commande)*/
 
-
+ALTER TABLE utilisateur MODIFY password VARCHAR(255) NOT NULL; /*Dans l'énoncé =>VARCHAR(50) hors il est conseillé de pouvoir storer au moins 60 carac par PHP pour un password, 255 char préconisés*/
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/

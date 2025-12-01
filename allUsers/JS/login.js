@@ -6,12 +6,15 @@ mainNav();
 
 /*******Montrer le mot de passe de la page Login**************************/
 const checkbox = document.getElementById("passCheckbox");
-const passInput1 = document.getElementById("pass1");//querySelectorAll("input[type=password]"); --> n'arrive pas à tous les modifier avec une seule query (même avec une classe commune) donc décomposé en id
+const passInput = document.querySelector("#pass2");
 
 checkbox.addEventListener("change",()=>{
     if(checkbox.checked){      //si la checkbox est coché (checked)        
-        passInput1.type="text";// "change le type de l'input password en text"
+        passInput.type="text";// "change le type de l'input password en text"
     }else{
-        passInput1.type="password";
+        passInput.type="password";
     }
 })
+
+
+

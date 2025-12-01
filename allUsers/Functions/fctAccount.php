@@ -9,7 +9,9 @@ use PHPMailer\PHPMailer\PHPMailer; //classe PHPMailer pour instancier notre mail
 use PHPMailer\PHPMailer\Exception;// Exception du dossier PHP Mailer pour gérer les erreurs d'envoi
 
 
-//function lié à la page signUP.php
+//functions lié à la page signUP.php
+
+//function registerUser
 function registerUser($email, $username, $password, $confirm_password){
     //récupération de la connection BDD
     $conn = DBconnection();
@@ -161,7 +163,84 @@ function registerUser($email, $username, $password, $confirm_password){
 
 }
 
-
-
-
 //function loginUser
+
+function loginUser($email,$password){
+
+    //récupération de la connection BDD
+    $conn = DBconnection();
+    if(!$conn){
+        return false;
+    }
+
+    //récupération des arguments de la function et trim des valeurs
+    
+    $args=func_get_args();//=>récupère l'ensemble des arguments placés dans la fonction dans $args (qui devient un tableau contenant les entrées utilisateurs passés en argument)
+    $trim_value = function($value){
+        return trim($value);
+    };
+
+    //application de la fonction de rappel sur tous les arguments et assignation à $args.
+    $args = array_map($trim_value, $args);
+
+    //vérification de l'ensemble des champs complétés
+    foreach ($args as $arg){
+        if(empty($arg)){
+            return "Tous les champs doivent être complétés";
+        }
+    }
+
+    //fonction filter_var() avec option FILTER_VALIDATE_EMAIL pour vérifier 
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return "le format de l'email entré n'est pas valide";
+        }
+
+
+    //Sanitanization des données postées
+    $email = htmlspecialchars($email);
+    $password = htmlspecialchars($password);
+
+
+    //requête de la DB pour retrouver les datas postées
+
+    $sql = "SELECT email, password, nom_utilisateur,role_id FROM utilisateur WHERE email=:email";
+    $query = $conn->prepare($sql);
+    $query->bindParam(":email", $email, PDO::PARAM_STR);
+    $query->execute();
+    $result=$query->fetch(PDO::FETCH_OBJ);
+    //Si rien n'est trouvé=>message d'erreur
+    if($result == NULL){
+        return "Pas de compte trouvé, veuillez vérifier l'email ou le mot de passe";
+    }
+    //si il y a un match d'email mais que le mot de passe est erroné
+    if(password_verify($password, $result->password) == FALSE){
+        return "Pas de compte trouvé,\n veuillez vérifier l'email ou le mot de passe";
+    }
+    //sinon =>ouverture de la session avec le username
+    else{
+
+        //récupération du fetch OBJ du nom_utilisateur et assignation à $username
+        $username =$result->nom_utilisateur;
+        //ouverture d'une session user avec la valeur de la variable $username
+        $_SESSION["user"] = $username;
+        //renvoi vers une autre page du site
+        header("location: indexLocal.php");
+        exit();
+
+    }
+
+}
+
+//function de déconnexion associé à la page disconnect.php
+
+function logoutUser(){
+    //Suppression des variables de sessions (la session existe encore)
+//    session_unset();
+    //Destruction complète de la session active
+    session_destroy();
+    //redirection vers la page index
+    header("location: indexLocal.php");
+    //Sortie du script sans rien retourner
+    exit();
+
+}

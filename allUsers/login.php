@@ -65,7 +65,8 @@ require_once "./Functions/fctAccount.php";
 						<label for="password">Mot de passe *</label>
 						<input
 							type="password"
-							id="pass1"
+							class="pass2"
+							id="pass2"
 							name="password"
 							value="<?php echo @$_POST["password"]?>"
 							placeholder="Mon mot de passe V&Go"
@@ -84,7 +85,7 @@ require_once "./Functions/fctAccount.php";
 				</form>
 				<p>
 					<span>Pas encore de compte?</span>
-					<a href="./signUP.php">S'inscrire ici</a>
+					<a href="./login.php">S'inscrire ici</a>
 				</p>
 
 				<p>
