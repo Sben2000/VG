@@ -198,7 +198,7 @@ if(isset($_GET["confirm-account-deletion"])){
 						</table>
 					</div>
 			</section>
-			<section class="Section">
+			<section class="Section" id="accessManagement">
 				<div class="SectionContent">
 					<h2>Gérer mes accès</h2>
 					<div class="accessManagement">

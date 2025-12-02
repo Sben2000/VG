@@ -244,6 +244,10 @@ input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) e
         justify-content: space-between;
 }
 
+#accessManagement{
+    margin-bottom: 50px;
+}
+
 input[type="date"], input[type="time"],input[type="text"],input[type="tel"], input[type="email"]   {
     color: var(--elmDeco);
 }
@@ -288,6 +292,7 @@ input[type="submit"]:hover {
 footer{
     position:fixed;
     bottom: 0;
+    margin-top: 20px;
 }
 
 
