@@ -221,12 +221,22 @@ function loginUser($email,$password){
 
         //récupération des fetch OBJ pour assignation à variables de session
         $username =$result->nom_utilisateur;
-        $accessLevel =$result->role_id;
         $emailAccount = $result->email;
+        $accessLevel =$result->role_id;
+   
         //Affectation des variables de session
         $_SESSION["user"] = $username;
-        $_SESSION["accessLevel"] = $accessLevel;
         $_SESSION["emailAccount"] = $emailAccount;
+    
+        if($accessLevel==1){
+        $_SESSION["accessUser"];
+        }elseif($accessLevel>1){
+        $_SESSION["accessVgTeam"]=$accessLevel;  
+        }elseif($accessLevel>2){
+        $_SESSION["accessAdmin"]=$accessLevel;  
+        }else{
+        $_SESSION["visitor"]; 
+        }
         //renvoi vers une autre page du site
         header("location: indexLocal.php");
         exit();

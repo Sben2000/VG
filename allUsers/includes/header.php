@@ -1,123 +1,146 @@
-<?php 
+<?php
 require_once "./disconnect.php";
 
 //Conditionnement du démarrage de session (Session déjà active?) pour éviter les doublons (et Notices)
-if(session_status() !== PHP_SESSION_ACTIVE){
-session_start();
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
 }
 ?>
-	<header>
-		<!-----------------------------------------HTML du Menu Ecran------------------------->
+<header>
+	<!-----------------------------------------HTML du Menu Ecran------------------------->
 	<div class="brand">Vite&Go</div>
-		<nav class="large-menu">
-			<!--<div class="brand">Vite&Go</div>-->
-			<div class="inlineLinks">
-				<div class="allUsers" id="allUsersLM">
-					<li><a href="./indexLocal.php">Home</a></li>
-					<li><a href="#">Nos menus</a></li>
-					<li><a href="./contact.php">Contact</a></li>
-					<?php 
-					//Si aucune session (user,employé, admin) activé
-					if(!isset($_SESSION['user'])){
-						?>
-					<li><a href="./login.php">Connexion</a></li>
-					<span class="disconnectModal" ></span>
-					<?php 
-					//Sinon, si session (user,employé, admin) activé
-						}else{
-					?> 
-					<li><a href="./userAccount.php">Mon compte</a></li>
-					<li class="disconnectModal"><a href="#">Déconnexion</a></li>
-					<?php 
-					//Si il y a un niveau d'accès 2 (employé) ou 3 (admin)=>activation des options supplémentaires employé
-					if(($_SESSION['accessLevel'])>1){
-						?>
-					<div class="rollingMenu">
+	<nav class="large-menu">
+		<!--<div class="brand">Vite&Go</div>-->
+		<div class="inlineLinks">
+			<div class="allUsers" id="allUsersLM">
+				<li><a href="./indexLocal.php">Home</a></li>
+				<li><a href="#">Nos menus</a></li>
+				<li><a href="./contact.php">Contact</a></li>
+				<li class="					
+					<?php
+					//Si username identifié (user,employé, admin) active =>ajout class= hide sinon class=show
+					if (isset($_SESSION['user'])) {
+						echo "-hide";
+					} else {
+						echo "-show";
+					}
+					?>">
+					<a href="./login.php">Connexion</a>
+				</li>
+				<li class="					
+					<?php
+					//Si  PAS de session (user,employé, admin) active =>ajout class= hide sinon class=show
+					if (!isset($_SESSION['user'])) {
+						echo "-hide";
+					} else {
+						echo "-show";
+					}
+					?>"><a href="./userAccount.php">Mon compte</a></li>
+				<li class="disconnectModal
+															
+					<?php
+					//Si  PAS de session (user,employé, admin) active =>ajout class= hide sinon class=show
+					if (!isset($_SESSION['user'])) {
+						echo "-hide";
+					} else {
+						echo "-show";
+					}
+					?>"><a href="#">Déconnexion</a></li>
+				<div class="rollingMenu
+					<?php
+					//Si  PAS de session avec niveau accès>1 (employé, admin) active =>ajout class= hide sinon class=show
+					if (!isset($_SESSION['accessVgTeam'])) {
+						echo "-hide";
+					} else {
+						echo "-show";
+					}
+					?>">
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
-						<div class="vgTeam" id="vgTeamLM">
-							<li><a class="gestionLink" href="#">Menus</a></li>
-							<li><a class="gestionLink" href="#">Commandes</a></li>
-					<?php 
-					//Si il y a un niveau d'accès 3 (admin) =>activation des options supplémentaires admin
-					if(($_SESSION['accessLevel'])>2){
-						?>
-							<div class="adminAccess">
-								<li><a class="gestionLink" href="#">Employés</a></li>
-								<li><a class="gestionLink" href="#">Libellés</a></li>
-							</div>
-					<?php } ?>
-							<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<</a></li>
+					<div class="vgTeam" id="vgTeamLM">
+						<li><a class="gestionLink" href="#">Menus</a></li>
+						<li><a class="gestionLink" href="#">Commandes</a></li>
+						<div class="adminAccess
+							<?php
+							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show
+							if (!isset($_SESSION['accessAdmin'])) {
+								echo "-hide";
+							} else {
+								echo "-show";
+							}
+							?>">										
+							<li><a class="gestionLink" href="#">Employés</a></li>
+							<li><a class="gestionLink" href="#">Libellés</a></li>
 						</div>
-						</select>
+						<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<< </a>
+						</li>
 					</div>
-					<?php } ?>
-					<?php } ?>
+					</select>
 				</div>
 			</div>
-		</nav>
-		<!-----------------------------------------HTML du Hamburger Menu (en Mode Responsive Mobile)------------------------->
-		<nav class="ham-menu">
-			<!--Logo hamburger de navigation (géré en css et JS)-->
-			<span></span>
-			<span></span>
-			<span></span>
-		</nav>
+		</div>
+	</nav>
+	<!-----------------------------------------HTML du Hamburger Menu (en Mode Responsive Mobile)------------------------->
+	<nav class="ham-menu">
+		<!--Logo hamburger de navigation (géré en css et JS)-->
+		<span></span>
+		<span></span>
+		<span></span>
+	</nav>
 
-		<div class="off-screen-menu">
-			<!--Menu translatant lors que le logo Hamburger est activé/Gestion des niveaux d'accès -->
-			<ul class="panelLinks">
-				<div class="allUsers" id="allUsersLM">
-					<li><a href="./indexLocal.php">Home</a></li>
-					<li><a href="#">Nos menus</a></li>
-					<li><a href="./contact.php">Contact</a></li>
-					<?php 
-					//Si aucune session (user,employé, admin) activé
-					if(!isset($_SESSION['user'])){
-						?>
+	<div class="off-screen-menu">
+		<!--Menu translatant lors que le logo Hamburger est activé/Gestion des niveaux d'accès -->
+		<ul class="panelLinks">
+			<div class="allUsers" id="allUsersLM">
+				<li><a href="./indexLocal.php">Home</a></li>
+				<li><a href="#">Nos menus</a></li>
+				<li><a href="./contact.php">Contact</a></li>
+				<?php
+				//Si aucune session (user,employé, admin) activé
+				if (!isset($_SESSION['user'])) {
+				?>
 					<li class="connexion"><a href="./login.php">Connexion</a></li>
-					<span class="disconnectModal" ></span>
-					<?php 
+					<span class="disconnectModal"></span>
+				<?php
 					//Sinon, si session (user,employé, admin) activé
-						}else{
-					?> 
+				} else {
+				?>
 					<li class="connexion hidden"><a href="./login.php">Connexion</a></li>
 					<li><a href="./userAccount.php">Mon compte</a></li>
 					<li class="disconnectModal"><a href="#">Déconnexion</a></li>
-					<?php 
+					<?php
 					//Si il y a un niveau d'accès 2 (employé) ou 3 (admin)=>activation des options supplémentaires employé
-					if(($_SESSION['accessLevel'])>1){
-						?>
-					<div class="rollingMenu">
-					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
-						<div class="vgTeam" id="vgTeamLM">
-							<li><a class="gestionLink" href="#">Menus</a></li>
-							<li><a class="gestionLink" href="#">Commandes</a></li>
-					<?php 
-					//Si il y a un niveau d'accès 3 (admin) =>activation des options supplémentaires admin
-					if(($_SESSION['accessLevel'])>2){
-						?>
-							<div class="adminAccess">
-								<li><a class="gestionLink" href="#">Employés</a></li>
-								<li><a class="gestionLink" href="#">Libellés</a></li>
+					if (($_SESSION['accessLevel']) > 1) {
+					?>
+						<div class="rollingMenu">
+							<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
+							<div class="vgTeam" id="vgTeamLM">
+								<li><a class="gestionLink" href="#">Menus</a></li>
+								<li><a class="gestionLink" href="#">Commandes</a></li>
+								<?php
+								//Si il y a un niveau d'accès 3 (admin) =>activation des options supplémentaires admin
+								if (($_SESSION['accessLevel']) > 2) {
+								?>
+									<div class="adminAccess">
+										<li><a class="gestionLink" href="#">Employés</a></li>
+										<li><a class="gestionLink" href="#">Libellés</a></li>
+									</div>
+								<?php } ?>
+								<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<< /a>
+								</li>
 							</div>
-					<?php } ?>
-							<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<</a></li>
+							</select>
 						</div>
-						</select>
-					</div>
 					<?php } ?>
-					<?php } ?>
-				</div>
-			</ul>
-		</div>
-	</header>
+				<?php } ?>
+			</div>
+		</ul>
+	</div>
+</header>
 
 <!--si la session est ouverte avec le nom d'utilisateur-->
-<?php if(isset($_SESSION['user'])){ ?>
+<?php if (isset($_SESSION['user'])) { ?>
 	<!--Un message de Bienvenue est affiché avec son username-->
-	<p class="welcome">Bienvenue <?=$_SESSION['user'] ?></p> 
+	<p class="welcome">Bienvenue <?= $_SESSION['user'] ?></p>
 <?php
-} 
+}
 ?>
-
-

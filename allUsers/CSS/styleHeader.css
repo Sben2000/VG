@@ -243,7 +243,15 @@ nav a.active{ /*lors du hover*/
     .ham-menu.active span:nth-child(3){ /*autre branche du X à -45deg*/
         top:50%; /*placé à 50%  avant réajustement*/
         transform: translate(-50%, -50%) rotate(-45deg); /*réajusté au centre et tourné à 45 deg pour avoir la première branche du X */
-    }    
+    }   
+/**********************************hide & show en fonctions des niveaux d'accès session $_SERVER*****************************************/
+.-hide{
+    display: none;
+}
+
+.-show{
+    display: block;
+}
 
 /*****************************************************GESTION RESPONSIVE*****************************************/
 
