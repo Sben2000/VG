@@ -244,7 +244,7 @@ input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) e
         justify-content: space-between;
 }
 
-#accessManagement{
+#accessManagement, #signUP, #login{
     margin-bottom: 50px;
 }
 

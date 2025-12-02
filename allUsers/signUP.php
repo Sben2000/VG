@@ -44,7 +44,7 @@ require_once "./Functions/fctAccount.php";
       <h1 class="sectionTitle">S'enregistrer</h1>
     </div>
 
-    <section class="Section">
+    <section class="Section" id="signUp">
       <div class="SectionContent">
         <h2>Je crée mes identifiants</h2>
 
