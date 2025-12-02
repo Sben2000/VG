@@ -158,7 +158,6 @@ function registerUser($email, $username, $password, $confirm_password){
             return "l'enregistrement a échoué, veuillez recommencer";
         }
 
-        //envoi du mail de confirmation à l'utilisateur
 
 
 }
@@ -255,5 +254,128 @@ function logoutUser(){
     header("location: indexLocal.php");
     //Sortie du script sans rien retourner
     exit();
+
+}
+
+//Function de reinitialisation de mot de passe
+
+function passwordReset($email){
+
+    //récupération de la connection BDD
+    $conn = DBconnection();
+    if(!$conn){
+        return false;
+    }
+
+    //récupération des arguments de la function et trim des valeurs
+    
+    $args=func_get_args();//=>récupère l'ensemble des arguments placés dans la fonction dans $args (qui devient un tableau contenant les entrées utilisateurs passés en argument)
+    $trim_value = function($value){
+        return trim($value);
+    };
+
+    //application de la fonction de rappel sur tous les arguments et assignation à $args.
+    $args = array_map($trim_value, $args);
+
+    //vérification de l'ensemble des champs complétés
+    foreach ($args as $arg){
+        if(empty($arg)){
+            return "Tous les champs doivent être complétés";
+        }
+    }
+
+    //fonction filter_var() avec option FILTER_VALIDATE_EMAIL pour vérifier 
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return "le format de l'email entré n'est pas valide";
+        }
+
+
+    //Sanitanization de la donnée postée
+    $email = htmlspecialchars($email);
+
+
+    //requête de la DB pour retrouver l'existance de l'email 
+    $sql = "SELECT email, nom_utilisateur, role_id FROM utilisateur WHERE email=:email";
+    $query = $conn->prepare($sql);
+    $query->bindParam(":email", $email, PDO::PARAM_STR);
+    $query->execute();
+    $result=$query->fetch(PDO::FETCH_OBJ);
+    //Si rien n'est trouvé=>message d'erreur
+    if($result == NULL){
+        return "Pas de compte trouvé associé, veuillez vérifier l'email saisi";
+    }
+    //Si la demande provient d'un employé (role_id==2), renvoi vers la direction
+        if($result->role_id == 2){
+        return "Espace User/Admin. Veuillez svp vous rapprocher de la Direction pour votre mot de passe ";
+    }
+
+
+    //Si email existe et qu'il ne correspond pas à un employé, création d'un mot de passe aléatoire respectant les critères (min:10 , Maj+min+chiffres+caract.spéc)
+        //2 Majusculesaléatoires
+        $str1 ="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $shuffled_str1=str_shuffle($str1); //mélange
+        $str1_length = 2;
+        $str1_pass=substr($shuffled_str1,0,$str1_length);//extraction du nombre souhaité à partir du début(offset=0)
+        //6 Minuscules aléatoires
+        $str2 ="abcdefghijklmnopqrstuvwxyz";
+        $shuffled_str2=str_shuffle($str2); //mélange
+        $str2_length = 6;
+        $str2_pass=substr($shuffled_str2,0,$str2_length);//extraction du nombre souhaité à partir du début(offset=0) 
+        //2 entiers aléatoires
+        $int1 ="1234567890";
+        $shuffled_int1=str_shuffle($int1); //mélange
+        $int1_length = 2;
+        $int1_pass=substr($shuffled_int1,0,$int1_length);//extraction du nombre souhaité à partir du début(offset=0) 
+        //1 caract.spécial aléatoire
+        $char1 ="@_&%$!.";
+        $shuffled_char1=str_shuffle($char1); //mélange
+        $char1_length = 1;
+        $char1_pass=substr($shuffled_char1,0,$char1_length);//extraction du nombre souhaité à partir du début(offset=0) 
+
+        //Mélange des différentes parties extraites pour créer le nouveau mot de passe
+        $newPass=str_shuffle($str1_pass . $str2_pass . $int1_pass . $char1_pass);
+
+        //Hashage&Encryption du mot de passe (en Bcrypt=>également algo par défaut PHP via PASSWORD_DEFAULT)
+        $hashedPassword = password_hash($newPass, PASSWORD_BCRYPT);
+        //echo "{$hashedPassword}\n"; vérification encrypt du mode passe , uncomment pour voir le résultat
+
+         //Envoi de l'email de confirmation à l'utilisateur
+            //Récupération de son username (pour personaliser le mail)
+            $username = $result->nom_utilisateur;
+            //éléments constituant l'email (sujet et corps) géré ensuite par la function sendMail() de PHPMailer
+            $recipient =$email;//destinataire défini dans la function
+            $subject="Votre nouveau mot de passe Vite&Go";//sujet envoyé dans le mail
+            $body= "<p> Bonjour {$username},</p><br>\r\n
+                      Suite à votre demande de réinitialisation, voici votre nouveau mot de Passe Vite&Go:\r\n 
+                      <span style='text-align=center'><strong><em>{$newPass}</em></strong></span><br>\r\n 
+                     <p>A très vite chez Vite&Go </p>\r\n"; //texte du mail puis retour à la ligne , curseur en début de ligne
+        //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
+                
+            try{
+                $mail = new PHPMailer(true);
+                //on requiert la function sendMail() construite dans la classe PHPMailer dans laquelle sont passées les paramètres définis dans notre formulaire en concordance avec celles de la function
+                //$email est le destinataire =>équivalent à $recipient de la function
+                sendMail($mail, $subject,$recipient, $body);
+                } catch(Exception $e) {
+                return "Désolé, nous n'avons pas pu vous confirmer l'enregistrement par mail, veuillez recommencer ! :\n {$mail->ErrorInfo}";
+            }; 
+    
+
+        //Mise à jour des data finaux dans la DB (le cas échéant si tout est ok)
+        $sql = "UPDATE utilisateur SET password = ? WHERE email=? ";
+        $query=$conn->prepare($sql);
+        $query->bindParam(1, $hashedPassword, PDO::PARAM_STR);
+        $query->bindParam(2, $email, PDO::PARAM_STR);
+        $query->execute();
+
+        //Vérification que le dernier ID enregistré est > 0 (confirmation enregistrement)
+        //Lors d'un insert, update ou delete une entrée de la dB, identification des lignes affectées via fct ->PDO : rowCount() ( Returns the number of rows affected by the last SQL statement)        
+        $lastInserted =$query->rowCount();
+        
+        if($lastInserted>0){
+            return "success"; //affichera le message associé dans le fichier d'execution de la réponse
+        }else{
+            return "la réinitialisation a échoué, veuillez recommencer";
+        }
 
 }

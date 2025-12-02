@@ -44,7 +44,7 @@ require_once "./Functions/fctAccount.php";
 			<h1 class="sectionTitle">Se connecter</h1>
 		</div>
 		<!-- Container pour le login form -->
-		<section class="Section">
+		<section class="Section" id="login">
 			<div class="SectionContent">
 				<h2>Login</h2>
 				<!-- Login form avec champs pour email & password -->
@@ -85,11 +85,11 @@ require_once "./Functions/fctAccount.php";
 				</form>
 				<p>
 					<span>Pas encore de compte?</span>
-					<a href="./login.php">S'inscrire ici</a>
+					<a href="./signUP.php">S'inscrire ici</a>
 				</p>
 
 				<p>
-					<a href="forgotPassword.php">Mot de passe oublié?</a>
+					<a href="forgotPass.php">Mot de passe oublié?</a>
 				</p>
 				<!--dans le cas d'erreur de login, retour de $response-->
 				<p class="error" style="color: darkred"><?= @$response ?></p>
