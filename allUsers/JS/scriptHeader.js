@@ -109,14 +109,24 @@ disconnectModal.addEventListener("click",()=>{
      modal.style.display ="block";
 })
 
-/*Gestion Fermeture de la modale de déconnextion*/
+/*Gestion Fermeture de la modale de déconnexion*/
 const imgCloseModal= document.getElementById("imgCloseModal");
 imgCloseModal.addEventListener("click",()=>{
      modal.style.display = "none";
 })
 
+/*Gestion Modal vue téléphone*/
+const disconnectPhone = document.querySelector(".disconnectPhone");
+disconnectPhone.addEventListener("click",()=>{
+    console.log('clicked');
+    modal.style.display ="block";
+
+})
+
 /******************************************************************************************************************************************************************* */
 
 
+
+//Export function
 
 export {scriptHeader as mainNav};
