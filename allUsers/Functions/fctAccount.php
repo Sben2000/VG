@@ -379,3 +379,32 @@ function passwordReset($email){
         }
 
 }
+
+// function de suppresion de compte lié à la page deleteAccount.php
+function deleteAccount(){
+
+    //récupération de la connection BDD
+    $conn = DBconnection();
+    if(!$conn){
+        return false;
+    }
+
+    //requête de la DB pour suppression du compte
+    $sql = "DELETE FROM utilisateur WHERE email =:email";
+    $query = $conn->prepare($sql);
+    //bind avec l'email de session ouvert lors du login (cf.fct loginUser)
+    $query->bindParam(":email", $_SESSION["emailAccount"],PDO::PARAM_STR);
+    $query->execute();
+    //Vérification qu'au moins une ligne de la DB affectée
+    if($query->rowCount()>0){
+        //destruction de la session en cours
+        session_destroy();
+        //renvoi vers la page de confirmation de suppression
+        header("location: deleteMessage.php");
+        exit();
+        //en cas d'échec, message retourné dans la page en cours
+    }else{
+        return"echec de la suppression, veuilliez réessayer";
+    }
+
+}

@@ -5,25 +5,9 @@ require ("./Functions/fctAccount.php");
 /*si session non active, redirection de l'utilisateur automatiquement  vers la page de login.php */
 	    if(!isset($_SESSION["user"])){
         header("location: login.php");
-        //puis on sort de cette page
         exit;
     }
-/*
-//si l'utilisateur clique sur deconnexion dans la navBar => appele la clé logout(href="?logout") via le lien du formulaire ci dessous =>clé/variable récupérant($GET_["logout"])), 
-//on appelle la function logout qui détruit la session et redirige vers la page login.php
 
-if (isset($_GET["logout"])){
-    logoutUser();
-}
-*/
-//3) cas ou l'utilisateur confirme  la suppression du compte défini en fin de page
-
-if(isset($_GET["confirm-account-deletion"])){
-    /*on apelle alors la function deleteAccount() qui supprimera celui ci définitivement et 
-    renverra vers la page de confirmation de compte supprimé (delete-message.php) qui contient également
-    un lien pour recréer un compte sur la page index.php*/
-    deleteAccount();
-}
 
 ?>
 
@@ -49,9 +33,12 @@ if(isset($_GET["confirm-account-deletion"])){
 	<link rel="stylesheet" href="CSS/footer.css" />
 	<!--link css disconnect (modal)-->
 	<link rel="stylesheet" href="CSS/disconnectMod.css" />
+	<!--link css deleteAccount (modal)-->
+	<link rel="stylesheet" href="CSS/delAccountMod.css" />	
 </head>
 
 <body>
+	<?php require_once "deleteAccount.php"?>
 	<?php include_once "includes/header.php" ?>
 	<div class="main">
 		<div class="separator">
@@ -134,9 +121,8 @@ if(isset($_GET["confirm-account-deletion"])){
 				<div class="SectionContent">
 					<h2>Voir mes commandes</h2>
 					<div class="formBottom">
-						<input type="submit" name="myOrder" value="Afficher mes Commandes ↓ " id="showMyOrders" />
-						<input type="submit" name="myOrder" value="Masquer mes Commandes ↑" id="hideMyOrders" />
-
+						<input type="submit" name="showMyOrders" value="Afficher mes Commandes ↓ " id="showMyOrders" />
+						<input type="submit" name="hideMyOrders" value="Masquer mes Commandes ↑" id="hideMyOrders" />
 					</div>
 				</div>
 			</section>
@@ -162,7 +148,7 @@ if(isset($_GET["confirm-account-deletion"])){
 					</div>
 					<div class="orderDetailsButtons">
 						<input type="submit" name="showDetails" value="Voir détails ↓" id="showDetails" />
-						<input type="submit" name="HideDetails" value="Masquer détails ↑" id="hideDetails" />
+						<input type="submit" name="hideDetails" value="Masquer détails ↑" id="hideDetails" />
 					</div>
 					<div class="orderDetails">
 						<table>
@@ -202,12 +188,12 @@ if(isset($_GET["confirm-account-deletion"])){
 				<div class="SectionContent">
 					<h2>Gérer mes accès</h2>
 					<div class="accessManagement">
-						<form action="./deleteMessage.php">
-							<input type="submit" name="delete" value="Supprimer" id="deleteAccount" />
-						</form>
-						<form action="./indexLocal.php">
-							<input type="submit" name="disconnect" value="Me déconnecter" id="disconnect" />
-						</form>
+						
+							<input class="DeleteAccount" type="submit" name="delete" value="Supprimer" id="deleteAccount" />
+
+
+							<input class="disconnectAccount" type="submit" name="disconnect" value="Me déconnecter" id="disconnect" />
+
 					</div>
 				</div>
 		</div>
