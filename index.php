@@ -15,19 +15,23 @@
 			rel="stylesheet"
 		/>
 
-		<!--link css-->
-		<link rel="stylesheet" href="./6_allUsers/Home/Home.css" />
-
+		<!--link css de la page-->
+		<link rel="stylesheet" href="./CSS/Home.css" />
+        <!--link css de la navBar header-->
+        <link rel="stylesheet" href="./CSS/styleHeader.css" />
+        <!--link css footer-->
+		<link rel="stylesheet" href="./CSS/footer.css" />
 		<title>Home</title>
 	</head>
 	<body>
+<?php include_once "./includes/header.php" ?>
 		<div class="main">
 			<div class="separator"><h1 class="sectionTitle">A propos de Nous</h1></div>
             <section class="presentation">
 			<!--Initialement ligne pour titre, désormais intégré au séparator, reserve pour autre div si besoin sans modif la structure de la section-->
                 <div class="presBlocks">
                     <div class="presLeft">
-				<img src="./PhotoFrame.jpg" alt="Vit&Go" />
+				<img src="./CSS/default_pictures/PhotoFrame.jpg" alt="Vit&Go" />
 					</div>
                    <div class="presRight">
                 <h1>Bienvenue chez nous!</h1>
@@ -50,33 +54,33 @@
 				
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./6_allUsers/Home/PIC_Bgd.png" alt="placeholder image" >
-                    <p class="memberDesc">Présentation succinte en 2/3phrasexxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.</p>
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
+                    <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./6_allUsers/Home/PIC_Bgd.png" alt="placeholder image" >
-                    <p class="memberDesc">Présentation succinte en 2/3phrase.</p>
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
+                    <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./6_allUsers/Home/PIC_Bgd.png" alt="placeholder image" >
-                    <p class="memberDesc">Présentation succinte en 2/3phrase.</p>
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
+                    <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>				
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./6_allUsers/Home/PIC_Bgd.png" alt="placeholder image" >
-                    <p class="memberDesc">Présentation succinte en 2/3phrase.</p>
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
+                    <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./6_allUsers/Home/PIC_Bgd.png" alt="placeholder image" >
-                    <p class="memberDesc">Présentation succinte en 2/3phrase.</p>
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
+                    <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>
                 <div class="teamMember"> 
                     <h3 class="memberTitle">Prénom : Notre manager</h3>					
-                    <img class="memberPicture" src="./6_allUsers/Home/PIC_Bgd.png" alt="placeholder image" >
-                    <p class="memberDesc">Présentation succinte en 2/3phrase.</p>
+                    <img class="memberPicture" src="./CSS/default_pictures/PIC_Bgd.png" alt="placeholder image" >
+                    <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
                 </div>								
 			</section>
 			<div class="separator"><h1 class="sectionTitle">Nous joindre</h1></div>
@@ -128,7 +132,7 @@
 			<div class="separator"><h1 class="sectionTitle">Nos retours clients</h1></div>
 			<section class="comments" id="comments">
             <div class="comment">
-                <img src="./6_allUsers/Home/user.png" alt="user pic" class="commentPP">
+                <img src="./CSS/default_pictures/user.png" alt="user pic" class="commentPP">
                 <div class="commentText">
                     <h3 class="commentName">Jean Dupont</h3>
                     <p class="commentMessage">Vivamus commodo augue gravida nisi tincidunt, nec gravida massa
@@ -144,7 +148,7 @@
                 </div>
             </div>
             <div class="comment">
-                <img src="./6_allUsers/Home/user.png" alt="user pic" class="commentPP">
+                <img src="./CSS/default_pictures/user.png" alt="user pic" class="commentPP">
                 <div class="commentText">
                     <h3 class="commentName">Jean Dupont</h3>
                     <p class="commentMessage">Vivamus commodo augue gravida nisi tincidunt, nec gravida
@@ -164,5 +168,8 @@
             </div>
           </section>
 		</div>
+<?php include_once "./includes/footer.php" ?>
+	<!--Le script est de type module et importe des functions d'autres fichiers (dont La Nav)-->
+	<script type="module"  src="./JS/Home.js"></script>
 	</body>
 </html>

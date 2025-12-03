@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!--Meta tags ajouté, aide pour le référencement SEO-->
+	<meta name="description"
+		content="Nous avons un large choix de menus pour tout les moments de la journée et tous les goûts" />
+	<meta name="keywords" content="Gouter,Burgers, café, thé, menu végan, gourmand, brunch,menus à thèmes" />
+	<!--import des fonts  lobster et montserrat depuis googlefonts-->
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+		rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+	<!--link css-->
+	<link rel="stylesheet" href="./menus.css" />
+	<title>Nos menus</title>
+</head>
+
+<body>
+	<div class="main">
+		<div class="separator">
+			<h1 class="sectionTitle">Nos menus&formules</h1>
+		</div>
+
+		<section class="Section">
+			<div class="SectionContent Top">
+				<h2>Découvrez nos différents menus et formules</h2>
+				<p class="subtitle">
+					Een beitel in de vorm van een schuurtje op een beekplaat. Het dak wordt
+					ondersteund door een frame dat rust op vier grote houten pilaren. Daar,
+					in de omgeving van het schuurtje, onderweg stijgt en daalt een heel
+					eenvoudig mechanisme tegen dit zaagje een stuk hout.
+				</p>
+			</div>
+		</section>
+
+		<div class="multiSectionsCentral">
+			<div class="multiSectionsLeft">
+				<section class="Section">
+
+					<div class="SectionContent">
+						<div class="filterTheme">
+							<h2>Thèmes</h2>
+							<a href="">Les Spécifiques</a>
+							<a href="">Du Jour</a>
+							<a href="">Du Week end</a>
+							<a href="">Nos Gouters</a>
+							<a href="">Nos Pastas</a>
+						</div>
+					</div>
+				</section>
+			</div>
+			<div class="multiSectionsRight">
+				<section class="Section smallScreen">
+					<div class="SectionContent Criterias">
+						<h2>Autres menus: </h2>
+						<div class="rollingMenuCriterias">
+							<div><label>
+									<h6>Nos thèmes:</h6>
+									<select name="products" id="products" class="filter">
+										<option class="none" value="" disabled selected>Thèmes</option>
+										<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+										<optgroup label="Tous">
+											<option value="all" default>Tous thèmes</option>
+										</optgroup>
+										<optgroup label=" Par thème">
+											<option value="specifiques">Les spécifiques</option>
+											<option value="jour">Du Jour</option>
+											<option value="weekend">Du Week End</option>
+											<option value="gouter">Nos Gouter</option>
+											<option value="pasta">Nos Pastas</option>
+										</optgroup>
+									</select>
+								</label></div>
+						</div>
+					</div>
+				</section>
+				<section class="Section">
+					<div class="SectionContent">
+						<h2>Menus</h2>
+						<div class="product">
+
+							<div class="productLeft">
+								<img src="./uploads/SEdujour.jpg" alt="">
+							</div>
+
+							<div class="productRight">
+								<h3 class="title">
+									<a href="">Gourmand</a>
+								</h3>
+								<p class="description">
+									Een beitel in de vorm van een schuurtje op een beekplaat. Het dak wordt
+									ondersteund door een frame dat rust op vier grote houten pilaren.
+								</p>
+								<p class="price">
+									29.99 &euro;
+								</p>
+								<input type="submit" name="displayOrderForm" value="Commander ↓ "
+									id="displayOrderForm" />
+								<input type="submit" name="hideOrderForm" value="Annuler/Masquer ↑"
+									id="hideOrderForm" />
+							</div>
+						</div>
+
+
+					</div>
+				</section>
+
+				<section class="Section" id="orderSectionForm">
+					<div class="SectionContent">
+						<h2>Je précise ma commande</h2>
+
+						<form id="orderForm">
+							<div class="orderFormInfo">
+								<div class="orderFormAdress">
+									<h3>Mes coordonnées</h3>
+									<hr>
+									<div class="detailedInput">
+										<label for="nom">Nom </label>
+										<input type="text" name="nom" value="" placeholder="Nom de famille"
+											autocomplete="off" required>
+									</div>
+									<div class="detailedInput">
+										<label for="prenom">Prénom </label>
+										<input type="text" name="prenom" value="" placeholder="Prénom"
+											autocomplete="off" required>
+									</div>
+									<div class="detailedInput">
+						                <label for="email">Email </label>
+       							         <input type="email" name="email" value="" placeholder="Email" autocomplete="off" required>
+      								</div>
+									<div class="detailedInput">
+										<label for="tel">Numéro de téléphone </label>
+										<input type="tel" name="tel" value="" placeholder="../../../../.." autocomplete="off" required>
+									</div>
+								</div>
+								<div class="orderFormDelivery">
+									<h3>Mes infos de Livraison</h3>
+									<hr>
+																		<div class="detailedInput">
+										<label for="adresse">Adresse </label>
+										<input type="text" name="adresse" value="" placeholder="rue/Allée/Av/Bvd..."
+											autocomplete="off">
+									</div>
+									<div class="detailedInput">
+										<label for="ville">Ville </label>
+										<input type="text" name="ville" value="" placeholder="Ville" autocomplete="off">
+									</div>
+									<div class="detailedInput">
+										<label for="codePostal">Code Postal </label>
+										<input type="text" name="codePostal" value="" placeholder="Code Postal"
+											autocomplete="off">
+										<p class="note"><em>Pas de livraison hors agglomération</em></p>
+										<p class="note"><em>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
+									</div>
+									<div class="detailedInput">
+										<label for="datePresta">Date souhaitée </label>
+										<input type="date" name="datePresta" value=""  autocomplete="off" required>
+									</div>
+									<div class="detailedInput">
+										<label for="heurePresta">heure souhaitée </label>
+										<input type="time" name="heurePresta" value=""  autocomplete="off" required>
+									</div>
+								</div>
+								<div class="orderFormQuantity">
+									<h3>Menu et quantités</h3>
+									<hr>
+										<div class="detailedInput">
+										<label for="menu">Menu sélectionné </label>
+										<input type="text" name="adresse" value="" placeholder="réf.Menu..."
+											autocomplete="off">
+									</div>
+									<div class="detailedInput">
+										<label for="nbrPers">Nombre de personnes </label>
+										<input type="number" name="nbrPers" value="" placeholder="2" autocomplete="off" min="1" max="50"  >
+										<p class="note"><em>nbre en fct du mini si requis</em></p>
+										<p class="note"><em>10% de réduction dès 5 pers.</em></p>
+									</div>
+									<h3>Tarif détaillé</h3>
+									<hr>
+							<div class="detailedInput fetch">
+								<label for="priceMenu">Prix du menu (&#x20AC TTC/pers): </label>
+								<input type="text" name="priceMenu" value="" readonly required>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="deliveryPrice">Prix de la livraison (&#x20AC): </label>
+								<input type="text" name="deliveryPrice" value="" readonly required>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="totalPrice">Prix total (&#x20AC TTC): </label>
+								<input type="text" name="totalPrice" value="" readonly required>
+							</div>
+								</div>
+							</div>
+							<div class="formBottom">
+								<input type="submit" name="submitOrder" value="Valider la commande" />
+							</div>
+						</form>
+					</div>
+				</section>
+
+			</div>
+
+
+
+		</div>
+
+
+		<script src="./orderMenu.js"></script>
+</body>
+
+</html>
