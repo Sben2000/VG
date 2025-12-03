@@ -1,0 +1,139 @@
+/*********************************DEFAULT********************************************/
+:root{      /*palette couleurs*/
+
+    --dark-color:#222222;
+    --light-color:#dddddd;
+    --aliceblue: aliceblue;
+    /*--highlight-color: #eeeeee;*/
+    --rosy: rosybrown;
+    --elmDeco:#551A8B;
+    --TextClick:#fff;
+    --hover:#954dd7;
+    --rosyLight:rgb(205, 178, 178);
+}
+
+*{ /*par défaut si rien de précisé*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
+}
+
+
+
+
+/********Input type submit => en règle Général************/
+
+
+input[type="submit"]{ 
+    background-color: var(--rosy);
+    border-radius: 20px;
+    border: none;
+    padding: 10px;/*autour du texte*/
+    font-weight: 600;
+    color: var(--elmDeco);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);/*ombre de 0px en hor, au top, et 5px vers le bas=>opacité de 0.5 en noir)   */
+    margin: 10px 0px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;/*effet de 0.5s sur la fonction hover dédiée, ease-in-out = lent rapide-lent*/
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:var(--hover);
+    color: var(--TextClick);
+
+}
+
+
+
+/***********************Modal de deconnexion*******************************/
+
+.modalDel{ /*La modale s'étend sur toute l'espace body dispo : width 100% et height:100% avec une opacité de 0.5 noir*/
+    display: none;/*ne pas afficher la modal par défaut lorsqu on ouvre la page, sera traité en display ="block"en JS*/
+    background-color: rgba(0, 0, 0, 0.5); /*Crée un effet shadow sur les calques inférieurs */
+    width: 100%;
+    height: 100%;
+    position: fixed; /* fixe la même position quelque soit le scroll de la page*/
+    z-index: 3000; /*passe en priorité au dessus de tous les calques (header à un zindex de 1000)*/
+    }
+
+.modalContainer{ /*La modale container n'occupe qu'une partie de l'étendue de modale parent*/
+    position: absolute;/* en concordance avec la div parent modal qui s'étend sur tout le body*/
+    top: 50%; /*haut de la fenêtre est à 50% de l'écran/modal parent*/
+    left: 50%;/*bord gauche de la fenêtre est à 50% de l'écran/modal parent*/
+    transform: translate(-50%, -50%);/*correction pour centrer le centre de la fenêtre avec celui de l'écran*/
+    display: flex;
+    flex-direction: column;
+    background-color: var(--rosyLight);
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1rem solid var(--elmDeco)
+}   
+
+.modalContainer h2{
+    text-align: center; /*Centrera uniquement le titre h2 par rapport à la modal*/
+    margin: 20px;
+    color: darkred;
+}
+
+
+.modalContainer input[type="submit"]{ /*style appliqué à l'input submit uniquement*/
+    margin: 60px 10px 10px 10px;
+    justify-self: end;
+}
+
+.modalInputs{
+    display: flex;
+    justify-content: end;
+}
+#imgCloseModalDel{ /*style appliqué sur le bouton de fermeture Modal id="imgCloseModal" */
+    width: 50px;
+    position: relative;/*se positionne par rapport à son parent Modal qui a une position fixe*/
+    left: 10px;
+    top: 10px;
+    z-index: 10; /*afin de mettre en prio l'élément en avant ds l'ordre des calques*/
+    cursor: pointer; 
+    
+}
+
+/********************************************Fin CSS Modal de deconnexion**********************************************/
+
+
+
+
+
+
+
+/*****************************************************GESTION RESPONSIVE*****************************************/
+
+/***************Au dessus 1100px: Affichage Ordinateur*/
+
+
+
+/*Autres Règles CSS défini plus haut par défaut
+
+/***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
+
+@media screen  and (max-width: 1100px) {
+
+}
+/******************Sous 700px: Affichage Téléphone*/
+
+@media screen and (max-width: 700px){
+
+   
+.modalContainer{
+    width: 300px;
+    height: 300px;
+}
+.modalInputs{
+    display: flex;
+    justify-content: center;
+}
+.modalContainer input[type="submit"]{ /*style appliqué à l'input submit uniquement*/
+    margin: 40px 10px 10px 10px;
+    font-size: 16px;
+
+}
+}

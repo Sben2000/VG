@@ -84,13 +84,13 @@ disconnectAccount.addEventListener("click",()=>{
 const deleteAccount = document.getElementById('deleteAccount');
 const modalDel = document.getElementById("modalDel")
 deleteAccount.addEventListener("click",()=>{
-    console.log('clicked');
+console.log('clicked');
 modalDel.style.display ="block";
 })
 
-/*Gestion Fermeture de la modale de l'annulation de suppression*/
+/*Gestion Fermeture de la modale de déconnexion*/
 const imgCloseModalDel= document.getElementById("imgCloseModalDel");
 imgCloseModalDel.addEventListener("click",()=>{
-     modalDel.style.display = "none";
+     modal.style.display = "none";
 })
 

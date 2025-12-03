@@ -83,8 +83,8 @@ require_once "./Functions/fctAccount.php";
             if(@$response == "success"){
                 ?>
                 <!--afficher : inscription réussi-->
-                <p class="success" style='color:green'>Le mot de passe a été réinitialisé et envoyé avec succès, veuillez le récupérer depuis votre email pour vous connecter</p>
-                <p class="success" style='font-style:italic'>Si nécessaire, vérifier le dossier spam</p>
+                <p class="success" style='color:green'>Le mot de passe a bien été réinitialisé et envoyé ,<br> veuillez le récupérer depuis votre boite mail </p>
+                <p class="requirement" style='font-style:italic'>→ Si nécessaire, vérifier le dossier spam</p>
                 <?php
             }else{
                 ?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur dans resetPassword()-->
