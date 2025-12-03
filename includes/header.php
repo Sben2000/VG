@@ -64,7 +64,7 @@
 							<li><a class="gestionLink" href="#">Employés</a></li>
 							<li><a class="gestionLink" href="#">Libellés</a></li>
 						</div>
-						<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<< </a>
+						<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<</a>
 						</li>
 					</div>
 					</select>
