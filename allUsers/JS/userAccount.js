@@ -8,8 +8,8 @@ mainNav();
 // Gestion Ouverture/Fermeture des commandes
 
 //input
-const showMyOrders = document.getElementById('showMyOrders');
-const hideMyOrders = document.getElementById('hideMyOrders');
+let showMyOrders = document.querySelector('.showMyOrders');
+let hideMyOrders = document.querySelector('.hideMyOrders');
 //fenêtre des commandes à afficher/masquer
 let myOrders = document.querySelector('.myOrders');
 //Affichage au click

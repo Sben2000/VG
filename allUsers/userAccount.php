@@ -20,8 +20,18 @@ require_once ("./Functions/fctAccount.php");
          $errorDatas = "echec de chargement de vos données personelles";
     		}
 	
-			/*Récupérer ses commandes passées (via un foreach)*/
-
+			/*Récupérer ses commandes passées si il clique sur "Afficher mes commandes" */
+			if (isset($_POST['showMyOrders'])){
+			$responseOrders= fetchUserOrders($_SESSION["user"]);
+			//si non nul =>assigner à $userProfil
+		    if($responseOrders != NULL){
+		      $userOrders = $responseOrders;
+    		}else{
+				$emptyOrders ="Nous n'avons pas trouvé de commandes";
+			}
+			
+			}
+			
 		}
 
 
@@ -138,66 +148,78 @@ require_once ("./Functions/fctAccount.php");
 				<div class="SectionContent">
 					<h2>Voir mes commandes</h2>
 					<div class="formBottom">
+						<form action="#" method="post">
 						<input type="submit" name="showMyOrders" value="Afficher mes Commandes ↓ " id="showMyOrders" />
 						<input type="submit" name="hideMyOrders" value="Masquer mes Commandes ↑" id="hideMyOrders" />
+						</form>
 					</div>
+					<!--Si aucune commande trouvée-->
+					<p class="error"><?= @$emptyOrders ?></p>
 				</div>
 			</section>
 			<section class="Section myOrders" id="myOrders">
-
+				<!--raccourci foreach(): + endforeach-->
+				<?php if (!empty($userOrders)){foreach ($userOrders as $k=>$v): ?>
 				<div class="SectionContent">
-					<h2>Commande N° xxxxx</h2>
+					<h2>Commande N° <?= @$v["numero_commande"]?></h2>
 					<div class="tables">
 						<table class="myOrderTable">
 							<thead>
 								<tr>
 									<th scope="col">date_cde</th>
 									<th scope="col">statut</th>
+									<th scope="col">Total en &#x20AC(TTC)</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>xxxxxx</td>
-									<td>xxxxxx</td>
+									<td><?= @$v["date_commande"]?></td>
+									<td><?= @$v["statut"]?></td>
+									<td><?= @$v["prix_TTC"]?></td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 					<div class="orderDetailsButtons">
-						<input type="submit" name="showDetails" value="Voir détails ↓" id="showDetails" />
-						<input type="submit" name="hideDetails" value="Masquer détails ↑" id="hideDetails" />
+						<input type="submit" name="showDetails" value="Voir détails ↓" id="showDetails" class="showDetails"/>
+						<input type="submit" name="hideDetails" value="Masquer détails ↑" id="hideDetails" class="hideDetails" />
+
 					</div>
 					<div class="orderDetails">
 						<table>
+							<tr>
+								<th scope="row">titre menu</th>
+								<td><?= @$v["titre"]?></td>
+							</tr>
 
 							<tr>
-								<th scope="row">prix_menu</th>
-								<td>xxxxxx</td>
+								<th scope="row">prix du menu (TTC)</th>
+								<td><?= @$userOrder->prix_TTC ?></td>
 							</tr>
 
 							<tr>
 								<th scope="row">nbre_pers</th>
-								<td>xxxxxx</td>
+								<td><?= @$userOrder->nbr_pers ?></td>
 							</tr>
 
 
 							<tr>
 								<th scope="row">date_presta</th>
-								<td>xxxxxx</td>
+								<td><?= @$userOrder->date_prestation ?></td>
 							</tr>
 							<tr>
 								<th scope="row">heure_livraison</th>
-								<td>xxxxxx</td>
+								<td><?= @$userOrder->heure_livraison ?></td>
 							</tr>
 							<tr>
 								<th scope="row">prêt_matériel</th>
-								<td>xxxxxx</td>
+								<td><?= @$userOrder->pret_materiel ?></td>
 							</tr>
 							<tr>
 								<th scope="row">restitution</th>
-								<td>xxxxxx</td>
+								<td><?= @$userOrder->restitution_materiel ?></td>
 							</tr>
-
+						<?php endforeach;}?>
 						</table>
 					</div>
 			</section>

@@ -103,7 +103,10 @@ CREATE TABLE IF NOT EXISTS propose (
   CONSTRAINT propose_plat_id_FK FOREIGN KEY (plat_id) REFERENCES plat (plat_id)
 )ENGINE=InnoDB;
 
+DROP TABLE commande;
+
 CREATE TABLE IF NOT EXISTS commande (
+  commande_id INT, /*ajouté car un user peut faire plusieurs commande avec le même menu_id (et même user_id)*/
   menu_id INT,
   utilisateur_id INT,
 numero_commande VARCHAR(50) NOT NULL, /*sera fabriqué selon une règle particulière*/
@@ -114,7 +117,7 @@ prix_livraison DOUBLE NOT NULL DEFAULT 0, /*par défaut sera équivalent à 0, s
 statut VARCHAR(50) NOT NULL DEFAULT 'crée', /*par défaut a le statut crée*/
 pret_materiel BOOLEAN NOT NULL DEFAULT FALSE,
 restitution_materiel BOOLEAN NOT NULL DEFAULT FALSE,
-  CONSTRAINT commande_PK PRIMARY KEY (menu_id, utilisateur_id),
+  CONSTRAINT commande_PK PRIMARY KEY (commande_id),
   CONSTRAINT commande_menu_id_FK FOREIGN KEY (menu_id) REFERENCES menu (menu_id),
   CONSTRAINT commande_utilisateur_id_FK FOREIGN KEY (utilisateur_id) REFERENCES utilisateur (utilisateur_id)
 )ENGINE=InnoDB;
@@ -129,6 +132,12 @@ ALTER TABLE utilisateur Add COLUMN code_postal INT NOT NULL DEFAULT '00000'; /*A
 
 ALTER TABLE utilisateur MODIFY telephone VARCHAR(50) DEFAULT 'A COMPLETER SI COMMANDE'; /*Ajout du Défault "A COMPLETER SI COMMANDE"*/
 
+ALTER TABLE commande Add COLUMN prix_TTC DOUBLE NOT NULL DEFAULT 0; /*Ajout du prix TTC payé dans le détail de la commande*/
+
+ALTER TABLE commande Add COLUMN prix_HT DOUBLE NOT NULL DEFAULT 0; /*Ajout du prix HT dans le détail de la commande*/
+
+ALTER TABLE commande Add COLUMN nbr_pers INT NOT NULL DEFAULT 0; /*Ajout du nbre de personne dans la commande*/
+
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/
@@ -142,6 +151,6 @@ VALUES
 
 /**Le reste sera ajouté au fur et à mesure via les interfaces de création/mises à jour intégrés dans les dossiers du projet*/
 
-
+SELECT * FROM commande;
 
 

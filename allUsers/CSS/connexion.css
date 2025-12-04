@@ -230,6 +230,9 @@ input:not(input[type="submit"]){ /*tout les input du doc (sauf du type submit) e
     color: darkblue;
     margin-bottom: 20px;
 }
+.error{
+    color: darkred;
+}
 
 /********Input type submit************/
 
