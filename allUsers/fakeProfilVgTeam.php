@@ -1,5 +1,5 @@
 <?php
-require_once "./Functions/fctFakeTeamProfil.php";
+require_once "./Functions/fctFakeTeamAccount.php";
 
 //execution de la function registerUser lors du submit
 	//Note: variables traitées/nettoyées dans la function, $response=retour du traitement

@@ -1,6 +1,6 @@
 <?php
 
-require_once ("./Functions/fctAccount.php");
+require ("./Functions/fctAccount.php");
 //sécurisation de la page afin que seul l'utilisateur identifié ait accès à sa page
 /*si session non active, redirection de l'utilisateur automatiquement  vers la page de login.php */
 	    if(!isset($_SESSION["user"])){
@@ -8,24 +8,18 @@ require_once ("./Functions/fctAccount.php");
         exit;
     }
 
-	require_once ("./Functions/fctUserProfil.php");
+require ("./Functions/fctUserProfil.php");
 	/*si session user active => réccupérer ses données de profil */
 		if(isset($_SESSION["user"])){
-			/*Récupérer le résultat de la function données de profil user*/
-			$response = userProfilDatas($_SESSION["user"]);
-			//si non nul =>assigner à $userProfil
-		    if($response != NULL){
-		      $userProfil = $response;
-    	}else{
-         $errorDatas = "echec de chargement de vos données personelles";
-    		}
-	
+			/*Récupérer ses données de profil */
+			$userProfil = userProfilDatas();
 			/*Récupérer ses commandes passées (via un foreach)*/
 
 		}
 
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -64,15 +58,15 @@ require_once ("./Functions/fctAccount.php");
 				<section class="Section">
 					<div class="SectionContent">
 						<h2>Mes informations Vite&Go</h2>
-						<form id="accountForm" action="">
+						<form id="accountForm" method="post" action="">
 							<div class="detailedInput fetch">
 								<label for="username">Nom d'utilisateur: </label>
-								<input type="text" id="username" name="username" value="<?= @$userProfil->nom_utilisateur ?>" autocomplete="off"
+								<input type="text" id="username" name="username" value="" autocomplete="off"
 									readonly required />
 							</div>
 							<div class="detailedInput fetch">
 								<label for="email">Email: </label>
-								<input type="email" name="email" value="<?= @$userProfil->email ?>" readonly autocomplete="off" />
+								<input type="email" name="email" value="" readonly autocomplete="off" />
 							</div>
 							<span class="note"><em>*Par sécurité, seul le nom d'utilisateur est modifiable,<br> → Nous contacter pour modifier l'email</em></span>
 								<!-- Submit boutton  -->
@@ -82,7 +76,7 @@ require_once ("./Functions/fctAccount.php");
 									</form>
 								</div>
 						</form>
-						<p class="error" style="color: darkred"><?= @$errorDatas ?></p>
+					
 				</section>
 
 
@@ -96,39 +90,37 @@ require_once ("./Functions/fctAccount.php");
 
 							<div class="detailedInput fetch">
 								<label for="nom">Nom: </label>
-								<input type="text" name="nom" value="<?= @$userProfil->nom ?>" readonly autocomplete="off" required>
+								<input type="text" name="nom" value="" readonly autocomplete="off" required>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="prenom">Prénom: </label>
-								<input type="text" name="prenom" value="<?= @$userProfil->prenom ?>" readonly required>
+								<input type="text" name="prenom" value="" readonly required>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="tel">Numéro de téléphone: </label>
-								<input type="text" name="tel" value="<?= @$userProfil->telephone ?>" readonly>
+								<input type="text" name="tel" value="" readonly>
 
 							</div>
 							<div class="detailedInput fetch">
 								<label for="adresse">Adresse: </label>
-								<input type="text" name="adresse" value="<?= @$userProfil->adresse_postale ?>" readonly>
+								<input type="text" name="adresse" value="" readonly>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="ville">Ville: </label>
-								<input type="text" name="ville" value="<?= @$userProfil->ville ?>" readonly>
+								<input type="text" name="ville" value="" readonly>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="codePostal">Code Postal: </label>
-								<input type="text" name="codePostal" value="<?= @$userProfil->code_postal ?>" readonly>
+								<input type="text" name="codePostal" value="" readonly>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="pays">Pays: </label>
-								<input type="text" name="pays" value="<?= @$userProfil->pays ?>" readonly>
+								<input type="text" name="pays" value="" readonly>
 							</div>
 							<div class="formBottom">
 								<input type="submit" name="modifierDetails" value="Modifier" formaction="./userContact.php"/>
 							</div>
 						</form>
-				<!--dans le cas d'erreur, message de retour-->
-				<p class="error" style="color: darkred"><?= @$errorDatas ?></p>
 					</div>
 				</section>
 			</div>

@@ -109,7 +109,7 @@ function registerUser($email, $username, $password, $confirm_password){
         $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@_&%$!.]).+$)"; // du début ^ à la fin $ =>(?=.*)match la position si elle est suivie par au moins un caractère de type \d (digit) a-z A-Z caractères spéciaux:$%!.&@*,au moins une fois +
         preg_match_all($masque, $password, $resultat);
         if (empty($resultat[0])){
-        return "le mot de passe doit contenir au moins 1 Maj., 1 minusc.  un caractère spécial autorisé: $%!.&@*  ";
+        return "le mot de passe doit contenir au moins 1 Maj., 1 minusc.,1 chiffre, un caractère spécial autorisé: $%!.&@*  ";
         }
 
 

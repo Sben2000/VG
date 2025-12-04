@@ -122,6 +122,13 @@ restitution_materiel BOOLEAN NOT NULL DEFAULT FALSE,
 ALTER TABLE commande MODIFY statut VARCHAR(50) NOT NULL DEFAULT 'créée'; /**modification crée en créée (s'agissant de la commande)*/
 
 ALTER TABLE utilisateur MODIFY password VARCHAR(255) NOT NULL; /*Dans l'énoncé =>VARCHAR(50) hors il est conseillé de pouvoir storer au moins 60 carac par PHP pour un password, 255 char préconisés*/
+
+
+ALTER TABLE utilisateur Add COLUMN code_postal INT NOT NULL DEFAULT '00000'; /*Ajouté en plus par rapport à l'énoncé*/
+
+
+ALTER TABLE utilisateur MODIFY telephone VARCHAR(50) DEFAULT 'A COMPLETER SI COMMANDE'; /*Ajout du Défault "A COMPLETER SI COMMANDE"*/
+
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/
@@ -134,4 +141,7 @@ VALUES
     ('adminAccess') ;
 
 /**Le reste sera ajouté au fur et à mesure via les interfaces de création/mises à jour intégrés dans les dossiers du projet*/
+
+
+
 

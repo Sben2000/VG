@@ -78,7 +78,7 @@ require_once "./Functions/fctAccount.php";
               autocomplete="off"
               required />
           </div>
-          <p class="requirement">requis: caract.: au moins 1 Maj. 1min 1 caract. spécial:$%!.&@* - ,max:20 - min: 10</p>
+          <p class="requirement">requis: caract.: au moins 1 Maj. 1min 1digit 1caract.spéc:$%!.&@* - ,max:20 - min: 10</p>
           <div class="detailedInput">
             <label for="confirmPassword">Confirmation du mot de passe *</label>
             <input type="password" name="confirmPassword" value="<?php echo @$_POST["confirmPassword"]?>" id="pass2" autocomplete="off" placeholder="Mon choix de mot de passe" required>

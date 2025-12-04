@@ -16,7 +16,7 @@ require_once "./Functions/fctAccount.php";
     <div class="modal" id="modalDel">
         <div class="modalContainer">
             <img src="./includes/default_pictures/buttonClose.png" alt="imgCloseModal" id="imgCloseModalDel">
-            <h2>Confirmez vous la <br> suppression du compte?</h2>
+            <h2 id="h2Del">Confirmez vous la <br> suppression du compte?</h2>
             <form action="" method="POST">
                 <div class="modalInputs">
                     <input type="submit" name="deleteAccountConf" value="Je confirme la suppression">
