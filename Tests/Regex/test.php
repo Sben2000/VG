@@ -21,3 +21,15 @@ $user = "sszqq";
         if (count($resultat[0])!=0){
         return "le nom d'utilisateur ne doit comporter que des caractères alphanumériques ,sont également admis '-' et '_'";
         }
+
+
+$password = "aaAA.";
+        //Vérification des caractères autorisés 
+        $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$)";
+        preg_match_all($masque, $password, $resultat);
+        var_dump($resultat[0]);
+        if (empty($resultat[0])){
+        echo "le mot de passe doit contenir au moins 1 Maj., 1 minusc.  un caractère spécial autorisé: $%!.&@*  ";
+        }else{
+            echo "ok";
+        }

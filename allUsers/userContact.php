@@ -1,29 +1,30 @@
 <?php
-require ("./Functions/fctAccount.php");
-//sécurisation de la page afin que seul l'utilisateur identifié est accès à sa page
-/*si la session n'est pas active, on redirige l'utilisateur automatiquement  vers la page de login.php */
-/*    if(!isset($_SESSION["user"])){
+require_once ("./Functions/fctAccount.php");
+//sécurisation de la page afin que seul l'utilisateur identifié ait accès à sa page
+/*si session non active, redirection de l'utilisateur automatiquement  vers la page de login.php */
+	    if(!isset($_SESSION["user"])){
         header("location: login.php");
-        //puis on sort de cette page
         exit;
     }
 
-//si l'utilisateur appele la clé logout(href="?logout") via le lien du formulaire ci dessous =>clé/variable récupérant($GET_["logout"])), 
-//on appelle la function logout qui détruit la session et redirige vers la page login.php
-
-if (isset($_GET["logout"])){
-    logoutUser();
-}
-
-//3) cas ou l'utilisateur confirme par deux fois la suppression du compte défini en fin de page
-
-if(isset($_GET["enregistrer"])){
-    /*on apelle alors la function deleteAccount() qui supprimera celui ci définitivement et 
-    renverra vers la page de confirmation de compte supprimé (delete-message.php) qui contient également
-    un lien pour recréer un compte sur la page index.php*/
-    //updateDetails();
-/*}
-*/
+	require_once ("./Functions/fctUserProfil.php");
+	/*si session user active => réccupérer ses données de profil connus et les afficher*/
+		if(isset($_SESSION["user"])){
+			/*Récupérer le résultat de la function données de profil user*/
+			$response = userProfilDatas($_SESSION["user"]);
+			//si non nul =>assigner à $userProfil
+		    if($response != NULL){
+		      $userProfil = $response;
+    	}else{
+         $errorDatas = "echec de chargement de vos données personelles";
+    		}
+        //execution de la function updateUserProfil lors du submit "Enregistrer"
+	    //Note: variables traitées/nettoyées dans la function, $response=retour du traitement
+	    if(isset($_POST['enregistrer'])){
+	    $feedback = updateUserProfil($_POST['username'], $_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['adresse'], $_POST['ville'], $_POST['codePostal'], $_POST['pays']);
+	
+    }
+      }
 ?>
 
 
@@ -64,48 +65,68 @@ if(isset($_GET["enregistrer"])){
       <div class="SectionContent">
         <h2>Je renseigne ou modifie mes coordonnées</h2>
 
-        <form id="userContactForm" action ="" method="post">
+        <form id="userContactForm" action ="#feedback" method="post"><!--reponse envoyée dans la même page au niveau de l'id "feedback"-->
           <div class="detailedInput">
             <label for="nom">Mon email </label>
-            <input type="text" name="email" value="" placeholder="Email" autocomplete="off" disabled >
+            <span class="requirement"><em>Non modifiable. Veuillez contacter la direction en cas de besoin</em></span>
+            <input type="text" name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" disabled >
+            
           </div>
           <div class="detailedInput">
             <label for="nom">Nom d'utilisateur</label>
-            <input type="text" name="username" value="" placeholder="Nom d'utilisateur Vite&Go" autocomplete="off" required>
+            <input type="text" name="username" value="<?= @$userProfil->nom_utilisateur ?>" placeholder="Nom d'utilisateur Vite&Go" autocomplete="off" required>
           </div>
           <div class="detailedInput">
             <label for="nom">Nom *</label>
-            <input type="text" name="nom" value="" placeholder="Mon Nom de famille" autocomplete="off" required>
+            <input type="text" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Mon Nom de famille" autocomplete="off" required>
           </div>
           <div class="detailedInput">
             <label for="prenom">Prénom *</label>
-            <input type="text" name="prenom" value="" placeholder="Mon Prénom" autocomplete="off" required>
+            <input type="text" name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Mon Prénom" autocomplete="off" required>
           </div>
           <div class="detailedInput">
             <label for="tel">Numéro de téléphone *</label>
-            <span class="note"><em>Si numéro étranger, veuillez noter l'indicatif</em></span>
-            <input type="text" name="tel" value="" placeholder="../../../../.." autocomplete="off" required>
+            <span class="requirement"><em>Ne rentrer que des chiffres de 0 à 9 (sans - / +,...)</em></span><br>
+            <span class="requirement"><em>Si numéro étranger, veuillez noter l'indicatif (00 au lieu de + , puis indicatif)</em></span>
+            <input type="text" name="tel"  value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required>
           </div>
           <div class="detailedInput">
             <label for="adresse">Adresse </label>
-            <input type="text" name="adresse" value="" placeholder="Mon adresse (rue/Allée/Av/Bvd...)" autocomplete="off">
+            <span class="requirement"><em>N° de rue + nom de rue (Si pas de N° de rue, entrer 0 + nom de rue) </em></span>
+            <input type="text" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="Mon adresse (rue/Allée/Av/Bvd...)" autocomplete="off">
           </div>
           <div class="detailedInput">
             <label for="ville">Ville </label>
-            <input type="text" name="ville" value="" placeholder="Ma ville" autocomplete="off">
+            <input type="text" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ma ville" autocomplete="off">
           </div>
           <div class="detailedInput">
             <label for="codePostal">Code Postal </label>
-            <input type="text" name="codePostal" value="" placeholder="Le Code Postal de ma ville" autocomplete="off">
+            <input type="text" name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="Le Code Postal de ma ville" autocomplete="off">
           </div>
           <div class="detailedInput">
             <label for="pays">Pays </label>
-            <input type="text" name="pays" value="" placeholder="Le pays où je réside actuellement" autocomplete="off">
+            <input type="text" name="pays" value="<?= @$userProfil->pays ?>" placeholder="Le pays où je réside actuellement" autocomplete="off">
           </div>
+          <span class="requirement"><em>* Sera à minima requis en cas de commande à retirer chez nous</em></span>
           <div class="formBottom">
             <input type="submit" name="enregistrer" value="Enregistrer" />
           </div>
         </form>
+        <div id="feedback">
+                 <?php
+            //retour du resultat $response affiché à l'utilisateur
+                //si  success =>retourner le message des balises <p> class= success ci dessous
+            if(@$feedback == "success"){
+                ?>
+                <p class="success" style='color:green'>Vos données ont été enregistrées avec succès!</p>
+                <?php
+            }else{
+                ?><!--sinon retour de la sous fonction qui a soulevée une erreur-->
+                    <p class = "error" style ='color:darkred'><?=@$feedback?></p>
+                <?php
+            }
+        ?>
+        </div>
       </div>
     </section>
   </div>

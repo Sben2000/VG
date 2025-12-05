@@ -138,6 +138,9 @@ ALTER TABLE commande Add COLUMN prix_HT DOUBLE NOT NULL DEFAULT 0; /*Ajout du pr
 
 ALTER TABLE commande Add COLUMN nbr_pers INT NOT NULL DEFAULT 0; /*Ajout du nbre de personne dans la commande*/
 
+ALTER TABLE utilisateur MODIFY prenom VARCHAR(50) DEFAULT 'A COMPLETER SI COMMANDE'; /*Modif du Défault "A COMPLETER SI COMMANDE"*/
+
+ALTER TABLE utilisateur MODIFY nom VARCHAR(50) DEFAULT 'A COMPLETER SI COMMANDE'; /*Modif du Défault "A COMPLETER SI COMMANDE"*/
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/

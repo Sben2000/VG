@@ -184,6 +184,7 @@ require_once ("./Functions/fctAccount.php");
 							</tbody>
 						</table>
 					</div>
+
 					<div class="orderDetails">
 						<table>
 							<tr>

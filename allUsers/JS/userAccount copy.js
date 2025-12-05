@@ -8,8 +8,8 @@ mainNav();
 // Gestion Ouverture/Fermeture des commandes
 
 //input
-const showMyOrders = document.getElementById('showMyOrders');
-const hideMyOrders = document.getElementById('hideMyOrders');
+const showMyOrders = document.getElementsById('showMyOrders');
+const hideMyOrders = document.getElementsById('hideMyOrders');
 //fenêtre des commandes à afficher/masquer
 let myOrders = document.querySelector('.myOrders');
 //Affichage au click
@@ -84,13 +84,13 @@ disconnectAccount.addEventListener("click",()=>{
 const deleteAccount = document.getElementById('deleteAccount');
 const modalDel = document.getElementById("modalDel")
 deleteAccount.addEventListener("click",()=>{
-console.log('clicked');
+    console.log('clicked');
 modalDel.style.display ="block";
 })
 
-/*Gestion Fermeture de la modale de déconnexion*/
+/*Gestion Fermeture de la modale de l'annulation de suppression*/
 const imgCloseModalDel= document.getElementById("imgCloseModalDel");
 imgCloseModalDel.addEventListener("click",()=>{
-     modal.style.display = "none";
+     modalDel.style.display = "none";
 })
 
