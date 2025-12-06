@@ -21,7 +21,7 @@ require_once ("./Functions/fctAccount.php");
         //execution de la function updateUserProfil lors du submit "Enregistrer"
 	    //Note: variables traitées/nettoyées dans la function, $response=retour du traitement
 	    if(isset($_POST['enregistrer'])){
-	    $feedback = updateUserProfil($_POST['username'], $_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['adresse'], $_POST['ville'], $_POST['codePostal'], $_POST['pays']);
+	    $feedback = updateUserProfil($_POST['userId'], $_POST['username'], $_POST['nom'], $_POST['prenom'], $_POST['tel'], $_POST['adresse'], $_POST['ville'], $_POST['codePostal'], $_POST['pays']);
 	
     }
       }
@@ -67,6 +67,10 @@ require_once ("./Functions/fctAccount.php");
 
         <form id="userContactForm" action ="#feedback" method="post"><!--reponse envoyée dans la même page au niveau de l'id "feedback"-->
           <div class="detailedInput">
+          <!--utilisateur_id hidden , affiché et récupéré lors du post-->
+            <input type="hidden" name="userId" value="<?= @$userProfil->utilisateur_id ?>" placeholder="Email" autocomplete="off" readonly >
+          <div>
+        <div class="detailedInput">
             <label for="nom">Mon email </label>
             <span class="requirement"><em>Non modifiable. Veuillez contacter la direction en cas de besoin</em></span>
             <input type="text" name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" disabled >

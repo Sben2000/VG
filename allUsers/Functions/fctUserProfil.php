@@ -73,7 +73,7 @@ function fetchUserOrders($username){
 
 }
 
-function updateUserProfil($username, $nom, $prenom, $tel, $adresse, $ville, $codePostal, $pays){
+function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $ville, $codePostal, $pays){
 
     
 //récupération de la connection BDD
@@ -261,7 +261,7 @@ function updateUserProfil($username, $nom, $prenom, $tel, $adresse, $ville, $cod
 
 
     //Mise à jour des data finaux dans la DB (le cas échéant si tout est ok)
-        $sql = "UPDATE utilisateur SET nom_utilisateur=?, nom= ?, prenom=?, telephone=?, adresse_postale=?, ville=?, code_postal=?, pays=? WHERE nom_utilisateur=? ";
+        $sql = "UPDATE utilisateur SET nom_utilisateur=?, nom= ?, prenom=?, telephone=?, adresse_postale=?, ville=?, code_postal=?, pays=? WHERE utilisateur_id=? ";
         $query=$conn->prepare($sql);
         $query->bindParam(1, $username, PDO::PARAM_STR);
         $query->bindParam(2, $nom, PDO::PARAM_STR);
@@ -271,7 +271,7 @@ function updateUserProfil($username, $nom, $prenom, $tel, $adresse, $ville, $cod
         $query->bindParam(6, $ville, PDO::PARAM_STR);
         $query->bindParam(7, $codePostal, PDO::PARAM_INT);
         $query->bindParam(8, $pays, PDO::PARAM_STR);
-        $query->bindParam(9, $_SESSION["user"], PDO::PARAM_STR);//correspondant au WHERE username=?
+        $query->bindParam(9, $userID, PDO::PARAM_STR);//id récupéré dans le post (type= hidden) et correspondant au WHERE utilisateur_id=
         $query->execute();
 
         //Vérification que le dernier ID enregistré est > 0 (confirmation enregistrement)
