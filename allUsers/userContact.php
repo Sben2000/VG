@@ -63,7 +63,7 @@ require_once ("./Functions/fctAccount.php");
 
     <section class="Section">
       <div class="SectionContent">
-        <h2>Je renseigne ou modifie mes coordonnées</h2>
+        <h2>Je renseigne ou modifie mes coordonnées en option</h2>
 
         <form id="userContactForm" action ="#feedback" method="post"><!--reponse envoyée dans la même page au niveau de l'id "feedback"-->
           <div class="detailedInput">
@@ -72,46 +72,49 @@ require_once ("./Functions/fctAccount.php");
           <div>
         <div class="detailedInput">
             <label for="nom">Mon email </label>
-            <span class="requirement"><em>Non modifiable. Veuillez contacter la direction en cas de besoin</em></span>
+            <span class="note"><em>Non modifiable. Veuillez contacter la direction en cas de besoin</em></span>
             <input type="text" name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" disabled >
             
           </div>
           <div class="detailedInput">
             <label for="nom">Nom d'utilisateur</label>
+            <span class="note"><em>Ne peut être vide</em></span>
             <input type="text" name="username" value="<?= @$userProfil->nom_utilisateur ?>" placeholder="Nom d'utilisateur Vite&Go" autocomplete="off" required>
           </div>
           <div class="detailedInput">
             <label for="nom">Nom *</label>
-            <input type="text" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Mon Nom de famille" autocomplete="off" required>
+            <input type="text" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Mon Nom de famille" autocomplete="off" ><!--pas de required à ce stade-->
           </div>
           <div class="detailedInput">
             <label for="prenom">Prénom *</label>
-            <input type="text" name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Mon Prénom" autocomplete="off" required>
+            <input type="text" name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Mon Prénom" autocomplete="off" ><!--pas de required à ce stade-->
           </div>
           <div class="detailedInput">
             <label for="tel">Numéro de téléphone *</label>
-            <span class="requirement"><em>Ne rentrer que des chiffres de 0 à 9 (sans - / +,...)</em></span><br>
-            <span class="requirement"><em>Si numéro étranger, veuillez noter l'indicatif (00 au lieu de + , puis indicatif)</em></span>
-            <input type="text" name="tel"  value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required>
+            <span class="note"><em>Ne rentrer que des chiffres de 0 à 9 (sans - / +,...)</em></span><br>
+            <span class="note"><em>Si numéro étranger, veuillez noter l'indicatif (00 au lieu de + , puis indicatif)</em></span>
+            <input type="text" name="tel"  value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" ><!--pas de required à ce stade-->
+          </div>
+          <h2>Mes informations de Livraison</h2>
+          <div class="detailedInput">
+            <label for="adresse">Adresse **</label>
+            <span class="note"><em>N° de rue + nom de rue (Si pas de N° de rue, entrer 0 + nom de rue) </em></span>
+            <input type="text" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="Mon adresse (rue/Allée/Av/Bvd...)" autocomplete="off"><!--pas de required à ce stade-->
           </div>
           <div class="detailedInput">
-            <label for="adresse">Adresse </label>
-            <span class="requirement"><em>N° de rue + nom de rue (Si pas de N° de rue, entrer 0 + nom de rue) </em></span>
-            <input type="text" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="Mon adresse (rue/Allée/Av/Bvd...)" autocomplete="off">
+            <label for="ville">Ville **</label>
+            <input type="text" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ma ville" autocomplete="off"><!--pas de required à ce stade-->
           </div>
           <div class="detailedInput">
-            <label for="ville">Ville </label>
-            <input type="text" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ma ville" autocomplete="off">
+            <label for="codePostal">Code Postal ** </label>
+            <input type="text" name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="Le Code Postal de ma ville" autocomplete="off"><!--pas de required à ce stade-->
           </div>
           <div class="detailedInput">
-            <label for="codePostal">Code Postal </label>
-            <input type="text" name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="Le Code Postal de ma ville" autocomplete="off">
+            <label for="pays">Pays ** </label>
+            <input type="text" name="pays" value="<?= @$userProfil->pays ?>" placeholder="Le pays où je réside actuellement" autocomplete="off"><!--pas de required à ce stade-->
           </div>
-          <div class="detailedInput">
-            <label for="pays">Pays </label>
-            <input type="text" name="pays" value="<?= @$userProfil->pays ?>" placeholder="Le pays où je réside actuellement" autocomplete="off">
-          </div>
-          <span class="requirement"><em>* Sera à minima requis en cas de commande à retirer chez nous</em></span>
+          <span class="requirement"><em>* Sera à minima requis en cas de commande à retirer (et en cas de Livraison)</em></span><br>
+          <span class="requirement"><em>** Sera en plus requis en cas de Livraison</em></span>
           <div class="formBottom">
             <input type="submit" name="enregistrer" value="Enregistrer" />
           </div>

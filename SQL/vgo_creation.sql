@@ -126,7 +126,7 @@ ALTER TABLE commande MODIFY statut VARCHAR(50) NOT NULL DEFAULT 'créée'; /**mo
 
 ALTER TABLE utilisateur MODIFY password VARCHAR(255) NOT NULL; /*Dans l'énoncé =>VARCHAR(50) hors il est conseillé de pouvoir storer au moins 60 carac par PHP pour un password, 255 char préconisés*/
 
-
+ALTER TABLE utilisateur Add COLUMN code_postal VARCHAR(50) DEFAULT '0000'; /*Ajout du code_postal*/
 ALTER TABLE commande Add COLUMN prix_TTC DOUBLE NOT NULL DEFAULT 0; /*Ajout du prix TTC payé dans le détail de la commande*/
 
 ALTER TABLE commande Add COLUMN prix_HT DOUBLE NOT NULL DEFAULT 0; /*Ajout du prix HT dans le détail de la commande*/
@@ -144,6 +144,10 @@ ALTER TABLE utilisateur MODIFY ville VARCHAR(50); /*Retrait du Default, car peut
 ALTER TABLE utilisateur MODIFY pays VARCHAR(50); /*Retrait du Default, car peut rester vide si pas de Livraison*/
 
 ALTER TABLE utilisateur MODIFY adresse_postale VARCHAR(50); /*Retrait du Default, car peut rester vide si pas de commande/Livraison*/
+
+ALTER TABLE utilisateur MODIFY code_postal VARCHAR(50); /*Retrait du Default, car peut rester vide si pas de commande/Livraison*/
+
+ALTER TABLE utilisateur MODIFY telephone VARCHAR(50); /*Retrait du NOT NULL, car peut rester vide si pas de commande/Livraison*/
 
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 

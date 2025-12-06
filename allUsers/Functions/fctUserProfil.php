@@ -94,6 +94,7 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
     //application de la fonction de rappel sur tous les arguments et assignation à $args.
     $args = array_map($trim_value, $args);
 
+
     //interdire les quotes, balises, chevrons et autres caractères non sécurisants
         $masque ="/[<>\'\"]/";
         foreach ($args as $arg){
@@ -108,6 +109,11 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
                 return " Les caractères spéciaux: < > \" \' ne sont pas autorisé, Veuillez corriger {$arg}";
             }
         }
+
+
+
+
+
 //Vérification sur le nom_utilisateur (en cas de souhait de changement):
             //vérification qu'a minima le nom d'utilisateur est toujours renseigné (email étant disabled)
             if(empty($username)){
@@ -143,12 +149,9 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         }
         }
 
-//Vérification du nom:
-        if ($nom!="A COMPLETER SI LIVRAISON"){
-        //si laissé vide
-        if(empty($nom)){
-        return "Veuillez renseigner un nom";
-        }
+//Vérification du nom si celui ci est complété (à l'origine vide):
+        if (!empty($nom)){
+
     //Vérification des caractères autorisés (via function php is_numeric)
         if (is_string($nom)==FALSE){
         return "veuillez rentrer un nom composé de lettres";
@@ -160,12 +163,8 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
 
         }
 
-//Vérification du Prénom:
-        if ($prenom!="A COMPLETER SI LIVRAISON"){
-        //si laissé vide
-        if(empty($prenom)){
-        return "Veuillez renseigner un prénom";
-        }
+//Vérification du Prénom si celui ci est complété (à l'origine vide):
+        if (!empty($prenom)){
     //Vérification des caractères autorisés (via function php is_numeric)
         if (is_string($prenom)==FALSE){
         return "veuillez rentrer un prénom composé de lettres";
@@ -174,14 +173,10 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         if(strlen($prenom)>15){
             return "le prénom ne peut dépasser 15 caractères";
         }
+        }
+//Vérification du format téléphone si celui ci est complété (à l'origine vide):
+        if(!empty($tel)){
 
-        }
-//Vérification du format téléphone:
-        if ($tel!="A COMPLETER SI COMMANDE"){
-        //si laissé vide
-        if(empty($tel)){
-        return "Veuillez renseigner un numéro de téléphone";
-        }
     //Vérification des caractères autorisés (via function php is_numeric)
         if (is_numeric($tel)==FALSE){
         return "le format du numéro ne doit être composé que de chiffres";
@@ -195,53 +190,83 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
             return "le numéro de tel ne peut être inférieur à 10 chiffres";
         }
         }
-//Vérification Adresse:
-    if ($adresse!="A COMPLETER SI LIVRAISON"){
-        //si laissé vide
-       if(empty($adresse)){
-        return "Veuillez renseigner une adresse";
-        }
+        
+//Vérification Adresse si celle ci est complétée (à l'origine vide):
+
+       if(!empty($adresse)){
 
         //Format adresse
 
-        $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$)";
-        preg_match_all($masque, $adresse, $resultat);
-        if (empty($resultat[0])){
-        return "l'adresse doit comporter un N° et un nom de rue ";
+        //Vérification des caractères autorisés (lettres (case insensitive) , - et _ ') uniquement (Upper&Lowercase)
+        $masque1 ="/[^a-z_0-9\-\']/i"; //classe:[], ne contenant pas: ^(interne), les caractères: aàz - _ ', minuscule ou majuscule:/i*
+         preg_match_all($masque1, $adresse, $resultat);
+        var_dump($resultat[0]);
+        if (count($resultat[0])!=0){
+        return "les caractères spéciaux hormis  les tirets '-' '_' et apostrophe ' ne sont pas admis";
+        }
 
+        //si ok =>Vérification des caractères minimum requis (lettres et num de rue) 
+        $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$)";
+        preg_match_all($masque, $adresse, $result);
+        if (empty($result[0])){
+        echo "l'adresse doit comporter un numéro , un nom de rue, sont admis '-' et '_' ' , si pas de numéro de rue, noter 0";
+        }
     //Vérification de la longueur de l'adresse
-        if(strlen($adresse)<5){
-            return "veuillez svp indiquer une adresse complète > 6 caractères";
+        if(strlen($adresse)<4){
+            return "veuillez svp indiquer une adresse complète ";
         }
 
         if(strlen($adresse)>30){
             return "Adresse trop longue, veuillez svp la réduire";
         }
-
-        }
     }
-//Vérification du format Code Postal:
-     if ($codePostal!="A COMPLETER SI LIVRAISON"){
+//Vérification Adresse si celle ci est complétée (à l'origine vide):
+
+       if(!empty($ville)){
+
+        //Format ville
+        //Vérification des caractères autorisés (lettres (case insensitive) , - et _ ') uniquement (Upper&Lowercase)
+        $masque ="/[^a-z_\-\']/i"; //classe:[], ne contenant pas: ^(interne), les caractères: aàz - _ ', minuscule ou majuscule:/i*
+        preg_match_all($masque, $ville, $resultat);
+        var_dump($resultat[0]);
+        if (count($resultat[0])!=0){
+        return "la ville ne doit comporter que des lettres ,sont également admis les tirets '-' '_' et apostrophe '";
+        }
+    //Vérification de la longueur de l'adresse
+        if(strlen($ville)<2){
+            return "veuillez svp indiquer le nom de ville complet";
+        }
+
+        if(strlen($ville)>30){
+            return "le nom de ville est trop long, veuillez le réduire";
+        }
+
+    }
+            
+//Vérification du format Code Postal si celui ci est complété (à l'origine vide):
+     if (!empty($codePostal)||$codePostal!=0){
         if (is_numeric($codePostal)==FALSE){
         return "Veuillez rentrer un code Postal numérique";
         }
-            //Vérification de la longueur du code Postal si Pays =France ou non renseigné
-        if($pays = "FRANCE" || $pays=""){
-            if(strlen($codePostal)<5 || strlen($codePostal)>5){
-            return "veuillez svp indiquer un code Postal  à 5 chiffres, si pas en FRANCE => préciser le Pays";
+            //Vérification de la longueur du code Postal 
+            if(strlen($codePostal)!=5){
+            return "veuillez svp indiquer un code Postal  à 5 chiffres, supprimez les espaces si nécessaires";
         }
         
+        //codes postaux de l'agglo Bordelaise :=> https://comersis.com/geo/geo/export-epci.php?dpt=33&epci=243300316
+        $arrayPostalCode = array(33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 33520, 33560, 33150, 33320, 33270, 33170, 33185, 33310, 33127, 33700, 33290, 33600, 33160, 33440, 33160, 33440, 33320, 33400, 33140);
+        if(!in_array($codePostal, $arrayPostalCode)){
+            return "Désolé, nous livrons uniquement en métropole Bordelaise, nous contacter pour une autre localisation";
         }
-     }
+
+        }
+     
 
 
-//Vérification du format PAYS:
-    if ($pays!="A COMPLETER SI LIVRAISON"){
-        //si laissé vide
-        if(empty($pays)){
-        return "Veuillez renseigner un Pays";
-        }
-    //mise en uppercase
+//Vérification du format PAYS si celui ci est complété (à l'origine vide)::
+    if (!empty($pays)){
+
+        //mise en uppercase
     $pays=strtoupper($pays);
     //format
     if(is_numeric($pays)){
@@ -253,7 +278,11 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         }
 
         if(strlen($pays)>20){
-            return "le nom du pays possède trop de caractères";
+            return "le nom du pays possède trops de caractères";
+        }
+
+        if($pays!="FRANCE"){
+            return "Désolé, nous ne livrons qu'en FRANCE dans la métropole Bordelaise";
         }
 
     }
