@@ -123,6 +123,25 @@ disconnectPhone.addEventListener("click",()=>{
 
 })
 
+/**************************************************************Gestion ouvertur des fenêtres Team et Admin lors du clic***********************************************************************************************/
+
+
+//Gestion d'ouverture de la fenêtre principale gestion MENU en passant arguments: nom de la fenêtre, ses options (dimension (en px))
+    //LargeMenu
+const gestMenuWindowLM = document.getElementById("gestMenuWindowLM");
+gestMenuWindowLM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionMenus/creationMenu.php", 'test', 'width=500', 'height=500','left=200','top=200');
+});
+    //TelMenu
+const gestMenuWindowTM = document.getElementById("gestMenuWindowTM");
+gestMenuWindowTM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionMenus/creationMenu.php", 'test', 'width=500', 'height=500','left=200','top=200');
+});
+
+
+
 /******************************************************************************************************************************************************************* */
 
 

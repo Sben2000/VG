@@ -170,7 +170,7 @@ nav a.active{ /*lors du hover*/
     margin-left: 5px; 
 }
 
-    .vgTeam>li, .adminAccess>li{/*afin de centrer les liens de la partie Team/Access en conservant la longueur de li*/
+    .vgTeam li{/*afin de centrer les liens de la partie Team/Access en conservant la longueur de li*/
         display: flex;
         justify-content: center;
        

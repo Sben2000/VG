@@ -57,7 +57,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 					?>">
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
 					<div class="vgTeam" id="vgTeamLM">
-						<li><a class="gestionLink" href="#">Menus</a></li>
+						<!--Ouverture gérée de deux manières (JS window.open() et HTML target=_blank) au cas ou blocage pop up-->
+						<li ><a class="gestionLink" href="../2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowLM">Menus</a></li>
 						<li><a class="gestionLink" href="#">Commandes</a></li>
 						<div class="adminAccess
 							<?php
@@ -135,8 +136,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 					?>">
 						<hr />
 						<span>Gestion:</span>
-						<li><a href="#">Menus</a></li>
-						<li><a href="#">Commandes</a></li>
+						<!--Ouverture géré de deux manières (JS window.open() et HTML target=_blank) au cas ou blocage pop up-->
+						<li><a href="../2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowTM">Menus</a></li>
+						<li><a class="gestionLink" href="#">Commandes</a></li>
 						<div class="adminAccess<?php
 							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show
 							if (!isset($_SESSION['accessAdmin'])) {

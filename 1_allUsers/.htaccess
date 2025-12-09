@@ -3,4 +3,4 @@ php_flag display_errors on
 
 #Renvoi vers page 404 si non trouvée
 
-ErrorDocument 404 /vg/allUsers/includes/404.php
+ErrorDocument 404 /vg/1_allUsers/includes/404.php

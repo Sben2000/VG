@@ -77,9 +77,10 @@ CREATE TABLE IF NOT EXISTS contient (
   CONSTRAINT contient_plat_id_FK FOREIGN KEY (plat_id) REFERENCES plat (plat_id)
 )ENGINE=InnoDB;
 
+DROP TABLE menu;
 
 CREATE TABLE IF NOT EXISTS menu (
-    menu_id INT NOT NULL,
+    menu_id INT NOT NULL AUTO_INCREMENT,
     regime_id INT, /*peut être null*/
     theme_id INT, /*peut être null*/
     titre VARCHAR(50) NOT NULL, /*titre nécessaire -> géré par la création de menu*/
@@ -148,6 +149,10 @@ ALTER TABLE utilisateur MODIFY adresse_postale VARCHAR(50); /*Retrait du Default
 ALTER TABLE utilisateur MODIFY code_postal VARCHAR(50); /*Retrait du Default, car peut rester vide si pas de commande/Livraison*/
 
 ALTER TABLE utilisateur MODIFY telephone VARCHAR(50); /*Retrait du NOT NULL, car peut rester vide si pas de commande/Livraison*/
+
+ALTER TABLE menu ADD COLUMN photo_menu VARCHAR(50); /*Ajouté pour  permettre au menu d'avoir sa propre photo générale suite à Upload des images*/
+
+ALTER TABLE menu  MODIFY menu_id INT NOT NULL AUTO_INCREMENT ; /*Modifié en NOT NULL AUTO INCREMENT*/
 
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
