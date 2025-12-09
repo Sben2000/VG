@@ -229,7 +229,7 @@ function loginUser($email,$password){
     
         if($accessLevel==1){
         $_SESSION["accessUser"];
-        }elseif($accessLevel>1){
+        }elseif($accessLevel==2){
         $_SESSION["accessVgTeam"]=$accessLevel;  
         }elseif($accessLevel>2){
         $_SESSION["accessAdmin"]=$accessLevel;  

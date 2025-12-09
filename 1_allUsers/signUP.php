@@ -48,7 +48,7 @@ require_once "./Functions/fctAccount.php";
       <div class="SectionContent">
         <h2>Je crée mes identifiants</h2>
 
-        <form id="loginForm" action="" method="post" autocomplete="off"><!--response envoyée dans la même page -->
+        <form id="loginForm" action="#feedback" method="post" autocomplete="off"><!--reponse envoyée dans la même page au niveau de l'id "feedback"-->
           <!-- Input group  -->
           <div class="detailedInput">
             <label for="email">Email *</label>
@@ -98,6 +98,7 @@ require_once "./Functions/fctAccount.php";
           <a href="login.php">Se connecter ici</a>
         </p>
         <br>
+        <div id="feedback">
          <?php
             //retour du resultat $response affiché à l'utilisateur
                 //si  success =>retourner le message des balises <p> class= success ci dessous
@@ -113,6 +114,7 @@ require_once "./Functions/fctAccount.php";
                 <?php
             }
         ?>
+        </div>
       </div>
     </section>
   </div>

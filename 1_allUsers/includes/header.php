@@ -1,6 +1,6 @@
 <?php
 require_once "./disconnect.php";
-
+require_once "./Functions/fctAccount.php";
 //Conditionnement du démarrage de session (Session déjà active?) pour éviter les doublons (et Notices)
 if (session_status() !== PHP_SESSION_ACTIVE) {
 	session_start();
@@ -14,7 +14,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 		<div class="inlineLinks">
 			<div class="allUsers" id="allUsersLM">
 				<li><a href="./indexLocal.php">Home</a></li>
-				<li><a href="#">Nos menus</a></li>
+				<li><a href="./menus.php">Nos menus</a></li>
 				<li><a href="./contact.php">Contact</a></li>
 				<li class="					
 					<?php
@@ -48,11 +48,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 					?>"><a href="#">Déconnexion</a></li>
 				<div class="rollingMenu
 					<?php
-					//Si  PAS de session avec niveau accès>1 (employé, admin) active =>ajout class= hide sinon class=show
-					if (!isset($_SESSION['accessVgTeam'])) {
-						echo "-hide";
-					} else {
+					//Si   session avec niveau accès==2 ou accès==3 (employé, admin) active =>ajout class=show  sinon class= hide
+					if (isset($_SESSION['accessVgTeam']) ||isset($_SESSION['accessAdmin'])) {
 						echo "-show";
+					} else {
+						echo "-hide";
 					}
 					?>">
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
@@ -79,6 +79,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 			</div>
 		</div>
 	</nav>
+
 	<!-----------------------------------------HTML du Hamburger Menu (en Mode Responsive Mobile)------------------------->
 		<nav class="ham-menu">
 			<!--Logo hamburger de navigation (géré en css et JS)-->
@@ -93,7 +94,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 				<div class="allUsers" id="allUsersHM">
 					
 					<li><a href="./indexLocal.php">Home</a></li>
-					<li><a href="#">Nos menus</a></li>
+					<li><a href="./menus.php">Nos menus</a></li>
 					<li><a href="./contact.php">Contact</a></li>
 					<li class="					
 					<?php
@@ -125,11 +126,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 					?>"><a href="#">Déconnexion</a></li>
 					<div id="vgTeamHM" class="vgTeam
 					<?php
-					//Si  PAS de session avec niveau accès>1 (employé, admin) active =>ajout class= hide sinon class=show
-					if (!isset($_SESSION['accessVgTeam'])) {
-						echo "-hide";
-					} else {
+					//Si   session avec niveau accès==2 ou accès==3 (employé, admin) active =>ajout class=show  sinon class= hide
+					if (isset($_SESSION['accessVgTeam']) ||isset($_SESSION['accessAdmin'])) {
 						echo "-show";
+					} else {
+						echo "-hide";
 					}
 					?>">
 						<hr />

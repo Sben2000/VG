@@ -6,9 +6,9 @@
 		<!--<div class="brand">Vite&Go</div>-->
 		<div class="inlineLinks">
 			<div class="allUsers" id="allUsersLM">
-				<li><a href="./allUsers/indexLocal.php">Home</a></li>
-				<li><a href="#">Nos menus</a></li>
-				<li><a href="./allUsers/contact.php">Contact</a></li>
+				<li><a href="./1_allUsers/indexLocal.php">Home</a></li>
+				<li><a href="./1_allUsers/menus.php">Nos menus</a></li>
+				<li><a href="./1_allUsers/contact.php">Contact</a></li>
 				<li class="					
 					<?php
 					//Si username identifié (user,employé, admin) active =>ajout class= hide sinon class=show
@@ -18,17 +18,17 @@
 						echo "-show";
 					}
 					?>">
-					<a href="./allUsers/login.php">Connexion</a>
+					<a href="./1_allUsers/login.php">Connexion</a>
 				</li>
 				<li class="					
 					<?php
-					//Si  PAS de session (user,employé, admin) active =>ajout class= hide sinon class=show
-					if (!isset($_SESSION['user'])) {
-						echo "-hide";
-					} else {
+					//Si   session avec niveau accès==2 ou accès==3 (employé, admin) active =>ajout class=show  sinon class= hide
+					if (isset($_SESSION['accessVgTeam']) ||isset($_SESSION['accessAdmin'])) {
 						echo "-show";
+					} else {
+						echo "-hide";
 					}
-					?>"><a href="./allUsers/userAccount.php">Mon compte</a></li>
+					?>"><a href="./1_allUsers/userAccount.php">Mon compte</a></li>
 				<li class="disconnectModal
 															
 					<?php
@@ -54,12 +54,12 @@
 						<li><a class="gestionLink" href="#">Commandes</a></li>
 						<div class="adminAccess
 							<?php
-							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show
-							if (!isset($_SESSION['accessAdmin'])) {
-								echo "-hide";
-							} else {
-								echo "-show";
-							}
+						//Si   session avec niveau accès==2 ou accès==3 (employé, admin) active =>ajout class=show  sinon class= hide
+						if (isset($_SESSION['accessVgTeam']) ||isset($_SESSION['accessAdmin'])) {
+							echo "-show";
+						} else {
+							echo "-hide";
+						}
 							?>">										
 							<li><a class="gestionLink" href="#">Employés</a></li>
 							<li><a class="gestionLink" href="#">Libellés</a></li>
@@ -85,9 +85,9 @@
 			<ul class="panelLinks">
 				<div class="allUsers" id="allUsersHM">
 					
-					<li><a href="./allUsers/indexLocal.php">Home</a></li>
-					<li><a href="#">Nos menus</a></li>
-					<li><a href="./allUsers/contact.php">Contact</a></li>
+					<li><a href="./1_allUsers/indexLocal.php">Home</a></li>
+					<li><a href="./1_allUsers/menus.php">Nos menus</a></li>
+					<li><a href="./1_allUsers/contact.php">Contact</a></li>
 					<li class="					
 					<?php
 					//Si username identifié (user,employé, admin) active =>ajout class= hide sinon class=show
@@ -96,7 +96,7 @@
 					} else {
 						echo "-show";
 					}
-					?>"><a href="./allUsers/login.php">Connexion</a></li>
+					?>"><a href="./1_allUsers/login.php">Connexion</a></li>
 					<li class="					
 					<?php
 					//Si  PAS de session (user,employé, admin) active =>ajout class= hide sinon class=show
@@ -105,7 +105,7 @@
 					} else {
 						echo "-show";
 					}
-					?>"><a href="./allUsers/userAccount.php">Mon compte</a></li>
+					?>"><a href="./1_allUsers/userAccount.php">Mon compte</a></li>
 					<li class="disconnectPhone
 															
 					<?php

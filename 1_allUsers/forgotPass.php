@@ -48,7 +48,7 @@ require_once "./Functions/fctAccount.php";
 			<div class="SectionContent">
 				<h2>Reinitialisation mot de Passe</h2>
 				<!-- Login form avec champs pour email & password -->
-				<form id="loginForm" action="" method="post" autocomplete="off"><!--response envoyé dans la même page en cas d'échec-->
+				<form id="loginForm" action="#feedback" method="post" autocomplete="off"><!--reponse envoyée dans la même page au niveau de l'id "feedback"-->
 					<div class="detailedInput">
 						<label for="email">Email *</label>
 						<input
@@ -58,7 +58,7 @@ require_once "./Functions/fctAccount.php";
 							placeholder="Mon email pour reinitialiser le mot de passe"
 							value="<?= @$_POST['email'] /*@ évite les warning si champs vide*/?>"
 							autocomplete="off"
-							required />
+							required /><br>
 							<span class="note"><em>*Champs requis</em></span>
 					</div>
 					
@@ -76,6 +76,7 @@ require_once "./Functions/fctAccount.php";
 					<span>Réessayer avant?</span>
 					<a href="login.php">Connexion</a>
 				</p>
+		<div id="feedback">
         <?php
             //retour du resultat $response affiché à l'utilisateur
                 //si le resultat de la function est success =>newPassword est bien enregistré dans la dB
@@ -92,6 +93,7 @@ require_once "./Functions/fctAccount.php";
                 <?php
             }
         ?>
+			</div>
 			</div>
 		</section>
 	</div>

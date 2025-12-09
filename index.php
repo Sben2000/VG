@@ -16,23 +16,23 @@
 		/>
 
 		<!--link css de la page-->
-		<link rel="stylesheet" href="./allUsers/CSS/Home.css" />
+		<link rel="stylesheet" href="./1_allUsers/CSS/Home.css" />
         <!--link css de la navBar header-->
-        <link rel="stylesheet" href="./allUsers/CSS/styleHeader.css" />
+        <link rel="stylesheet" href="./1_allUsers/CSS/styleHeader.css" />
         <!--link css footer-->
-		<link rel="stylesheet" href="./allUsers/CSS/footer.css" />
+		<link rel="stylesheet" href="./1_allUsers/CSS/footer.css" />
 		<!--link css disconnect (modal)-->
-		<link rel="stylesheet" href="./allUsers/CSS/disconnectMod.css" />
+		<link rel="stylesheet" href="./1_allUsers/CSS/disconnectMod.css" />
 
 
 		<title>Acceuil</title>
 	</head>
 	<body>
 <?php require_once "./includes/header.php"?>
- <?php require_once "./allUsers/home.php"?>
+ <?php require_once "./1_allUsers/home.php"?>
 <?php require_once "./includes/footer.php"?>
 
-<script type="module"  src="./allUsers/JS/Home.js"></script>
+<script type="module"  src="./1_allUsers/JS/Home.js"></script>
 </body>
 </html>
 

@@ -48,7 +48,7 @@ require_once "./Functions/fctAccount.php";
 			<div class="SectionContent">
 				<h2>Login</h2>
 				<!-- Login form avec champs pour email & password -->
-				<form id="loginForm" action="" method="post" autocomplete="off"><!--response envoyée dans la même page -->
+				<form id="loginForm" action="#feedback" method="post" autocomplete="off"><!--reponse envoyée dans la même page au niveau de l'id "feedback"-->
 					<div class="detailedInput">
 						<!-- email plutôt que username car plus simple à retenir -->
 						<label for="email">Email *</label>
@@ -92,7 +92,7 @@ require_once "./Functions/fctAccount.php";
 					<a href="forgotPass.php">Mot de passe oublié?</a>
 				</p>
 				<!--dans le cas d'erreur de login, retour de $response-->
-				<p class="error" style="color: darkred"><?= @$response ?></p>
+				<p class="error" id="feedback" style="color: darkred"><?= @$response ?></p>
 			</div>
 		</section>
 	</div>

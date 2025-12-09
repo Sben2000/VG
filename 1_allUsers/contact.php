@@ -32,7 +32,7 @@
 		</div>
 		<section class="contact" id="contact">
 			<div class="contactForm">
-				<form action="" method="post" class="form-contact">
+				<form action="#feedback" method="post" class="form-contact"><!--reponse envoyée dans la même page au niveau de l'id "feedback"-->
 					<div class="formTop">
 
 						<label for="nom">Nom / Prénom</label>
