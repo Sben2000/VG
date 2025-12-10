@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS menu (
     titre VARCHAR(50) NOT NULL, /*titre nécessaire -> géré par la création de menu*/
     nombre_personne_minimum INT, /*peut être vide par défaut*/
     prix_par_personne DOUBLE NOT NULL, /*prix nécessaire -> géré par la création de menu*/
-    regime VARCHAR(50),  /*peut être null*/
+    /*regime VARCHAR(50),  /*suppression car fait doublon avec le regime_id*/
     description VARCHAR(50) NOT NULL, /*description nécessaire -> géré par la création de menu*/
     quantite_restante INT, /*facultatif, donc NOT NULL pas necessaire*/
   CONSTRAINT menu_PK PRIMARY KEY (menu_id),
@@ -153,6 +153,8 @@ ALTER TABLE utilisateur MODIFY telephone VARCHAR(50); /*Retrait du NOT NULL, car
 ALTER TABLE menu ADD COLUMN photo_menu VARCHAR(50); /*Ajouté pour  permettre au menu d'avoir sa propre photo générale suite à Upload des images*/
 
 ALTER TABLE menu  MODIFY menu_id INT NOT NULL AUTO_INCREMENT ; /*Modifié en NOT NULL AUTO INCREMENT*/
+
+ALTER TABLE menu DROP COLUMN regime; /*suppression de cette colonne car fait doublon avec la clé étrangère regime_id (et son libellé)*/
 
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 

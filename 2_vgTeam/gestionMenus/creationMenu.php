@@ -82,6 +82,38 @@ $response = confirmPicture();
 						maxlength="500"
 						placeholder="Description/composition...(10 à 500 caract.)"
 						autocomplete="off"></textarea>
+					<div class="minPeople">
+						<label for="minPeople" class="label">
+							<li>Nbre pers_mini : </li>
+						</label>
+						<input
+							id="minPeople"
+							type="number"
+							name="menuPrice"
+							minlength="1"
+							maxlength="8"
+							min="0"
+							max="500"
+							step="1"
+							placeholder="00"
+							autocomplete="off" />
+					</div>
+					<div class="remainQty">
+						<label for="remainQty" class="label">
+							<li>Quantité restante : </li>
+						</label>
+						<input
+							id="remainQty"
+							type="number"
+							name="menuPrice"
+							minlength="1"
+							maxlength="8"
+							min="0"
+							max="500"
+							step="1"
+							placeholder="00"
+							autocomplete="off" />
+					</div>
 					<div class="menuPrice">
 						<label for="menuPrice" class="label">
 							<li>Prix TTC/pers en &#x20AC : </li>
@@ -95,7 +127,7 @@ $response = confirmPicture();
 							min="0"
 							max="500"
 							step="0.01"
-							placeholder="XX.XX"
+							placeholder="00.00"
 							autocomplete="off" />
 					</div>
 					<input type="submit" value="Créer le menu" id="sendData" name="submit">
@@ -146,8 +178,12 @@ $response = confirmPicture();
 
 				<!--en readonly-->
 				<textarea id="inputContent" readonly></textarea>
-
+				<!--inputs ajoutés lors de l'écriture-->
+				<div class="copiedInputs" >
+				<p class="inputPeople peopleText"><span class="inputPeople peopleNumber"></span> pers.minimum</p>
+				<p class="inputQty qtyText"><span class="inputQty qtyNumber"></span> menu(s) restant(s)</p>
 				<p class="inputPrice priceText"><span class="inputPrice priceNumber"></span>€ TTC/pers</p>
+				</div>
 			</div>
 		</div>
 	</div>

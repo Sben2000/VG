@@ -8,6 +8,10 @@ let imageSelected = document.getElementById("imageSelected")
 let menuTitle = document.getElementById('menuTitle');
   //Description du menu
 let textInput = document.getElementById('textInput');
+  //Nbre pers min
+let minPeople= document.getElementById('minPeople');
+  //Quantité restante
+let remainQty= document.getElementById('remainQty');
   //Prix du menu
 let menuPrice= document.getElementById('menuPrice');
   //bouton submit "Créer le menu"
@@ -22,6 +26,11 @@ let previewImage= document.getElementById('previewImage');
 let inputTitleContent = document.getElementById('inputTitleContent');
   //Description prévisualisée
 let inputContent = document.getElementById('inputContent');
+//Quantité prévisualisée
+let inputQtyNumber = document.querySelector('.qtyNumber');
+//Nbre Pers. prévisualisé
+let inputPeopleNumber = document.querySelector('.peopleNumber');
+
   //Prix prévisualisé
 let inputPriceNumber = document.querySelector('.priceNumber');
 
@@ -55,6 +64,14 @@ import {prImg} from './previewImg.js';
 //Recopie du textarea dans la prévisualisation
   menuTitle.oninput = function(){
     inputTitleContent.innerHTML = menuTitle.value;
+    }
+//Recopie du nombre de pers. min dans la prévisualisation
+  minPeople.oninput = function(){
+    inputPeopleNumber.innerHTML = minPeople.value;
+    }
+//Recopie de la quantité min dans la prévisualisation
+  remainQty.oninput = function(){
+    inputQtyNumber.innerHTML = remainQty.value;
     }
 //Recopie du Prix dans la prévisualisation
   menuPrice.oninput = function(){
@@ -100,6 +117,24 @@ myForm.addEventListener("submit", function(event){
 
   //Contrôle de la catégorie
 
+ //Trim de la valeur de quantité personnes min et contrôle du format
+
+  let minPeopleCleanValue = minPeople.value.trim();
+  // si la valeur calculée est de type "NaN" ou si la valeur est vide ou si la valeur est négative
+  if(minPeopleCleanValue * 2 =="NaN" || minPeopleCleanValue =="" || minPeopleCleanValue * 2 < 0 ){
+    errorMessage.innerHTML="Veuillez entrer un nbre de pers.min  au format mentionné entre 00 et 500 ";
+    return false;
+  }  
+
+
+  //Trim de la valeur de Qté et contrôle du format
+
+  let remainQtyCleanValue = remainQty.value.trim();
+  // si la valeur calculée est de type "NaN" ou si la valeur est vide ou si la valeur est négative
+  if(remainQtyCleanValue * 2 =="NaN" || remainQtyCleanValue =="" || remainQtyCleanValue * 2 < 0 ){
+    errorMessage.innerHTML="Veuillez entrer une quantité au format mentionné entre 00 et 500 ";
+    return false;
+  }
 
 
 
@@ -147,6 +182,17 @@ myForm.addEventListener("submit", function(event){
   //console.log(menuPriceCleanValue);
   }
 
+  if (regex1.test(remainQtyCleanValue)== true){
+  remainQtyCleanValue=encodeURIComponent(remainQtyCleanValue);
+  //console.log(remainQtyCleanValue);
+  }
+
+  if (regex1.test(minPeopleCleanValue)== true){
+  minPeopleCleanValue=encodeURIComponent(minPeopleCleanValue);
+  //console.log(minPeopleCleanValue);
+  }
+
+
  //2)Remplacer les éventuels ' par \' dans les valeurs des inputs
  const regex2 = /'/gs;
 
@@ -190,12 +236,10 @@ let datas = {
     "imageSelected": imageSelectedCleanName,
     "menuTitle": menuTitleCleanValue,
     "textInput": textInputCleanValue,
+    "remainQty": remainQtyCleanValue,
+    "minPeople": minPeopleCleanValue,
     "menuPrice": menuPriceCleanValue
 };
-//console.log(datas.imageSelected);
-//console.log(datas.menuTitle);
-//console.log(datas.textInput);
-//console.log(datas.menuPrice);
 
 //appel de la function fetch pour envoi des données au back en JSON
       //destination

@@ -28,6 +28,8 @@ else{//si les données sont récupérées
 $imageSelected = htmlspecialchars($datas["imageSelected"]) ;
 $menuTitle = htmlspecialchars($datas["menuTitle"]);
 $textInput= htmlspecialchars($datas["textInput"]);
+$remainQty= htmlspecialchars($datas["remainQty"]);
+$minPeople= htmlspecialchars($datas["minPeople"]);
 $menuPrice= htmlspecialchars($datas["menuPrice"]);
 
 //echo json_encode([['success' => true],['message' => 'echec']]);
@@ -109,11 +111,13 @@ if(!isset($_FILES["imageSelected"])){
 
 //
     //Si pas de doublons, Enregistrer les données dans la db
-    $sql = "INSERT INTO menu(titre, description, photo_menu, prix_par_personne) VALUES (:titre, :description, :photo_menu, :prix_par_personne)";
+    $sql = "INSERT INTO menu(titre, description, photo_menu, quantite_restante, nombre_personne_minimum, prix_par_personne) VALUES (:titre, :description, :photo_menu, :quantite_restante, :nombre_personne_minimum, :prix_par_personne)";
     $query =$pdo->prepare($sql);
     $query->bindParam(':titre', $menuTitle, PDO::PARAM_STR);
     $query->bindParam(':description', $textInput, PDO::PARAM_STR);
     $query->bindParam(':photo_menu', $imageSelected, PDO::PARAM_STR);
+    $query->bindParam(':quantite_restante', $remainQty, PDO::PARAM_INT);
+    $query->bindParam(':nombre_personne_minimum', $minPeople, PDO::PARAM_INT);
     $query->bindParam(':prix_par_personne', $menuPrice, PDO::PARAM_STR);
     $query->execute();
 
