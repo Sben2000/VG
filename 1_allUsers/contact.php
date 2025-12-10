@@ -1,3 +1,16 @@
+<?php
+
+require_once "./Functions/fctContact.php";
+//execution de la function contactUs lors du submit
+	//Note: variables traitées/nettoyées dans la function, $response=retour du traitement
+
+	if(isset($_POST['envoyer'])){
+	$response = contactUs($_POST['nom'], $_POST['email'], $_POST['message']);
+	
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -36,22 +49,40 @@
 					<div class="formTop">
 
 						<label for="nom">Nom / Prénom</label>
-						<input type="text" name="nom" placeholder="Mon nom et prénom" value="" autocomplete="off" required />
+						<input type="text" name="nom" placeholder="Mon nom et prénom" value="<?= @$_POST['nom']?>" autocomplete="off" required />
 
 						<label for="email">Email</label>
 						<!--le type email permettant de s'assurer que l'utilisateur entre bien un email avec @-->
-						<input type="email" name="email" value="" placeholder="Email@NomdeDomain.com" autocomplete="off" required />
+						<input type="email" name="email" value="<?= @$_POST['email']?>" placeholder="Email@NomdeDomain.com" autocomplete="off" required />
 
 						<label for="message">Votre message</label>
 						<textarea name="message" cols="40" rows="15"
-							placeholder="Je vous contacte pour..." value="" autocomplete="off"></textarea>
+							placeholder="Je vous contacte pour..." value="<?= @$_POST['message']?>" autocomplete="off"></textarea>
 					</div>
 
 					<div class="formBottom">
 						<input type="submit" name="envoyer" value="Envoyer" />
 					</div>
+		        <div id="feedback">
+         <?php
+            //retour du resultat $response affiché à l'utilisateur
+                //si  success =>retourner le message des balises <p> class= success ci dessous
+            if(@$response == "success"){
+                ?>
+                <p class="success" style='color:green'>Votre message nous a bien été transmis!</p>
+                <p class="success" style='color:green'>Nous reviendrons vers vous dès que possible...</p>
+
+                <?php
+            }else{
+                ?><!--sinon retour de la sous fonction qui a soulevée une erreur-->
+                    <p class="error" style ='color:darkred'><?=@$response?></p>
+                <?php
+            }
+        ?>
+        </div>
 				</form>
 		</section>
+
 	</div>
 	<?php require_once "includes/footer.php" ?>
 	<script type="module" src="./JS/contact.js"></script>

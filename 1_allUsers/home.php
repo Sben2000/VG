@@ -30,32 +30,32 @@
     <section class="ourTeam">
 
         <div class="teamMember">
-            <h3 class="memberTitle">Prénom : Notre manager</h3>
+            <h3 class="memberTitle">José : Notre Chef Cuisinier</h3>
             <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
             <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
-            <h3 class="memberTitle">Prénom : Notre manager</h3>
+            <h3 class="memberTitle">Julie : Notre Event Manager</h3>
             <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
             <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
-            <h3 class="memberTitle">Prénom : Notre manager</h3>
+            <h3 class="memberTitle">Marc : Notre Aide Cuisinier 1</h3>
             <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
             <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
-            <h3 class="memberTitle">Prénom : Notre manager</h3>
+            <h3 class="memberTitle">Sophie : Notre Aide Cuisinier 2</h3>
             <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
             <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
-            <h3 class="memberTitle">Prénom : Notre manager</h3>
+            <h3 class="memberTitle">Jean : Notre Serveur</h3>
             <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
             <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
-            <h3 class="memberTitle">Prénom : Notre manager</h3>
+            <h3 class="memberTitle">Franck : Notre Livreur</h3>
             <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
             <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
