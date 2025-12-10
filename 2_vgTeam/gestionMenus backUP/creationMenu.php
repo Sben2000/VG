@@ -1,8 +1,5 @@
 <?php
 
-//Sélection ou création d'un Thème
-require "./Functions/modelTheme.php";
-
 //chargement de l'image prévalidée et confirmé
 require_once "./Functions/confirmPicture.php";
 
@@ -18,6 +15,8 @@ $response = confirmPicture();
 
 <head>
 	<title>Menu Creation</title>
+	<!--Lien fichier css-->
+	<link rel="stylesheet" href="./4_style.css" />
 	<!--Lien pour la font google-->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,31 +33,8 @@ $response = confirmPicture();
 			<h1 class="sectionTitle">Construction du Menu</h1>
 			<!--Formulaire qui sera envoyé,  enctype à multipart/form-data car les données seront coupées en plusieurs parties, une pour chaque fichier (ex: fichier image) plus une pour les données dans le corps du formulaire.-->
 			<form action="" method="POST" enctype="multipart/form-data" id="myForm">
-			<!--le formulaire sera envoyé en tant que message MIME en plusieurs parties-->
+				<!--le formulaire sera envoyé en tant que message MIME en plusieurs parties-->
 				<div class="form-content">
-				<!--Liste Déroulante Thème -->
-				<label for="themes" class="label"><li>Sélectionner un thème</li></label>
-				<!-- au click, on fait appel à la function JS getThemeJS pour afficher dans un input la catégorie sélectionnée ainsi que son id-->
-				<select name="themes" id="selectorThemes" onclick="let value =(this.value)">	<!--onclick="getThemeJS(this.value)"-->
-				 <option class="none"  disabled selected >Thème</option><!--la première option de la liste déroulante avec l'invitation à sélectionner-->
-					<optgroup label="Sélectionner">
-						<!--Les thèmes de la liste sont fetch de la DB en utilisant la function du model getThemes()-->
-						<?php
-						//on récupère chaque donnée de la DB à travers la function php getCategories
-					$themes = getThemes();
-						foreach($themes as $theme){
-							?>
-							<!--on attribue à value l'id du thème selectionné et on affiche le libellé du theme dans l'option, on récupère également au clic la value (contenant l'ID) que l'on traite au travers de la function JS mentionné précédemment -->
-							<option id="optionDBtheme" class="database" value=<?php echo $theme['theme_id'] ?>><?= $theme['libelle'] ?></option>
-						<?php
-						} 
-						?>
-						</optgroup>
-					</select>
-				<!-- Affichera l'option Sélectionnée dans la div ci dessous après Fetch JS. -->
-						<div class="selectedTheme">
-				
-						</div>		
 
 					<!--Input invitant au téléchargement de l'image-->
 					<label for="imageSelected" class="label">

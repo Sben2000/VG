@@ -167,6 +167,26 @@ VALUES
     ('vgTeam'),
     ('adminAccess') ;
 
+/*Type de régime*/
+
+INSERT INTO 
+    regime (libelle) 
+VALUES 
+    ('vegetarien'),
+    ('vegan'),
+    ('classique') ;
+
+/*Type de Thème*/
+
+INSERT INTO 
+    theme (libelle) 
+VALUES 
+    ('specifique'),
+    ('jour'),
+    ('weekend') ,
+    ('gouter') ,
+    ('pasta') ;
+
 /**Le reste sera ajouté au fur et à mesure via les interfaces de création/mises à jour intégrés dans les dossiers du projet*/
 
 SELECT * FROM commande;

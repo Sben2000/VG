@@ -16,7 +16,13 @@ $data = file_get_contents("php://input");
 
 //Décodage des données json ($data) sous format d'un tableau (true)
 $datas = json_decode($data, true);
-
+/*
+if (empty($datas)){
+    return json_encode(["success"=>false, "message"=>"Echec lors de la récupération des données"]);
+}
+else{//si les données sont récupérées
+    
+};*/
 //Récupération sous forme de variable et nettoyage supplémentaire (par précaution) des valeurs 
 
 $imageSelected = htmlspecialchars($datas["imageSelected"]) ;
@@ -26,6 +32,52 @@ $remainQty= htmlspecialchars($datas["remainQty"]);
 $minPeople= htmlspecialchars($datas["minPeople"]);
 $menuPrice= htmlspecialchars($datas["menuPrice"]);
 
+//echo json_encode([['success' => true],['message' => 'echec']]);
+
+//echo json_encode([['success' => 'false'],['message' => 'Blog not found']]);
+
+//var_dump($datas);
+
+//post($imageSelected);
+
+/* Fonctionne avec JS ( précédemment le $_POST faisait référence uniquement au flux arrivant du JS hors ici on cible le bouton nommé submit uniquement)*/
+/*
+//Via PHP, écoute du submit et action si les données récupérées ne sont pas vides
+if (isset($_POST['submit'])) {	
+/*
+//confirmation fichier chargé
+if(!isset($_FILES["imageSelected"])){
+    return json_encode(["success"=>false, "message"=>"Veuillez charger une image"]);
+}   
+
+    if(isset($_FILES["imageSelected"]))
+    {   //dossier images
+        $destination = 'uploads/';
+        //nom du fichier
+        $file = basename($_FILES["imageSelected"]['name']);
+        //Vérification de correspondance avec le nom d'image importé depuis JS (liaison avec le prevent)
+
+        //chemin d'enregistrement (uploads/nomFichier.ext)
+        $target_dir = $destination . basename($file);
+        //vérification de l'existence du fichier dans le dossier
+        if (file_exists($target_dir)){
+            return json_encode(["success"=>false, "message"=>"Ce fichier existe déjà dans la base, veuillez en choisir un autre ou le renommer"]);
+            
+        }else{
+            move_uploaded_file($_FILES["imageSelected"]['tmp_name'], $target_dir);
+        };
+        
+        if(!move_uploaded_file($_FILES["imageSelected"]['tmp_name'], $target_dir)){ //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
+            return json_encode(["success"=>false, "message"=>"Ce fichier existe déjà dans la base, veuillez en choisir un autre ou le renommer"]);
+            
+        }
+    }
+}
+*/
+
+/******************************************************************BDD CI DESSOUS OPERATIONELLE********************************** */
+
+/***********************************Déplacement du fichier uploadé dans le dossier temporaire vers le chemin:  dossier uploads/ nouveauNom*****************************************************/
 
 
 //Connexion à la Database
@@ -51,7 +103,8 @@ $menuPrice= htmlspecialchars($datas["menuPrice"]);
         //echo json_encode (["problem" => 'false']);
         echo json_encode([['success' => false],['message' => 'Nom ou Image déjà existante, changer le nom ou l\'image']]);
         return false;
-        
+        //echo json_encode(['ex' => 'ex']);
+        //return json_encode(["success"=>false, "message"=>"Un nom d'image similaire existe, veuillez le changer ou sélectionner un autre fichier"]);
     }
 
 
@@ -83,7 +136,8 @@ $menuPrice= htmlspecialchars($datas["menuPrice"]);
         echo json_encode([['success' => false],['message' => 'Echec lors de l\'enregistrement des données']]);
         
         return false;
-        
+        //echo json_encode(['nok' => 'nok']);
+        //return json_encode(["success"=>false, "message"=>"Echec d'enregistrement,veuillez réessayer"]);
     }
 
 }

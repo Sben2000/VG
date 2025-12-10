@@ -1,7 +1,7 @@
 <?php
 
 //Sélection ou création d'un Thème
-require "./Functions/modelTheme.php";
+    require "./Functions/modelTheme.php";
 
 //chargement de l'image prévalidée et confirmé
 require_once "./Functions/confirmPicture.php";
@@ -18,6 +18,8 @@ $response = confirmPicture();
 
 <head>
 	<title>Menu Creation</title>
+	<!--Lien fichier css-->
+	<link rel="stylesheet" href="./4_style.css" />
 	<!--Lien pour la font google-->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,28 +39,56 @@ $response = confirmPicture();
 			<!--le formulaire sera envoyé en tant que message MIME en plusieurs parties-->
 				<div class="form-content">
 				<!--Liste Déroulante Thème -->
-				<label for="themes" class="label"><li>Sélectionner un thème</li></label>
+				<label for="themes" class="label"><li>Sélectionner ou Créer un thème</li></label>
 				<!-- au click, on fait appel à la function JS getThemeJS pour afficher dans un input la catégorie sélectionnée ainsi que son id-->
-				<select name="themes" id="selectorThemes" onclick="let value =(this.value)">	<!--onclick="getThemeJS(this.value)"-->
-				 <option class="none"  disabled selected >Thème</option><!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+				<select name="themes" id="selectorThemes" onclick="getThemeJS(this.value)">	
+				 <option class="none" value="disabled" disabled selected >Thème</option><!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+           			 <optgroup label="Créer">
+                <option id ='creaTheme' class="Create" value="Créertheme">Créer Thème</option>
+					</optgroup>
 					<optgroup label="Sélectionner">
 						<!--Les thèmes de la liste sont fetch de la DB en utilisant la function du model getThemes()-->
 						<?php
 						//on récupère chaque donnée de la DB à travers la function php getCategories
-					$themes = getThemes();
+					$categories = getThemes();
 						foreach($themes as $theme){
 							?>
-							<!--on attribue à value l'id du thème selectionné et on affiche le libellé du theme dans l'option, on récupère également au clic la value (contenant l'ID) que l'on traite au travers de la function JS mentionné précédemment -->
-							<option id="optionDBtheme" class="database" value=<?php echo $theme['theme_id'] ?>><?= $theme['libelle'] ?></option>
+							<!--on attribue à value l'id du thème selectionné et on affiche le libellé du theme dans l'option, on affiche le nom de la catégorie et on récupère également au clic la value (contenant l'ID) que l'on traite au travers de la function JS getCategoryJS -->
+							<option id="optionDBthe" class="database" value=<?php echo $theme['theme_id'] ?>><?= $theme['libelle'] ?></option>
 						<?php
 						} 
 						?>
 						</optgroup>
+				<optgroup label="Draft-non rattaché">
+                <option value="none">Aucun</option>
 					</select>
-				<!-- Affichera l'option Sélectionnée dans la div ci dessous après Fetch JS. -->
-						<div class="selectedTheme">
-				
-						</div>		
+					<!--Cas d'une création de thème ->Gestion Javascript -->
+					
+        <div class="newTheme">
+            <label for="TheNewName">A créer:</label><br>
+            <input type="text" name="TheNewName" placeholder="Nouveau thème" autocomplete ="off" value="<?= @$_POST['CatNewName']; ?>"  /><!--ne pas mettre de required sinon l'input crée par le JS ne sera pas envoyé "not focusable"-->
+        </div>
+        <!-- Selected from javascript file in here. -->
+        <div class="selectedTheme">
+   
+        </div>
+        <input type="submit" id="createThemeButton" name="createTheme" value="Créer le thème" >
+        <!--réponse renvoyée suite à erreur ou succès de soumission des datas-->
+    <?php
+            //retour du resultat $response affiché à l'utilisateur
+            if(@$themeResponse == "success"){
+                ?>
+                <!--afficher : inscription réussi-->
+                <p class="success" style='color:green'>Le thème a bien été ajouté, veuillez le selectionner .</p>
+                <?php
+            }else{
+                ?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur dans resetPassword()-->
+                    <p class="error" style ='color:darkred'><?=@$themeResponse?></p>
+                <?php
+            }
+        ?>
+
+
 
 					<!--Input invitant au téléchargement de l'image-->
 					<label for="imageSelected" class="label">

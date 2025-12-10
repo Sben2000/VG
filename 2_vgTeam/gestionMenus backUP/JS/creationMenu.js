@@ -1,20 +1,7 @@
-/**************************Import des functions extérieures********************************/
-//Function importée et dévellopée dans previewImage.js
-import {prImg} from './previewImg.js';
-
-//Functions importées et dévellopée dans selectTheme.js
-
-import {getThemeJS} from './selectTheme.js';
-
-
-
 /*******************Déclaration des variables nécessaires à l'interactivité et représentant les éléments du DOM***************************** */
 /****Elément renseignés dans le formulaire:*****/
   //Le Formulaire au complet
 let myForm =  document.getElementById('myForm');
-  //Le Selecteur de thèmes
-let selectorThemes=document.getElementById('selectorThemes');
-
   //Image sélectionnée 
 let imageSelected = document.getElementById("imageSelected")
   //Titre du Menu
@@ -58,22 +45,10 @@ let imageUpload = document.getElementById('imageUpload');
 
 
 
-/******************************Application de la Function importée de confirmation et représentation du thème sélectionné ********************************************************/
+/***************************************Application de la Function de prévisualisation à la Sélection de l'image ********************************************************/
 
-//target de la valeur de la cible (e) passée en paramètre du selector et application de la fonction getThemeJS
-selectorThemes.addEventListener("change", (e) => {
-  //décommenter pour voir la valeur id sélectionnée
-  /* console.log("New Option Selected", e.target.value);*/
-getThemeJS(e.target.value);
-
-})
-//Récupération par la même occasion de l'id_thème à enregistrer dans la DB
-let idTheme = selectorThemes.addEventListener("change", (e) => {
-console.log(e.target.value);
- })
-
-
-/***************************************Application de la Function importée de prévisualisation à la Sélection de l'image ********************************************************/
+//Function importé et dévellopée dans previewImage.js
+import {prImg} from './previewImg.js';
 
 //Dès que l'img est sélectionné (change) on lui applique la function previewImage qui se chargera de l'affecter temporairement dans la destination (intégration définitive en php après validation)
  imageSelected.addEventListener('change', prImg);
@@ -109,12 +84,8 @@ console.log(e.target.value);
 myForm.addEventListener("submit", function(event){
   //temporisation de la soumission après série de contrôles
   event.preventDefault();
+  
 
-  //contrôle de la selection d'un thème
-  if(idTheme==null){
-    errorMessage.innerHTML="Veuillez sélectionner un thème ";
-    return false;
-  }
   //contrôle de la validation de l'image du menu
   
   if (previewImage.style.display !="block"){
@@ -309,7 +280,7 @@ fetch("Functions/funcFetchedJS.php",
   })
   //gestion des cas d'erreur via la console
   .catch((error)=>{
-   console.log(`Erreur lors de la soumission: ${error}`);
+   console.error(`Erreur lors de la soumission: ${error}`);
   });
 
 

@@ -80,7 +80,11 @@ function contactUs($nom, $email, $message){
                 $recipient =$email;//destinataire défini dans la function
                 $subject="Confirmation d'envoi de votre message à Vite&Go";//sujet envoyé dans le mail
                 $body= "<p> Bonjour {$nom}, nous vous confirmons l'envoi de votre message de ce jour à l'équipe Vite&GO.</p><br>\r\n
-                        <p>Nous reviendrons vers vous dès que possible - L'équipe Vite&Go </p>\r\n"; //texte du mail puis retour à la ligne , curseur en début de ligne
+                        <p>Nous reviendrons vers vous dès que possible - L'équipe Vite&Go </p>\r\n
+                        <hr><br>
+                        <p><strong><em><u>Récapitulatif de votre message: </u></em></strong></p>\r\n
+                        <p><em>{$message}</em></p>
+                        "; //texte du mail puis retour à la ligne , curseur en début de ligne
             //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
                 sendMail($mail, $subject,$recipient, $body);
                 return "success";

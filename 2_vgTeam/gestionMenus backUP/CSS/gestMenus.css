@@ -20,10 +20,9 @@
     font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
 }
 
-p, input, label,a,h3,option, optgroup,select {
+p, input, label,a,h3 {
     font-size: 20px;
 }
-
 h1, h2,h3,h4, h5, h6, a, th, option,hr {
     color: var(--elmDeco);
 }
@@ -125,14 +124,6 @@ border-radius: 10px;
 font-size: 20px;
 padding: 5px;
 }
-.selectedTheme>input{
-background-color: var(--rosyLight);
-}
-.selectedTheme>p,.selectedTheme>input{
-text-align: center;
-color: darkgreen;
-font-weight: 600;
-}
 
 #menuTitle, #textInput{
 margin-top: 5px;    
@@ -213,15 +204,6 @@ margin-top: 10px;
     text-align: end;
     font-family: "Lobster",Arial, Helvetica, sans-serif;
     font-weight: 500;
-}
-
-.selectedTheme{
-    display: block;
-}
-
-/*Par défaut , pas d'invitation à créer un nouveau thème si pas requis*/
-.newTheme, #createThemeButton{
-    display: none;
 }
 /****************************************Gestion de l'Upload image******************************************************/
 
@@ -310,7 +292,7 @@ align-self: center;
 
 }
 
-p, textarea, input, label,option, optgroup,select{
+p, textarea, input, label{
         font-size: 12px;
     }
     h3{
