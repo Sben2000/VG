@@ -15,11 +15,13 @@ let myOrders = document.querySelector('.myOrders');
 //Affichage au click
 showMyOrders.addEventListener('click', ()=>{
      myOrders.style.display='block';
-    //input "Masquer" affiché et input "Afficher" Masqué
+//Code ci dessous Rendu inactif pour le moment => les 2 boutons sont constamment montrés 
+/*
+     //input "Masquer" affiché et input "Afficher" Masqué
     hideMyOrders.style.display='block';
     showMyOrders.style.display='none';
-    
-       
+*/
+        
 }
 )
 
@@ -27,43 +29,15 @@ showMyOrders.addEventListener('click', ()=>{
 
 hideMyOrders.addEventListener('click', ()=>{
     myOrders.style.display='none';
+//Code ci dessous Rendu inactif pour le moment => les 2 boutons sont constamment montrés 
+/*
     //input "Masquer" masqué et input "Afficher" affiché
     hideMyOrders.style.display='none';
     showMyOrders.style.display='block';
-        
-
-}
-)
-/******************************JS APPLIQUE A l'AFFICHAGE OU MASQUAGE DES DETAILS DE COMMANDES*************************/
-
-// Gestion Ouverture/Fermeture des détails commandes
-
-//input
-const showDetails = document.getElementById('showDetails');
-const hideDetails = document.getElementById('hideDetails');
-//fenêtre des détails de commande à afficher/masquer
-let orderDetails = document.querySelector('.orderDetails');
-//Affichage au click
-showDetails.addEventListener('click', ()=>{
-    orderDetails.style.display='block';
-    //input "Masquer" affiché et input "Afficher" Masqué
-    hideDetails.style.display='block';
-    showDetails.style.display='none';
-       
+*/
 }
 )
 
-//Fermeture au click sur hideDetails
-
-hideDetails.addEventListener('click', ()=>{
-    orderDetails.style.display='none';
-    //input "Masquer" masqué et input "Afficher" affiché
-    hideDetails.style.display='none';
-    showDetails.style.display='block';
-        
-
-}
-)
 /*****************************Gestion de la Modal de déconnexion de compte lors du clic sur bouton deconnexion de la page "MonCompte********************************/
 
 /*Gestion Modal de déconnexion userAccount.php*/

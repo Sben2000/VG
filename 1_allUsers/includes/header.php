@@ -59,7 +59,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 					<div class="vgTeam" id="vgTeamLM">
 						<!--Ouverture gérée de deux manières (JS window.open() et HTML target=_blank) au cas ou blocage pop up-->
 						<li ><a class="gestionLink" href="../2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowLM">Menus</a></li>
-						<li><a class="gestionLink" href="#">Commandes</a></li>
+						<li><a class="gestionLink" href="./onProgress.php">Plats</a></li>
+						<li><a class="gestionLink" href="./onProgress.php">Libellés</a></li>
+						<li><a class="gestionLink" href="./onProgress.php">Menu↔plats</a></li>
+						<li><a class="gestionLink" href="./onProgress.php">Commandes</a></li>
+
+
+
 						<div class="adminAccess
 							<?php
 							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show
@@ -69,8 +75,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 								echo "-show";
 							}
 							?>">										
-							<li><a class="gestionLink" href="#">Employés</a></li>
-							<li><a class="gestionLink" href="#">Libellés</a></li>
+							<li><a class="gestionLink" href="./onProgress.php">Employés</a></li>
 						</div>
 						<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer << </a>
 						</li>
@@ -138,7 +143,10 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 						<span>Gestion:</span>
 						<!--Ouverture géré de deux manières (JS window.open() et HTML target=_blank) au cas ou blocage pop up-->
 						<li><a href="../2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowTM">Menus</a></li>
-						<li><a class="gestionLink" href="#">Commandes</a></li>
+						<li><a  href="./onProgress.php">Plats</a></li>
+						<li><a href="./onProgress.php">Libellés</a></li>
+						<li><a href="./onProgress.php">Menu<->plat</a></li>						
+						<li><a  href="./onProgress.php">Commandes</a></li>
 						<div class="adminAccess<?php
 							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show
 							if (!isset($_SESSION['accessAdmin'])) {
@@ -147,8 +155,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 								echo "-show";
 							}
 							?>">
-							<li><a href="#">Employés</a></li>
-							<li><a href="#">Libellés</a></li>
+							<li><a href="./onProgress.php">Employés</a></li>
 						</div>
 					</div>
 				</div>

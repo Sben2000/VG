@@ -148,22 +148,24 @@ require_once ("./Functions/fctAccount.php");
 				<div class="SectionContent">
 					<h2>Voir mes commandes</h2>
 					<div class="formBottom">
-						<form action="#" method="post">
+						<form action="#myOrders" method="post">
 						<input type="submit" name="showMyOrders" value="Afficher mes Commandes ↓ " id="showMyOrders" />
 						<input type="submit" name="hideMyOrders" value="Masquer mes Commandes ↑" id="hideMyOrders" />
 						</form>
 					</div>
 					<!--Si aucune commande trouvée-->
 					<p class="error"><?= @$emptyOrders ?></p>
+					<!--
 					<div class="orderDetailsButtons">
 					<input type="submit" name="showDetails" value="Voir détails ↓" id="showDetails" />
 					<input type="submit" name="hideDetails" value="Masquer détails ↑" id="hideDetails" />
 					</div>
+					-->
 				</div>
 			</section>
+			<?php if (!empty($userOrders)){foreach ($userOrders as $k=>$v): ?>
 			<section class="Section myOrders" id="myOrders">
 				<!--raccourci foreach(): + endforeach-->
-				<?php if (!empty($userOrders)){foreach ($userOrders as $k=>$v): ?>
 				<div class="SectionContent">
 					<h2>Commande N° <?= @$v["numero_commande"]?></h2>
 					<div class="tables">
@@ -218,10 +220,10 @@ require_once ("./Functions/fctAccount.php");
 								<th scope="row">restitution</th>
 								<td><?= @$v["restitution_materiel"] ?></td>
 							</tr>
-						<?php endforeach;}?>
 						</table>
 					</div>
 			</section>
+			<?php endforeach;}?>
 			<section class="Section" id="accessManagement">
 				<div class="SectionContent">
 					<h2>Gérer mes accès</h2>

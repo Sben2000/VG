@@ -51,6 +51,9 @@
 					<li class="gestion"><a class="gestionLink" href="#">Gestion</a></li>
 					<div class="vgTeam" id="vgTeamLM">
 						<li ><a class="gestionLink" href="./2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowLM">Menus</a></li>
+						<li><a class="gestionLink" href="#">Plats</a></li>
+						<li><a class="gestionLink" href="#">Libellés</a></li>
+						<li><a class="gestionLink"href="#">Menu↔plats</a></li>
 						<li><a class="gestionLink" href="#">Commandes</a></li>
 						<div class="adminAccess
 							<?php
@@ -62,7 +65,6 @@
 						}
 							?>">										
 							<li><a class="gestionLink" href="#">Employés</a></li>
-							<li><a class="gestionLink" href="#">Libellés</a></li>
 						</div>
 						<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer <<</a>
 						</li>
@@ -128,7 +130,10 @@
 						<hr />
 						<span>Gestion:</span>
 						<li><a href="./2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowTM">Menus</a></li>
-						<li><a href="#">Commandes</a></li>
+						<li><a  href="#">Plats</a></li>
+						<li><a href="#">Libellés</a></li>
+						<li><a href="#">Menu<->plat</a></li>						
+						<li><a  href="#">Commandes</a></li>
 						<div class="adminAccess<?php
 							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show
 							if (!isset($_SESSION['accessAdmin'])) {
@@ -138,7 +143,6 @@
 							}
 							?>">
 							<li><a href="#">Employés</a></li>
-							<li><a href="#">Libellés</a></li>
 						</div>
 					</div>
 				</div>

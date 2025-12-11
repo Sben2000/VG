@@ -191,4 +191,9 @@ VALUES
 
 SELECT * FROM commande;
 
-
+/**Pour Tests**/
+INSERT INTO 
+    commande (commande_id, utilisateur_id, numero_commande, date_commande, date_prestation, heure_livraison) 
+VALUES 
+    (1, 18, "827343", "27/09/2020", "28/09/2020","9h"),
+    (2, 18, "90JSDFS3", "15/09/2024", "18/09/2024","11h");

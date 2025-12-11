@@ -157,7 +157,7 @@ align-content: flex-start;
 }
 
 .myOrders, #hideMyOrders, #hideDetails,.orderDetails{
-    display: none;
+    display: block;
 }
 
 
