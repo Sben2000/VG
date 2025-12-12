@@ -131,15 +131,29 @@ disconnectPhone.addEventListener("click",()=>{
 const gestMenuWindowLM = document.getElementById("gestMenuWindowLM");
 gestMenuWindowLM.addEventListener('click', () => {
   //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
-window.open("../2_vgTeam/gestionMenus/creationMenu.php", 'test', 'width=500', 'height=500','left=200','top=200');
+window.open("../2_vgTeam/gestionMenus/creationMenu.php", 'gestionMenu', 'width=500', 'height=500','left=200','top=200');
 });
+
     //TelMenu
 const gestMenuWindowTM = document.getElementById("gestMenuWindowTM");
 gestMenuWindowTM.addEventListener('click', () => {
   //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
-window.open("../2_vgTeam/gestionMenus/creationMenu.php", 'test', 'width=500', 'height=500','left=200','top=200');
+window.open("../2_vgTeam/gestionMenus/creationMenu.php", 'gestionMenu', 'width=500', 'height=500','left=200','top=200');
 });
 
+    //LargeLibelle
+const gestLibelleWindowLM = document.getElementById("gestLibelleWindowLM");
+gestLibelleWindowLM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionLibelles/themeMVC/index.php", 'gestionLibelles', 'width=500', 'height=500','left=200','top=200');
+});
+
+    //TelLibelle
+const gestLibelleWindowTM = document.getElementById("gestLibelleWindowTM");
+gestLibelleWindowTM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionLibelles/themeMVC/index.php", 'gestionLibelles', 'width=500', 'height=500','left=200','top=200');
+});
 
 
 /******************************************************************************************************************************************************************* */
