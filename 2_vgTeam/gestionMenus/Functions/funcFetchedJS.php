@@ -16,9 +16,10 @@ $data = file_get_contents("php://input");
 
 //Décodage des données json ($data) sous format d'un tableau (true)
 $datas = json_decode($data, true);
-
+//var_dump($datas);
 //Récupération sous forme de variable et nettoyage supplémentaire (par précaution) des valeurs 
-
+$idTheme = htmlspecialchars($datas["idTheme"]) ;
+$idRegime = htmlspecialchars($datas["idRegime"]) ;
 $imageSelected = htmlspecialchars($datas["imageSelected"]) ;
 $menuTitle = htmlspecialchars($datas["menuTitle"]);
 $textInput= htmlspecialchars($datas["textInput"]);
@@ -58,8 +59,10 @@ $menuPrice= htmlspecialchars($datas["menuPrice"]);
 
 //
     //Si pas de doublons, Enregistrer les données dans la db
-    $sql = "INSERT INTO menu(titre, description, photo_menu, quantite_restante, nombre_personne_minimum, prix_par_personne) VALUES (:titre, :description, :photo_menu, :quantite_restante, :nombre_personne_minimum, :prix_par_personne)";
+    $sql = "INSERT INTO menu(theme_id, regime_id, titre, description, photo_menu, quantite_restante, nombre_personne_minimum, prix_par_personne) VALUES (:idTheme, :idRegime, :titre, :description, :photo_menu, :quantite_restante, :nombre_personne_minimum, :prix_par_personne)";
     $query =$pdo->prepare($sql);
+    $query->bindParam(':idTheme', $idTheme, PDO::PARAM_INT);
+    $query->bindParam(':idRegime', $idRegime, PDO::PARAM_INT);
     $query->bindParam(':titre', $menuTitle, PDO::PARAM_STR);
     $query->bindParam(':description', $textInput, PDO::PARAM_STR);
     $query->bindParam(':photo_menu', $imageSelected, PDO::PARAM_STR);

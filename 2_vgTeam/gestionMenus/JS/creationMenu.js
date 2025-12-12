@@ -2,11 +2,11 @@
 //Function importée et dévellopée dans previewImage.js
 import {prImg} from './previewImg.js';
 
-//Functions importées et dévellopée dans selectTheme.js
-
+//Function importée et dévellopée dans selectTheme.js
 import {getThemeJS} from './selectTheme.js';
 
-
+//Function importée et dévellopée dans selectRegime.js
+import {getRegimeJS} from './selectRegime.js';
 
 /*******************Déclaration des variables nécessaires à l'interactivité et représentant les éléments du DOM***************************** */
 /****Elément renseignés dans le formulaire:*****/
@@ -14,6 +14,9 @@ import {getThemeJS} from './selectTheme.js';
 let myForm =  document.getElementById('myForm');
   //Le Selecteur de thèmes
 let selectorThemes=document.getElementById('selectorThemes');
+
+  //Le Selecteur de régimes
+let selectorRegimes=document.getElementById('selectorRegimes');
 
   //Image sélectionnée 
 let imageSelected = document.getElementById("imageSelected")
@@ -60,18 +63,32 @@ let imageUpload = document.getElementById('imageUpload');
 
 /******************************Application de la Function importée de confirmation et représentation du thème sélectionné ********************************************************/
 
-//target de la valeur de la cible (e) passée en paramètre du selector et application de la fonction getThemeJS
+
+//Initialisation d'une variable de récupération id
+let idTheme="" ;
+
+//target de la valeur de la cible (e)  du selector et application de  getThemeJS pour afficher les éléments séléctionnés
 selectorThemes.addEventListener("change", (e) => {
-  //décommenter pour voir la valeur id sélectionnée
-  /* console.log("New Option Selected", e.target.value);*/
-getThemeJS(e.target.value);
+ getThemeJS(e.target.value);
+ //assignation de l'id de la target à la variable de récupération
+ idTheme = e.target.value;
+
 
 })
-//Récupération par la même occasion de l'id_thème à enregistrer dans la DB
-let idTheme = selectorThemes.addEventListener("change", (e) => {
-console.log(e.target.value);
- })
 
+
+/******************************Application de la Function importée de confirmation et représentation du régime sélectionné ********************************************************/
+//Initialisation d'une variable de récupération id
+let idRegime="" ;
+
+
+//target de la valeur de la cible (e)  du selector et application de  getThemeJS pour afficher les éléments séléctionnés
+selectorRegimes.addEventListener("change", (e) => {
+getRegimeJS(e.target.value);
+ //assignation de l'id de la target à la variable de récupération
+idRegime = e.target.value;
+
+})
 
 /***************************************Application de la Function importée de prévisualisation à la Sélection de l'image ********************************************************/
 
@@ -111,10 +128,17 @@ myForm.addEventListener("submit", function(event){
   event.preventDefault();
 
   //contrôle de la selection d'un thème
-  if(idTheme==null){
+  if(idTheme==false){
     errorMessage.innerHTML="Veuillez sélectionner un thème ";
     return false;
   }
+  
+  //contrôle de la selection d'un régime
+  if(idRegime==false){
+    errorMessage.innerHTML="Veuillez sélectionner un régime ";
+    return false;
+  }
+
   //contrôle de la validation de l'image du menu
   
   if (previewImage.style.display !="block"){
@@ -262,6 +286,8 @@ myForm.addEventListener("submit", function(event){
 
 //Initialisation de la variable contenant les clés-valeurs(datas clean)
 let datas = {
+   "idTheme"  : idTheme,
+    "idRegime"  : idRegime,
     "imageSelected": imageSelectedCleanName,
     "menuTitle": menuTitleCleanValue,
     "textInput": textInputCleanValue,
@@ -269,6 +295,13 @@ let datas = {
     "minPeople": minPeopleCleanValue,
     "menuPrice": menuPriceCleanValue
 };
+/*Controle de l'ensemble des valeurs de l'objet data*/
+//console.log(datas.idTheme);
+//console.log(datas.idRegime);
+//console.log(datas.imageSelected);
+//console.log(datas.menuTitle);
+//console.log(datas.textInput);
+//console.log(datas.menuPrice);
 
 //appel de la function fetch pour envoi des données au back en JSON
       //destination
@@ -283,9 +316,12 @@ fetch("Functions/funcFetchedJS.php",
       }
 )
   //Promesse et reception de la réponse du php visible dans la console
-    //promesse du fichier php convertit au format JS 
-  .then(response=>response.json())
-
+    //promesse du fichier php convertit au format JS                       
+    .then(response=>response.json()) 
+    
+                                                                    /*Lecture du retour détaillé au format texte si besoin de débugguer*/
+                                                                    //  .then(response=>response.text())
+                                                                    // .then(datas=>console.log(datas))
   //traitement de la réponse du php et renvoi message au user en fonction du status
   .then(function(status){
     //console.log(status["success"])
@@ -317,11 +353,6 @@ fetch("Functions/funcFetchedJS.php",
 
 
 
-
-
-
-
-
 /**********Contrôle de l'image à Uploadé avec Correspondance image prévisualisé avant Chargement****************** */
 
 imageUpload.addEventListener("change", function(){
@@ -339,8 +370,6 @@ let imageSelectedFile= imageSelected.files[0];
   let imageUploadFileSize= imageUploadFile.size;
   let imageSelectedFileSize= imageSelectedFile.size;
 
-  console.log(imageSelectedFileSize);
-  console.log(imageSelectedFileSize);
 
   //Type(déjà inclus dans la comparaison dans le nom)
 

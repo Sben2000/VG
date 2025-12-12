@@ -42,12 +42,12 @@ function getThemes(){
 //Ecoute potentielle  de la valeur clé ID requêtée via un GET provenant du fetch JS
 if(isset($_GET["ID"])){
     //Si requête il y 'a, => appel à la function getData (devellopée plus bas) qui va interroger la DB avec l'argument ID
-     echo getData($_GET["ID"]);
+     echo getDataTheme($_GET["ID"]);
 
      //note:  echo (afficher) du résultat de la function car il s'agit de la réponse server (encodé en json) récupéré par la méthode fetch dans le fichier JS 
 }
 // function getData incluant l'argument représentant l'id requêté 
-function getData($id){
+function getDataTheme($id){
 
     $pdo=DBconnection();
     if(!$pdo){

@@ -125,10 +125,10 @@ border-radius: 10px;
 font-size: 20px;
 padding: 5px;
 }
-.selectedTheme>input{
+.selectedTheme>input, .selectedRegime>input{
 background-color: var(--rosyLight);
 }
-.selectedTheme>p,.selectedTheme>input{
+.selectedTheme>p,.selectedTheme>input, .selectedRegime>p,.selectedRegime>input{
 text-align: center;
 color: darkgreen;
 font-weight: 600;
@@ -215,14 +215,11 @@ margin-top: 10px;
     font-weight: 500;
 }
 
-.selectedTheme{
+.selectedTheme, .selectedRegime {
     display: block;
 }
 
-/*Par défaut , pas d'invitation à créer un nouveau thème si pas requis*/
-.newTheme, #createThemeButton{
-    display: none;
-}
+
 /****************************************Gestion de l'Upload image******************************************************/
 
 

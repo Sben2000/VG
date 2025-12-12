@@ -1,13 +1,19 @@
 <?php
+//Contrôle accès session
+require_once "./includes/accessVgTeamMng.php";
 
 //Sélection ou création d'un Thème
-require "./Functions/modelTheme.php";
+require_once "./Functions/modelTheme.php";
+//Sélection ou création d'un Régime
+require_once "./Functions/modelRegime.php";
 
 //chargement de l'image prévalidée et confirmé
 require_once "./Functions/confirmPicture.php";
 
-//
+
 $response = confirmPicture();
+
+
 
 ?>
 
@@ -24,156 +30,183 @@ $response = confirmPicture();
 	<link
 		href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
 		rel="stylesheet" />
-		<!--link css de la page-->
-		<link rel="stylesheet" href="./CSS/gestMenus.css" />
+	<!--link css de la page-->
+	<link rel="stylesheet" href="./CSS/gestMenus.css" />
 </head>
 
 <body id=frame>
 	<div class="upperBlock">
 		<div class="upperBlock-left">
 			<h1 class="sectionTitle">Construction du Menu</h1>
-			<!--Formulaire qui sera envoyé,  enctype à multipart/form-data car les données seront coupées en plusieurs parties, une pour chaque fichier (ex: fichier image) plus une pour les données dans le corps du formulaire.-->
+			<!--Formulaire qui sera envoyé,  enctype à multipart/form-data -->
 			<form action="" method="POST" enctype="multipart/form-data" id="myForm">
-			<!--le formulaire sera envoyé en tant que message MIME en plusieurs parties-->
 				<div class="form-content">
-				<!--Liste Déroulante Thème -->
-				<label for="themes" class="label"><li>Sélectionner un thème</li></label>
-				<!-- au click, on fait appel à la function JS getThemeJS pour afficher dans un input la catégorie sélectionnée ainsi que son id-->
-				<select name="themes" id="selectorThemes" onclick="let value =(this.value)">	<!--onclick="getThemeJS(this.value)"-->
-				 <option class="none"  disabled selected >Thème</option><!--la première option de la liste déroulante avec l'invitation à sélectionner-->
-					<optgroup label="Sélectionner">
-						<!--Les thèmes de la liste sont fetch de la DB en utilisant la function du model getThemes()-->
-						<?php
-						//on récupère chaque donnée de la DB à travers la function php getCategories
-					$themes = getThemes();
-						foreach($themes as $theme){
-							?>
-							<!--on attribue à value l'id du thème selectionné et on affiche le libellé du theme dans l'option, on récupère également au clic la value (contenant l'ID) que l'on traite au travers de la function JS mentionné précédemment -->
-							<option id="optionDBtheme" class="database" value=<?php echo $theme['theme_id'] ?>><?= $theme['libelle'] ?></option>
-						<?php
-						} 
-						?>
-						</optgroup>
-					</select>
-				<!-- Affichera l'option Sélectionnée dans la div ci dessous après Fetch JS. -->
+					<div class="selectList">
+						<!--Liste Déroulante Thème -->
+						<label for="themes" class="label">
+							<li>Sélectionner un thème</li>
+						</label>
+						<select name="themes" id="selectorThemes"  value=<?php if (!['theme_id']){echo"";}else{echo $theme['theme_id'];} ?>> <!--onclick="getThemeJS(this.value)"-->
+					
+						<option class="none" disabled  selected>Thème</option><!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+							<optgroup label="Sélectionner">
+								<!--Les thèmes de la liste sont fetch de la DB en utilisant la function du model getThemes()-->
+								<?php
+								//on récupère chaque donnée de la DB 
+								$themes = getThemes();
+								foreach ($themes as $theme) {
+								?>
+									<!--on attribue à value l'id du thème selectionné et on affiche le libellé du theme dans l'option, on récupère également au clic la value (contenant l'ID) que l'on traite au travers de la function JS mentionné précédemment -->
+									<option  id="optionDBtheme" class="database" value=<?php echo $theme['theme_id'] ?>><?= $theme['libelle'] ?></option>
+								<?php
+								}
+								?>
+							</optgroup>
+						</select>
+						<!-- Affichera l'option Sélectionnée dans la div ci dessous après Fetch JS. -->
 						<div class="selectedTheme">
-				
-						</div>		
 
-					<!--Input invitant au téléchargement de l'image-->
-					<label for="imageSelected" class="label">
-						<li>Image à charger</li>
-					</label>
-					<!-- Limite le fichier à télécharger en taille  -->
-					<input type="hidden" name="MAX_FILE_SIZE" value="2500000">
-					<input
-						type="file"
-						id="imageSelected"
-						accept="image/jpg, image/jpeg, image/png"
-						name="imageSelected" />
-					<!--affiche les caractéritiques du fichier récupéré pour controle des conditions par le user-->
+						</div>
+			<!--Liste Déroulante Régime -->
+			<label for="regimes" class="label">
+				<li>Sélectionner un régime</li>
+			</label>
+			<!-- au click, on fait appel à la function JS(cf.fichier JS) pour afficher dans un input la catégorie sélectionnée ainsi que son id-->
+			<select name="regimes" id="selectorRegimes"> <!--onclick="getRegimesJS(this.value)"-->
+				<option class="none" disabled selected>Régime</option><!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+				<optgroup label="Sélectionner">
+					<!--Les régimes de la liste sont fetch de la DB en utilisant la function du model getRegimes()-->
+					<?php
+					//on récupère chaque donnée de la DB 
+					$regimes = getRegimes();
+					foreach ($regimes as $regime) {
+					?>
+						<!--on attribue à value l'id selectionné et on affiche le libellé  dans l'option, on récupère également au clic la value (contenant l'ID) que l'on traite au travers de la function JS mentionné précédemment -->
+						<option id="optionDBregime" class="database" value=<?php echo $regime['regime_id'] ?>><?= $regime['libelle'] ?></option>
+					<?php
+					}
+					?>
+				</optgroup>
+			</select>
+			<!-- Affichera l'option Sélectionnée dans la div ci dessous après Fetch JS. -->
+			<div class="selectedRegime">
 
-					<ul class="fileInfo">
-						<li>Nom de l'image : <span id="fileName"></span></li>
-						<span id="acceptedFile">requis : 20 caract.max (nom+extension) </span>
-						<li>Taille:<span id="fileSize"></span></li>
-						<span id="acceptedFile">requis :Taille< 2Mb</span>
-								<li>Type:<span id="fileType"></span></li>
-								<span id="acceptedFile">requis : .jpeg/.jpg/.png</span>
-					</ul>
+			</div>
+					</div>
+					<div class="otherContent">
 
+						<!--Input invitant au téléchargement de l'image-->
+						<label for="imageSelected" class="label">
+							<li>Image à charger</li>
+						</label>
+						<!-- Limite le fichier à télécharger en taille  -->
+						<input type="hidden" name="MAX_FILE_SIZE" value="2500000">
+						<input
+							type="file"
+							id="imageSelected"
+							accept="image/jpg, image/jpeg, image/png"
+							name="imageSelected" />
+						<!--affiche les caractéritiques du fichier récupéré pour controle des conditions par le user-->
 
-					<label for="menuTitle" class="label">
-						<li>Titre du Menu</li>
-					</label>
-					<input
-						id="menuTitle"
-						type="text"
-						name="menuTitle"
-						minlength="5"
-						maxlength="30"
-						placeholder="Menu...(5 à 30 caract.)"
-						autocomplete="off" />
-					<label for="textInput" class="label">
-						<li>Description du Menu</li>
-					</label>
-					<!--Limit min 10 caractères et 500 max via les attributs required min/maxlength-->
-					<textarea
-						id="textInput"
-						type="text"
-						name="textInput"
-						minlength="10"
-						maxlength="500"
-						placeholder="Description/composition...(10 à 500 caract.)"
-						autocomplete="off"></textarea>
-					<div class="minPeople">
-						<label for="minPeople" class="label">
-							<li>Nbre pers_mini : </li>
+						<ul class="fileInfo">
+							<li>Nom de l'image : <span id="fileName"></span></li>
+							<span id="acceptedFile">requis : 20 caract.max (nom+extension) </span>
+							<li>Taille:<span id="fileSize"></span></li>
+							<span id="acceptedFile">requis :Taille< 2Mb</span>
+									<li>Type:<span id="fileType"></span></li>
+									<span id="acceptedFile">requis : .jpeg/.jpg/.png</span>
+						</ul>
+						<label for="menuTitle" class="label">
+							<li>Titre du Menu</li>
 						</label>
 						<input
-							id="minPeople"
-							type="number"
-							name="menuPrice"
-							minlength="1"
-							maxlength="8"
-							min="0"
-							max="500"
-							step="1"
-							placeholder="00"
+							id="menuTitle"
+							type="text"
+							name="menuTitle"
+							minlength="5"
+							maxlength="30"
+							placeholder="Menu...(5 à 30 caract.)"
 							autocomplete="off" />
-					</div>
-					<div class="remainQty">
-						<label for="remainQty" class="label">
-							<li>Quantité restante : </li>
+						<label for="textInput" class="label">
+							<li>Description du Menu</li>
 						</label>
-						<input
-							id="remainQty"
-							type="number"
-							name="menuPrice"
-							minlength="1"
-							maxlength="8"
-							min="0"
-							max="500"
-							step="1"
-							placeholder="00"
-							autocomplete="off" />
-					</div>
-					<div class="menuPrice">
-						<label for="menuPrice" class="label">
-							<li>Prix TTC/pers en &#x20AC : </li>
-						</label>
-						<input
-							id="menuPrice"
-							type="number"
-							name="menuPrice"
-							minlength="1"
-							maxlength="8"
-							min="0"
-							max="500"
-							step="0.01"
-							placeholder="00.00"
-							autocomplete="off" />
-					</div>
-					<input type="submit" value="Créer le menu" id="sendData" name="submit">
+						<!--Limit min 10 caractères et 500 max via les attributs required min/maxlength-->
+						<textarea
+							id="textInput"
+							type="text"
+							name="textInput"
+							minlength="10"
+							maxlength="500"
+							placeholder="Description/composition...(10 à 500 caract.)"
+							autocomplete="off"></textarea>
+						<div class="minPeople">
+							<label for="minPeople" class="label">
+								<li>Nbre pers_mini : </li>
+							</label>
+							<input
+								id="minPeople"
+								type="number"
+								name="menuPrice"
+								minlength="1"
+								maxlength="8"
+								min="0"
+								max="500"
+								step="1"
+								placeholder="00"
+								autocomplete="off" />
+						</div>
+						<div class="remainQty">
+							<label for="remainQty" class="label">
+								<li>Quantité restante : </li>
+							</label>
+							<input
+								id="remainQty"
+								type="number"
+								name="menuPrice"
+								minlength="1"
+								maxlength="8"
+								min="0"
+								max="500"
+								step="1"
+								placeholder="00"
+								autocomplete="off" />
+						</div>
+						<div class="menuPrice">
+							<label for="menuPrice" class="label">
+								<li>Prix TTC/pers en &#x20AC : </li>
+							</label>
+							<input
+								id="menuPrice"
+								type="number"
+								name="menuPrice"
+								minlength="1"
+								maxlength="8"
+								min="0"
+								max="500"
+								step="0.01"
+								placeholder="00.00"
+								autocomplete="off" />
+						</div>
+						<input type="submit" value="Créer le menu" id="sendData" name="submit">
 
+					</div>
 				</div>
 			</form>
 			<p id="errorMessage"></p>
 			<!--Visible uniquement lorsque le menu est enregistré: Input demandant le chargement de l'image (et rend inacessible toute sélection d'autre image)-->
 			<div class="Upload">
 
-				<form action="" method="POST" enctype="multipart/form-data" id="Uploadform" >
-					<p id ="successFetch" style="color: darkblue"></p>
-						<input type="hidden" name="MAX_FILE_SIZE" value="2500000" >
-						<input
-							type="file"
-							id="imageUpload"
-							accept="image/jpg, image/jpeg, image/png"
-							name="imageUpload"
-							disabled
-							>
-							
-						<input type="submit" value="Charger l'image" id="uploadButton" name="uploadButton" disabled>
+				<form action="" method="POST" enctype="multipart/form-data" id="Uploadform">
+					<p id="successFetch" style="color: darkblue"></p>
+					<input type="hidden" name="MAX_FILE_SIZE" value="2500000">
+					<input
+						type="file"
+						id="imageUpload"
+						accept="image/jpg, image/jpeg, image/png"
+						name="imageUpload"
+						disabled>
+
+					<input type="submit" value="Charger l'image" id="uploadButton" name="uploadButton" disabled>
 			</div>
 			<!--Gestion du retour sur le téléchargement de l'image géré uniquement en PHP (fichier upload.php) suivant les prescriptions du JS-->
 			<?php
@@ -186,7 +219,7 @@ $response = confirmPicture();
 			} else {
 			?>
 				<!--sinon, on retourne l'une des autres sorties de la function imageValidation retourné avant d'atteindre "success"-->
-				<p class="errorUpload"><?=@$response ?></p>
+				<p class="errorUpload"><?= @$response ?></p>
 			<?php
 			}
 			?>
@@ -203,10 +236,10 @@ $response = confirmPicture();
 				<!--en readonly-->
 				<textarea id="inputContent" readonly></textarea>
 				<!--inputs ajoutés lors de l'écriture-->
-				<div class="copiedInputs" >
-				<p class="inputPeople peopleText"><span class="inputPeople peopleNumber"></span> pers.minimum</p>
-				<p class="inputQty qtyText"><span class="inputQty qtyNumber"></span> menu(s) restant(s)</p>
-				<p class="inputPrice priceText"><span class="inputPrice priceNumber"></span>€ TTC/pers</p>
+				<div class="copiedInputs">
+					<p class="inputPeople peopleText"><span class="inputPeople peopleNumber"></span> pers.minimum</p>
+					<p class="inputQty qtyText"><span class="inputQty qtyNumber"></span> menu(s) restant(s)</p>
+					<p class="inputPrice priceText"><span class="inputPrice priceNumber"></span>€ TTC/pers</p>
 				</div>
 			</div>
 		</div>
@@ -217,8 +250,6 @@ $response = confirmPicture();
 
 			<p>//////</p>
 
-
-			</form>
 		</div>
 		<!----------------------------------------------------------------------------------------------------------------------------->
 		<div class="lowerBlock-right">

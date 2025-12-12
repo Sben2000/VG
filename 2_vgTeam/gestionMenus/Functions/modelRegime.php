@@ -8,7 +8,7 @@ require_once "./DB/db.php";
 
 
 //Function récupérant l'ensemble de la DB pour les afficher en options de la liste déroulante
-function getThemes(){
+function getRegimes(){
 
 
     $pdo=DBconnection();
@@ -17,7 +17,7 @@ function getThemes(){
         return false;
     }    
     //Récupération de l'ensemble des éléments de la table regroupé (GROUP BY) pour éviter l'affichage des doublons si il y en a
-    $sql = ("SELECT * FROM theme GROUP BY libelle");
+    $sql = ("SELECT * FROM regime GROUP BY libelle");
     $query =  $pdo->prepare($sql);
     $query->execute();
      //Récupération des éléments dans un tableau ASSO
@@ -42,16 +42,13 @@ function getThemes(){
 
 //Ecoute potentielle  de la valeur clé ID requêtée via un GET provenant du fetch JS
 if(isset($_GET["ID"])){
-    echo "yes";
     //Si requête il y 'a, => appel à la function getData (devellopée plus bas) qui va interroger la DB avec l'argument ID
-     echo getData($_GET["ID"]);
+    echo getDataRegime($_GET["ID"]);
 
      //note:  echo (afficher) du résultat de la function car il s'agit de la réponse server (encodé en json) récupéré par la méthode fetch dans le fichier JS 
-}else{
-    echo "no";
 }
 // function getData incluant l'argument représentant l'id requêté 
-function getData($id){
+function getDataRegime($id){
 
     $pdo=DBconnection();
     if(!$pdo){
@@ -62,8 +59,8 @@ function getData($id){
     //on nettoie la valeur de la variable récupéré dans le GET ()
     $id=htmlspecialchars($id);
 
-    //Récupération de la  DB toutes les valeurs ou la colonne theme_id match l'ID' requêtée via GET
-    $sql = ('SELECT * FROM theme WHERE theme_id =:ID');
+    //Récupération de la  DB toutes les valeurs ou la colonne regime_id match l'ID' requêtée via GET
+    $sql = ('SELECT * FROM regime WHERE regime_id =:ID');
     $query =$pdo->prepare($sql);
     $query->bindParam("ID",$id);
     $query->execute();

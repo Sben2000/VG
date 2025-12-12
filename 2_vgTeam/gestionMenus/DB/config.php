@@ -1,6 +1,8 @@
 <?php
-// commence la session chaque fois que le connexion est lancée
-session_start(); 
+//Conditionnement du démarrage de session (Session déjà active?) pour éviter les doublons (et Notices)
+if (session_status() !== PHP_SESSION_ACTIVE) {
+	session_start();
+}
 
 // DB credentials.
 define('DB_HOST','127.0.0.1');/*adresse localhost, à reconfig si besoin*/
