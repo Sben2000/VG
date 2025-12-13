@@ -44,7 +44,7 @@ $id=$_POST['id'];
 //passage de la variable dans la function edit du Model
 $response = edit($id, $libelle);
 
-//on renvoit à la vue actuelle avec l'actualisation du message de succès ou d'échec
+//on renvoit vers la page de resultat(edit) avec l'actualisation du message de succès ou d'échec récupéré par $response
 require_once './views/editResult.php';
 //require_once './views/edit.php';
 //puis au bout de quelques secondes, si pas d'action, on renvoit à la liste
@@ -63,11 +63,17 @@ require_once './views/delete.php';/*une fois l'id récupéré est assigné à $i
 function destroyAction()/*function qui réalise la suppression lors lors de la confirmation de suppression dans la view delete.php*/  
 {
 $id = $_GET['id'];/*argument $id qui représente l'id récupéré via le $_GET['id'] précédent (cf deleteAction) et passé en clé lors de la confirmation de suppression*/
-var_dump($id);
-destroy($id); /*function issue du model qui supprime l'id passé en clé lorsque le bouton suivant est cliqué dans delete.php href="index.php?action=destroy&?id=<?php echo $id ?>">Valider la suppression</a>*/
-//redirigé préalablement vers index.php mais désormais vers action=list suite au routage via index.php
+//var_dump($id);
+$response = destroy($id); /*function issue du model qui supprime l'id passé en clé lorsque le bouton suivant est cliqué dans delete.php href="index.php?action=destroy&?id=<?php echo $id ?>">Valider la suppression</a>*/
+/*
+//on renvoit à la vue actuelle avec l'actualisation du message de succès ou d'échec récupérée par $response
+require_once './views/delete.php';
+*/
+//on renvoit vers la page de résultat deleteResult avec l'actualisation du message de succès ou d'échec récupéré par $response
+require_once './views/deleteResult.php';
+//puis au bout de quelques secondes, si pas d'action, on renvoit à la liste
+header('Refresh:5; url=index.php?action=list');
 
-header('location: index.php?action=list');//on redirige vers la page index.php après la destruction, permet de voir la liste à jour 
 }   
 
 

@@ -161,7 +161,13 @@ function destroy($id) /*function qui supprime l'id get ($id = $_GET['id']) en ar
     $sql="DELETE FROM theme WHERE theme_id=:id";
     $query=$pdo->prepare($sql);
     $query->bindParam(":id", $id, PDO::PARAM_INT);
-    return $query->execute();
+    $query->execute();
+    //si il y a une ligne affectée , la suppression a été réalisée avec succès, sinon la suppression n'a pas réussi
+        if ($query->rowCount()>0){
+        return "success";
+        }else{
+        return "la suppression n'a pas réussi, veuillez recommencer";
+        }
     
 }
 

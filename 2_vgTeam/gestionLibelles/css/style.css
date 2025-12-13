@@ -1,4 +1,8 @@
 
+
+
+
+
 /*********************************DEFAULT********************************************/
 :root{      /*palette couleurs*/
 
@@ -13,7 +17,6 @@
     --rosyLight:rgb(205, 178, 178);
 }
 
-
 *{ /*par défaut si rien de précisé*/
     margin: 0;
     padding: 0;
@@ -21,12 +24,16 @@
     font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
 }
 
-p, input, label,a,h3 {
+p, input, label, td, th, button{
     font-size: 20px;
 }
 h1, h2,h3,h4, h5, h6, a, th, option,hr {
     color: var(--elmDeco);
 }
+
+/*********************************NAV*******************************************/
+
+
 
 nav{
     background-color: var(--rosyLight);
@@ -41,36 +48,7 @@ nav{
 
 
 
-/*********************************DEFAULT********************************************/
-:root{      /*palette couleurs*/
-
-    --dark-color:#222222;
-    --light-color:#dddddd;
-    --aliceblue: aliceblue;
-    /*--highlight-color: #eeeeee;*/
-    --rosy: rosybrown;
-    --elmDeco:#551A8B;
-    --TextClick:#fff;
-    --hover:#954dd7;
-    --rosyLight:rgb(205, 178, 178);
-}
-
-*{ /*par défaut si rien de précisé*/
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
-}
-
-p, input, label, td, th{
-    font-size: 20px;
-}
-h1, h2, a, th{
-    color: var(--elmDeco);
-}
-
-
-/*************************SECTIONS-COMMUN****************************************************/
+/*************************AUTRE-PAGE****************************************************/
 body{
     background-color: var(--rosyLight);
 
@@ -112,7 +90,6 @@ body{
 }
 
 
-/*************************Sections****************************************************/
 
 .multiSectionsTop{
 display: flex;
@@ -175,6 +152,7 @@ table {
 
 td, th {
   border-bottom: 1px solid #ddd;
+
   padding: 8px;
   text-align: center;
 }
@@ -323,6 +301,19 @@ button{
     flex-direction: row;
 }
 
+.backToListButton {
+    background-color: grey ;
+
+}
+
+.backToListButton:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:darkgray;
+    color: var(--TextClick);
+
+}
+
+
 footer{
     position:fixed;
     bottom: 0;
@@ -356,7 +347,7 @@ footer{
         margin: 0 auto;
     }
 
-p,textarea input, label, td, a{
+p,textarea input, label, td, a, button{
         font-size: 14px;
     }
     h3, th{
@@ -410,7 +401,7 @@ text-align: start;
 
 /*Commun*/
 
-p, textarea, input, label, td, a{
+p, textarea, input, label, td, a, button{
         font-size: 12px;
     }
     h3, th{

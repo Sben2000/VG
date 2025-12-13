@@ -19,6 +19,20 @@ ob_start();
     <button class="cancelButton"><a  href="index.php?action=list" >Annuler la suppression</a></button>
     </div>
     </div>
+                 <?php
+            //retour du resultat $response affiché à l'utilisateur
+                //si le resultat de la function est success
+            if(@$response == "success"){
+                ?>
+                    <p class="success" style='color:green'>La donnée a bien été supprimée</p>
+
+                <?php
+            }else{
+                ?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur dans registerUser()-->
+                    <p class="error" style ='color:darkred'><?=@$response?></p>
+                <?php
+            }
+        ?>
 <?php
 $content = ob_get_clean();
 include_once 'views/layout.php'; //on requiert la vue layout (qui sera mis à jour)
