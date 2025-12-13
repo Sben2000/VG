@@ -18,6 +18,16 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
     background-color: var(--rosyLight);
 	}
 
+.welcome, .forbidden{
+	margin :10px;
+	font-weight: 500;
+}
+
+.forbidden{
+	font-size: 30px;
+	margin-top: 50px;
+}
+
 </style>
 
 <!--si la session est ouverte avec un compte admin ou Employé-->
@@ -27,7 +37,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 <?php
 }else{
     ?>
-	<p class="forbidden" style="color:darkred">Accès Non autorisé, veuillez revenir à la page d'acceuil ou vous connecter</p>
+	<p class="forbidden" style="color:darkred">Accès Non autorisé, veuillez revenir à la page d'acceuil ou vous connecter...</p>
     <?php
     exit;
 }

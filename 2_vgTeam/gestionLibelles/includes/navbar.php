@@ -1,4 +1,4 @@
-    <link href="../css/style.css"	rel="stylesheet"/>
+    <link href="../css/style.css"	rel="stylesheet">
 
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary ">

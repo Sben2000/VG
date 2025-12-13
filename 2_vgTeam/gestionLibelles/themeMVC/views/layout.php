@@ -21,7 +21,7 @@
 
 <body>
 
-    <div class="container mt-2">
+    <div class="main">
         <h2><?= $title ?></h2>
         <hr>
         <?=$content ?>

@@ -7,14 +7,18 @@ $title="Supprimer"; //on définit la variable $title qui apparait dans le layout
 ob_start();
 ?>
     <p>Voulez vous vraiment supprimer le libelle?</p>
+    <div class="deleteConfirmation">
     <!--On se dirige vers la page destroy.php en cas de confirmation-->
     <!--redirigé préalablement vers destroy.php mais désormais vers index.php?action=destroy&id=... (&id= car redirigé également derrière un ? préalablement donc 2 fois ?? =>?...&...) -->
-    <a class ="btn btn-danger" href="index.php?action=destroy&id=<?php echo $id ?>">Valider la suppression</a>
- 
+    <div>
+    <button class="deleteButton"><a  href="index.php?action=destroy&id=<?php echo $id ?>">Valider la suppression</a></button>
+    </div>
     <!--On revient sur l'index en cas d'annulation-->
     <!--redirigé préalablement vers index.php mais désormais vers index.php?action=list qui fait le routage-->
-    <a class ="btn btn-warning" href="index.php?action=list" >Annuler la suppression</a>
-
+    <div>
+    <button class="cancelButton"><a  href="index.php?action=list" >Annuler la suppression</a></button>
+    </div>
+    </div>
 <?php
 $content = ob_get_clean();
 include_once 'views/layout.php'; //on requiert la vue layout (qui sera mis à jour)
