@@ -33,13 +33,49 @@ h1, h2,h3,h4, h5, h6, a, th, option,hr {
 
 /*********************************NAV*******************************************/
 
-
-
-nav{
+header{
+    text-decoration: none;
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
     background-color: var(--rosyLight);
+    position:relative;
+    top: 0;
+    z-index: 1000;
 }
-.navlink:hover,
-.nav-link { /*lors du hover*/
+nav{
+   
+    box-shadow: 0 5px 5px rgba(0,0,0,0.15);
+}
+.large-menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-items: center;/*Aligne chacun des éléments ("brand"+"links") verticalement au centre*/
+    z-index: 30;
+}
+
+.inlineLinks{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;/*définit un espace  équivalent entre les liens du menu*/
+        align-items: center;
+    }
+.inlineLinks>li{
+    list-style: none;
+    margin: 0px 10px;
+    }
+
+.inlineLinks a{ /*Texte des liens se trouvant dans le menu des Liens*/
+    text-decoration: none;
+    display:inline-block;/*block ligne pour tout les textes de liens*/
+    padding: 5px 35px; /*écarte les liens entre eux de 35 px en élargissant leurs cellule et 10px en haut et bas */
+    transition : background-color 0.3s , color 0.3s; /*ajoute une transition background et color font lorsque le :hover sera appliqué*/
+    color: #551A8B;
+    font-size: 25px;
+    
+}
+nav a:hover,
+nav a.active{ /*lors du hover*/
     background-color: #954dd7;
     color: #fff;
     border-radius: 3px; 
