@@ -1,11 +1,11 @@
 <?php
 
-require_once 'model/regimeModel.php';
+require_once 'model/allergeneModel.php';
 
-/*******************************Affiche la liste des regimes à jour dans index.php*************************************************** */
+/*******************************Affiche la liste des allergenes à jour dans index.php*************************************************** */
 function indexAction(){
-    $regimes = latests_regimes();//on assigne à $regimes l'objet fetch par la function latests_regimes()
-    require_once 'views/liste_libelles.php';//fait appel à la view pour afficher la page dans laquelle $regimes est appelé (for each $regimes as $regime)
+    $allergenes = latests_allergenes();//on assigne à $allergenes l'objet fetch par la function latests_allergenes()
+    require_once 'views/liste_libelles.php';//fait appel à la view pour afficher la page dans laquelle $allergenes est appelé (for each $allergenes as $allergene)
 }
 
 /*****************************************Crée et enregistre dans la dB*************************************************** */
@@ -29,9 +29,9 @@ require_once './views/create.php';
 }   
 /**************************************Afficher les valeurs à modifier et éditer les modifications*********************************************************************************** */
 function editAction(){
-/*Récupère l'id de l'élément à modifier (lors du clic sur modifier de liste_libelles.php dans le lieb => &id=<?php echo $regime->regime_id ?>)*/
+/*Récupère l'id de l'élément à modifier (lors du clic sur modifier de liste_libelles.php dans le lieb => &id=<?php echo $allergene->allergene_id ?>)*/
 $id = $_GET['id'];
-$regime = view($id);//function du Model qui affiche l'id seul sélectionné 
+$allergene = view($id);//function du Model qui affiche l'id seul sélectionné 
 require_once './views/edit.php';//une fois l'id récupéré ,  appel à la page /views/edit.php dans laquelle la variable $id est passé (pour affiché l'élément selectionné)
 }
 
@@ -54,7 +54,7 @@ header('Refresh:5; url=index.php?action=list');
 /**************************************************************Delete***************************************************** */
 
 function deleteAction(){ //appelle la vue qui delete  
-$id = $_GET['id'];//les GET ou POST dans un modèle MVC sont récupérés dans le controller, récupère la valeur de l'id de la page edit.php (id=$regime->regime_id). 
+$id = $_GET['id'];//les GET ou POST dans un modèle MVC sont récupérés dans le controller, récupère la valeur de l'id de la page edit.php (id=$allergene->allergene_id). 
 //var_dump($id);/*vérification de récupération de l'id de l'item selectionné*/
 require_once './views/delete.php';/*une fois l'id récupéré est assigné à $id, appel de la page /views/delete.php  pour confirmation ou non suppression $id */
 }

@@ -12,7 +12,7 @@ ob_start();//début de la récupération/lecture de tout ce qu il y a en aval(ci
     <h3>Thème:</h3>
     <div >
             <!--on récupère l'id mais ne l'affiche pas (type="hidden) pour qu il ne soit pas modifié mais uniquement récupéré-->
-        <input type="hidden" name="id" value=<?=$regime->regime_id?>>
+        <input type="hidden" name="id" value=<?=$allergene->allergene_id?>>
     </div>
     <div >
         <label for="nom">Libelle: </label>
@@ -21,10 +21,10 @@ ob_start();//début de la récupération/lecture de tout ce qu il y a en aval(ci
         <input type="text"  name="libelle" 
         value=<?php 
         /*Gestion du cas ou l'utilisateur efface la donnée et tente de la soumettre -> n'affiche pas les tags générés dans l'input par la BDD  */
-        if(empty($regime->libelle)){
+        if(empty($allergene->libelle)){
             echo "";
             }else{
-                echo $regime->libelle;
+                echo $allergene->libelle;
                 } ?>>
     </div>
     <div >

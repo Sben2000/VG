@@ -38,7 +38,7 @@ function cleanAndCheckValue($value){
 /*******************************************Function alreadyExists appliquée à tous les champs ajoutés ou modifiés pour éviter les doublons********************************************************************************/
 
 function alreadyExists($value,$pdo){
-    $sql = "SELECT libelle FROM regime where libelle =:libelle";
+    $sql = "SELECT libelle FROM allergene where libelle =:libelle";
     $query =$pdo->prepare($sql);
     $query->bindParam(":libelle",$value);
     $query -> execute();
@@ -55,15 +55,15 @@ function alreadyExists($value,$pdo){
 
 }
 /****************************************ENSEMBLE DES FONCTIONS DE BASE DU MVC*********************************************** */
-function latests_regimes()
+function latests_allergenes()
 {
     $pdo = DBconnection();
     if(!$pdo){
             return false;
         }
     //récupération de l'ensemble des données du tableau
-    $regimes = $pdo->query("SELECT * FROM regime ORDER BY regime_id DESC")->fetchAll(PDO::FETCH_OBJ);
-    return $regimes; // return regimes au Controller qui sera utilisé par la views (for each $regimes as $regime)
+    $allergenes = $pdo->query("SELECT * FROM allergene ORDER BY allergene_id DESC")->fetchAll(PDO::FETCH_OBJ);
+    return $allergenes; // return allergenes au Controller qui sera utilisé par la views (for each $allergenes as $allergene)
     
 }
 
@@ -88,7 +88,7 @@ function create($libelle)//function qui ajoute des libelles en récupérant les 
     }           
 
     //on prépare la requête comme il s'agit de données récupérés de champs  via create.php
-    $sql = "INSERT INTO regime (regime_id, libelle) VALUES (null, :libelle)";
+    $sql = "INSERT INTO allergene (allergene_id, libelle) VALUES (null, :libelle)";
     $query=$pdo->prepare($sql);
     $query->bindParam(":libelle", $libelle, PDO::PARAM_STR);
     $query->execute();
@@ -104,12 +104,12 @@ function create($libelle)//function qui ajoute des libelles en récupérant les 
     
 }
 /****************************************************Afficher et modifier le libellé selectionné******************************************************************/
-function view($id){//on récupère l'id du regime à modifier (sélectionné dans la page d'acceuil)
+function view($id){//on récupère l'id du allergene à modifier (sélectionné dans la page d'acceuil)
     $pdo = DBconnection();
     if(!$pdo){
         return false;
     }
-    $sql="SELECT * FROM regime WHERE regime_id=:id";
+    $sql="SELECT * FROM allergene WHERE allergene_id=:id";
     $query=$pdo->prepare($sql);
     $query->bindParam(":id", $id, PDO::PARAM_INT);
     $query->execute();
@@ -139,9 +139,9 @@ function edit($id, $libelle){//edite les valeurs extraites de la fonction update
     }        
 
     //on update les valeurs sauf l'id qui ne se modifie pas( auto incrémenté) 
-    $query=$pdo->prepare("UPDATE regime 
+    $query=$pdo->prepare("UPDATE allergene 
                             SET libelle =:libelle 
-                            WHERE regime_id =:id");
+                            WHERE allergene_id =:id");
     $query->bindParam(":libelle", $libelle, PDO::PARAM_STR);
     $query->bindParam(":id", $id, PDO::PARAM_INT);
     return $query->execute();// on termine la function en retournant l'execution de la query (possibilité d'afficher un message de succès en option)                        
@@ -158,7 +158,7 @@ function destroy($id) /*function qui supprime l'id get ($id = $_GET['id']) en ar
     if(!$pdo){
         return false;
     }
-    $sql="DELETE FROM regime WHERE regime_id=:id";
+    $sql="DELETE FROM allergene WHERE allergene_id=:id";
     $query=$pdo->prepare($sql);
     $query->bindParam(":id", $id, PDO::PARAM_INT);
     $query->execute();

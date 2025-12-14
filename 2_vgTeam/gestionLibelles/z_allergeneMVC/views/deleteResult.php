@@ -1,14 +1,13 @@
-
     <link href="../css/style.css"	rel="stylesheet">
 
-    <div class="feedback">
+<div class="feedback">
         <?php
             //retour du resultat $response affiché à l'utilisateur
                 //si le resultat de la function est success
             if(@$response == "success"){
                 ?>
                 <!--afficher : -->
-                <p class="success" style='color:green'><strong>La donnée a bien été enregistrée</strong></p>
+                <p class="success" style='color:green'><strong>La donnée a bien été supprimée</strong></p>
 
                 <?php
             }else{
@@ -19,5 +18,5 @@
         ?>
       </div>
       <div >
-        <button type="button" class="backToListButton"><a href="index.php?action=list" >Revenir à la liste</a></button>
+        <button type="button" class="backToListButton"><a href="index.php?action=list">Revenir à la liste</a></button>
       </div>

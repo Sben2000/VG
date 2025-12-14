@@ -7,7 +7,7 @@ ob_start();//début de la récupération/lecture de tout ce qu il y a en aval(ci
 <!--redirigé préalablement vers store.php mais désormais vers action=store suite au routage via index.php-->
 <form action="index.php?action=store" method="post"><!--Les données seront envoyées dans store.php (action = store.php)-->
     <div class="form-group">
-        <label for="nom">Libelle de theme</label>
+        <label for="nom">Libelle de regime</label>
         <input type="text"  name="libelle">
     </div>
     <div >
