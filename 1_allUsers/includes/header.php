@@ -75,7 +75,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 								echo "-show";
 							}
 							?>">										
-							<li><a class="gestionLink" href="./onProgress.php">Employés</a></li>
+							<li><a class="gestionLink" href="../3_admin/gestionTeam/teamMVC/index.php" target="_blank" id="gestTeamWindowLM">Employés</a></li>
 						</div>
 						<li id="vgTeamClose"><a class="gestionLink" href="#">>> Fermer << </a>
 						</li>
@@ -155,7 +155,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 								echo "-show";
 							}
 							?>">
-							<li><a href="./onProgress.php">Employés</a></li>
+							<li><a href="../3_admin/gestionTeam/teamMVC/index.php" target="_blank" id="gestTeamWindowTM">Employés</a></li>
 						</div>
 					</div>
 				</div>

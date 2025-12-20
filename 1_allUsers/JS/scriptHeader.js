@@ -123,7 +123,7 @@ disconnectPhone.addEventListener("click",()=>{
 
 })
 
-/**************************************************************Gestion ouvertur des fenêtres Team et Admin lors du clic***********************************************************************************************/
+/**************************************************************Gestion ouverture des fenêtres Team et Admin lors du clic***********************************************************************************************/
 
 
 //Gestion d'ouverture de la fenêtre principale gestion MENU en passant arguments: nom de la fenêtre, ses options (dimension (en px))
@@ -153,6 +153,20 @@ const gestLibelleWindowTM = document.getElementById("gestLibelleWindowTM");
 gestLibelleWindowTM.addEventListener('click', () => {
   //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
 window.open("../2_vgTeam/gestionLibelles/themeMVC/index.php", 'gestionLibelles', 'width=500', 'height=500','left=200','top=200');
+});
+
+    //LargeTeam
+const gestTeamWindowLM = document.getElementById("gestTeamWindowLM");
+gestTeamWindowLM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../3_admin/gestionTeam/teamMVC/index.php", 'gestionTeam', 'width=500', 'height=500','left=200','top=200');
+});
+
+    //TelTeam
+const gestTeamWindowTM = document.getElementById("gestTeamWindowTM");
+gestTeamWindowTM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../3_admin/gestionTeam/teamMVC/index.php", 'gestionTeam', 'width=500', 'height=500','left=200','top=200');
 });
 
 

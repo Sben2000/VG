@@ -103,7 +103,7 @@
                         <div class="orderTypeContact">
                             <li>Par téléphone: <span> XX/XX/XX/XX/XX</span></li>
                             <li>Par mail: <span> XX@vit&go.fr</span></li>
-                            <li>Via notre formulaire: <span><a href="#">Contact</a></span></li>
+                            <li>Via notre formulaire: <span><a href="contact.php">Contact</a></span></li>
                         </div>
                     </ul>
 
