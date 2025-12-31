@@ -25,4 +25,4 @@ require_once "./Functions/fctAccount.php";
         </div>
     </div>
 
-   <script type="module" src="./JS/scriptHeader.js"></script>
+   <script type="module" src="./JS/userAccount.js"></script>

@@ -1,0 +1,2 @@
+#masquage des erreurs php dans la view (pour les faire apparaitre = on)
+php_flag display_errors off

@@ -169,6 +169,33 @@ gestTeamWindowTM.addEventListener('click', () => {
 window.open("../3_admin/gestionTeam/teamMVC/index.php", 'gestionTeam', 'width=500', 'height=500','left=200','top=200');
 });
 
+    //LargePlat
+const gestPlatWindowLM = document.getElementById("gestPlatWindowLM");
+gestPlatWindowLM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionPlats/platMVC/index.php", 'gestionPlats', 'width=500', 'height=500','left=200','top=200');
+});
+
+    //TelPlat
+const gestPlatWindowTM = document.getElementById("gestPlatWindowTM");
+gestPlatWindowTM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionPlats/platMVC/index.php", 'gestionPlats', 'width=500', 'height=500','left=200','top=200');
+});
+
+    //LargeMenuPlats
+const menuPlatsWindowLM = document.getElementById("menuPlatsWindowLM");
+menuPlatsWindowLM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/menuPlatsAsso/menuPlatsMVC/index.php", 'assoMenuPlats', 'width=500', 'height=500','left=200','top=200');
+});
+
+    //TelMenuPlats
+const menuPlatsWindowTM = document.getElementById("menuPlatsWindowTM");
+menuPlatsWindowTM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/menuPlatsAsso/menuPlatsMVC/index.php", 'assoMenuPlats', 'width=500', 'height=500','left=200','top=200');
+});
 
 /******************************************************************************************************************************************************************* */
 

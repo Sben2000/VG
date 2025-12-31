@@ -138,7 +138,7 @@
 						<div class="product">
 
 							<div class="productLeft">
-								<img src="./uploads/SEdujour.jpg" alt="">
+								<img src="../2_vgTeam/gestionMenus/uploads/gourmand.jpg" alt="" width="150px" >
 							</div>
 
 							<div class="productRight">

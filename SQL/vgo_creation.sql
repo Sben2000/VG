@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS theme (
 
 CREATE TABLE IF NOT EXISTS plat (
   plat_id INT NOT NULL AUTO_INCREMENT,
-  titre_plat VARCHAR(50) NOT NULL , /*sera exigé lors de la création*/
-  photo BLOB ,/*peut etre null mais sera géré par la creation menu*/
+  titre_plat VARCHAR(50) NOT NULL , 
+  photo BLOB ,/*peut etre null */
   CONSTRAINT plat_PK PRIMARY KEY (plat_id)
 )ENGINE=InnoDB;
 
@@ -72,12 +72,11 @@ nom_utilisateur VARCHAR(50) NOT NULL, /*ajouté , pas dans le MCD de départ, se
 CREATE TABLE IF NOT EXISTS contient (
   allergene_id INT, /*peut etre null si pas d’allergène particulier*/
   plat_id INT  , 
-  CONSTRAINT contient_PK PRIMARY KEY (allergene_id, plat_id),
+  CONSTRAINT contient_PK PRIMARY KEY (allergene_id, plat_id),/*Clé primaire dont la référence est composée des valeurs combinés des deux clés étrangères : Composite Key. Une même combinaison est unique et ne peut être reproduite*/
   CONSTRAINT contient_allergene_id_FK FOREIGN KEY (allergene_id) REFERENCES allergene (allergene_id),
   CONSTRAINT contient_plat_id_FK FOREIGN KEY (plat_id) REFERENCES plat (plat_id)
 )ENGINE=InnoDB;
 
-DROP TABLE menu;
 
 CREATE TABLE IF NOT EXISTS menu (
     menu_id INT NOT NULL AUTO_INCREMENT,
@@ -99,12 +98,11 @@ CREATE TABLE IF NOT EXISTS menu (
 CREATE TABLE IF NOT EXISTS propose (
   menu_id INT,
   plat_id INT,
-  CONSTRAINT propose_PK PRIMARY KEY (menu_id, plat_id),
+  CONSTRAINT propose_PK PRIMARY KEY (menu_id, plat_id),/*Clé primaire dont la référence est composée des valeurs combinés des deux clés étrangères : Composite Key. Une même combinaison est unique et ne peut être reproduite*/
   CONSTRAINT propose_menu_id_FK FOREIGN KEY (menu_id) REFERENCES menu (menu_id),
   CONSTRAINT propose_plat_id_FK FOREIGN KEY (plat_id) REFERENCES plat (plat_id)
 )ENGINE=InnoDB;
 
-DROP TABLE commande;
 
 CREATE TABLE IF NOT EXISTS commande (
   commande_id INT, /*ajouté car un user peut faire plusieurs commande avec le même menu_id (et même user_id)*/
@@ -156,6 +154,11 @@ ALTER TABLE menu  MODIFY menu_id INT NOT NULL AUTO_INCREMENT ; /*Modifié en NOT
 
 ALTER TABLE menu DROP COLUMN regime; /*suppression de cette colonne car fait doublon avec la clé étrangère regime_id (et son libellé)*/
 
+ALTER TABLE plat MODIFY photo MEDIUMBLOB ; /*passage de BLOB en MEDIUMBLOB pour permettre une taille supérieur (16MO max au lieu de 65KOmax)*/
+
+ALTER TABLE plat ADD COLUMN contentType VARCHAR(50); /*Ajouté pour  permettre préciser l'extension de la photo à afficher et eviter les doublons  (doublons de nom sur même type)*/
+
+
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/
@@ -191,9 +194,83 @@ VALUES
 
 SELECT * FROM commande;
 
-/**Pour Tests**/
+/**Pour Tests perso**/
 INSERT INTO 
     commande (commande_id, utilisateur_id, numero_commande, date_commande, date_prestation, heure_livraison) 
 VALUES 
     (1, 18, "827343", "27/09/2020", "28/09/2020","9h"),
     (2, 18, "90JSDFS3", "15/09/2024", "18/09/2024","11h");
+
+
+/*Tests divers peso*/
+
+/*JOINDRE plusieurs (>2) tables dont les id sont partagées*/
+INSERT INTO allergene (allergene_id, libelle) VALUES
+(2,"gluten"),
+(3, "moutarde");
+
+INSERT INTO plat (plat_id, titre_plat, photo, contentType) VALUES
+(2,"café",NULL , "image/jpeg"),
+(3, "pizza",NULL , "image/jpeg" );
+
+INSERT INTO contient (plat_id, allergene_id) 
+VALUES 
+  (2, 1),
+  (3, 3);
+
+INSERT INTO contient (plat_id, allergene_id) 
+VALUES 
+  (49, 1),
+  (50, 3);
+INSERT INTO contient (plat_id, allergene_id) 
+VALUES 
+  (49, 2),
+  (50, 1);
+
+
+/*JOIN la table plat à la table contient*/
+SELECT * FROM contient INNER JOIN plat ON contient.plat_id = plat.plat_id;
+/*JOIN la table allergene à la table contient*/
+SELECT * FROM contient INNER JOIN allergene ON contient.allergene_id = allergene.allergene_id;
+
+/*JOIN les 2 tables : "plat" et "allergenes"  à la table contient en mentionnant les colonnes souhaités (plutôt que SELECT * contient pour éviter les doublons des FK)*/
+/*important: mentionner le nom de table pour chaque colonne car les FK sont présentes dans 2 tables*/
+SELECT contient.allergene_id, contient.plat_id,  allergene.libelle,  plat.titre_plat, plat.photo, plat.contentType FROM contient 
+JOIN allergene ON contient.allergene_id = allergene.allergene_id
+JOIN plat ON contient.plat_id = plat.plat_id
+ORDER BY contient.plat_id ASC;
+
+SELECT contient.allergene_id, contient.plat_id,  allergene.libelle,  plat.titre_plat, plat.photo, plat.contentType FROM contient 
+JOIN allergene ON contient.allergene_id = allergene.allergene_id
+JOIN plat ON contient.plat_id = plat.plat_id
+WHERE contient.plat_id = 50;
+
+
+/*Exercice et tests sur les tables menu et propose*/
+
+INSERT INTO propose (menu_id, plat_id) 
+VALUES 
+  (11, 49),
+  (10, 50),
+  (10, 2),
+  (9, 56),
+  (9, 55);
+
+  SELECT * FROM menu
+  JOIN theme ON menu.theme_id = theme.theme_id;
+
+  SELECT * FROM menu
+  JOIN regime ON menu.regime_id = regime.regime_id;
+
+
+SELECT * FROM propose
+JOIN  menu ON propose.menu_id = menu.menu_id;
+
+
+  SELECT * FROM menu
+  JOIN theme ON menu.theme_id = theme.theme_id
+  JOIN regime ON menu.regime_id = regime.regime_id;
+
+SELECT propose.menu_id, propose.plat_id,  menu.titre, menu.menu_id,  plat.titre_plat, plat.plat_id, plat.photo FROM propose 
+JOIN menu ON propose.menu_id = menu.menu_id
+JOIN plat ON propose.plat_id = plat.plat_id;

@@ -59,9 +59,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 					<div class="vgTeam" id="vgTeamLM">
 						<!--Ouverture gérée de deux manières (JS window.open() et HTML target=_blank) au cas ou blocage pop up-->
 						<li ><a class="gestionLink" href="../2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowLM">Menus</a></li>
-						<li><a class="gestionLink" href="./onProgress.php">Plats</a></li>
-						<li><a class="gestionLink" href="../2_vgTeam/gestionLibelles/themeMVC/index.php" target="_blank" id="gestLibelleWindowLM">Libellés</a></li>
-						<li><a class="gestionLink" href="./onProgress.php">Menu↔plats</a></li>
+						<li><a class="gestionLink" href="../2_vgTeam/gestionPlats/platMVC/index.php" target="_blank" id="gestPlatWindowLM">Plats</a></li>
+						<li><a class="gestionLink" href="../2_vgTeam/gestionLibelles/themeMVC/index.php" target="_blank" id="gestLibelleWindowLM">Libellés</a></li>						
+						<li><a class="gestionLink" href="../2_vgTeam/menuPlatsAsso/menuPlatsMVC/index.php" target="_blank" id="menuPlatsWindowLM">Menu↔plats</a></li>
 						<li><a class="gestionLink" href="./onProgress.php">Commandes</a></li>
 
 
@@ -143,9 +143,9 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 						<span>Gestion:</span>
 						<!--Ouverture géré de deux manières (JS window.open() et HTML target=_blank) au cas ou blocage pop up-->
 						<li><a href="../2_vgTeam/gestionMenus/creationMenu.php" target="_blank" id="gestMenuWindowTM">Menus</a></li>
-						<li><a  href="./onProgress.php">Plats</a></li>
+						<li><a href="../2_vgTeam/gestionPlats/platMVC/index.php" target="_blank" id="gestPlatWindowTM">Plats</a></li>
 						<li><a href="../2_vgTeam/gestionLibelles/themeMVC/index.php" target="_blank" id="gestLibelleWindowTM">Libellés</a></li>
-						<li><a href="./onProgress.php">Menu<->plat</a></li>						
+						<li><a href="../2_vgTeam/menuPlatsAsso/menuPlatsMVC/index.php" target="_blank" id="menuPlatsWindowTM">Menu<->plat</a></li>						
 						<li><a  href="./onProgress.php">Commandes</a></li>
 						<div class="adminAccess<?php
 							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show

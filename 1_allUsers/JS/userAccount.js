@@ -65,6 +65,6 @@ modalDel.style.display ="block";
 /*Gestion Fermeture de la modale de déconnexion*/
 const imgCloseModalDel= document.getElementById("imgCloseModalDel");
 imgCloseModalDel.addEventListener("click",()=>{
-     modal.style.display = "none";
+     modalDel.style.display = "none";
 })
 

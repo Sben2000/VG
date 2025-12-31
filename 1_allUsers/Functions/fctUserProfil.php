@@ -59,9 +59,10 @@ function fetchUserOrders($username){
             //récupération des datas du menu identifié à chaque loop
             $sql = "SELECT * FROM menu WHERE menu_id = :orderMenuID";
             $query = $conn->prepare($sql);
-            $query->bindParam("orderMenuID",$orderMenuID,PDO::PARAM_INT);
+            $query->bindParam(":orderMenuID", $orderMenuID,PDO::PARAM_INT);
             $query ->execute();
             $menuData = $query->fetch(PDO::FETCH_ASSOC);
+            //var_dump($menuData);
             //merge des datas de la commande et du menu à chaque Loop
             $mergedResult = array_merge($results[$i], $menuData);
             //Push la table assoc.merged(data cde+menu) de chaque loop  dans La Table initialisée
