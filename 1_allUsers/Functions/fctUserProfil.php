@@ -24,7 +24,7 @@ function userProfilDatas($username){
 
 }
 
-//function qui récupère les comandes du user
+//function qui récupère les commandes du user
 function fetchUserOrders($username){
 
     //récupération de la connection BDD

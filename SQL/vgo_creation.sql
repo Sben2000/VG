@@ -274,3 +274,14 @@ JOIN  menu ON propose.menu_id = menu.menu_id;
 SELECT propose.menu_id, propose.plat_id,  menu.titre, menu.menu_id,  plat.titre_plat, plat.plat_id, plat.photo FROM propose 
 JOIN menu ON propose.menu_id = menu.menu_id
 JOIN plat ON propose.plat_id = plat.plat_id;
+
+
+    SELECT menu.menu_id, menu.regime_id, menu.theme_id, menu.titre, menu.nombre_personne_minimum, menu.prix_par_personne, menu.description, menu.photo_menu, menu.quantite_restante,
+     theme.theme_id,theme.libelle as theme,
+    regime.regime_id, regime.libelle as regime
+      FROM menu
+    JOIN theme ON menu.theme_id = theme.theme_id
+    JOIN regime ON menu.regime_id = regime.regime_id
+    WHERE quantite_restante > 0 AND theme.libelle = "gouter"
+    ORDER BY menu_id DESC;
+    

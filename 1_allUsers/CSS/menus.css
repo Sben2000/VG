@@ -151,22 +151,25 @@ justify-content: space-between;
     
 }
 
-.multiSectionsRight .product{
+.multiSectionsRight .menu{
     display: flex;
     align-content: space-between;  
 }
-.product .productLeft{
+.menu .menuLeft{
     margin: 0 15px;
 }
 
-.multiSectionsRight .productLeft img{
+.multiSectionsRight .menuLeft img{
     height: 200px; /*limitation de la hauteur*/
     display: block;
     margin: 10px auto; 
 }
 
-.multiSectionsLeft, .productRight{
+.multiSectionsLeft{
 position: relative;
+}
+.menuRight{
+    width: 100%;
 }
 .multiSectionsRight .title  {
     margin-top: 10px; 
@@ -238,6 +241,13 @@ border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalis√
 
 }
 
+.regimetheme{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+color: var(--elmDeco);
+margin: 5px 0px;
+}
 
 #orderForm h3{
 text-align: center;
@@ -304,16 +314,16 @@ p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch inp
     
 }
 
-.multiSectionsRight .product{
+.multiSectionsRight .menu{
     display: flex;
     flex-direction: column;
      
 }
-.product .productLeft{
+.menu .menuLeft{
     margin: 0 auto;
 }
 
-.multiSectionsRight .productLeft img{
+.multiSectionsRight .menuLeft img{
     height: 150px; /*limitation de la hauteur*/
     display: block;
     margin: 10px auto; 
