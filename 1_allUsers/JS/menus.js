@@ -12,6 +12,8 @@ mainNav();
 	let heading = document.querySelector('#heading');
 	//la note situé sous le titre avec heading
 	let notePlat = document.querySelector('#notePlat');
+	//le footer 
+	let footer = document.querySelector('.footer');
 //Eléments spécifique du filtre thème:
 	// le selecteur de thèmes
 	let selectThemes = document.querySelector("#selectThemes");
@@ -57,6 +59,9 @@ http.onload = function(){
 					out = "<p  style='color:darkred'> Désolé, nous n'avons pas encore ou plus de menu correspondant au critère sélectionné.</p>";
 					//la note située sous le menu n'est pLUS affichée (détails plat)
 					notePlat.innerHTML="";
+					//Le footer est repositionné au niveau bottom:0 si décalage vers le haut (tendance à remonter un peu sans résultat)
+					footer.style.position= "fixed";
+					footer.style.bottom = 0;
 
 				}else{
                 //Loop au travers de la variable possedant les données récupérées pour en sortir chaque "data.objet" requis 
