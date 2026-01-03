@@ -137,10 +137,13 @@ flex-direction: column;
 width: 100%;
 padding: 10px ;
 display: flex;
-flex: row;
+flex-direction: column;
 text-align: center;
-justify-content: space-between;
-
+justify-content: center;
+}
+.rollingMenuCriterias h3{
+    text-align: start;
+    margin-left: 10px;
 }
 .rollingMenuCriterias .filter{
     text-decoration: underline;
@@ -149,6 +152,14 @@ justify-content: space-between;
     font-size: 14px;
     font-weight: bold;
     
+}
+
+.tempChoosenFilter{
+    opacity: 0.7;
+}
+
+#themeFilter, #priceRangeFilter, #maxPriceFilter, #typeRegimeFilter{
+    display: none;
 }
 
 .multiSectionsRight .menu{
@@ -382,6 +393,7 @@ p, textarea, input, label, .filter, option, optgroup, .detailedInput label, .fet
 
 .filter{
     margin: 5px;
+    border-color: green;
 }
 
 }

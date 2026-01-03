@@ -1,3 +1,16 @@
+<?php
+
+require_once "./Functions/fctMenus.php";
+//récupération de la liste des thèmes et leur id de la DB
+$themes = themesList();
+//récupération de la liste des régimes et leur id de la DB
+$regimes = regimesList();
+//récupération de la liste des menus avec leurs themes et régimes associés
+$menus = getAllMenus();
+//chemin du dossier photo menus
+$photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,11 +65,9 @@
 					<div class="SectionContent">
 						<div class="filterTheme">
 							<h2>Thèmes</h2>
-							<a href="">Les Spécifiques</a>
-							<a href="">Du Jour</a>
-							<a href="">Du Week end</a>
-							<a href="">Nos Gouters</a>
-							<a href="">Nos Pastas</a>
+							<?php foreach ($themes as $theme): ?>
+								<a href=""><?= $theme->libelle ?></a>
+							<?php endforeach; ?>
 						</div>
 					</div>
 				</section>
@@ -64,10 +75,38 @@
 			<div class="multiSectionsRight">
 				<section class="Section">
 					<div class="SectionContent Criterias">
-						<h2>Veuillez sélectionner un thème ou un filtre: </h2>
-						<div class="rollingMenuCriterias">
-							<div><label>
-									<h6>Nos thèmes:</h6>
+						<h2>Recherche d'un menu spécifique ?</h2>
+						<div class="rollingMenuCriterias" id="filterSelection">
+						<h3>1. Veuillez sélectionner un choix ou un filtre: </h3>
+								<div><label>
+									<h6 id="filterCriteria">Filtres Menus</h6>
+									<select name="selectFilter" id="selectFilter" class="filter">
+										<!--<option class="none" value="" disabled selected>Filtres menus</option>-->
+										<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+										<option class="none" value="none" disabled selected>Afficher</option>
+										<optgroup label="Tous">
+										<option value="all" default>. Tous les menus</option>
+										<optgroup label="Filtres menus">
+											<option value="theme">. Par thèmes</option>
+											<option value="priceRange">. Par plages de prix</option>
+											<option value="maxPrice">. Par prix max</option>
+											<option value="regimeType">. Par type de régime</option>
+										</optgroup>
+									</select>
+								</label></div>
+						</div>
+						<div class="rollingMenuCriterias" id="filterGroup">
+							<h3 id="chooseFilter">2. Veuillez préciser un critère de filtre: </h3>
+							<div class="tempChoosenFilter">
+							<!--Pour représentation temporaire uniquement tant qu un filtre n'est pas choisi-->
+								<label>
+									<h6>Critères du Filtre</h6>
+									<select class="filter" disabled>
+										<option class="none" value="" disabled selected>Critères</option>
+									</select>
+								</label></div>
+							<div id="themeFilter" ><label>
+									<h6 id="themeCriteria">Thèmes</h6>
 									<select name="selectThemes" id="selectThemes" class="filter">
 										<option class="none" value="" disabled selected>Thèmes</option>
 										<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
@@ -75,16 +114,16 @@
 											<option value="all" default>Tous thèmes</option>
 										</optgroup>
 										<optgroup label=" Par thème">
-											<option value="specifiques">Les spécifiques</option>
-											<option value="jour">Du Jour</option>
-											<option value="weekend">Du Week End</option>
-											<option value="gouter">Nos Gouter</option>
-											<option value="pasta">Nos Pastas</option>
+											<?php
+											//récupère les themes de la db (les id en valeurs et libelles en écriture)
+											foreach ($themes as $theme): ?>
+												<option value="<?= $theme->theme_id ?>"><?= $theme->libelle ?></option>
+											<?php endforeach; ?>
 										</optgroup>
 									</select>
 								</label></div>
-							<div><label>
-									<h6>Plages de prix:</h6>
+							<div id="priceRangeFilter"><label>
+									<h6 id="priceRangeCriteria">Plages de prix</h6>
 									<select name="priceRange" id="priceRange" class="filter">
 										<option class="none" value="" disabled selected>Fourchette</option>
 										<optgroup label="Tous">
@@ -98,8 +137,8 @@
 										</optgroup>
 									</select>
 								</label></div>
-							<div><label>
-									<h6> prix max:</h6>
+							<div id="maxPriceFilter" ><label>
+									<h6 id="maxPriceCriteria"> Prix max</h6>
 									<select name="maxPrice" id="maxPrice" class="filter">
 										<option class="none" value="" disabled selected>Prix max</option>
 										<optgroup label="Tous">
@@ -114,17 +153,19 @@
 									</select>
 								</label></div>
 
-							<div><label>
-									<h6>Type de régime:</h6>
+							<div id="typeRegimeFilter"><label>
+									<h6 id="typeRegimeCriteria">Type de régime</h6>
 									<select name="regime" id="regime" class="filter">
 										<option class="none" value="" disabled selected>Régime</option>
 										<optgroup label="Tous">
 											<option value="all" default>Tous</option>
 										</optgroup>
 										<optgroup label="Par régime">
-											<option value="vegan">végétarien</option>
-											<option value="sansGluten">sans Gluten</option>
-											<option value="arachideFree">sans arachide</option>
+											<?php
+											//récupère les régimes de la db (les id en valeurs et libelles en écriture)
+											foreach ($regimes as $regime): ?>
+												<option value="<?= $regime->regime_id ?>"><?= $regime->libelle ?></option>
+											<?php endforeach; ?>
 										</optgroup>
 									</select>
 								</label></div>
@@ -133,38 +174,65 @@
 					</div>
 				</section>
 				<section class="Section">
-					<div class="SectionContent">
-						<h2>Menus</h2>
-						<div class="product">
+					<div class="SectionContent" >
+						<h2><u>Menus :</u><span id="heading"><em> Tout les menus</em></span></h2>
+						<p class="requirement" id="notePlat">* Cliquer sur un menu pour voir le détail des plats le composant</p>
+				<div id="menuContainer">
+						<?php
+						//récupère les menus de la db ( ainsi que leur thèmes et leur régime associés)
+						foreach ($menus as $menu):
+						?>
+							<div class="menu">
+								<div class="menuLeft">
+									<!--cheminPhotoMenu&NomdePhoto-->
+									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="" width="200px">
+								</div>
+								<div class="menuRight">
+									<h3 class="title">
+										<!--titre menu-->
+										<a href=""><?= $menu->titre ?></a>
+									</h3>
+									<!--description menu-->
+									<p class="description">
+										<?= $menu->description ?>
 
-							<div class="productLeft">
-								<img src="../2_vgTeam/gestionMenus/uploads/gourmand.jpg" alt="" width="150px" >
+									</p>
+									<div class="regimetheme">
+										<div>
+											<h5>&nbsp;<span>Thème: </span></h5>
+											<!--thème menu-->
+											<p>&nbsp;&nbsp;&nbsp;<span><em><?= $menu->theme ?></em></span></p>
+										</div>
+										<div>
+											<h5><span>Régime: </span></h5>
+											<!--régime menu-->
+											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->regime ?></em></p>
+										</div>
+										<div>
+											<h5><span>Nbre pers.min: </span></h5>
+											<!--Nbre pers.min-->
+											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->nombre_personne_minimum ?></em></p>
+										</div>
+										<div>
+											<h5><span>Qté restante(s): </span></h5>
+											<!--Qté restante(s)-->
+											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->quantite_restante ?></em></p>
+										</div>
+										<!--prix menu-->
+										<h5>Prix TTC:</h5>
+										<p class="price"><?= $menu->prix_par_personne ?>&euro;/pers.</p>
+									</div>
+								</div>
 							</div>
-
-							<div class="productRight">
-								<h3 class="title">
-									<a href="">Gourmand</a>
-								</h3>
-								<p class="description">
-									Een beitel in de vorm van een schuurtje op een beekplaat. Het dak wordt
-									ondersteund door een frame dat rust op vier grote houten pilaren.
-								</p>
-								<p class="price">
-									29.99 &euro;
-								</p>
-
-							</div>
-						</div>
-
-
+						<?php endforeach; ?>
+					</div>	
 					</div>
-			</section>
-				</div>
-
+				</section>
+			</div>
 		</div>
-		</div>
-		<?php require_once "includes/footer.php" ?>
-		<script type="module" src="./JS/menus.js"></script>
+	</div>
+	<?php require_once "includes/footer.php" ?>
+	<script type="module" src="./JS/menus.js"></script>
 </body>
 
 </html>

@@ -75,9 +75,37 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 			<div class="multiSectionsRight">
 				<section class="Section">
 					<div class="SectionContent Criterias">
-						<h2>Veuillez sélectionner un thème ou un filtre: </h2>
-						<div class="rollingMenuCriterias">
-							<div><label>
+						<h2>Recherche d'un menu spécifique ?</h2>
+						<div class="rollingMenuCriterias" id="filterSelection">
+						<h3>1. Veuillez sélectionner un choix ou un filtre: </h3>
+								<div><label>
+									<h6 id="filterCriteria">Filtres Menus</h6>
+									<select name="selectFilter" id="selectFilter" class="filter">
+										<!--<option class="none" value="" disabled selected>Filtres menus</option>-->
+										<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+										<option class="none" value="none" disabled selected>Afficher</option>
+										<optgroup label="Tous">
+										<option value="all" default>. Tous les menus</option>
+										<optgroup label="Filtres menus">
+											<option value="theme">. Par thèmes</option>
+											<option value="priceRange">. Par plages de prix</option>
+											<option value="maxPrice">. Par prix max</option>
+											<option value="regimeType">. Par type de régime</option>
+										</optgroup>
+									</select>
+								</label></div>
+						</div>
+						<div class="rollingMenuCriterias" id="filterGroup">
+							<h3 id="chooseFilter">2. Veuillez préciser un critère de filtre: </h3>
+							<div class="tempChoosenFilter">
+							<!--Pour représentation temporaire uniquement tant qu un filtre n'est pas choisi-->
+								<label>
+									<h6>Critères du Filtre</h6>
+									<select class="filter" disabled>
+										<option class="none" value="" disabled selected>Critères</option>
+									</select>
+								</label></div>
+							<div id="themeFilter" ><label>
 									<h6 id="themeCriteria">Thèmes</h6>
 									<select name="selectThemes" id="selectThemes" class="filter">
 										<option class="none" value="" disabled selected>Thèmes</option>
@@ -94,9 +122,9 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 										</optgroup>
 									</select>
 								</label></div>
-							<div><label>
+							<div id="priceRangeFilter"><label>
 									<h6 id="priceRangeCriteria">Plages de prix</h6>
-									<select name="priceRange" id="priceRange" class="filter">
+									<select name="priceRange" id="selectPriceRange" class="filter">
 										<option class="none" value="" disabled selected>Fourchette</option>
 										<optgroup label="Tous">
 											<option value="all" default>Tous</option>
@@ -109,9 +137,9 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 										</optgroup>
 									</select>
 								</label></div>
-							<div><label>
+							<div id="maxPriceFilter" ><label>
 									<h6 id="maxPriceCriteria"> Prix max</h6>
-									<select name="maxPrice" id="maxPrice" class="filter">
+									<select name="maxPrice" id="selectMaxPrice" class="filter">
 										<option class="none" value="" disabled selected>Prix max</option>
 										<optgroup label="Tous">
 											<option value="all" default>Tous</option>
@@ -125,9 +153,9 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									</select>
 								</label></div>
 
-							<div><label>
+							<div id="typeRegimeFilter"><label>
 									<h6 id="typeRegimeCriteria">Type de régime</h6>
-									<select name="regime" id="regime" class="filter">
+									<select name="regime" id="selectRegime" class="filter">
 										<option class="none" value="" disabled selected>Régime</option>
 										<optgroup label="Tous">
 											<option value="all" default>Tous</option>
@@ -147,7 +175,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 				</section>
 				<section class="Section">
 					<div class="SectionContent" >
-						<h2><u>Menus :</u><span id="heading"><em> Tout les menus</em></span></h2>
+						<h2><u>Menus </u>: <em><span id="heading">Tout les menus</span></em></h2>
 						<p class="requirement" id="notePlat">* Cliquer sur un menu pour voir le détail des plats le composant</p>
 				<div id="menuContainer">
 						<?php
