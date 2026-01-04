@@ -130,10 +130,10 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 											<option value="all" default>Tous</option>
 										</optgroup>
 										<optgroup label="Par plages de prix">
-											<option value="15">0-15 €</option>
-											<option value="30">15-30 €</option>
-											<option value="45">30-45 €</option>
-											<option value="46">> 45 €</option>
+											<option value="0">0-15 €</option>
+											<option value="15">15-30 €</option>
+											<option value="30">30-45 €</option>
+											<option value="45">> 45 €</option>
 										</optgroup>
 									</select>
 								</label></div>
@@ -148,7 +148,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 											<option value="20">20 €</option>
 											<option value="35">35 €</option>
 											<option value="50">50 €</option>
-											<option value="1000">> 50 €</option>
+											<option value="10000">> 50 €</option>
 										</optgroup>
 									</select>
 								</label></div>

@@ -278,6 +278,11 @@ selectThemes.addEventListener("change", function(){
 
 
 
+
+
+
+
+
 //Ecoute du changement sur le fitre régime et application de la function associée
 selectRegime.addEventListener("change", function(){
     //récupération de la valeur sélectionnée au selecteur et assignation
@@ -302,61 +307,4 @@ selectRegime.addEventListener("change", function(){
 	//Envoi du menu Selectionné à travers l'url encodé (même process qu'un envoi de donnée clé/valeur avec un html mais de forme encodé)
 		//clé/valeur envoyé => libelle/selectRegime
 	http.send("selectedRegime="+selectRegime);
-});
-
-
-
-
-
-//Ecoute du changement sur le fitre maxPrice (Prix max) et application de la function associée
-selectMaxPrice.addEventListener("change", function(){
-    //récupération de la valeur sélectionnée au selecteur et assignation
-    let selectMaxPrice = this.value;
-    // le texte de l'index sélectionnée [this.selectedIndex]
-    let criteria = this[this.selectedIndex].text;
-	// le texte du Filtre 
-	let filterMaxPriceName = filtermaxPriceCriteria.innerHTML;
-	//Personalisation du titre de la selection
-	heading.innerHTML = ` ${filterMaxPriceName}   → Choix: "${criteria}"`;
-	//Création d'un objet de requête Ajax assignée à http
-	let http = new XMLHttpRequest();
-
-	//E2_ Récupération d'un éventuel retour de résultat de Fetch_php suite une éventuelle requête précédement envoyée
-	//lorsque la transaction avec le server est complétée, au chargement (onload) une fonction est executée 
-	http.onload = filterOnloadAJAX;//cf detail de la function filterOnloadAJAX dans la suite du document
-
-	//E1_ Préparation de la requête avec la méthode open en ciblant via un POST le fichier d'execution et de façon asynchrone (true)
-	http.open('POST', "Functions/fctFetchSelecFilter.php", true);
-	//avec la méthode setRequestHeader définition et envoi du type de contenu (content-type=> url encodé (replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits. Hello Günter = Hello%20G%C3%BCnter , les espaces sont encodés %20.)) 
-	http.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-	//Envoi du menu Selectionné à travers l'url encodé (même process qu'un envoi de donnée clé/valeur avec un html mais de forme encodé)
-		//clé/valeur envoyé => libelle/selectRegime
-	http.send("selectedMaxPrice="+selectMaxPrice);
-});
-
-
-//Ecoute du changement sur le fitre PriceRange (Plage de Prix) et application de la function associée
-selectPriceRange.addEventListener("change", function(){
-    //récupération de la valeur sélectionnée au selecteur et assignation
-    let selectPriceRange = this.value;
-    // le texte de l'index sélectionnée [this.selectedIndex]
-    let criteria = this[this.selectedIndex].text;
-	// le texte du Filtre 
-	let filterPriceRangeName = filterpriceRangeCriteria.innerHTML;
-	//Personalisation du titre de la selection
-	heading.innerHTML = ` ${filterPriceRangeName}   → Choix: "${criteria}"`;
-	//Création d'un objet de requête Ajax assignée à http
-	let http = new XMLHttpRequest();
-
-	//E2_ Récupération d'un éventuel retour de résultat de Fetch_php suite une éventuelle requête précédement envoyée
-	//lorsque la transaction avec le server est complétée, au chargement (onload) une fonction est executée 
-	http.onload = filterOnloadAJAX;//cf detail de la function filterOnloadAJAX dans la suite du document
-
-	//E1_ Préparation de la requête avec la méthode open en ciblant via un POST le fichier d'execution et de façon asynchrone (true)
-	http.open('POST', "Functions/fctFetchSelecFilter.php", true);
-	//avec la méthode setRequestHeader définition et envoi du type de contenu (content-type=> url encodé (replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits. Hello Günter = Hello%20G%C3%BCnter , les espaces sont encodés %20.)) 
-	http.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-	//Envoi du menu Selectionné à travers l'url encodé (même process qu'un envoi de donnée clé/valeur avec un html mais de forme encodé)
-		//clé/valeur envoyé => libelle/selectRegime
-	http.send("selectedPriceRange="+selectPriceRange);
 });
