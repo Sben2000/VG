@@ -9,6 +9,15 @@ $regimes = regimesList();
 $menus = getAllMenus();
 //chemin du dossier photo menus
 $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
+//traitement du thème séléctionné dans le panneau de gauche hors AJAX (traitement AJAX pour les filtres)
+if (isset($_GET['themePanelID'])){
+	/*si une valeur d'index est identifié lors du clic sur un lien du panneau de gauche, on decode la valeur que l on assigne à une variable $themeID*/
+		$themeID = urldecode($_GET['themePanelID']); 
+	//puis introduction dans la function ci dessous et assignation du resultat à $menus
+		$menus = getMenusByThemeOnly($themeID);
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -61,13 +70,22 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 		<div class="multiSectionsCentral">
 			<div class="multiSectionsLeft">
 				<section class="Section">
-
 					<div class="SectionContent">
 						<div class="filterTheme">
-							<h2>Thèmes</h2>
-							<?php foreach ($themes as $theme): ?>
-								<a href=""><?= $theme->libelle ?></a>
-							<?php endforeach; ?>
+							<h2 id="themeCriteriaPanel">Thèmes</h2>
+									<select multiple name="selectThemesPanel" id="selectThemesPanel" class="filter">
+										<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+										<optgroup label=" Tous">
+											<option value="all" default>Tout les menus</option>
+										</optgroup>
+										<optgroup label=" Par thème">
+											<?php
+											//récupère les themes de la db (les id en valeurs et libelles en écriture)
+											foreach ($themes as $theme): ?>
+												<option value="<?= $theme->theme_id ?>"><?= $theme->libelle ?></option>
+											<?php endforeach; ?>
+										</optgroup>
+									</select>
 						</div>
 					</div>
 				</section>
@@ -85,7 +103,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 										<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
 										<option class="none" value="none" disabled selected>Afficher</option>
 										<optgroup label="Tous">
-										<option value="all" default>. Tous les menus</option>
+										<option value="all" default>. Tout les menus</option>
 										<optgroup label="Filtres menus">
 											<option value="theme">. Par thèmes</option>
 											<option value="priceRange">. Par plages de prix</option>
@@ -111,7 +129,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 										<option class="none" value="" disabled selected>Thèmes</option>
 										<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
 										<optgroup label="Tous">
-											<option value="all" default>Tous thèmes</option>
+											<option value="all" default>Tous</option>
 										</optgroup>
 										<optgroup label=" Par thème">
 											<?php
@@ -178,6 +196,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 						<h2><u>Menus </u>: <em><span id="heading">Tout les menus</span></em></h2>
 						<p class="requirement" id="notePlat">* Cliquer sur un menu pour voir le détail des plats le composant</p>
 				<div id="menuContainer">
+				<hr class="menuSeparation">
 						<?php
 						//récupère les menus de la db ( ainsi que leur thèmes et leur régime associés)
 						foreach ($menus as $menu):
@@ -224,6 +243,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									</div>
 								</div>
 							</div>
+							<hr class="menuSeparation">
 						<?php endforeach; ?>
 					</div>	
 					</div>

@@ -54,6 +54,12 @@ let heading = document.querySelector('#heading');
 	//le titre du filtre
 	let filtertypeRegimeCriteria = document.querySelector("#typeRegimeCriteria");
 
+//Eléments spécifiques du "Panneau Theme" de gauche :
+	// le selecteur 
+	let selectThemesPanel = document.querySelector("#selectThemesPanel");
+	//le titre du filtre
+	let filterThemeCriteriaPanel = document.querySelector("#themeCriteriaPanel");
+
 /**************************Affichage du Type de filtre en fonction du 1er choix****************************** */
 
 //lors d'un choix ou une selection de filtre
@@ -218,6 +224,7 @@ function filterOnloadAJAX(){
 									</div>
 								</div>
 							</div>
+							<hr id="menuSeparation">
                     `;
                 }
 			}
@@ -359,4 +366,31 @@ selectPriceRange.addEventListener("change", function(){
 	//Envoi du menu Selectionné à travers l'url encodé (même process qu'un envoi de donnée clé/valeur avec un html mais de forme encodé)
 		//clé/valeur envoyé => libelle/selectRegime
 	http.send("selectedPriceRange="+selectPriceRange);
+});
+
+
+//Ecoute du changement sur le panneau thème de gauche et application de la function associée
+selectThemesPanel.addEventListener("change", function(){
+    //récupération de la valeur sélectionnée au selecteur et assignation
+    let selectThemesPanel = this.value;
+    // le texte de l'index sélectionnée [this.selectedIndex]
+    let criteria = this[this.selectedIndex].text;
+	// le texte du Filtre thème du panneau
+	let filterThemeNamePanel = filterThemeCriteriaPanel.innerHTML;
+	//Personalisation du titre de la selection
+	heading.innerHTML = ` ${filterThemeNamePanel}   → Choix: "${criteria}"`;
+	//Création d'un objet de requête Ajax assignée à http
+	let http = new XMLHttpRequest();
+
+	//E2_ Récupération d'un éventuel retour de résultat de Fetch_php suite une éventuelle requête précédement envoyée
+	//lorsque la transaction avec le server est complétée, au chargement (onload) une fonction est executée 
+	http.onload = filterOnloadAJAX;//cf detail de la function filterOnloadAJAX dans la suite du document
+
+	//E1_ Préparation de la requête avec la méthode open en ciblant via un POST le fichier d'execution et de façon asynchrone (true)
+	http.open('POST', "Functions/fctFetchSelecFilter.php", true);
+	//avec la méthode setRequestHeader définition et envoi du type de contenu (content-type=> url encodé (replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits. Hello Günter = Hello%20G%C3%BCnter , les espaces sont encodés %20.)) 
+	http.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+	//Envoi du menu Selectionné à travers l'url encodé (même process qu'un envoi de donnée clé/valeur avec un html mais de forme encodé)
+		//clé/valeur envoyé => libelle/selectThemes
+	http.send("selectedThemePanel="+selectThemesPanel);
 });

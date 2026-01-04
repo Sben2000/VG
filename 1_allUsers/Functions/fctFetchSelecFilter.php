@@ -115,3 +115,23 @@ if(isset($_POST['selectedPriceRange'])){
 
     echo json_encode($menus);
 }
+
+//Vérification/écoute d'un éventuel POST possédant la clé "selectedThemePanel" (via une url)
+
+if(isset($_POST['selectedThemePanel'])){
+
+    //Récupèration de la valeur séléctionnée et transmise
+    $selectedThemePanel = $_POST['selectedThemePanel'];
+    //vérification de cette valeur
+    //si la valeur est égale à "all"
+    if($selectedThemePanel ==="all"){
+        //on affiche toute les valeurs via la fonction dévellopée dans fctMenus.php
+        $menus = getAllMenus();
+    }else{
+        //sinon affichage uniquement le theme selectionné en passant celui ci dans la function getMenusByThemeOnly
+        $menus = getMenusByThemeOnly($selectedThemePanel);
+    }
+    //on renvoi le résultat au JS au format json
+
+    echo json_encode($menus);
+}

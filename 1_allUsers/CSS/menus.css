@@ -64,8 +64,11 @@ body{
     color: var(--elmDeco);
 }
 
-.note{
-    font-size: small;
+#notePlat{
+    font-size: 12px;
+    margin-bottom: 10px;
+    font-style:italic ;
+    color: darkblue;
 }
 
 
@@ -114,12 +117,7 @@ padding-right: 20px;
     
 }
 
-.multiSectionsLeft a:hover{
-    text-decoration: underline;/*soulignement lors du hover sur le lien*/
-    color:var(--hover);
-    
 
-}
 
 .multiSectionsRight{
 width: 75%;
@@ -182,8 +180,13 @@ position: relative;
 .menuRight{
     width: 100%;
 }
+.menuRight .title :hover{
+    color: var(--hover);
+}
+
 .multiSectionsRight .title  {
     margin-top: 10px; 
+    font-family: "Lobster", Arial, Helvetica, sans-serif;
 }
 
 .multiSectionsRight .description  {
@@ -259,6 +262,49 @@ justify-content: space-around;
 color: var(--elmDeco);
 margin: 5px 0px;
 }
+
+.menuSeparation{
+    color: var(--light-color);
+
+}
+
+#selectThemesPanel{
+    background: none;
+    appearance: none;
+    border: none;
+    height: 600px;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 24px;
+    margin-left: 5px;
+}
+
+#selectThemesPanel option{
+    margin: 5px;
+}
+
+#selectThemesPanel option:hover{
+    text-decoration: underline;
+    /* background-color:var(--hover);
+    color: var(--TextClick);*/
+}
+
+#selectThemesPanel optgroup{
+        color:var(--light-color);
+}
+
+#selectThemesPanel :focus{
+border: none;
+background-color: none;
+appearance: none;
+}
+
+#selectThemesPanel option :focus{
+border: none;
+background-color: none;
+appearance: none;
+}
+
 
 #orderForm h3{
 text-align: center;
@@ -350,6 +396,24 @@ p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch inp
     align-items: center;
 }
 
+.regimetheme{
+display: flex;
+flex-direction: column;
+
+}
+
+.multiSectionsRight  .price{
+    margin-top: 5px;
+    margin-bottom: 30px;
+    text-align: end;
+}
+.regimetheme p{
+text-align: center;
+font-weight: 500;
+
+}
+
+
 }
 
 /******************Sous 700px: Affichage Téléphone*/
@@ -391,9 +455,6 @@ p, textarea, input, label, .filter, option, optgroup, .detailedInput label, .fet
 
 }
 
-.filter{
-    margin: 5px;
-    border-color: green;
-}
+
 
 }
