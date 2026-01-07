@@ -1,21 +1,21 @@
 <?php
-//fichier de function traitant les détails affichés dans cette page
-require_once "./Functions/fctOrderMenu.php";
 
-/*Si une réquête (en provenance de l'url encodé (clé menuID) de menu.php) est complétée avec une valeur de menuID :*/
-if (isset($_GET['menuID'])) {
-	/*la valeur décodé est alors récupéré est assigné à $menuID*/
-	$menuID = urldecode($_GET['menuID']);
-	//le menuID est passé en argument de la function qui récupère les détails de celui ci 
-	//seul le menu sélectionné est  affiché dans la suite via les data objets récupérés $menu->XXX
-	$menu =  getSelectedMenu($menuID);
-	//les plats associés sont récupérés via la function getProposePlatByMenuID($menuID) en y passant l'ID menu sélectionné
-	$associatedDishes = getProposePlatByMenuID($menuID);
-}
-
+require_once "./Functions/fctMenus.php";
+//récupération de la liste des thèmes et leur id de la DB
+$themes = themesList();
+//récupération de la liste des régimes et leur id de la DB
+$regimes = regimesList();
+//récupération de la liste des menus avec leurs themes et régimes associés
+$menus = getAllMenus();
 //chemin du dossier photo menus
 $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
-
+//traitement du thème séléctionné dans le panneau de gauche hors AJAX (traitement AJAX pour les filtres)
+if (isset($_GET['themePanelID'])) {
+	/*si une valeur d'index est identifié lors du clic sur un lien du panneau de gauche, on decode la valeur que l on assigne à une variable $themeID*/
+	$themeID = urldecode($_GET['themePanelID']);
+	//puis introduction dans la function ci dessous et assignation du resultat à $menus
+	$menus = getMenusByThemeOnly($themeID);
+}
 
 
 ?>
@@ -45,7 +45,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 	<!--link css disconnect (modal)-->
 	<link rel="stylesheet" href="CSS/disconnectMod.css" />
 
-	<title>Détails menu & commande</title>
+	<title>Nos menus</title>
 </head>
 
 <body>
@@ -69,50 +69,54 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 
 		<div class="multiSectionsCentral">
 			<div class="multiSectionsLeft">
-				<section class="Section" id="absolute">
+				<section class="Section">
 					<div class="SectionContent">
-						<div>
-							<h2 id="reachUsPanelTitle"><u>Nous joindre : </u></h2>
-							<div class="reachUsPanel">
-								<div class="findUs">
-									<h3>Nous trouver</h3>
-									<div class="findUsContent">
-										<div class="mapResponsive">
-											<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.6317741257817!2d-0.5671845234627645!3d44.829065775590735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527b530b3ead3%3A0xdabebb8f9b125ed3!2sCr%20de%20la%20Marne%2C%2033800%20Bordeaux!5e0!3m2!1sfr!2sfr!4v1762846904803!5m2!1sfr!2sfr" width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-										</div>
-										<p>#Cr de la Marne, 33800 Bordeaux#</p>
+						<h2 id="themeCriteriaPanel"><u>Nous joindre : </u></h2>
+						<div class="reachUsPanel">
+							<div class="findUsLeft">
+								<h3>Nous trouver</h3>
+								<div class="findUsContent">
+									<div class="mapResponsive">
+										<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.6317741257817!2d-0.5671845234627645!3d44.829065775590735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527b530b3ead3%3A0xdabebb8f9b125ed3!2sCr%20de%20la%20Marne%2C%2033800%20Bordeaux!5e0!3m2!1sfr!2sfr!4v1762846904803!5m2!1sfr!2sfr" width="250" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 									</div>
+									<p>#Cr de la Marne, 33800 Bordeaux#</p>
+								</div>
+
+							</div>
+							<div class="reachUsRight" id="reachUsRight">
+								<h3>Nos horaires et contact</h3>
+								<div class="reachUsRightContent">
+									<ul class="timeTable">
+										<u>
+											<h3>Nos horaires:</h3>
+										</u>
+										<li>Pour vous restaurer chez nous</li>
+										<p>Mardi au Samedi de 12h-14h/19h-22h </p>
+										<li>Pour vos commandes</li>
+										<div class="orderType">
+											<li>Commandes du restaurant:</li>
+											<p>Mardi au Samedi de 9h-11h30/14h-18h</p>
+											<li>Commandes personnalisées:</li>
+											<p>Lundi au Vendredi de 8h-11h30/15h-19h</p>
+										</div>
+									</ul>
+									<ul class="contact">
+										<u>
+											<h3>Nous contacter:</h3>
+										</u>
+										<li>Pour vos services du jour</li>
+										<p>tel: XX/XX/XX/XX/XX </p>
+										<li>Pour vos commandes personnalisées</li>
+										<div class="orderTypeContact">
+											<li>Par téléphone: <span> XX/XX/XX/XX/XX</span></li>
+											<li>Par mail: <span> XX@vit&go.fr</span></li>
+											<li>Via notre formulaire: <span><a href="contact.php">Contact</a></span></li>
+										</div>
+									</ul>
 
 								</div>
-								<ul class="timeTable">
-									<u>
-										<h3>Nos horaires:</h3>
-									</u>
-									<li>Pour vous restaurer chez nous</li>
-									<p>Mardi au Samedi de 12h-14h/19h-22h </p>
-									<li>Pour vos commandes</li>
-									<div class="orderType">
-										<li>Commandes du restaurant:</li>
-										<p>Mardi au Samedi de 9h-11h30/14h-18h</p>
-										<li>Commandes personnalisées:</li>
-										<p>Lundi au Vendredi de 8h-11h30/15h-19h</p>
-									</div>
-								</ul>
-								<ul class="contact" id="ourContact">
-									<u>
-										<h3>Nous contacter:</h3>
-									</u>
-									<li>Pour vos services du jour</li>
-									<p>tel: XX/XX/XX/XX/XX </p>
-									<li>Pour vos commandes personnalisées</li>
-									<div class="orderTypeContact">
-										<li>Par téléphone: <span> XX/XX/XX/XX/XX</span></li>
-										<li>Par mail: <span> XX@vit&go.fr</span></li>
-										<li>Via notre formulaire: <span><a href="contact.php">Contact</a></span></li>
-									</div>
-								</ul>
-							</div>
 
+							</div>
 						</div>
 					</div>
 				</section>
@@ -120,71 +124,58 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 			<div class="multiSectionsRight">
 				<section class="Section">
 					<div class="SectionContent">
-						<h2><u>Menu sélectionné </u>: <em><span id="heading"><?= $menu->titre ?></span></em></h2>
+						<h2><u>Menus </u>: <em><span id="heading">Tout les menus</span></em></h2>
+						<p class="requirement" id="notePlat">* Cliquer sur un menu pour voir le détail des plats le composant</p>
 						<div id="menuContainer">
 							<hr class="menuSeparation">
-
-							<div class="menu">
-								<div class="menuLeft">
-									<!--cheminPhotoMenu&NomdePhoto-->
-									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="" width="200px">
-								</div>
-								<div class="menuRight">
-									<h3 class="choosenMenuTitle">
-										<!--titre menu-->
-										<p><u><?= $menu->titre ?></u></p>
-									</h3>
-									<!--description menu-->
-									<p class="description">
-										<?= $menu->description ?></p>
-										
-									<!--liste des plats associés-->
-									<div class="associatedDishes">
-									<h4>&nbsp;<span>Plat(s):&nbsp;</span></h4>
-											<?php 
-											if ($associatedDishes == NULL){?>
-												<p class= "note"><em>&#x2794; cf.description ci dessus ou nous contacter pour le détail</em></p>
-											<?php
-											}else{
-											foreach ($associatedDishes as $associatedDish): ?>
-										<div class="associatedDishesDetails">
-
-												<p><?= $associatedDish->titre_plat ?></p>
-												<!--origine du code ci dessous :https://openclassrooms.com/forum/sujet/telecharger-une-image-blob-sur-dans-un-fichier et https://stackoverflow.com/questions/54638875/using-php-pdo-to-show-image-blob-from-mysql-database-in-html-image-tag-->
-													<img src="data:image/png;base64,<?=base64_encode($associatedDish->photo)?>" width="120px" height="120px" />
-										</div>
-										<?php endforeach;} ?>
+							<?php
+							//récupère les menus de la db ( ainsi que leur thèmes et leur régime associés)
+							foreach ($menus as $menu):
+							?>
+								<div class="menu">
+									<div class="menuLeft">
+										<!--cheminPhotoMenu&NomdePhoto-->
+										<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="" width="200px">
 									</div>
+									<div class="menuRight">
+										<h3 class="title">
+											<!--titre menu-->
+											<a href=""><?= $menu->titre ?></a>
+										</h3>
+										<!--description menu-->
+										<p class="description">
+											<?= $menu->description ?>
 
-									<div class="regimetheme">
-										<div>
-											<h5>&nbsp;<span>Thème: </span></h5>
-											<!--thème menu-->
-											<p>&nbsp;&nbsp;&nbsp;<span><em><?= $menu->theme ?></em></span></p>
+										</p>
+										<div class="regimetheme">
+											<div>
+												<h5>&nbsp;<span>Thème: </span></h5>
+												<!--thème menu-->
+												<p>&nbsp;&nbsp;&nbsp;<span><em><?= $menu->theme ?></em></span></p>
+											</div>
+											<div>
+												<h5><span>Régime: </span></h5>
+												<!--régime menu-->
+												<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->regime ?></em></p>
+											</div>
+											<div>
+												<h5><span>Nbre pers.min: </span></h5>
+												<!--Nbre pers.min-->
+												<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->nombre_personne_minimum ?></em></p>
+											</div>
+											<div>
+												<h5><span>Qté restante(s): </span></h5>
+												<!--Qté restante(s)-->
+												<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->quantite_restante ?></em></p>
+											</div>
+											<!--prix menu-->
+											<h5>Prix TTC:</h5>
+											<p class="price"><?= $menu->prix_par_personne ?>&euro;/pers.</p>
 										</div>
-										<div>
-											<h5><span>Régime: </span></h5>
-											<!--régime menu-->
-											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->regime ?></em></p>
-										</div>
-										<div>
-											<h5><span>Nbre pers.min: </span></h5>
-											<!--Nbre pers.min-->
-											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->nombre_personne_minimum ?></em></p>
-										</div>
-										<div>
-											<h5><span>Qté restante(s): </span></h5>
-											<!--Qté restante(s)-->
-											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->quantite_restante ?></em></p>
-										</div>
-										<!--prix menu-->
-										<h5>Prix TTC:</h5>
-										<p class="price"><?= $menu->prix_par_personne ?>&euro;/pers.</p>
 									</div>
 								</div>
-							</div>
-							<hr class="menuSeparation">
-
+								<hr class="menuSeparation">
+							<?php endforeach; ?>
 						</div>
 					</div>
 				</section>
@@ -201,12 +192,12 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 						<div class="orderLinksExplanation">
 							<h3>&#x27A5; En nous contactant : </h3>
 							<div class="howToOrder">
-								<p>&#x2B2A; Via nos coordonnées affichées dans <a href="orderMenu.php#absolute">cette section</a> ou <a href="indexLocal.php#reachUsRight">en page d'accueil</a></p>
+								<p>&#x2B2A; Via nos coordonnées affichées en page d'accueil, section: <a href="home.php#reachUsRight">Nos horaires et contact</a></p>
 								<p>&#x2B2A; Via notre <a href="contact.php">formulaire de contact</a></p>
 							</div>
 						</div>
 						<div class="menuDetailedButtons">
-							<input type="submit" name="previousPage" value="<< Fermer la page" id="closePage" />
+							<input type="submit" name="previousPage" value="<< Page précédente" id="previousPage" />
 							<input type="submit" name="orderButton" value="Commander" id="orderButton" onclick="location.reload()" />
 						</div>
 					</div>

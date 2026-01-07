@@ -285,3 +285,9 @@ JOIN plat ON propose.plat_id = plat.plat_id;
     WHERE quantite_restante > 0 AND theme.libelle = "gouter"
     ORDER BY menu_id DESC;
     
+   SELECT propose.menu_id, menu.menu_id, menu.regime_id, menu.theme_id, menu.titre, menu.nombre_personne_minimum, menu.prix_par_personne, menu.description, menu.photo_menu, menu.quantite_restante,
+    plat.titre_plat, plat.plat_id
+    FROM propose
+    JOIN menu ON propose.menu_id = menu.menu_id
+    JOIN plat ON propose.plat_id = plat.plat_id
+    WHERE propose.menu_id = 11;

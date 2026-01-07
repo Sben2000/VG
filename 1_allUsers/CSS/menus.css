@@ -64,7 +64,7 @@ body{
     color: var(--elmDeco);
 }
 
-#notePlat{
+#notePlat, .note{
     font-size: 12px;
     margin-bottom: 10px;
     font-style:italic ;
@@ -103,9 +103,15 @@ justify-content: space-between;
 padding-right: 20px;
 }
 
-.multiSectionsLeft .SectionContent{
+.multiSectionsLeft .Section{
     position: fixed;
     width: 20%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+}
+
+ #absolute{
+    position: absolute;
+    width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
 }
 
@@ -139,6 +145,7 @@ flex-direction: column;
 text-align: center;
 justify-content: center;
 }
+
 .rollingMenuCriterias h3{
     text-align: start;
     margin-left: 10px;
@@ -151,6 +158,17 @@ justify-content: center;
     font-weight: bold;
     
 }
+.orderLinksExplanation{
+margin-left: 20px ;
+}
+.menuDetailedButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 50px;
+}
+
+
 
 .tempChoosenFilter{
     opacity: 0.7;
@@ -184,7 +202,7 @@ position: relative;
     color: var(--hover);
 }
 
-.multiSectionsRight .title  {
+.multiSectionsRight .title, .multiSectionsRight .choosenMenuTitle  {
     margin-top: 10px; 
     font-family: "Lobster", Arial, Helvetica, sans-serif;
 }
@@ -211,6 +229,12 @@ position: relative;
 
 input[type="date"], input[type="time"],input[type="text"],input[type="tel"], input[type="email"]   {
     color: var(--elmDeco);
+}
+
+.howToOrder{
+    text-align: start;
+    margin:10px 5px 10px 50px;
+    
 }
 
 input[type="submit"]{ 
@@ -255,17 +279,32 @@ border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalisÃ
 
 }
 
-.regimetheme{
+.regimetheme, .associatedDishes{
 display: flex;
 flex-direction: row;
-justify-content: space-around;
 color: var(--elmDeco);
 margin: 5px 0px;
 }
 
+.regimetheme{
+ justify-content: space-around;   
+}
+
+
+.associatedDishesDetails{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px 5px; 
+}
 .menuSeparation{
     color: var(--light-color);
 
+}
+
+#noMenuFound{
+    margin: 30px auto;
+    text-align: center;
 }
 
 #selectThemesPanel{
@@ -317,11 +356,48 @@ font-size: 16px;
     margin-top: 20px;
     text-align: end; 
 }
+
+#reachUsPanelTitle{
+    text-align: center;
+}
+.reachUsPanel{
+    margin-bottom: 150px;
+}
+
+.reachUsPanel p{
+    font-size: 16px;
+}
+
+.mapResponsive{
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 80%;
+    width: 80%;
+    margin: auto;
+    
+    
+}
+
+.mapResponsive iframe{
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    
+}
+
+.findUsContent{
+    align-items: center;
+    text-align: center;
+}
+
 /*****************************************************GESTION RESPONSIVE*****************************************/
 
 /***************Au dessus 1100px: Affichage Ordinateur*/
 
-.smallScreen, #hideOrderForm, #orderSectionForm{
+.smallScreen {
     display: none;
 }
 
@@ -390,10 +466,14 @@ p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch inp
     display: block;
 }
 
+
 #orderSectionForm>.SectionContent>#orderForm>.orderFormInfo{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+#orderSectionForm{
+    display: none;
 }
 
 .regimetheme{

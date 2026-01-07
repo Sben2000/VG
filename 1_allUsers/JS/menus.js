@@ -171,7 +171,7 @@ function filterOnloadAJAX(){
 				//si le nombre de table objet récupéré est nulle (aucune donnée trouvé)
 				if(response.length == 0){
 					//la réponse suivante est intégrée à out pour être renvoyée
-					out = "<p  style='color:darkred'> Désolé, nous n'avons pas encore ou plus de menu correspondant au critère sélectionné.</p>";
+					out = "<p id='noMenuFound' style='color:darkred'> Désolé, nous n'avons pas encore ou plus de menu correspondant au critère sélectionné.</p> <hr class='menuSeparation'>";
 					//la note située sous le menu n'est pLUS affichée (détails plat)
 					notePlat.innerHTML="";
 					//Le footer est repositionné au niveau bottom:0 si décalage vers le haut (tendance à remonter un peu sans résultat)
@@ -185,13 +185,16 @@ function filterOnloadAJAX(){
                     out+=`
 							<div class="menu">
 								<div class="menuLeft">
-									<!--cheminPhotoMenu&NomdePhoto-->
+									<!--cheminPhotoMenu&NomdePhoto affichée à l'intérieur du lien qui renvoi vers orderMenu.php pour afficher le menu seul-->
+									<a href="orderMenu.php?menuID=${data.menu_id}" target="_blank">
 									<img src="${uploadsPath+data.photo_menu}" alt="" width="200px">
+									</a>
 								</div>
 								<div class="menuRight">
 									<h3 class="title">
-										<!--titre menu-->
-										<a href="">${data.titre}</a>
+										<!--titre menu affichée-->
+											<!--à travers le lien, on envoi le menuID vers la page orderMenu.php pour l'afficher seul-->
+										<a href="orderMenu.php?menuID=${data.menu_id}" target="_blank">${data.titre}</a>
 									</h3>
 									<!--description menu-->
 									<p class="description">
@@ -224,7 +227,7 @@ function filterOnloadAJAX(){
 									</div>
 								</div>
 							</div>
-							<hr id="menuSeparation">
+							<hr class="menuSeparation">
                     `;
                 }
 			}

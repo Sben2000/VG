@@ -76,7 +76,7 @@
                 </div>
 
             </div>
-            <div class="reachUsRight">
+            <div class="reachUsRight" id="reachUsRight">
                 <h3>Nos horaires et contact</h3>
                 <div class="reachUsRightContent">
                     <ul class="timeTable">

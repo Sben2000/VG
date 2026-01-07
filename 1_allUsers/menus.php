@@ -194,22 +194,26 @@ if (isset($_GET['themePanelID'])){
 				<section class="Section">
 					<div class="SectionContent" >
 						<h2><u>Menus </u>: <em><span id="heading">Tout les menus</span></em></h2>
-						<p class="requirement" id="notePlat">* Cliquer sur un menu pour voir le détail des plats le composant</p>
-				<div id="menuContainer">
-				<hr class="menuSeparation">
+						<p class="requirement" id="notePlat">* Cliquer sur un menu pour voir le détail des plats ou le commander</p>
+						<hr class="menuSeparation">
+						<div id="menuContainer">
+
 						<?php
 						//récupère les menus de la db ( ainsi que leur thèmes et leur régime associés)
 						foreach ($menus as $menu):
 						?>
 							<div class="menu">
 								<div class="menuLeft">
-									<!--cheminPhotoMenu&NomdePhoto-->
-									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="" width="200px">
+									<!--cheminPhotoMenu&NomdePhoto affichée à l'intérieur du lien qui renvoi vers orderMenu.php pour afficher le menu seul-->
+									<a href="orderMenu.php?menuID=<?php echo urlencode($menu->menu_id) ?>" target="_blank">
+									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="" width="200px" >
+									</a>
 								</div>
 								<div class="menuRight">
 									<h3 class="title">
-										<!--titre menu-->
-										<a href=""><?= $menu->titre ?></a>
+										<!--titre menu affichée-->
+											<!--à travers le lien, on envoi le menuID vers la page orderMenu.php pour l'afficher seul-->
+										<a href="orderMenu.php?menuID=<?php echo urlencode($menu->menu_id) ?>" target="_blank"><?= $menu->titre ?></a>
 									</h3>
 									<!--description menu-->
 									<p class="description">
