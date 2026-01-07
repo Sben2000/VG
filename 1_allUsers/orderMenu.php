@@ -16,7 +16,17 @@ if (isset($_GET['menuID'])) {
 //chemin du dossier photo menus
 $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 
-
+//récupération des données du Profil utilisateur à remplir dans le formulaire de commande
+	require_once ("./Functions/fctUserProfil.php");
+	/*si session user active => réccupérer ses données de profil */
+		if(isset($_SESSION["user"])){
+			/*Récupérer le résultat de la function données de profil user*/
+			$response = userProfilDatas($_SESSION["user"]);
+			//si l'utilisateur a préalablement renseigné son compte Profil (non nul) =>assigner à $userProfil
+		    if($response != NULL){
+		      $userProfil = $response;
+    	}
+	}
 
 ?>
 
@@ -74,8 +84,8 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 						<div>
 							<h2 id="reachUsPanelTitle"><u>Nous joindre : </u></h2>
 							<div class="reachUsPanel">
-								<div class="findUs">
-									<h3>Nous trouver</h3>
+								<div class="reachUsPanelDetails">
+									<h3>&#x25AA; Nous trouver:</h3>
 									<div class="findUsContent">
 										<div class="mapResponsive">
 											<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2829.6317741257817!2d-0.5671845234627645!3d44.829065775590735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527b530b3ead3%3A0xdabebb8f9b125ed3!2sCr%20de%20la%20Marne%2C%2033800%20Bordeaux!5e0!3m2!1sfr!2sfr!4v1762846904803!5m2!1sfr!2sfr" width="200" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -84,33 +94,33 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									</div>
 
 								</div>
-								<ul class="timeTable">
-									<u>
-										<h3>Nos horaires:</h3>
-									</u>
-									<li>Pour vous restaurer chez nous</li>
-									<p>Mardi au Samedi de 12h-14h/19h-22h </p>
-									<li>Pour vos commandes</li>
+								<div class="reachUsPanelDetails">
+									
+										<h3>&#x25AA; Nos horaires:</h3>
+									
+									<li type ="circle">Restauration sur place:</li>
+									<p>Mardi au Samedi <br> de 12h-14h/19h-22h </p>
 									<div class="orderType">
 										<li>Commandes du restaurant:</li>
-										<p>Mardi au Samedi de 9h-11h30/14h-18h</p>
+										<p>Mardi au Samedi <br> de 9h-11h30/14h-18h</p>
 										<li>Commandes personnalisées:</li>
-										<p>Lundi au Vendredi de 8h-11h30/15h-19h</p>
+										<p>Lundi au Vendredi <br> de 8h-11h30/15h-19h</p>
 									</div>
-								</ul>
-								<ul class="contact" id="ourContact">
-									<u>
-										<h3>Nous contacter:</h3>
-									</u>
-									<li>Pour vos services du jour</li>
-									<p>tel: XX/XX/XX/XX/XX </p>
-									<li>Pour vos commandes personnalisées</li>
-									<div class="orderTypeContact">
-										<li>Par téléphone: <span> XX/XX/XX/XX/XX</span></li>
-										<li>Par mail: <span> XX@vit&go.fr</span></li>
-										<li>Via notre formulaire: <span><a href="contact.php">Contact</a></span></li>
+								</div>
+								<div class="reachUsPanelDetails" id="ourContact">
+									
+										<h3>&#x25AA; Nous contacter:</h3>
+									
+									<li>Services du jour:</li>
+									<p>&#x260E;: XX/XX/XX/XX/XX </p>
+									<li>Commandes personnalisées:</li>
+
+										<p>&#x260E;: <span> XX/XX/XX/XX/XX</span></p>
+										<p>&#x40; : <span> XX@vit&go.fr</span></p>
+									<div class="orderTypeContact" id="orderTypeContact" >
+										<p>&#x2709; formulaire: <a href="contact.php">Contact</a></p>
 									</div>
-								</ul>
+								</div>
 							</div>
 
 						</div>
@@ -188,9 +198,12 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 						</div>
 					</div>
 				</section>
+				<?php //si l'utilisateur n'est pas connecté, lui sont alors détaillés les différentes façon de commander
+					if(!isset($_SESSION["user"])){	?>
 				<section class="Section">
 					<div class="SectionContent Criterias">
 						<h2>Commander le menu ?</h2>
+
 						<div class="orderLinksExplanation">
 							<h3>&#x27A5; Depuis le site internet : </h3>
 							<div class="howToOrder">
@@ -201,17 +214,27 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 						<div class="orderLinksExplanation">
 							<h3>&#x27A5; En nous contactant : </h3>
 							<div class="howToOrder">
-								<p>&#x2B2A; Via nos coordonnées affichées dans <a href="orderMenu.php#absolute">cette section</a> ou <a href="indexLocal.php#reachUsRight">en page d'accueil</a></p>
+								<p>&#x2B2A; Via nos coordonnées affichées dans la section "Nous joindre"</a> ou <a href="indexLocal.php#reachUsRight">en page d'accueil</a></p>
 								<p>&#x2B2A; Via notre <a href="contact.php">formulaire de contact</a></p>
 							</div>
 						</div>
+
 						<div class="menuDetailedButtons">
 							<input type="submit" name="previousPage" value="<< Fermer la page" id="closePage" />
-							<input type="submit" name="orderButton" value="Commander" id="orderButton" onclick="location.reload()" />
 						</div>
 					</div>
 				</section>
-
+				<?php 
+						//sinon si l utilisateur est connecté, on lui affiche la possibilité de commander 
+				}else{ ?>
+				<section class="Section">
+					<div class="SectionContent Criterias">
+						<div class="menuDetailedButtons">
+							<input type="submit" name="previousPage" value="&#x2B9C; Fermer la page" id="closePage" />
+							<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" onclick="location.reload()" />
+						</div>
+					</div>
+				</section>
 				<section class="Section" id="orderSectionForm" class="orderSectionForm">
 					<div class="SectionContent">
 						<h2>Je précise ma commande</h2>
@@ -223,21 +246,21 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									<hr>
 									<div class="detailedInput">
 										<label for="nom">Nom </label>
-										<input type="text" name="nom" value="" placeholder="Nom de famille"
+										<input type="text" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
 											autocomplete="off" required>
 									</div>
 									<div class="detailedInput">
 										<label for="prenom">Prénom </label>
-										<input type="text" name="prenom" value="" placeholder="Prénom"
+										<input type="text" name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
 											autocomplete="off" required>
 									</div>
 									<div class="detailedInput">
 										<label for="email">Email </label>
-										<input type="email" name="email" value="" placeholder="Email" autocomplete="off" required>
+										<input type="email" name="email" value="<?= @$userProfil->mail ?>" placeholder="Email" autocomplete="off" required>
 									</div>
 									<div class="detailedInput">
 										<label for="tel">Numéro de téléphone </label>
-										<input type="tel" name="tel" value="" placeholder="../../../../.." autocomplete="off" required>
+										<input type="tel" name="tel" value="<?= @$userProfil->telephone ?>" placeholder="../../../../.." autocomplete="off" required>
 									</div>
 								</div>
 								<div class="orderFormDelivery">
@@ -245,16 +268,16 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									<hr>
 									<div class="detailedInput">
 										<label for="adresse">Adresse </label>
-										<input type="text" name="adresse" value="" placeholder="rue/Allée/Av/Bvd..."
+										<input type="text" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
 											autocomplete="off">
 									</div>
 									<div class="detailedInput">
 										<label for="ville">Ville </label>
-										<input type="text" name="ville" value="" placeholder="Ville" autocomplete="off">
+										<input type="text" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ville" autocomplete="off">
 									</div>
 									<div class="detailedInput">
 										<label for="codePostal">Code Postal </label>
-										<input type="text" name="codePostal" value="" placeholder="Code Postal"
+										<input type="text" name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="Code Postal"
 											autocomplete="off">
 										<p class="note"><em>Pas de livraison hors agglomération</em></p>
 										<p class="note"><em>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
@@ -271,10 +294,10 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 								<div class="orderFormQuantity">
 									<h3>Menu et quantités</h3>
 									<hr>
-									<div class="detailedInput">
+									<div class="detailedInput fetch">
 										<label for="menu">Menu sélectionné </label>
-										<input type="text" name="adresse" value="" placeholder="réf.Menu..."
-											autocomplete="off">
+										<!--titre du plat ne peut être modifié-->
+										<input type="text" name="adresse" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
 									</div>
 									<div class="detailedInput">
 										<label for="nbrPers">Nombre de personnes </label>
@@ -286,7 +309,8 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									<hr>
 									<div class="detailedInput fetch">
 										<label for="priceMenu">Prix du menu (&#x20AC TTC/pers): </label>
-										<input type="text" name="priceMenu" value="" readonly required>
+										<!--prix du plat ne peut être modifié-->
+										<input type="text" name="priceMenu" value="<?=@$menu->prix_par_personne ?>" readonly required>
 									</div>
 									<div class="detailedInput fetch">
 										<label for="deliveryPrice">Prix de la livraison (&#x20AC): </label>
@@ -305,6 +329,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 						</form>
 					</div>
 				</section>
+				<?php } ?>
 			</div>
 		</div>
 	</div>

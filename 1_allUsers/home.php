@@ -98,12 +98,12 @@
                             <h3>Nous contacter:</h3>
                         </u>
                         <li>Pour vos services du jour</li>
-                        <p>tel: XX/XX/XX/XX/XX </p>
+                        <p>&#x260E;: XX/XX/XX/XX/XX </p>
                         <li>Pour vos commandes personnalisées</li>
                         <div class="orderTypeContact">
-                            <li>Par téléphone: <span> XX/XX/XX/XX/XX</span></li>
-                            <li>Par mail: <span> XX@vit&go.fr</span></li>
-                            <li>Via notre formulaire: <span><a href="contact.php">Contact</a></span></li>
+                            <li>&#x260E;: <span> XX/XX/XX/XX/XX</span></li>
+                            <li>&#x40;: <span> XX@vit&go.fr</span></li>
+                            <li>&#x2709; Via notre formulaire: <span><a href="contact.php">Contact</a></span></li>
                         </div>
                     </ul>
 

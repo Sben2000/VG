@@ -363,9 +363,33 @@ font-size: 16px;
 .reachUsPanel{
     margin-bottom: 150px;
 }
-
-.reachUsPanel p{
+.reachUsPanelDetails{
+margin: 20px 0px;
+}
+.reachUsPanelDetails h3{
+margin-bottom: 5px;
+}
+.reachUsPanelDetails p{
     font-size: 16px;
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.reachUsPanelDetails li{
+    list-style: none;
+    padding-left: 10px;
+    font-weight: 600;
+   
+}
+
+#ourContact p{
+    text-align: start;
+    padding-left: 25px;
+}
+
+.orderTypeContact, #orderTypeContact{
+    display: flex;
+    flex-direction: row;
 }
 
 .mapResponsive{
@@ -393,6 +417,10 @@ font-size: 16px;
     text-align: center;
 }
 
+#orderMenuFooter{
+    position:fixed;
+    bottom: 0;
+}
 /*****************************************************GESTION RESPONSIVE*****************************************/
 
 /***************Au dessus 1100px: Affichage Ordinateur*/
