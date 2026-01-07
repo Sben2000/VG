@@ -80,6 +80,9 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 		<div class="multiSectionsCentral">
 			<div class="multiSectionsLeft">
 				<section class="Section" id="absolute">
+				<?php 
+				//Récupération du contenu de cette section pour l'afficher plus bas lors de la vue téléphone
+								$contentJoinUs = '
 					<div class="SectionContent">
 						<div>
 							<h2 id="reachUsPanelTitle"><u>Nous joindre : </u></h2>
@@ -125,7 +128,11 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 
 						</div>
 					</div>
+				 ';?>
 				</section>
+
+				 <!--Affichage du contenu-->
+				 <?=$contentJoinUs  ?>
 			</div>
 			<div class="multiSectionsRight">
 				<section class="Section">
@@ -329,9 +336,14 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 						</form>
 					</div>
 				</section>
+
 				<?php } ?>
-			</div>
+				<section class="sectionContent" id="joinUsPhoneView">
+				<?=$contentJoinUs?>
+			</section>
 		</div>
+			</div>
+
 	</div>
 	<?php require_once "includes/footer.php" ?>
 	<script type="module" src="./JS/orderMenu.js"></script>

@@ -95,6 +95,8 @@ width: 100%;
 }
 
 
+
+
 .multiSectionsLeft{
 width: 25%;
 display: flex;
@@ -123,7 +125,9 @@ padding-right: 20px;
     
 }
 
-
+#joinUsPhoneView{
+    display: none;
+}
 
 .multiSectionsRight{
 width: 75%;
@@ -481,7 +485,7 @@ p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch inp
      
 }
 .menu .menuLeft{
-    margin: 0 auto;
+    margin: 0px auto;
 }
 
 .multiSectionsRight .menuLeft img{
@@ -510,6 +514,15 @@ flex-direction: column;
 
 }
 
+.associatedDishes{
+    flex-wrap: wrap;
+}
+
+.choosenMenuTitle, .title{
+    text-align: center;
+    margin: 5px auto;
+}
+
 .multiSectionsRight  .price{
     margin-top: 5px;
     margin-bottom: 30px;
@@ -521,6 +534,10 @@ font-weight: 500;
 
 }
 
+/*affichage du bloc joinUs récupéré du bloc de gauche*/
+#joinUsPhoneView{
+    display: block;
+}
 
 }
 
@@ -546,6 +563,29 @@ p, textarea, input, label, .filter, option, optgroup, .detailedInput label, .fet
 /*Sections*/
 .multiSectionsLeft{
     display: none;
+}
+
+.choosenMenuTitle, .title{
+    text-align: center;
+    margin: 5px auto;
+}
+
+.associatedDishes{
+    flex-direction: column;
+
+}
+.associatedDishesDetails{
+    justify-items: center;
+    margin: 0px auto;
+}
+/*affichage du bloc joinUs récupéré du bloc de gauche*/
+#joinUsPhoneView{
+    display: block;
+}
+
+.multiSectionsCentral{
+    display: flex;
+    flex-direction: column;
 }
 
  .Criterias{
