@@ -175,28 +175,28 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 
 									<div class="regimetheme">
 										<div>
-											<h5>&nbsp;<span>Thème: </span></h5>
+											<h5>&nbsp;<span id="ThemeMenu">Thème: </span></h5>
 											<!--thème menu-->
-											<p>&nbsp;&nbsp;&nbsp;<span><em><?= $menu->theme ?></em></span></p>
+											<p>&nbsp;&nbsp;&nbsp;<span><em><span><?= $menu->theme ?></span></em></span></p>
 										</div>
 										<div>
-											<h5><span>Régime: </span></h5>
+											<h5><span id="RegimeMenu">Régime: </span></h5>
 											<!--régime menu-->
-											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->regime ?></em></p>
+											<p>&nbsp;&nbsp;&nbsp;<em><span><?= $menu->regime ?></span></em></p>
 										</div>
 										<div>
 											<h5><span>Nbre pers.min: </span></h5>
 											<!--Nbre pers.min-->
-											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->nombre_personne_minimum ?></em></p>
+											<p>&nbsp;&nbsp;&nbsp;<em><span id="peopleNbrReq"><?= $menu->nombre_personne_minimum ?></span></em></p>
 										</div>
 										<div>
-											<h5><span>Qté restante(s): </span></h5>
+											<h5><span >Qté restante(s): </span></h5>
 											<!--Qté restante(s)-->
-											<p>&nbsp;&nbsp;&nbsp;<em><?= $menu->quantite_restante ?></em></p>
+											<p>&nbsp;&nbsp;&nbsp;<em><span id="RemainingQty"><?= $menu->quantite_restante ?></span></em></p>
 										</div>
 										<!--prix menu-->
 										<h5>Prix TTC:</h5>
-										<p class="price"><?= $menu->prix_par_personne ?>&euro;/pers.</p>
+										<p class="price" id="priceMenu"><span><?= $menu->prix_par_personne ?></span>&euro;/pers.</p>
 									</div>
 								</div>
 							</div>
@@ -246,28 +246,28 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 					<div class="SectionContent">
 						<h2>Je précise ma commande</h2>
 
-						<form id="orderForm">
+						<form id="orderForm" method="POST" enctype="multipart/form-data">
 							<div class="orderFormInfo">
 								<div class="orderFormAdress">
 									<h3>Mes coordonnées</h3>
 									<hr>
 									<div class="detailedInput">
 										<label for="nom">Nom </label>
-										<input type="text" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
-											autocomplete="off" required>
+										<input type="text" id="name" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
+											autocomplete="off" required >
 									</div>
 									<div class="detailedInput">
 										<label for="prenom">Prénom </label>
-										<input type="text" name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
-											autocomplete="off" required>
+										<input type="text" id='firstname' name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
+											autocomplete="off" required >
 									</div>
 									<div class="detailedInput">
 										<label for="email">Email </label>
-										<input type="email" name="email" value="<?= @$userProfil->mail ?>" placeholder="Email" autocomplete="off" required>
+										<input type="email" id='email' name="email" value="<?= @$userProfil->mail ?>" placeholder="Email" autocomplete="off" required >
 									</div>
 									<div class="detailedInput">
 										<label for="tel">Numéro de téléphone </label>
-										<input type="tel" name="tel" value="<?= @$userProfil->telephone ?>" placeholder="../../../../.." autocomplete="off" required>
+										<input type="tel" id='phoneNumber' name="tel" value="<?= @$userProfil->telephone ?>" placeholder="../../../../.." autocomplete="off" required >
 									</div>
 								</div>
 								<div class="orderFormDelivery">
@@ -275,7 +275,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									<hr>
 									<div class="detailedInput">
 										<label for="adresse">Adresse </label>
-										<input type="text" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
+										<input type="text" id="adress" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
 											autocomplete="off">
 									</div>
 									<div class="detailedInput">
@@ -284,18 +284,18 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									</div>
 									<div class="detailedInput">
 										<label for="codePostal">Code Postal </label>
-										<input type="text" name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="Code Postal"
+										<input type="text" id='postalCode' name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="Code Postal"
 											autocomplete="off">
-										<p class="note"><em>Pas de livraison hors agglomération</em></p>
-										<p class="note"><em>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
+										<p class="note"><em>Pas de livraison hors agglomération.<br>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
+										
 									</div>
 									<div class="detailedInput">
 										<label for="datePresta">Date souhaitée </label>
-										<input type="date" name="datePresta" value="" autocomplete="off" required>
+										<input type="date" id="wishedDate" name="datePresta" value="" autocomplete="off" required>
 									</div>
 									<div class="detailedInput">
 										<label for="heurePresta">heure souhaitée </label>
-										<input type="time" name="heurePresta" value="" autocomplete="off" required>
+										<input type="time" id="wishedTime" name="heurePresta" value="" autocomplete="off" required>
 									</div>
 								</div>
 								<div class="orderFormQuantity">
@@ -304,28 +304,35 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									<div class="detailedInput fetch">
 										<label for="menu">Menu sélectionné </label>
 										<!--titre du plat ne peut être modifié-->
-										<input type="text" name="adresse" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
+										<input type="text" id="menuTitle" name="menu" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
 									</div>
 									<div class="detailedInput">
 										<label for="nbrPers">Nombre de personnes </label>
-										<input type="number" name="nbrPers" value="" placeholder="2" autocomplete="off" min="1" max="50">
-										<p class="note"><em>nbre en fct du mini si requis</em></p>
-										<p class="note"><em>10% de réduction dès 5 pers.</em></p>
+											<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
+										<input type="number" id="peopleNbrSpec" name="nbrPers" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?=$menu->nombre_personne_minimum   ?>" max="<?=$menu->quantite_restante?>" >
+										<p class="note" id="nbrPersInfo"><em><span id="messageMinReq">nbre en fct du mini si requis. <br></span><span id="discount">10% de réduction dès 5 pers.</span></em></p>
+										<p id="feedBackPeopleSuccess" style="color: darkgreen;"></p>
+										<p id="feedBackPeopleError" style="color: darkred;"></p>
+										<p id="feedBackPeopleOtherInfo" style="color: darkblue;"></p>
 									</div>
 									<h3>Tarif détaillé</h3>
 									<hr>
 									<div class="detailedInput fetch">
 										<label for="priceMenu">Prix du menu (&#x20AC TTC/pers): </label>
 										<!--prix du plat ne peut être modifié-->
-										<input type="text" name="priceMenu" value="<?=@$menu->prix_par_personne ?>" readonly required>
+										<input type="text" id ="priceMenuDisp" name="priceMenu" value="<?=@$menu->prix_par_personne ?>" readonly required>
+									</div>
+									<div class="detailedInput fetch">
+										<label for="reductionRate">Réduction (%): </label>
+										<input type="text" id="reductionRate" name="reductionRate" value="" readonly required>
 									</div>
 									<div class="detailedInput fetch">
 										<label for="deliveryPrice">Prix de la livraison (&#x20AC): </label>
-										<input type="text" name="deliveryPrice" value="" readonly required>
+										<input type="text" id="deliveryPrice" name="deliveryPrice" value="" readonly required>
 									</div>
 									<div class="detailedInput fetch">
 										<label for="totalPrice">Prix total (&#x20AC TTC): </label>
-										<input type="text" name="totalPrice" value="" readonly required>
+										<input type="text" id="totalPrice" name="totalPrice" value="" readonly required>
 									</div>
 								</div>
 							</div>

@@ -227,8 +227,13 @@ position: relative;
 }
 .multiSectionsRight .orderFormInfo{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 
+}
+
+.orderFormAdress, .orderFormDelivery, .orderFormQuantity{
+    margin-bottom: 20px;
 }
 
 input[type="date"], input[type="time"],input[type="text"],input[type="tel"], input[type="email"]   {
@@ -425,6 +430,26 @@ margin-bottom: 5px;
     position:fixed;
     bottom: 0;
 }
+
+#feedBackPeopleSuccess, #feedBackPeopleError, #feedBackPeopleOtherInfo{
+    text-align: center;
+    font-size: 16px;
+    margin: 5px auto ;
+}
+
+#feedBackPeopleSuccess{
+    color: darkgreen;
+    font-style: italic;
+}
+
+#feedBackPeopleError{
+    color: darkred;
+
+}
+#feedBackOtherInfo{
+    color: darkblue;
+}
+
 /*****************************************************GESTION RESPONSIVE*****************************************/
 
 /***************Au dessus 1100px: Affichage Ordinateur*/
@@ -505,7 +530,7 @@ p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch inp
     align-items: center;
 }
 #orderSectionForm{
-    display: none;
+    display: block;
 }
 
 .regimetheme{
@@ -540,6 +565,8 @@ font-weight: 500;
 }
 
 }
+
+
 
 /******************Sous 700px: Affichage Téléphone*/
 
