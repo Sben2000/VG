@@ -254,8 +254,8 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
             return "veuillez svp indiquer un code Postal  à 5 chiffres, supprimez les espaces si nécessaires";
         }
         
-        //codes postaux de l'agglo Bordelaise :=> https://comersis.com/geo/geo/export-epci.php?dpt=33&epci=243300316
-        $arrayPostalCode = array(33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 33520, 33560, 33150, 33320, 33270, 33170, 33185, 33310, 33127, 33700, 33290, 33600, 33160, 33440, 33160, 33440, 33320, 33400, 33140);
+        //codes postaux de l'agglo Bordelaise :=> https://comersis.com/geo/geo/export-epci.php?dpt=33&epci=243300316 et google
+        $arrayPostalCode = array(30072, 33000, 33100, 33200, 33300, 33800, 33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 33520, 33560, 33150, 33320, 33270, 33170, 33185, 33310, 33127, 33700, 33290, 33600, 33160, 33440, 33160, 33440, 33320, 33400, 33140);
         if(!in_array($codePostal, $arrayPostalCode)){
             return "Désolé, nous livrons uniquement en métropole Bordelaise, nous contacter pour une autre localisation";
         }

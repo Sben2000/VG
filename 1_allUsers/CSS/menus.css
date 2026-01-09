@@ -172,7 +172,13 @@ margin-left: 20px ;
     margin: 20px 50px;
 }
 
-
+.symbol{
+    display: flex;
+    flex-direction: row;
+}
+.symbol span{
+    color: var(--elmDeco);
+}
 
 .tempChoosenFilter{
     opacity: 0.7;
@@ -431,18 +437,18 @@ margin-bottom: 5px;
     bottom: 0;
 }
 
-#feedBackPeopleSuccess, #feedBackPeopleError, #feedBackPeopleOtherInfo{
+#feedBackPeopleSuccess, #feedBackPeopleError, #feedBackPeopleOtherInfo, #feedBackPostalCodeSuccess, #feedBackPostalCodeError{
     text-align: center;
     font-size: 16px;
     margin: 5px auto ;
 }
 
-#feedBackPeopleSuccess{
+#feedBackPeopleSuccess, #feedBackPostalCodeSuccess{
     color: darkgreen;
     font-style: italic;
 }
 
-#feedBackPeopleError{
+#feedBackPeopleError, #feedBackPostalCodeError{
     color: darkred;
 
 }

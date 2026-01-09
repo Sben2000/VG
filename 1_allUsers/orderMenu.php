@@ -28,6 +28,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
     	}
 	}
 
+
 ?>
 
 <!DOCTYPE html>
@@ -263,11 +264,11 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									</div>
 									<div class="detailedInput">
 										<label for="email">Email </label>
-										<input type="email" id='email' name="email" value="<?= @$userProfil->mail ?>" placeholder="Email" autocomplete="off" required >
+										<input type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required >
 									</div>
 									<div class="detailedInput">
 										<label for="tel">Numéro de téléphone </label>
-										<input type="tel" id='phoneNumber' name="tel" value="<?= @$userProfil->telephone ?>" placeholder="../../../../.." autocomplete="off" required >
+										<input type="tel" id='phoneNumber' name="tel" value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required >
 									</div>
 								</div>
 								<div class="orderFormDelivery">
@@ -284,10 +285,12 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									</div>
 									<div class="detailedInput">
 										<label for="codePostal">Code Postal </label>
-										<input type="text" id='postalCode' name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="Code Postal"
+										<input type="text" id='postalCode' name="codePostal"  value="<?= @$userProfil->code_postal ?>" placeholder="33XXX"
 											autocomplete="off">
-										<p class="note"><em>Pas de livraison hors agglomération.<br>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
-										
+										<p id="feedBackPostalCodeSuccess" style="color: darkgreen;"></p>
+										<p id="feedBackPostalCodeError" style="color: darkred;"></p>
+											<p class="note" id="postalCodeInfo"><em>Pas de livraison hors agglomération.<br>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
+	
 									</div>
 									<div class="detailedInput">
 										<label for="datePresta">Date souhaitée </label>
@@ -319,20 +322,28 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									<hr>
 									<div class="detailedInput fetch">
 										<label for="priceMenu">Prix du menu (&#x20AC TTC/pers): </label>
+										<div class="symbol">
 										<!--prix du plat ne peut être modifié-->
-										<input type="text" id ="priceMenuDisp" name="priceMenu" value="<?=@$menu->prix_par_personne ?>" readonly required>
+										<input type="text" id ="priceMenuDisp" name="priceMenu" value="<?=@$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
+										</div>
 									</div>
 									<div class="detailedInput fetch">
 										<label for="reductionRate">Réduction (%): </label>
-										<input type="text" id="reductionRate" name="reductionRate" value="" readonly required>
+										<div class="symbol">
+										<input type="text" id="reductionRate" name="reductionRate" value="" readonly required><span>%</span>
+										</div>
 									</div>
 									<div class="detailedInput fetch">
 										<label for="deliveryPrice">Prix de la livraison (&#x20AC): </label>
-										<input type="text" id="deliveryPrice" name="deliveryPrice" value="" readonly required>
+										<div class="symbol">
+										<input type="text" id="deliveryPrice" name="deliveryPrice" value="" readonly required><span>&#x20AC</span>
+										</div>
 									</div>
 									<div class="detailedInput fetch">
 										<label for="totalPrice">Prix total (&#x20AC TTC): </label>
-										<input type="text" id="totalPrice" name="totalPrice" value="" readonly required>
+										<div class="symbol">
+										<strong><input type="text" id="totalPrice" name="totalPrice" value="" readonly required><span>&#x20AC</span></strong>
+										</div>
 									</div>
 								</div>
 							</div>
