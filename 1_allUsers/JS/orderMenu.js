@@ -65,6 +65,8 @@ let firstname = document.getElementById('firstname');
 let email = document.getElementById('email');
 //Le numéro de téléphone
 let phoneNumber = document.getElementById('phoneNumber');
+//feedback sur Numéro de téléphone
+let feedBackPhoneError = document.getElementById('feedBackPhoneError');
 //L'adresse
 let adress = document.getElementById('adress');
 //Le code postal
@@ -113,7 +115,6 @@ let agglo = [33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 3352
 let bordeaux =[30072, 33000, 33100, 33200, 33300, 33800]
 
 //function de contrôle du minimum de Personne requis
-
 function minPersRequest(){
 //Trim de la valeur entrée par l'utilisateur
 let peopleNbrSpecTrim = peopleNbrSpec.value
@@ -280,8 +281,62 @@ if (bordeauxDelivery>0){
 
 }
 
+//function de contrôle du numéro de téléphone
+function checkPhoneNumber(){
+console.log(feedBackPhoneError);
+	
+//Trim de la valeur entrée par l'utilisateur
+let phoneNumberTrim = phoneNumber.value.trim()
+
+//controle des données entrées dans l'input via un regex
+
+//regex permettant de détecter tout les caractères non Digit ([^0-9]) sur le globale (g)
+let regexNonDigit = /\D/g;
+let matchPH = phoneNumberTrim.match(regexNonDigit);
+//console.log(matchPH);
+//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchPH){
+    feedBackPhoneError.innerHTML="Uniquement chiffres,<br> sans espace";
+	return false;
+  }
+
+//Vérification de la longueur du numéro de tél
+
+//regex permettant de détecter un match de 10 digits :/\d{10}/
+let regexTenDigit = /\d{10}/;
+let matchTenDigit = phoneNumberTrim.match(regexTenDigit);
+
+//regex permettant de détecter un match de plus de 15 digits (Au moins 16) :/\d{16}/
+let regexSixteenDigit = /\d{16}/;
+let matchSixteenDigit = phoneNumberTrim.match(regexSixteenDigit);
+
+//regex permettant de détecter un match correct entre 10 et 15  digits :/\d{10,16}/
+let regexDigitOK = /\d{10,16}/;
+let matchDigitOK = phoneNumberTrim.match(regexDigitOK);
+
+//si il n'existe pas de match d'au moins 10 digits, envoi d'un message d'erreur
+   if(! matchTenDigit){
+    feedBackPhoneError.innerHTML="Le numéro  ne peut être <br> inférieur à 10 chiffres";
+
+	return false;
+ }
+
+//si il existe un de match d'au moins 16 digits, envoi d'un message d'erreur
+    if(matchSixteenDigit){
+    feedBackPhoneError.innerHTML="le numero ne peut <br> dépasser  15 chiffres <br> en incluant l'indicatif";
+	return false;
+  }
+  //si il existe un de match entre 10 et 15 digits, enlever les messages d'erreurs
+  if(matchDigitOK) {
+	feedBackPhoneError.innerHTML="";
+  }
 
 
+  //convertit en Int(=>parseInt) (si format récupéré de userProfil considéré string ou autre type) 
+
+  let phoneNumberTrimCleanValue = parseInt(phoneNumberTrim);
+
+}
 
 /*******************Intéractivité affichage avant soumission***************************** */
 
@@ -293,8 +348,12 @@ peopleNbrSpec.addEventListener("input", minPersRequest);
 //Affichage du message d'info CodePostal en fonction de la valeur indiqué (nbre de digit, caractère non numérique,...)
 postalCode.addEventListener("change", checkPostalCode);
 
+//Affichage du message d'info phoneNumber en fonction de la valeur indiqué (nbre de digit, caractère non numérique,...)
+phoneNumber.addEventListener("change", checkPhoneNumber);
 
 
 
+wishedDate.addEventListener("change",()=>{console.log(wishedDate.value)});
 
+console.log(Date());
 

@@ -293,6 +293,10 @@ border: none; /*retrait des bordures par défaut sur les input*/
 border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalisée*/
 
 }
+#email{
+    overflow:visible;
+    text-align: start;
+}
 
 .regimetheme, .associatedDishes{
 display: flex;
@@ -437,7 +441,7 @@ margin-bottom: 5px;
     bottom: 0;
 }
 
-#feedBackPeopleSuccess, #feedBackPeopleError, #feedBackPeopleOtherInfo, #feedBackPostalCodeSuccess, #feedBackPostalCodeError{
+#feedBackPeopleSuccess, #feedBackPeopleError, #feedBackPeopleOtherInfo, #feedBackPostalCodeSuccess, #feedBackPostalCodeError, #feedbackPhoneError{
     text-align: center;
     font-size: 16px;
     margin: 5px auto ;
@@ -448,7 +452,7 @@ margin-bottom: 5px;
     font-style: italic;
 }
 
-#feedBackPeopleError, #feedBackPostalCodeError{
+#feedBackPeopleError, #feedBackPostalCodeError, #feedbackPhoneError{
     color: darkred;
 
 }

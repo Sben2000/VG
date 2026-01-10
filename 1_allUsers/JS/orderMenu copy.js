@@ -65,6 +65,8 @@ let firstname = document.getElementById('firstname');
 let email = document.getElementById('email');
 //Le numéro de téléphone
 let phoneNumber = document.getElementById('phoneNumber');
+//feedback sur Numéro de téléphone
+let feedBackPhoneError = document.getElementById('feedBackPhoneError');
 //L'adresse
 let adress = document.getElementById('adress');
 //Le code postal
@@ -113,33 +115,42 @@ let agglo = [33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 3352
 let bordeaux =[30072, 33000, 33100, 33200, 33300, 33800]
 
 //function de contrôle du minimum de Personne requis
-
 function minPersRequest(){
-
 //Trim de la valeur entrée par l'utilisateur
-let peopleNbrSpecTrim = peopleNbrSpec.value.trim()
+let peopleNbrSpecTrim = peopleNbrSpec.value
 
-//controle des données entrées dans l'input via un regex
 
+/***Regex ci dessous ne fonctionne qu'avec un input = text pas avec un input = nombre *
 //regex permettant de détecter tout les caractères non Digit ([^0-9]) sur le globale (g)
 let regexNonDigit = /\D/g;
-let match = peopleNbrSpecTrim.match(regexNonDigit);
-//console.log(match);
-//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
-   if(match){
+let matchMinPR = peopleNbrSpecTrim.match(regexNonDigit);
+console.log(matchMinPR);
+//Lorsque l'on convertit l'input en text et qu il existe un match (non détecté en type number),(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchMinPR){
     feedBackPeopleError.innerHTML=`Veuillez entrer une quantité au <br>  format mentionné entre ${peopleNbrReq} et ${RemainingQty}`;
     feedBackPeopleSuccess.innerHTML ="";
 	feedBackPeopleOtherInfo="";
 	return false;
+	
   }
+*/
 
+  //Vérifie si la valeur est un  Float (le modulo % du nombre sur la division par 1 est différent de zéro)
+  const modulo = peopleNbrSpecTrim % 1;
+  console.log(modulo);
+  if(modulo != 0){
+   feedBackPeopleError.innerHTML=`Seuls les nombres entiers <br> sont acceptés`;
+    feedBackPeopleSuccess.innerHTML ="";
+	feedBackPeopleOtherInfo="";
+	return false;
+  }
   //convertit en Int(=>parseInt) et contrôle complémentaire  du format 
 
   let peopleNbrSpecCleanValue = parseInt(peopleNbrSpecTrim);
 
-  // si la valeur calculée est de type "NaN" ou si la valeur est vide , négative, égale à 0 ou Float (le reminder %1 différent de zéro)
-   if(peopleNbrSpecCleanValue * 2 =="NaN" || peopleNbrSpecCleanValue * 2 =="" || peopleNbrSpecCleanValue * 2 < 0 
-	|| peopleNbrSpecCleanValue == 0 ){
+
+  // si la valeur calculée est de type "NaN" ou si la valeur est vide , négative, égale à 0 
+   if(isNaN(peopleNbrSpecCleanValue )|| peopleNbrSpecCleanValue  < 0){
     feedBackPeopleError.innerHTML=`Veuillez entrer une quantité au <br>  format mentionné entre ${peopleNbrReq} et ${RemainingQty}`;
     feedBackPeopleSuccess.innerHTML ="";
 	feedBackPeopleOtherInfo="";
@@ -147,8 +158,26 @@ let match = peopleNbrSpecTrim.match(regexNonDigit);
   }
 
 
+
+	//Nbr > quantité dispo (max value)
+
+	if(peopleNbrSpecCleanValue > peopleNbrSpec.max){
+		feedBackPeopleSuccess.innerHTML ="";
+		feedBackPeopleError.innerHTML =`Quantité max disponible = ${RemainingQty}`; ;
+		feedBackPeopleOtherInfo.innerHTML = "";
+		return false;
+	}
+	//Nbr < min requis
+	if(isNaN(peopleNbrSpecCleanValue)== false && peopleNbrSpec.value< peopleNbrSpec.min){
+		feedBackPeopleSuccess.innerHTML = "";
+		feedBackPeopleError.innerHTML = `Nbre Pers. min requis = ${peopleNbrReq}`;
+		feedBackPeopleOtherInfo.innerHTML = "";	
+		return false;
+		
+	}
+
 //Nbr >5 et Nbr < Qté Max
-else if (peopleNbrSpecCleanValue >=5 && peopleNbrSpecCleanValue <= RemainingQty){
+ if (peopleNbrSpecCleanValue >=5 && peopleNbrSpecCleanValue <= RemainingQty){
 		feedBackPeopleSuccess.innerHTML = `Réduction de ${ReducDix}% appliquée !`;
 		nbrPersInfo.style.display = "none";
 		reductionRate.value = ReducDix;
@@ -160,25 +189,7 @@ else if (peopleNbrSpecCleanValue >=5 && peopleNbrSpecCleanValue <= RemainingQty)
 		
 		feedBackPeopleOtherInfo.innerHTML = "Quantité max atteinte";}
 
-	//Nbr > quantité dispo (max value)
-	}else if(peopleNbrSpecCleanValue > peopleNbrSpec.max){
-		feedBackPeopleSuccess.innerHTML ="";
-		feedBackPeopleError.innerHTML =`Quantité max disponible = ${RemainingQty}`; ;
-		feedBackPeopleOtherInfo.innerHTML = "";
-		return false;
-	
-	//Nbr < min requis
-	}else if(isNaN(peopleNbrSpecCleanValue)== false && peopleNbrSpec.value< peopleNbrSpec.min){
-		feedBackPeopleSuccess.innerHTML = "";
-		feedBackPeopleError.innerHTML = `Nbre Pers. min requis = ${peopleNbrReq}`;
-		feedBackPeopleOtherInfo.innerHTML = "";	
-		return false;
-		
-	}else{
-		nbrPersInfo.style.display ="block";
-		nbrPersInfo.style.style = "#note"
-		feedBackPostalCodeSuccess.innerHTML = "";
-		reductionRate.value = 0;
+
 	}
 }
 
@@ -191,11 +202,11 @@ let postalCodeTrim = postalCode.value.trim()
 
 //regex permettant de détecter tout les caractères non Digit ([^0-9]) sur le globale (g)
 let regexNonDigit = /\D/g;
-let match = postalCodeTrim.match(regexNonDigit);
+let matchPC = postalCodeTrim.match(regexNonDigit);
 //console.log(match);
 //si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
-   if(match){
-    feedBackPostalCodeError.innerHTML="Code postal doit contenir <br> 5 chiffres et sans espace";
+   if(matchPC){
+    feedBackPostalCodeError.innerHTML="Code postal doit contenir <br> 5 chiffres, sans espace";
     feedBackPostalCodeSuccess.innerHTML ="";
 	return false;
   }
@@ -228,65 +239,122 @@ let matchSixDigit = postalCodeTrim.match(regexSixDigit);
   let postalCodeCleanValue = parseInt(postalCodeTrim);
 
 
+/***Construction d' iterateurs de tableaux pour vérifier si le code postal est eligible à la livraison***/
 
-//Nbr >5 et Nbr < Qté Max
- if (postalCodeCleanValue >=5 && postalCodeCleanValue <= RemainingQty){
-		feedBackPostalCodeSuccess.innerHTML = `Réduction de ${ReducDix}% appliquée !`;
-		nbrPersInfo.style.display = "none";
-		reductionRate.value = ReducDix;
-		feedBackPostalCodeError.innerHTML = "";
-		feedBackPostalCodeOtherInfo.innerHTML = "";
-			//Nbr = quantité dispo (max value)
-		if(postalCodeCleanValue == RemainingQty){
-		feedBackPostalCodeError.innerHTML ="" ;
-		
-		feedBackPostalCodeOtherInfo.innerHTML = "Quantité max atteinte";}
-
-	//Nbr > quantité dispo (max value)
-	}else if(postalCodeCleanValue > postalCode.max){
-		feedBackPostalCodeSuccess.innerHTML ="";
-		feedBackPostalCodeError.innerHTML =`Quantité max disponible = ${RemainingQty}`; ;
-		return false;
-	
-	//Nbr < min requis
-	}else if(isNaN(postalCodeCleanValue)== false && postalCode.value< postalCode.min){
-		feedBackPostalCodeSuccess.innerHTML = "";
-		feedBackPostalCodeError.innerHTML = `Nbre Pers. min requis = ${peopleNbrReq}`;
-		feedBackPostalCodeOtherInfo.innerHTML = "";	
-		return false;
-		
-	}else{
-		nbrPersInfo.style.display ="block";
-		nbrPersInfo.style.style = "#note"
-		feedBackPostalCodeSuccess.innerHTML = "";
-		reductionRate.value = 0;
+	//sur la table bordeaux
+	const bordeauxIterator = bordeaux.values();
+	//variable qui sera ou non incrémenté lors de l'iteration du tableau
+	let bordeauxDelivery = 0;
+	for (const value of bordeauxIterator){
+		if(value == postalCodeCleanValue  ){
+			bordeauxDelivery ++;
+		}
 	}
 
+	//sur la table agglo
+	const aggloIterator = agglo.values();
+	//variable qui sera ou non incrémenté lors de l'iteration du tableau
+	let aggloDelivery = 0;
+	for (const value of aggloIterator){
+		if (value == postalCodeCleanValue){
+			aggloDelivery ++;
+		}
+	}
+
+//Affichage de la possibilité de livraison et des frais en fonction des valeurs de bordeauxDelivery et aggloDelivery
+
+if (bordeauxDelivery>0){
+	feedBackPostalCodeError.innerHTML="";
+    feedBackPostalCodeSuccess.innerHTML ="Livraison Offerte !";
+	//la valeur de la livraison est à 0
+	deliveryPrice.value = 0;
+}else if(aggloDelivery>0){
+	feedBackPostalCodeError.innerHTML="";
+    feedBackPostalCodeSuccess.innerHTML ="Votre commune bénéficie <br> de la livraison à 5&#x20AC";
+	//la valeur de la livraison est à 5
+	deliveryPrice.value = 5;
+}else{
+	feedBackPostalCodeError.innerHTML="Désolé, livraison non prévue hors  <br>  agglo. via commande en ligne <br> Veuillez nous contacter ";
+    feedBackPostalCodeSuccess.innerHTML ="";
+	return false
+}
 
 }
 
+//function de contrôle du numéro de téléphone
+function checkPhoneNumber(){
+console.log(feedBackPhoneError);
+	
+//Trim de la valeur entrée par l'utilisateur
+let phoneNumberTrim = phoneNumber.value.trim()
+
+//controle des données entrées dans l'input via un regex
+
+//regex permettant de détecter tout les caractères non Digit ([^0-9]) sur le globale (g)
+let regexNonDigit = /\D/g;
+let matchPH = phoneNumberTrim.match(regexNonDigit);
+//console.log(matchPH);
+//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchPH){
+    feedBackPhoneError.innerHTML="Uniquement chiffres,<br> sans espace";
+	return false;
+  }
+
+//Vérification de la longueur du numéro de tél
+
+//regex permettant de détecter un match de 10 digits :/\d{10}/
+let regexTenDigit = /\d{10}/;
+let matchTenDigit = phoneNumberTrim.match(regexTenDigit);
+
+//regex permettant de détecter un match de plus de 15 digits (Au moins 16) :/\d{16}/
+let regexSixteenDigit = /\d{16}/;
+let matchSixteenDigit = phoneNumberTrim.match(regexSixteenDigit);
+
+//regex permettant de détecter un match correct entre 10 et 15  digits :/\d{10,16}/
+let regexDigitOK = /\d{10,16}/;
+let matchDigitOK = phoneNumberTrim.match(regexDigitOK);
+
+//si il n'existe pas de match d'au moins 10 digits, envoi d'un message d'erreur
+   if(! matchTenDigit){
+    feedBackPhoneError.innerHTML="Le numéro  ne peut être <br> inférieur à 10 chiffres";
+
+	return false;
+ }
+
+//si il existe un de match d'au moins 16 digits, envoi d'un message d'erreur
+    if(matchSixteenDigit){
+    feedBackPhoneError.innerHTML="le numero ne peut <br> dépasser  15 chiffres <br> en incluant l'indicatif";
+	return false;
+  }
+  //si il existe un de match entre 10 et 15 digits, enlever les messages d'erreurs
+  if(matchDigitOK) {
+	feedBackPhoneError.innerHTML="";
+  }
 
 
+  //convertit en Int(=>parseInt) (si format récupéré de userProfil considéré string ou autre type) 
+
+  let phoneNumberTrimCleanValue = parseInt(phoneNumberTrim);
+
+}
 
 /*******************Intéractivité affichage avant soumission***************************** */
 
 /******Interactivités utilisant les événement input/change*****/
 
 //Affichage du message d'Info Nbre Pers en fonction de la valeur indiqué (nbre de personnes indiqué, caractère non numérique,...)
-peopleNbrSpec.addEventListener("change", minPersRequest);
+peopleNbrSpec.addEventListener("input", minPersRequest);
 
 //Affichage du message d'info CodePostal en fonction de la valeur indiqué (nbre de digit, caractère non numérique,...)
 postalCode.addEventListener("change", checkPostalCode);
 
+//Affichage du message d'info phoneNumber en fonction de la valeur indiqué (nbre de digit, caractère non numérique,...)
+phoneNumber.addEventListener("change", checkPhoneNumber);
 
 
 
+wishedDate.addEventListener("focus",()=>{wishedDate.min=new Date()});
 
+console.log(new Date());
 
-
-
-
-
-
-
-
+wishedDate.min=new Date();

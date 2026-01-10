@@ -158,6 +158,15 @@ ALTER TABLE plat MODIFY photo MEDIUMBLOB ; /*passage de BLOB en MEDIUMBLOB pour 
 
 ALTER TABLE plat ADD COLUMN contentType VARCHAR(50); /*Ajouté pour  permettre préciser l'extension de la photo à afficher et eviter les doublons  (doublons de nom sur même type)*/
 
+/*Ajouté à la commande si l'utilisateur souhaite faire livrer ailleurs que l'adresse indiqué sur son profil*/
+ALTER TABLE commande 
+ADD  nom_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', 
+ADD  prenom_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', 
+ADD  telephone_livraison VARCHAR(50) NOT NULL,
+ADD  ville_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON' , 
+ADD  pays_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', 
+ADD  adresse_postale_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON'; 
+ALTER TABLE commande Add COLUMN code_postal_livraison VARCHAR(50) DEFAULT '0000';
 
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 

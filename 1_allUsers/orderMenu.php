@@ -17,16 +17,16 @@ if (isset($_GET['menuID'])) {
 $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 
 //récupération des données du Profil utilisateur à remplir dans le formulaire de commande
-	require_once ("./Functions/fctUserProfil.php");
-	/*si session user active => réccupérer ses données de profil */
-		if(isset($_SESSION["user"])){
-			/*Récupérer le résultat de la function données de profil user*/
-			$response = userProfilDatas($_SESSION["user"]);
-			//si l'utilisateur a préalablement renseigné son compte Profil (non nul) =>assigner à $userProfil
-		    if($response != NULL){
-		      $userProfil = $response;
-    	}
+require_once("./Functions/fctUserProfil.php");
+/*si session user active => réccupérer ses données de profil */
+if (isset($_SESSION["user"])) {
+	/*Récupérer le résultat de la function données de profil user*/
+	$response = userProfilDatas($_SESSION["user"]);
+	//si l'utilisateur a préalablement renseigné son compte Profil (non nul) =>assigner à $userProfil
+	if ($response != NULL) {
+		$userProfil = $response;
 	}
+}
 
 
 ?>
@@ -81,9 +81,9 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 		<div class="multiSectionsCentral">
 			<div class="multiSectionsLeft">
 				<section class="Section" id="absolute">
-				<?php 
-				//Récupération du contenu de cette section pour l'afficher plus bas lors de la vue téléphone
-								$contentJoinUs = '
+					<?php
+					//Récupération du contenu de cette section pour l'afficher plus bas lors de la vue téléphone
+					$contentJoinUs = '
 					<div class="SectionContent">
 						<div>
 							<h2 id="reachUsPanelTitle"><u>Nous joindre : </u></h2>
@@ -129,11 +129,11 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 
 						</div>
 					</div>
-				 ';?>
+				 '; ?>
 				</section>
 
-				 <!--Affichage du contenu-->
-				 <?=$contentJoinUs  ?>
+				<!--Affichage du contenu-->
+				<?= $contentJoinUs  ?>
 			</div>
 			<div class="multiSectionsRight">
 				<section class="Section">
@@ -155,23 +155,24 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 									<!--description menu-->
 									<p class="description">
 										<?= $menu->description ?></p>
-										
+
 									<!--liste des plats associés-->
 									<div class="associatedDishes">
-									<h4>&nbsp;<span>Plat(s):&nbsp;</span></h4>
-											<?php 
-											if ($associatedDishes == NULL){?>
-												<p class= "note"><em>&#x2794; cf.description ci dessus ou nous contacter pour le détail</em></p>
+										<h4>&nbsp;<span>Plat(s):&nbsp;</span></h4>
+										<?php
+										if ($associatedDishes == NULL) { ?>
+											<p class="note"><em>&#x2794; cf.description ci dessus ou nous contacter pour le détail</em></p>
 											<?php
-											}else{
+										} else {
 											foreach ($associatedDishes as $associatedDish): ?>
-										<div class="associatedDishesDetails">
+												<div class="associatedDishesDetails">
 
-												<p><?= $associatedDish->titre_plat ?></p>
-												<!--origine du code ci dessous :https://openclassrooms.com/forum/sujet/telecharger-une-image-blob-sur-dans-un-fichier et https://stackoverflow.com/questions/54638875/using-php-pdo-to-show-image-blob-from-mysql-database-in-html-image-tag-->
-													<img src="data:image/png;base64,<?=base64_encode($associatedDish->photo)?>" width="120px" height="120px" />
-										</div>
-										<?php endforeach;} ?>
+													<p><?= $associatedDish->titre_plat ?></p>
+													<!--origine du code ci dessous :https://openclassrooms.com/forum/sujet/telecharger-une-image-blob-sur-dans-un-fichier et https://stackoverflow.com/questions/54638875/using-php-pdo-to-show-image-blob-from-mysql-database-in-html-image-tag-->
+													<img src="data:image/png;base64,<?= base64_encode($associatedDish->photo) ?>" width="120px" height="120px" />
+												</div>
+										<?php endforeach;
+										} ?>
 									</div>
 
 									<div class="regimetheme">
@@ -191,7 +192,7 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 											<p>&nbsp;&nbsp;&nbsp;<em><span id="peopleNbrReq"><?= $menu->nombre_personne_minimum ?></span></em></p>
 										</div>
 										<div>
-											<h5><span >Qté restante(s): </span></h5>
+											<h5><span>Qté restante(s): </span></h5>
 											<!--Qté restante(s)-->
 											<p>&nbsp;&nbsp;&nbsp;<em><span id="RemainingQty"><?= $menu->quantite_restante ?></span></em></p>
 										</div>
@@ -207,160 +208,161 @@ $photoMenuPath = "../2_vgTeam/gestionMenus/uploads/";
 					</div>
 				</section>
 				<?php //si l'utilisateur n'est pas connecté, lui sont alors détaillés les différentes façon de commander
-					if(!isset($_SESSION["user"])){	?>
-				<section class="Section">
-					<div class="SectionContent Criterias">
-						<h2>Commander le menu ?</h2>
+				if (!isset($_SESSION["user"])) {	?>
+					<section class="Section">
+						<div class="SectionContent Criterias">
+							<h2>Commander le menu ?</h2>
 
-						<div class="orderLinksExplanation">
-							<h3>&#x27A5; Depuis le site internet : </h3>
-							<div class="howToOrder">
-								<p>&#x2B2A; Connecter vous à votre compte en cliquant sur <a href="login.php">ce lien</a> et sélectionner le menu</p>
-								<p>&#x2B2A; Pas encore de compte? <a href="signUP.php">S'inscrire ici</a></p>
-							</div>
-						</div>
-						<div class="orderLinksExplanation">
-							<h3>&#x27A5; En nous contactant : </h3>
-							<div class="howToOrder">
-								<p>&#x2B2A; Via nos coordonnées affichées dans la section "Nous joindre"</a> ou <a href="indexLocal.php#reachUsRight">en page d'accueil</a></p>
-								<p>&#x2B2A; Via notre <a href="contact.php">formulaire de contact</a></p>
-							</div>
-						</div>
-
-						<div class="menuDetailedButtons">
-							<input type="submit" name="previousPage" value="<< Fermer la page" id="closePage" />
-						</div>
-					</div>
-				</section>
-				<?php 
-						//sinon si l utilisateur est connecté, on lui affiche la possibilité de commander 
-				}else{ ?>
-				<section class="Section">
-					<div class="SectionContent Criterias">
-						<div class="menuDetailedButtons">
-							<input type="submit" name="previousPage" value="&#x2B9C; Fermer la page" id="closePage" />
-							<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" onclick="location.reload()" />
-						</div>
-					</div>
-				</section>
-				<section class="Section" id="orderSectionForm" class="orderSectionForm">
-					<div class="SectionContent">
-						<h2>Je précise ma commande</h2>
-
-						<form id="orderForm" method="POST" enctype="multipart/form-data">
-							<div class="orderFormInfo">
-								<div class="orderFormAdress">
-									<h3>Mes coordonnées</h3>
-									<hr>
-									<div class="detailedInput">
-										<label for="nom">Nom </label>
-										<input type="text" id="name" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
-											autocomplete="off" required >
-									</div>
-									<div class="detailedInput">
-										<label for="prenom">Prénom </label>
-										<input type="text" id='firstname' name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
-											autocomplete="off" required >
-									</div>
-									<div class="detailedInput">
-										<label for="email">Email </label>
-										<input type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required >
-									</div>
-									<div class="detailedInput">
-										<label for="tel">Numéro de téléphone </label>
-										<input type="tel" id='phoneNumber' name="tel" value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required >
-									</div>
-								</div>
-								<div class="orderFormDelivery">
-									<h3>Mes infos de Livraison</h3>
-									<hr>
-									<div class="detailedInput">
-										<label for="adresse">Adresse </label>
-										<input type="text" id="adress" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
-											autocomplete="off">
-									</div>
-									<div class="detailedInput">
-										<label for="ville">Ville </label>
-										<input type="text" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ville" autocomplete="off">
-									</div>
-									<div class="detailedInput">
-										<label for="codePostal">Code Postal </label>
-										<input type="text" id='postalCode' name="codePostal"  value="<?= @$userProfil->code_postal ?>" placeholder="33XXX"
-											autocomplete="off">
-										<p id="feedBackPostalCodeSuccess" style="color: darkgreen;"></p>
-										<p id="feedBackPostalCodeError" style="color: darkred;"></p>
-											<p class="note" id="postalCodeInfo"><em>Pas de livraison hors agglomération.<br>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
-	
-									</div>
-									<div class="detailedInput">
-										<label for="datePresta">Date souhaitée </label>
-										<input type="date" id="wishedDate" name="datePresta" value="" autocomplete="off" required>
-									</div>
-									<div class="detailedInput">
-										<label for="heurePresta">heure souhaitée </label>
-										<input type="time" id="wishedTime" name="heurePresta" value="" autocomplete="off" required>
-									</div>
-								</div>
-								<div class="orderFormQuantity">
-									<h3>Menu et quantités</h3>
-									<hr>
-									<div class="detailedInput fetch">
-										<label for="menu">Menu sélectionné </label>
-										<!--titre du plat ne peut être modifié-->
-										<input type="text" id="menuTitle" name="menu" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
-									</div>
-									<div class="detailedInput">
-										<label for="nbrPers">Nombre de personnes </label>
-											<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
-										<input type="number" id="peopleNbrSpec" name="nbrPers" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?=$menu->nombre_personne_minimum   ?>" max="<?=$menu->quantite_restante?>" >
-										<p class="note" id="nbrPersInfo"><em><span id="messageMinReq">nbre en fct du mini si requis. <br></span><span id="discount">10% de réduction dès 5 pers.</span></em></p>
-										<p id="feedBackPeopleSuccess" style="color: darkgreen;"></p>
-										<p id="feedBackPeopleError" style="color: darkred;"></p>
-										<p id="feedBackPeopleOtherInfo" style="color: darkblue;"></p>
-									</div>
-									<h3>Tarif détaillé</h3>
-									<hr>
-									<div class="detailedInput fetch">
-										<label for="priceMenu">Prix du menu (&#x20AC TTC/pers): </label>
-										<div class="symbol">
-										<!--prix du plat ne peut être modifié-->
-										<input type="text" id ="priceMenuDisp" name="priceMenu" value="<?=@$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
-										</div>
-									</div>
-									<div class="detailedInput fetch">
-										<label for="reductionRate">Réduction (%): </label>
-										<div class="symbol">
-										<input type="text" id="reductionRate" name="reductionRate" value="" readonly required><span>%</span>
-										</div>
-									</div>
-									<div class="detailedInput fetch">
-										<label for="deliveryPrice">Prix de la livraison (&#x20AC): </label>
-										<div class="symbol">
-										<input type="text" id="deliveryPrice" name="deliveryPrice" value="" readonly required><span>&#x20AC</span>
-										</div>
-									</div>
-									<div class="detailedInput fetch">
-										<label for="totalPrice">Prix total (&#x20AC TTC): </label>
-										<div class="symbol">
-										<strong><input type="text" id="totalPrice" name="totalPrice" value="" readonly required><span>&#x20AC</span></strong>
-										</div>
-									</div>
+							<div class="orderLinksExplanation">
+								<h3>&#x27A5; Depuis le site internet : </h3>
+								<div class="howToOrder">
+									<p>&#x2B2A; Connecter vous à votre compte en cliquant sur <a href="login.php">ce lien</a> et sélectionner le menu</p>
+									<p>&#x2B2A; Pas encore de compte? <a href="signUP.php">S'inscrire ici</a></p>
 								</div>
 							</div>
+							<div class="orderLinksExplanation">
+								<h3>&#x27A5; En nous contactant : </h3>
+								<div class="howToOrder">
+									<p>&#x2B2A; Via nos coordonnées affichées dans la section "Nous joindre"</a> ou <a href="indexLocal.php#reachUsRight">en page d'accueil</a></p>
+									<p>&#x2B2A; Via notre <a href="contact.php">formulaire de contact</a></p>
+								</div>
+							</div>
+
 							<div class="menuDetailedButtons">
-								<input type="submit" name="cancelOrderProcess" value="Annuler" id="cancelOrderProcess" />
-								<input type="submit" name="submitOrder" value="Valider la commande" id="submitOrder" />
+								<input type="submit" name="previousPage" value="<< Fermer la page" id="closePage" />
 							</div>
-						</form>
-					</div>
-				</section>
+						</div>
+					</section>
+				<?php
+					//sinon si l utilisateur est connecté, on lui affiche la possibilité de commander 
+				} else { ?>
+					<section class="Section">
+						<div class="SectionContent Criterias">
+							<div class="menuDetailedButtons">
+								<input type="submit" name="previousPage" value="&#x2B9C; Fermer la page" id="closePage" />
+								<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" onclick="location.reload()" />
+							</div>
+						</div>
+					</section>
+					<section class="Section" id="orderSectionForm" class="orderSectionForm">
+						<div class="SectionContent">
+							<h2>Je précise ma commande et mes infos de livraison :</h2>
+
+							<form id="orderForm" method="POST" enctype="multipart/form-data">
+								<div class="orderFormInfo">
+									<div class="orderFormAdress">
+										<h3>Personne à joindre</h3>
+										<hr>
+										<div class="detailedInput">
+											<label for="nom">Nom </label>
+											<input type="text" id="name" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
+												autocomplete="off" required>
+										</div>
+										<div class="detailedInput">
+											<label for="prenom">Prénom </label>
+											<input type="text" id='firstname' name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
+												autocomplete="off" required>
+										</div>
+										<div class="detailedInput fetch">
+											<label for="email">Email du compte</label>
+											<input type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
+										</div>
+										<div class="detailedInput">
+											<label for="tel">Numéro de téléphone </label>
+											<input type="tel" inputmode="numeric" id='phoneNumber' name="tel" value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required>
+											<p id="feedBackPhoneError" style="color: darkred;"></p>
+										</div>
+									</div>
+									<div class="orderFormDelivery">
+										<h3>Adresse de livraison</h3>
+										<hr>
+										<div class="detailedInput">
+											<label for="adresse">Adresse </label>
+											<input type="text" id="adress" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
+												autocomplete="off">
+										</div>
+										<div class="detailedInput">
+											<label for="ville">Ville </label>
+											<input type="text" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ville" autocomplete="off">
+										</div>
+										<div class="detailedInput">
+											<label for="codePostal">Code Postal </label>
+											<input type="text" id='postalCode' inputmode="numeric" name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="33XXX"
+												autocomplete="off">
+											<p id="feedBackPostalCodeSuccess" style="color: darkgreen;"></p>
+											<p id="feedBackPostalCodeError" style="color: darkred;"></p>
+											<p class="note" id="postalCodeInfo"><em>Pas de livraison hors agglomération.<br>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
+
+										</div>
+										<div class="detailedInput">
+											<label for="datePresta">Date souhaitée </label>
+											<input type="date" id="wishedDate" name="datePresta" value="" autocomplete="off" required>
+										</div>
+										<div class="detailedInput">
+											<label for="heurePresta">heure souhaitée </label>
+											<input type="time" id="wishedTime" name="heurePresta" value="" autocomplete="off" required>
+										</div>
+									</div>
+									<div class="orderFormQuantity">
+										<h3>Menu et quantités</h3>
+										<hr>
+										<div class="detailedInput fetch">
+											<label for="menu">Menu sélectionné </label>
+											<!--titre du plat ne peut être modifié-->
+											<input type="text" id="menuTitle" name="menu" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
+										</div>
+										<div class="detailedInput">
+											<label for="nbrPers">Nombre de personnes </label>
+											<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
+											<input type="number" id="peopleNbrSpec" name="nbrPers" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
+											<p id="feedBackPeopleSuccess" style="color: darkgreen;"></p>
+											<p id="feedBackPeopleError" style="color: darkred;"></p>
+											<p id="feedBackPeopleOtherInfo" style="color: darkblue;"></p>
+											<p class="note" id="nbrPersInfo"><em><span id="messageMinReq">nbre en fct du mini si requis. <br></span><span id="discount">10% de réduction dès 5 pers.</span></em></p>
+										</div>
+										<h3>Tarif détaillé</h3>
+										<hr>
+										<div class="detailedInput fetch">
+											<label for="priceMenu">Prix du menu (&#x20AC TTC/pers): </label>
+											<div class="symbol">
+												<!--prix du plat ne peut être modifié-->
+												<input type="text" id="priceMenuDisp" name="priceMenu" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
+											</div>
+										</div>
+										<div class="detailedInput fetch">
+											<label for="reductionRate">Réduction (%): </label>
+											<div class="symbol">
+												<input type="text" id="reductionRate" name="reductionRate" value="" readonly required><span>%</span>
+											</div>
+										</div>
+										<div class="detailedInput fetch">
+											<label for="deliveryPrice">Prix de la livraison (&#x20AC): </label>
+											<div class="symbol">
+												<input type="text" id="deliveryPrice" name="deliveryPrice" value="" readonly required><span>&#x20AC</span>
+											</div>
+										</div>
+										<div class="detailedInput fetch">
+											<label for="totalPrice">Prix total (&#x20AC TTC): </label>
+											<div class="symbol">
+											<strong><input type="text" id="totalPrice" name="totalPrice" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="menuDetailedButtons">
+									<input type="submit" name="cancelOrderProcess" value="Annuler" id="cancelOrderProcess" />
+									<input type="submit" name="submitOrder" value="Valider la commande" id="submitOrder" />
+								</div>
+							</form>
+						</div>
+					</section>
 
 				<?php } ?>
 				<section class="sectionContent" id="joinUsPhoneView">
-				<?=$contentJoinUs?>
-			</section>
-		</div>
+					<?= $contentJoinUs ?>
+				</section>
 			</div>
+		</div>
 
 	</div>
 	<?php require_once "includes/footer.php" ?>
