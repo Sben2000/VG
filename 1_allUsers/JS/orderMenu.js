@@ -76,10 +76,18 @@ let feedBackPostalCodeSuccess = document.getElementById('feedBackPostalCodeSucce
 let feedBackPostalCodeError = document.getElementById('feedBackPostalCodeError');
 //Info CodePostal
 let postalCodeInfo = document.getElementById('postalCodeInfo');
-//La date souhaitée
+//La date souhaitée, la date max et min affichées
 let wishedDate = document.getElementById('wishedDate');
+let wishedDateMax = wishedDate.max;
+let wishedDateMin = wishedDate.min;
+//feedback sur input wishedTime
+let feedBackWishedDateSuccess = document.getElementById('feedBackWishedDateSuccess');
+let feedBackWishedDateError = document.getElementById('feedBackWishedDateError');
 //L'heure souhaitée
 let wishedTime =  document.getElementById('wishedTime');
+//feedback sur input wishedTime
+let feedBackWishedTimeSuccess = document.getElementById('feedBackWishedTimeSuccess');
+let feedBackWishedTimeError = document.getElementById('feedBackWishedTimeError');
 //Titre du menu
 let menuTitle = document.getElementById('menuTitle');
 //Nbre de personnes précisé
@@ -113,6 +121,7 @@ let ReducDix = 10;
 //Code postaux
 let agglo = [33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 33520, 33560, 33150, 33320, 33270, 33170, 33185, 33310, 33127, 33700, 33290, 33600, 33160, 33440, 33160, 33440, 33320, 33400, 33140]
 let bordeaux =[30072, 33000, 33100, 33200, 33300, 33800]
+
 
 //function de contrôle du minimum de Personne requis
 function minPersRequest(){
@@ -283,7 +292,7 @@ if (bordeauxDelivery>0){
 
 //function de contrôle du numéro de téléphone
 function checkPhoneNumber(){
-console.log(feedBackPhoneError);
+
 	
 //Trim de la valeur entrée par l'utilisateur
 let phoneNumberTrim = phoneNumber.value.trim()
@@ -338,6 +347,71 @@ let matchDigitOK = phoneNumberTrim.match(regexDigitOK);
 
 }
 
+
+function checkWishedDate(){
+	//Conversion des dates (entrées, min et max) en objet Date JavaScript:
+let	wishedDateJSvalue = new Date(wishedDate.value);
+	//console.log(wishedDateJSvalue);
+	//console.log(wishedDateJSvalue.getTime());
+	wishedDateMin = new Date(wishedDateMin);
+	wishedDateMax = new Date(wishedDateMax);
+	//Le regex pour contrôler le format n'est pas utile car celui ci est déjà vérouillé par le format HTML
+
+	//Contrôle si la date entrée est dans l'intervalle imposée
+		//transformation des dates : entrée , min et max en temps millsecondes (écoulées depuis le premier janvier 1970, 00:00:00 UTC)
+		const wishedDateTimeUTC = wishedDateJSvalue.getTime();
+		const wishedDateMinTimeUTC = wishedDateMin.getTime();
+		const wishedDateMaxTimeUTC = wishedDateMax.getTime();
+		//si hors champs => renvoi d'un message d'erreur en rappelant la quinzaine en cours
+		if (wishedDateTimeUTC > wishedDateMaxTimeUTC || wishedDateTimeUTC < wishedDateMinTimeUTC){
+			feedBackWishedTimeSuccess.innerHTML = "";
+			feedBackWishedTimeError.innerHTML = `Date hors quinzaine <br> 
+			(du ${wishedDateMin.getUTCDate() + "/"+
+			/*Note : .getUTCMonth() de 0 à 11 ==> ajouté +1)
+			En fonction de la valeur de .getUTCMonth, un 0 et ajouté ou pas au mois avant  (cf. fonction ternaire)*/
+				(wishedDateMin.getUTCMonth()<9 ? "0" : "")+
+				+((wishedDateMin.getUTCMonth())+1) + 
+				"/"+ wishedDateMin.getUTCFullYear() } 
+
+			<br> au 
+			
+			${wishedDateMax.getUTCDate() + "/"+
+				(wishedDateMax.getUTCMonth()<9 ? "0" : "")+
+				+((wishedDateMax.getUTCMonth())+1) + "/"+
+				 wishedDateMax.getUTCFullYear() })`
+		return false
+		}
+		//Si date choisie est une date non ouvrée pour la livraison (dimanche =>getDay==0)
+	else if (wishedDateJSvalue.getUTCDay()==0){
+			feedBackWishedTimeSuccess.innerHTML = "";
+			feedBackWishedTimeError.innerHTML = "Pas de livraison <br> le dimanche";
+			return false
+		}
+		 
+
+		//si dans le champs et hors jours chomé=> renvoi d'un message de la date sélectionnée dans success
+	//if (wishedDateTimeUTC <= wishedDateMaxTimeUTC && wishedDateTimeUTC >= wishedDateMinTimeUTC &&wishedDate.getUTCDay()!=0){
+	else{ feedBackWishedTimeSuccess.innerHTML = `Date sélectionnée : <br>
+			<span style="text-align:center;">
+			${wishedDateJSvalue.getUTCDate() + "/"+
+			/*Note : .getUTCMonth() de 0 à 11 ==> ajouté +1)
+			En fonction de la valeur de .getUTCMonth, un 0 et ajouté ou pas au mois avant  (cf. fonction ternaire)*/
+				(wishedDateJSvalue.getUTCMonth()<9 ? "0" : "")+
+				+((wishedDateJSvalue.getUTCMonth())+1) + 
+				"/"+ wishedDateJSvalue.getUTCFullYear() } 
+			</span>`;
+			feedBackWishedTimeError.innerHTML = "";
+
+		// conclusion avec attribution de cleanValue à la valeur choisie
+		let wishedDateCleanValue = wishedDateJSvalue;
+		}
+
+
+	}
+
+
+
+
 /*******************Intéractivité affichage avant soumission***************************** */
 
 /******Interactivités utilisant les événement input/change*****/
@@ -348,12 +422,11 @@ peopleNbrSpec.addEventListener("input", minPersRequest);
 //Affichage du message d'info CodePostal en fonction de la valeur indiqué (nbre de digit, caractère non numérique,...)
 postalCode.addEventListener("change", checkPostalCode);
 
-//Affichage du message d'info phoneNumber en fonction de la valeur indiqué (nbre de digit, caractère non numérique,...)
+//Affichage du message d'info phoneNumber souhaitée en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
 phoneNumber.addEventListener("change", checkPhoneNumber);
 
+//Affichage du message d'info Date souhaitée en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
+wishedDate.addEventListener("change", checkWishedDate);
 
 
-wishedDate.addEventListener("change",()=>{console.log(wishedDate.value)});
-
-console.log(Date());
 

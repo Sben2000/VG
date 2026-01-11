@@ -295,12 +295,18 @@ if (isset($_SESSION["user"])) {
 
 										</div>
 										<div class="detailedInput">
-											<label for="datePresta">Date souhaitée </label>
-											<input type="date" id="wishedDate" name="datePresta" value="" autocomplete="off" required>
+											<label for="datePresta">Date souhaitée</label>
+																					<!--$tomorrow et $twoWeeks calculés en php-->
+											<input type="date" id="wishedDate" name="datePresta" value="" min="<?= $tomorrow ?>"  max="<?= $twoWeeks ?>"  autocomplete="off" required>
+											<p id="feedBackWishedDateSuccess" style="color: darkgreen;"></p>
+											<p id="feedBackWishedDateError" style="color: darkred;"></p>	
+											<p class="note" id="datePrestaInfo"><em><br>réservation possible à partir <br>du prochain jour ouvré <br> (sur 2 semaines, hors dimanche) </em></p>
 										</div>
 										<div class="detailedInput">
 											<label for="heurePresta">heure souhaitée </label>
 											<input type="time" id="wishedTime" name="heurePresta" value="" autocomplete="off" required>
+											<p id="feedBackWishedTimeSuccess" style="color: darkgreen;"></p>
+											<p id="feedBackWishedTimeError" style="color: darkred;"></p>
 										</div>
 									</div>
 									<div class="orderFormQuantity">

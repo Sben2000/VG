@@ -298,6 +298,12 @@ border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalis√
     text-align: start;
 }
 
+#wishedDate{
+    margin-bottom: 5px;
+}
+#datePrestaInfo{
+    margin-top: 0px;
+}
 .regimetheme, .associatedDishes{
 display: flex;
 flex-direction: row;

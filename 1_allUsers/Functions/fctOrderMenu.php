@@ -65,3 +65,15 @@ function getProposePlatByMenuID($menuID){
     //var_dump($result);
     return $result;
 }
+
+
+/****Ajout de journée(s) à la date du jour (cours studi)***/
+
+//date du jour au format html (Année-Mois-Jour)
+$today = date('Y-m-d');
+
+//lendemain au format html (Année-Mois-Jour)
+$tomorrow = date('Y-m-d', strtotime($today. ' + 1 days'));
+
+//Quinzaine au format html (Année-Mois-Jour)
+$twoWeeks = date('Y-m-d', strtotime($today. ' + 14 days'));
