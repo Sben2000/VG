@@ -157,7 +157,7 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         if (is_string($nom)==FALSE){
         return "veuillez rentrer un nom composé de lettres";
         }
-    //Vérification de la longueur du numéro de tél
+    //Vérification de la longueur du nom
         if(strlen($nom)>20){
             return "le nom ne peut dépasser 20 caractères";
         }

@@ -59,8 +59,12 @@ let priceMenu = document.getElementById('priceMenu').innerText;
 let myForm =  document.getElementById('orderForm');
 //Le nom de famille
 let name = document.getElementById('name');
+//feedback sur nom de famille
+let feedBackNameError = document.getElementById('feedBackNameError');
 //Le prénom
 let firstname = document.getElementById('firstname');
+//feedback sur prénom
+let feedBackFirstnameError = document.getElementById('feedBackFirstnameError');
 //L'email
 let email = document.getElementById('email');
 //Le numéro de téléphone
@@ -146,7 +150,6 @@ console.log(matchMinPR);
 
   //Vérifie si la valeur est un  Float (le modulo % du nombre sur la division par 1 est différent de zéro)
   const modulo = peopleNbrSpecTrim % 1;
-  console.log(modulo);
   if(modulo != 0){
    feedBackPeopleError.innerHTML=`Seuls les nombres entiers <br> sont acceptés`;
     feedBackPeopleSuccess.innerHTML ="";
@@ -202,6 +205,7 @@ console.log(matchMinPR);
 	}
 }
 
+//function de contrôle Code Postal
 function checkPostalCode(){
 
 //Trim de la valeur entrée par l'utilisateur
@@ -410,6 +414,64 @@ let	wishedDateJSvalue = new Date(wishedDate.value);
 	}
 
 
+//function de contrôle du nom 
+
+function checkName(){
+
+	
+//Trim de la valeur entrée par l'utilisateur
+let nameTrim = name.value.trim()
+
+
+//controle des données entrées dans l'input via un regex
+//Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!) - ou _ (-|_)
+let regexNonWord = /(?!-|_)[\W\d]/g;
+let matchNW = nameTrim.match(regexNonWord);
+//console.log(matchNW);
+
+//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchNW){
+    feedBackNameError.innerHTML="Uniquement lettres, - ou _<br> sans espace";
+	return false;
+  }
+
+//Vérification de la longueur du nom
+
+//regex permettant de détecter un match de 21 lettres (case insensitive)
+let regexTwenOneLetter = /[a-z]{21}/i;
+let matchTwenOneLetters= nameTrim.match(regexTwenOneLetter);
+//console.log(matchTwenOneLetter);
+//regex permettant de détecter un match d'une lettre unique (case insensitive)
+let regexTwoLetters = /[a-z]{2}/i;
+let matchTwoLetters= nameTrim.match(regexTwoLetters);
+
+//regex permettant de détecter un match correct entre 2 et 20 lettres :
+let regexNameLengthOK = /[a-z]{2,20}/i;
+let matchNameLengthOK = nameTrim.match(regexNameLengthOK);
+
+//si il n'existe pas de nom d'au moins 2 lettres, envoi d'un message d'erreur
+   if(!matchTwoLetters){
+    feedBackNameError.innerHTML="Le nom ne contient pas <br> assez de lettres";
+	return false;
+ }
+
+//si il existe un de match d'au moins 21 lettres, envoi d'un message d'erreur
+    if(matchTwenOneLetters){
+    feedBackNameError.innerHTML="le nom contient <br> trop de lettres";
+	return false;
+  }
+  //si il existe un de match entre 2 et 20 lettres, enlever les messages d'erreurs
+  if(matchNameLengthOK) {
+	feedBackNameError.innerHTML="";
+
+//On attribue à clean Value la valeur du nom Trim validée
+
+  let nameTrimCleanValue = nameTrim;
+  }
+
+
+
+}
 
 
 /*******************Intéractivité affichage avant soumission***************************** */
@@ -428,5 +490,6 @@ phoneNumber.addEventListener("change", checkPhoneNumber);
 //Affichage du message d'info Date souhaitée en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
 wishedDate.addEventListener("change", checkWishedDate);
 
-
+//Affichage du message d'info Nom en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
+name.addEventListener("change", checkName);
 

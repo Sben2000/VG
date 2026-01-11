@@ -262,10 +262,12 @@ if (isset($_SESSION["user"])) {
 											<label for="prenom">Prénom </label>
 											<input type="text" id='firstname' name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
 												autocomplete="off" required>
+											<p id="feedBackFirstnameError" style="color: darkred;"></p>
 										</div>
 										<div class="detailedInput fetch">
 											<label for="email">Email du compte</label>
 											<input type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
+											<p id="feedBackNameError" style="color: darkred;"></p>
 										</div>
 										<div class="detailedInput">
 											<label for="tel">Numéro de téléphone </label>

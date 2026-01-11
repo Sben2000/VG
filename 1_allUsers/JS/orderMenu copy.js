@@ -59,8 +59,12 @@ let priceMenu = document.getElementById('priceMenu').innerText;
 let myForm =  document.getElementById('orderForm');
 //Le nom de famille
 let name = document.getElementById('name');
+//feedback sur nom de famille
+let feedBackNameError = document.getElementById('feedBackNameError');
 //Le prénom
 let firstname = document.getElementById('firstname');
+//feedback sur prénom
+let feedBackFirstnameError = document.getElementById('feedBackFirstnameError');
 //L'email
 let email = document.getElementById('email');
 //Le numéro de téléphone
@@ -122,6 +126,7 @@ let ReducDix = 10;
 let agglo = [33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 33520, 33560, 33150, 33320, 33270, 33170, 33185, 33310, 33127, 33700, 33290, 33600, 33160, 33440, 33160, 33440, 33320, 33400, 33140]
 let bordeaux =[30072, 33000, 33100, 33200, 33300, 33800]
 
+
 //function de contrôle du minimum de Personne requis
 function minPersRequest(){
 //Trim de la valeur entrée par l'utilisateur
@@ -145,7 +150,6 @@ console.log(matchMinPR);
 
   //Vérifie si la valeur est un  Float (le modulo % du nombre sur la division par 1 est différent de zéro)
   const modulo = peopleNbrSpecTrim % 1;
-  console.log(modulo);
   if(modulo != 0){
    feedBackPeopleError.innerHTML=`Seuls les nombres entiers <br> sont acceptés`;
     feedBackPeopleSuccess.innerHTML ="";
@@ -201,6 +205,7 @@ console.log(matchMinPR);
 	}
 }
 
+//function de contrôle Code Postal
 function checkPostalCode(){
 
 //Trim de la valeur entrée par l'utilisateur
@@ -349,15 +354,16 @@ let matchDigitOK = phoneNumberTrim.match(regexDigitOK);
 
 function checkWishedDate(){
 	//Conversion des dates (entrées, min et max) en objet Date JavaScript:
-	wishedDate = new Date(wishedDate.value);
-	//console.log(wishedDate.getTime());
+let	wishedDateJSvalue = new Date(wishedDate.value);
+	//console.log(wishedDateJSvalue);
+	//console.log(wishedDateJSvalue.getTime());
 	wishedDateMin = new Date(wishedDateMin);
 	wishedDateMax = new Date(wishedDateMax);
 	//Le regex pour contrôler le format n'est pas utile car celui ci est déjà vérouillé par le format HTML
 
 	//Contrôle si la date entrée est dans l'intervalle imposée
 		//transformation des dates : entrée , min et max en temps millsecondes (écoulées depuis le premier janvier 1970, 00:00:00 UTC)
-		const wishedDateTimeUTC = wishedDate.getTime();
+		const wishedDateTimeUTC = wishedDateJSvalue.getTime();
 		const wishedDateMinTimeUTC = wishedDateMin.getTime();
 		const wishedDateMaxTimeUTC = wishedDateMax.getTime();
 		//si hors champs => renvoi d'un message d'erreur en rappelant la quinzaine en cours
@@ -377,13 +383,95 @@ function checkWishedDate(){
 				(wishedDateMax.getUTCMonth()<9 ? "0" : "")+
 				+((wishedDateMax.getUTCMonth())+1) + "/"+
 				 wishedDateMax.getUTCFullYear() })`
+		return false
 		}
+		//Si date choisie est une date non ouvrée pour la livraison (dimanche =>getDay==0)
+	else if (wishedDateJSvalue.getUTCDay()==0){
+			feedBackWishedTimeSuccess.innerHTML = "";
+			feedBackWishedTimeError.innerHTML = "Pas de livraison <br> le dimanche";
+			return false
+		}
+		 
 
+		//si dans le champs et hors jours chomé=> renvoi d'un message de la date sélectionnée dans success
+	//if (wishedDateTimeUTC <= wishedDateMaxTimeUTC && wishedDateTimeUTC >= wishedDateMinTimeUTC &&wishedDate.getUTCDay()!=0){
+	else{ feedBackWishedTimeSuccess.innerHTML = `Date sélectionnée : <br>
+			<span style="text-align:center;">
+			${wishedDateJSvalue.getUTCDate() + "/"+
+			/*Note : .getUTCMonth() de 0 à 11 ==> ajouté +1)
+			En fonction de la valeur de .getUTCMonth, un 0 et ajouté ou pas au mois avant  (cf. fonction ternaire)*/
+				(wishedDateJSvalue.getUTCMonth()<9 ? "0" : "")+
+				+((wishedDateJSvalue.getUTCMonth())+1) + 
+				"/"+ wishedDateJSvalue.getUTCFullYear() } 
+			</span>`;
+			feedBackWishedTimeError.innerHTML = "";
+
+		// conclusion avec attribution de cleanValue à la valeur choisie
+		let wishedDateCleanValue = wishedDateJSvalue;
+		}
 
 
 	}
 
 
+//function de contrôle du nom 
+
+function checkName(){
+
+	
+//Trim de la valeur entrée par l'utilisateur
+let nameTrim = name.value.trim()
+
+
+//controle des données entrées dans l'input via un regex
+//Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!) - ou _ (-|_)
+let regexNonWord = /(?!-|_)[\W\d]/g;
+let matchNW = nameTrim.match(regexNonWord);
+//console.log(matchNW);
+
+//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchNW){
+    feedBackNameError.innerHTML="Uniquement lettres, - ou _<br> sans espace";
+	return false;
+  }
+
+//Vérification de la longueur du nom
+
+//regex permettant de détecter un match de 21 lettres (case insensitive)
+let regexTwenOneLetter = /[a-z]{21}/i;
+let matchTwenOneLetters= nameTrim.match(regexTwenOneLetter);
+//console.log(matchTwenOneLetter);
+//regex permettant de détecter un match d'une lettre unique (case insensitive)
+let regexTwoLetters = /[a-z]{2}/i;
+let matchTwoLetters= nameTrim.match(regexTwoLetters);
+
+//regex permettant de détecter un match correct entre 2 et 20 lettres :
+let regexNameLengthOK = /[a-z]{2,20}/i;
+let matchNameLengthOK = nameTrim.match(regexNameLengthOK);
+
+//si il n'existe pas de nom d'au moins 2 lettres, envoi d'un message d'erreur
+   if(!matchTwoLetters){
+    feedBackNameError.innerHTML="Le nom ne contient pas <br> assez de lettres";
+	return false;
+ }
+
+//si il existe un de match d'au moins 21 lettres, envoi d'un message d'erreur
+    if(matchTwenOneLetters){
+    feedBackNameError.innerHTML="le nom contient <br> trop de lettres";
+	return false;
+  }
+  //si il existe un de match entre 2 et 20 lettres, enlever les messages d'erreurs
+  if(matchNameLengthOK) {
+	feedBackNameError.innerHTML="";
+
+//On attribue à clean Value la valeur du nom Trim validée
+
+  let nameTrimCleanValue = nameTrim;
+  }
+
+
+
+}
 
 
 /*******************Intéractivité affichage avant soumission***************************** */
@@ -402,12 +490,6 @@ phoneNumber.addEventListener("change", checkPhoneNumber);
 //Affichage du message d'info Date souhaitée en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
 wishedDate.addEventListener("change", checkWishedDate);
 
-
-
-wishedDate.addEventListener("change",()=>{Date.UTC(wishedDate.value)});
-
-const date1 = new Date("2026-01-12");
-console.log(date1);
-
-
+//Affichage du message d'info Nom en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
+name.addEventListener("change", checkName);
 
