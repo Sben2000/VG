@@ -73,6 +73,12 @@ let phoneNumber = document.getElementById('phoneNumber');
 let feedBackPhoneError = document.getElementById('feedBackPhoneError');
 //L'adresse
 let adress = document.getElementById('adress');
+//feedback sur l'adresse
+let feedBackAdressError = document.getElementById('feedBackAdressError');
+//La ville
+let cityName = document.getElementById('cityName');
+//feedback sur input cityName
+let feedBackCityNameError = document.getElementById('feedBackCityNameError');
 //Le code postal
 let postalCode = document.getElementById('postalCode');
 //feedback sur input code Postal
@@ -415,7 +421,6 @@ let	wishedDateJSvalue = new Date(wishedDate.value);
 
 
 //function de contrôle du nom 
-
 function checkName(){
 
 	
@@ -424,8 +429,8 @@ let nameTrim = name.value.trim()
 
 
 //controle des données entrées dans l'input via un regex
-//Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!) - ou _ (-|_)
-let regexNonWord = /(?!-|_)[\W\d]/g;
+//Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!)- ou _ ou espace ou apostrophe ou toutes les lettres avec accent(-|_|\s|'|[À-ú])
+let regexNonWord = /(?!-|_|\s|'|[À-ú])[\W\d]/g;
 let matchNW = nameTrim.match(regexNonWord);
 //console.log(matchNW);
 
@@ -438,15 +443,15 @@ let matchNW = nameTrim.match(regexNonWord);
 //Vérification de la longueur du nom
 
 //regex permettant de détecter un match de 21 lettres (case insensitive)
-let regexTwenOneLetter = /[a-z]{21}/i;
+let regexTwenOneLetter = /[A-zÀ-ú]{21}/i;
 let matchTwenOneLetters= nameTrim.match(regexTwenOneLetter);
 //console.log(matchTwenOneLetter);
 //regex permettant de détecter un match d'une lettre unique (case insensitive)
-let regexTwoLetters = /[a-z]{2}/i;
+let regexTwoLetters = /[A-zÀ-ú]{2}/i;
 let matchTwoLetters= nameTrim.match(regexTwoLetters);
 
 //regex permettant de détecter un match correct entre 2 et 20 lettres :
-let regexNameLengthOK = /[a-z]{2,20}/i;
+let regexNameLengthOK = /[A-zÀ-ú]{2,20}/i;
 let matchNameLengthOK = nameTrim.match(regexNameLengthOK);
 
 //si il n'existe pas de nom d'au moins 2 lettres, envoi d'un message d'erreur
@@ -474,22 +479,139 @@ let matchNameLengthOK = nameTrim.match(regexNameLengthOK);
 }
 
 
+
+//function de contrôle du prénom 
+function checkFirstname(){
+
+	
+//Trim de la valeur entrée par l'utilisateur
+let firstnameTrim = firstname.value.trim();
+
+
+//controle des données entrées dans l'input via un regex
+//Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!) - ou _ ou espace ou apostrophe ou toutes les lettres avec accent(-|_|\s|'|[À-ú])
+let regexNonWord = /(?!-|_|\s|'|[À-ú])[\W\d]/g;
+let matchNW = firstnameTrim.match(regexNonWord);
+console.log(matchNW);
+//console.log(matchNW);
+
+//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchNW){
+    feedBackFirstnameError.innerHTML="Uniquement lettres, - ou _<br>ou espace si prénom composé";
+	return false;
+  }
+
+//Vérification de la longueur du nom
+
+//regex permettant de détecter un match de 21 lettres (case insensitive)
+let regexTwenOneLetter = /[A-zÀ-ú]{21}/i;
+let matchTwenOneLetters= firstnameTrim.match(regexTwenOneLetter);
+//console.log(matchTwenOneLetter);
+//regex permettant de détecter un match d'une lettre unique (case insensitive)
+let regexTwoLetters = /[A-zÀ-ú]{2}/i;
+let matchTwoLetters= firstnameTrim.match(regexTwoLetters);
+
+//regex permettant de détecter un match correct entre 2 et 20 lettres :
+let regexFirstnameLengthOK = /[a-z]{2,20}/i;
+let matchFirstnameLengthOK = firstnameTrim.match(regexFirstnameLengthOK);
+
+//si il n'existe pas de nom d'au moins 2 lettres, envoi d'un message d'erreur
+   if(!matchTwoLetters){
+    feedBackFirstnameError.innerHTML="Le prénom ne contient pas <br> assez de lettres";
+	return false;
+ }
+
+//si il existe un de match d'au moins 21 lettres, envoi d'un message d'erreur
+    if(matchTwenOneLetters){
+    feedBackFirstnameError.innerHTML="le prénom contient <br> trop de lettres";
+	return false;
+  }
+  //si il existe un de match entre 2 et 20 lettres, enlever les messages d'erreurs
+  if(matchFirstnameLengthOK) {
+	feedBackFirstnameError.innerHTML="";
+
+//On attribue à clean Value la valeur du nom Trim validée
+
+  let firstnameTrimCleanValue = firstnameTrim;
+  }
+
+}
+
+//function de contrôle du nom de ville
+function checkCityName(){
+	
+//Trim de la valeur entrée par l'utilisateur
+let cityNameTrim = cityName.value.trim()
+
+//controle des données entrées dans l'input via un regex
+//Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!)- ou _ ou espace ou apostrophe ou toutes les lettres avec accent(-|_|\s|'|[À-ú])
+let regexNonWord = /(?!-|_|\s|'|[À-ú])[\W\d]/g;
+let matchNW = cityNameTrim.match(regexNonWord);
+//console.log(matchNW);
+
+//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchNW){
+    feedBackCityNameError.innerHTML="Uniquement lettres, - ou _<br>ou espace ";
+	return false;
+  }
+
+//Vérification de la longueur du nom
+
+//regex permettant de détecter un match de 21 lettres (case insensitive)
+let regexTwenOneLetter = /([A-zÀ-ú]){21}/i;
+let matchTwenOneLetters= cityNameTrim.match(regexTwenOneLetter);
+//console.log(matchTwenOneLetter);
+//regex permettant de détecter un match d'une lettre unique (case insensitive)
+let regexTwoLetters = /[A-zÀ-ú]{2}/i;
+let matchTwoLetters= cityNameTrim.match(regexTwoLetters);
+
+//regex permettant de détecter un match correct entre 2 et 20 lettres :
+let regexCityNameLengthOK = /[A-zÀ-ú]{2,20}/i;
+let matchCityNameLengthOK = cityNameTrim.match(regexCityNameLengthOK);
+
+//si il n'existe pas de nom d'au moins 2 lettres, envoi d'un message d'erreur
+   if(!matchTwoLetters){
+    feedBackCityNameError.innerHTML="Le nom de ville ne contient <br> pas  assez de lettres";
+	return false;
+ }
+
+//si il existe un de match d'au moins 21 lettres, envoi d'un message d'erreur
+    if(matchTwenOneLetters){
+    feedBackCityNameError.innerHTML="le nom de ville contient <br> trop de lettres";
+	return false;
+  }
+  //si il existe un de match entre 2 et 20 lettres, enlever les messages d'erreurs
+  if(matchCityNameLengthOK) {
+	feedBackCityNameError.innerHTML="";
+
+//On attribue à clean Value la valeur du nom Trim validée
+
+  let cityNameTrimCleanValue = cityNameTrim;
+  }
+
+}
+
 /*******************Intéractivité affichage avant soumission***************************** */
 
 /******Interactivités utilisant les événement input/change*****/
 
-//Affichage du message d'Info Nbre Pers en fonction de la valeur indiqué (nbre de personnes indiqué, caractère non numérique,...)
+//Affichage du message d'Info Nbre Pers en fonction de la valeur indiquée (nbre de personnes indiqué, caractère non numérique,...)
 peopleNbrSpec.addEventListener("input", minPersRequest);
 
-//Affichage du message d'info CodePostal en fonction de la valeur indiqué (nbre de digit, caractère non numérique,...)
+//Affichage du message d'info CodePostal en fonction de la valeur indiquée (nbre de digit, caractère non numérique,...)
 postalCode.addEventListener("change", checkPostalCode);
 
-//Affichage du message d'info phoneNumber souhaitée en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
+//Affichage du message d'info phoneNumber souhaitée en fonction de la valeur indiquée 
 phoneNumber.addEventListener("change", checkPhoneNumber);
 
-//Affichage du message d'info Date souhaitée en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
+//Affichage du message d'info Date souhaitée en fonction de la valeur indiquée (date hors champs, hors jour ouvré entreprise,...)
 wishedDate.addEventListener("change", checkWishedDate);
 
-//Affichage du message d'info Nom en fonction de la valeur indiqué (date hors champs, hors jour ouvré entreprise,...)
+//Affichage du message d'info Nom en fonction de la valeur indiquée 
 name.addEventListener("change", checkName);
 
+//Affichage du message d'info Prénom en fonction de la valeur indiquée
+firstname.addEventListener("change", checkFirstname);
+
+//Affichage du message d'info Ville en fonction de la valeur indiquée 
+cityName.addEventListener("change", checkCityName);

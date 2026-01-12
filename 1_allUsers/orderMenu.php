@@ -257,6 +257,7 @@ if (isset($_SESSION["user"])) {
 											<label for="nom">Nom </label>
 											<input type="text" id="name" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
 												autocomplete="off" required>
+											<p id="feedBackNameError" style="color: darkred;"></p>												
 										</div>
 										<div class="detailedInput">
 											<label for="prenom">Prénom </label>
@@ -267,7 +268,6 @@ if (isset($_SESSION["user"])) {
 										<div class="detailedInput fetch">
 											<label for="email">Email du compte</label>
 											<input type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
-											<p id="feedBackNameError" style="color: darkred;"></p>
 										</div>
 										<div class="detailedInput">
 											<label for="tel">Numéro de téléphone </label>
@@ -282,10 +282,12 @@ if (isset($_SESSION["user"])) {
 											<label for="adresse">Adresse </label>
 											<input type="text" id="adress" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
 												autocomplete="off">
+											<p id="feedBackAdressError" style="color: darkred;"></p>												
 										</div>
 										<div class="detailedInput">
 											<label for="ville">Ville </label>
-											<input type="text" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ville" autocomplete="off">
+											<input type="text" id="cityName" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ville" autocomplete="off">
+											<p id="feedBackCityNameError" style="color: darkred;"></p>
 										</div>
 										<div class="detailedInput">
 											<label for="codePostal">Code Postal </label>
