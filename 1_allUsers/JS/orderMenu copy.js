@@ -591,6 +591,90 @@ let matchCityNameLengthOK = cityNameTrim.match(regexCityNameLengthOK);
 
 }
 
+//function de contrôle du nom de ville
+function checkAdress(){
+	
+//Trim de la valeur entrée par l'utilisateur
+let adressTrim = adress.value.trim()
+
+//controle des données entrées dans l'input via un regex
+//Tout ce qui est un non word (\W) sauf (?!)- ou _ ou \.(point échappé) ou espace ou apostrophe ou toutes les lettres avec accent ou digit ou (-|_|\s|'|[À-ú] [\d])
+let regexNonWord = /(?!-|_|\s|'|\.|[À-ú]|[\d])[\W]/g;
+let matchNW = adressTrim.match(regexNonWord);
+//console.log(matchNW);
+
+//si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+   if(matchNW){
+    feedBackAdressError.innerHTML="Uniquement N°, lettres, <br> - , _ , . ou espace ";
+	return false;
+  }
+
+//Vérification de la longueur de l'adresse
+
+//regex permettant de détecter un match de 31 lettres (case insensitive)
+let regexTwenOneLetter = /([A-zÀ-ú]){31}/i;
+let matchTwenOneLetters= adressTrim.match(regexTwenOneLetter);
+//console.log(matchTwenOneLetter);
+//regex permettant de détecter un match d'une lettre unique (case insensitive)
+let regexTwoLetters = /[A-zÀ-ú]{2}/i;
+let matchTwoLetters= adressTrim.match(regexTwoLetters);
+
+//regex permettant de détecter un match correct entre 2 et 20 lettres :
+let regexAdressLengthOK = /[A-zÀ-ú]{2,20}/i;
+let matchAdressLengthOK = adressTrim.match(regexAdressLengthOK);
+
+//si il n'existe pas de nom d'au moins 2 lettres, envoi d'un message d'erreur
+   if(!matchTwoLetters){
+    feedBackAdressError.innerHTML="L'adresse ne contient <br> pas  assez de lettres";
+	return false;
+ }
+
+//si il existe un de match d'au moins 21 lettres, envoi d'un message d'erreur
+    if(matchTwenOneLetters){
+    feedBackAdressError.innerHTML="l'adresse' contient <br> trop de lettres";
+	return false;
+  }
+
+  //Vérification de la présence et longueur du N°
+
+//regex permettant de détecter un match de 6 N°
+let regexSixNumbers = /([\d]){6}/g;
+let matchSixNumbers= adressTrim.match(regexSixNumbers);
+//console.log(matchTwenOneLetter);
+//regex permettant de détecter un match d'un numero ([\d])
+let regexNumber = /[\d]/g;
+let matchNumber= adressTrim.match(regexNumber);
+console.log(matchNumber);
+
+//regex permettant de détecter un match correct entre 1 et 5 chiffres :
+let regexNumberLengthOK = /[\d]{1,5}/i;
+let matchNumberLengthOK = adressTrim.match(regexNumberLengthOK);
+
+//si il n'existe pas de nom d'au moins 1 N° , envoi d'un message d'erreur
+   if(!matchNumber){
+    feedBackAdressError.innerHTML="Un N° de rue requis <br>(écrire 0 si pas de N°)";
+	return false;
+ }
+
+//si il existe un de match d'au moins 6 N°, envoi d'un message d'erreur
+    if(matchSixNumbers){
+    feedBackAdressError.innerHTML="le N° contient <br> trop de chiffres";
+	return false;
+  }
+
+
+  //si il existe un de match entre 2 et 20 lettres, enlever les messages d'erreurs
+  if(matchAdressLengthOK && matchNumberLengthOK) {
+	feedBackAdressError.innerHTML="";
+
+//On attribue à clean Value la valeur du nom Trim validée
+
+  let adressTrimCleanValue = adressTrim;
+  }
+
+}
+
+
 /*******************Intéractivité affichage avant soumission***************************** */
 
 /******Interactivités utilisant les événement input/change*****/
@@ -615,3 +699,6 @@ firstname.addEventListener("change", checkFirstname);
 
 //Affichage du message d'info Ville en fonction de la valeur indiquée 
 cityName.addEventListener("change", checkCityName);
+
+//Affichage du message d'info Adresse en fonction de la valeur indiquée 
+adress.addEventListener("change", checkAdress);
