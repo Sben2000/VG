@@ -257,7 +257,7 @@ if (isset($_SESSION["user"])) {
 											<label for="nom">Nom </label>
 											<input type="text" id="name" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
 												autocomplete="off" required>
-											<p id="feedBackNameError" style="color: darkred;"></p>												
+											<p id="feedBackNameError" style="color: darkred;"></p>
 										</div>
 										<div class="detailedInput">
 											<label for="prenom">Prénom </label>
@@ -282,7 +282,7 @@ if (isset($_SESSION["user"])) {
 											<label for="adresse">Adresse </label>
 											<input type="text" id="adress" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
 												autocomplete="off">
-											<p id="feedBackAdressError" style="color: darkred;"></p>												
+											<p id="feedBackAdressError" style="color: darkred;"></p>
 										</div>
 										<div class="detailedInput">
 											<label for="ville">Ville </label>
@@ -298,20 +298,40 @@ if (isset($_SESSION["user"])) {
 											<p class="note" id="postalCodeInfo"><em>Pas de livraison hors agglomération.<br>Offerte à Bordeaux, 5&#x20AC/agglo</em></p>
 
 										</div>
-										<div class="detailedInput">
-											<label for="datePresta">Date souhaitée</label>
-																					<!--$tomorrow et $twoWeeks calculés en php-->
-											<input type="date" id="wishedDate" name="datePresta" value="" min="<?= $tomorrow ?>"  max="<?= $twoWeeks ?>"  autocomplete="off" required>
+										<div class="detailedInput wished">
+											<label for="datePresta" style="text-align:center;">Date souhaitée</label>
+											<!--$tomorrow et $twoWeeks calculés en php-->
+											<input type="date" id="wishedDate" name="datePresta" value="" min="<?= $tomorrow ?>" max="<?= $twoWeeks ?>" placeholder="YYYY-MM-DD" autocomplete="off" required>
 											<p id="feedBackWishedDateSuccess" style="color: darkgreen;"></p>
-											<p id="feedBackWishedDateError" style="color: darkred;"></p>	
+											<p id="feedBackWishedDateError" style="color: darkred;"></p>
 											<p class="note" id="datePrestaInfo"><em><br>réservation possible à partir <br>du prochain jour ouvré <br> (sur 2 semaines, hors dimanche) </em></p>
 										</div>
-										<div class="detailedInput">
-											<label for="heurePresta">heure souhaitée </label>
-											<input type="time" id="wishedTime" name="heurePresta" value="" autocomplete="off" required>
+
+											
+											<!--<input type="time"  name="heurePresta" value="" autocomplete="off" required>-->
+											<div class="rollingMenuCriterias detailedInput">
+												<label for="heurePresta">plage horaire souhaitée </label>
+												<div><label>
+														<select name="selectFilter" id="wishedTime" class="filter wished">
+															<!--<option class="none" value="" disabled selected>Sélectionner</option>-->
+															<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+															<option class="none" value="none" disabled selected>Selectionner &#x23F2;|</option>
+															<optgroup label="Service du Déjeuner ">
+																<option value="11h00-12h00">&#x2B1D; 11:00 - 12:00 </option>
+																<option value="12h00-13h00">&#x2B1D; 12:00 - 13:00 </option>
+																<option value="13h00-14h00">&#x2B1D; 13:00 - 14:00 </option>
+															<optgroup label="Service du Diner ">
+																<option value="18h-19h00">&#x2B1D; 18:00 - 19:00 </option>
+																<option value="19h00-20h00">&#x2B1D; 19:00 - 20:00 </option>
+																<option value="20h00-21h00">&#x2B1D; 20:00 - 21:00 </option>
+																<option value="21h00-22h00">&#x2B1D; 21:00 - 22:00 </option>
+															</optgroup>
+														</select>
+													</label></div>
+											</div>
 											<p id="feedBackWishedTimeSuccess" style="color: darkgreen;"></p>
 											<p id="feedBackWishedTimeError" style="color: darkred;"></p>
-										</div>
+										
 									</div>
 									<div class="orderFormQuantity">
 										<h3>Menu et quantités</h3>
@@ -354,7 +374,7 @@ if (isset($_SESSION["user"])) {
 										<div class="detailedInput fetch">
 											<label for="totalPrice">Prix total (&#x20AC TTC): </label>
 											<div class="symbol">
-											<strong><input type="text" id="totalPrice" name="totalPrice" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
+												<strong><input type="text" id="totalPrice" name="totalPrice" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
 											</div>
 										</div>
 									</div>
@@ -362,6 +382,10 @@ if (isset($_SESSION["user"])) {
 								<div class="menuDetailedButtons">
 									<input type="submit" name="cancelOrderProcess" value="Annuler" id="cancelOrderProcess" />
 									<input type="submit" name="submitOrder" value="Valider la commande" id="submitOrder" />
+								</div>
+								<div class="submitMessages">
+								<p id="successMessage" style="color: darkgreen;"></p>
+								<p id="errorMessage" style="color: darkred;"></p>
 								</div>
 							</form>
 						</div>

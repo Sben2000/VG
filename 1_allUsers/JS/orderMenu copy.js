@@ -90,7 +90,7 @@ let postalCodeInfo = document.getElementById('postalCodeInfo');
 let wishedDate = document.getElementById('wishedDate');
 let wishedDateMax = wishedDate.max;
 let wishedDateMin = wishedDate.min;
-//feedback sur input wishedTime
+//feedback sur input wishedDate
 let feedBackWishedDateSuccess = document.getElementById('feedBackWishedDateSuccess');
 let feedBackWishedDateError = document.getElementById('feedBackWishedDateError');
 //L'heure souhaitée
@@ -120,7 +120,8 @@ let reductionRate = document.getElementById('reductionRate');
 let deliveryPrice = document.getElementById('deliveryPrice');
 //Prix total
 let totalPrice =  document.getElementById('totalPrice');
-
+//Soumission du formulaire de commande
+let submitOrder = document.getElementById('submitOrder');
 
 /******************Functions /variables générales utilisées pour une ou plusieurs analyses du formulaire************/
 
@@ -359,6 +360,7 @@ let matchDigitOK = phoneNumberTrim.match(regexDigitOK);
 
 
 function checkWishedDate(){
+
 	//Conversion des dates (entrées, min et max) en objet Date JavaScript:
 let	wishedDateJSvalue = new Date(wishedDate.value);
 	//console.log(wishedDateJSvalue);
@@ -374,8 +376,8 @@ let	wishedDateJSvalue = new Date(wishedDate.value);
 		const wishedDateMaxTimeUTC = wishedDateMax.getTime();
 		//si hors champs => renvoi d'un message d'erreur en rappelant la quinzaine en cours
 		if (wishedDateTimeUTC > wishedDateMaxTimeUTC || wishedDateTimeUTC < wishedDateMinTimeUTC){
-			feedBackWishedTimeSuccess.innerHTML = "";
-			feedBackWishedTimeError.innerHTML = `Date hors quinzaine <br> 
+			feedBackWishedDateSuccess.innerHTML = "";
+			feedBackWishedDateError.innerHTML = `Date hors quinzaine <br> 
 			(du ${wishedDateMin.getUTCDate() + "/"+
 			/*Note : .getUTCMonth() de 0 à 11 ==> ajouté +1)
 			En fonction de la valeur de .getUTCMonth, un 0 et ajouté ou pas au mois avant  (cf. fonction ternaire)*/
@@ -393,15 +395,15 @@ let	wishedDateJSvalue = new Date(wishedDate.value);
 		}
 		//Si date choisie est une date non ouvrée pour la livraison (dimanche =>getDay==0)
 	else if (wishedDateJSvalue.getUTCDay()==0){
-			feedBackWishedTimeSuccess.innerHTML = "";
-			feedBackWishedTimeError.innerHTML = "Pas de livraison <br> le dimanche";
+			feedBackWishedDateSuccess.innerHTML = "";
+			feedBackWishedDateError.innerHTML = "Pas de livraison <br> le dimanche";
 			return false
 		}
 		 
 
 		//si dans le champs et hors jours chomé=> renvoi d'un message de la date sélectionnée dans success
 	//if (wishedDateTimeUTC <= wishedDateMaxTimeUTC && wishedDateTimeUTC >= wishedDateMinTimeUTC &&wishedDate.getUTCDay()!=0){
-	else{ feedBackWishedTimeSuccess.innerHTML = `Date sélectionnée : <br>
+	else{ feedBackWishedDateSuccess.innerHTML = `Date sélectionnée : <br>
 			<span style="text-align:center;">
 			${wishedDateJSvalue.getUTCDate() + "/"+
 			/*Note : .getUTCMonth() de 0 à 11 ==> ajouté +1)
@@ -410,7 +412,7 @@ let	wishedDateJSvalue = new Date(wishedDate.value);
 				+((wishedDateJSvalue.getUTCMonth())+1) + 
 				"/"+ wishedDateJSvalue.getUTCFullYear() } 
 			</span>`;
-			feedBackWishedTimeError.innerHTML = "";
+			feedBackWishedDateError.innerHTML = "";
 
 		// conclusion avec attribution de cleanValue à la valeur choisie
 		let wishedDateCleanValue = wishedDateJSvalue;
@@ -675,6 +677,21 @@ let matchNumberLengthOK = adressTrim.match(regexNumberLengthOK);
 }
 
 
+//function de contrôle du nom de ville
+function checkTime(e){
+
+//Valeur selectionnée (event.target.value)
+let choosenRange = e.target.value;
+
+//Affichage de la valeur séléctionnée
+feedBackWishedTimeSuccess.innerHTML = `Plage sélectionnée :<br> ${choosenRange}`
+
+//On attribue à clean Value la plage sélectionnée validée
+
+  let wishedTimeleanValue = choosenRange;
+
+}
+
 /*******************Intéractivité affichage avant soumission***************************** */
 
 /******Interactivités utilisant les événement input/change*****/
@@ -702,3 +719,24 @@ cityName.addEventListener("change", checkCityName);
 
 //Affichage du message d'info Adresse en fonction de la valeur indiquée 
 adress.addEventListener("change", checkAdress);
+
+//Affichage du message d'info Plage horaire en fonction de la valeur indiquée 
+wishedTime.addEventListener("change", checkTime);
+
+/*******************Contrôle /Validation ou Rejet après soumission***************************** */
+  //via event.preventDefault() => pour Prévenir l'action par défaut 
+
+//Function de contrôles à la soumission du formulaire
+submitOrder.addEventListener("click", function(event){
+  //temporisation de la soumission après série de contrôles
+  event.preventDefault();
+
+  //contrôle de la selection d'un thème
+  if(idTheme==false){
+    errorMessage.innerHTML="Veuillez sélectionner un thème ";
+    return false;
+  }
+
+//Ouverture de la modale permettant de confirmer ou abandoner
+
+})
