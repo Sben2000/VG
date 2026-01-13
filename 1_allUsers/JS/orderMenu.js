@@ -363,7 +363,7 @@ let matchDigitOK = phoneNumberTrim.match(regexDigitOK);
 	feedBackPhoneError.innerHTML="";
 	
   }
-
+/*Option colorisation bordure si message d'erreur ou pas, non appliquée à ce stade pour ne pas surcharger avec le texte rouge
     //Dans tous les cas, si il existe une erreur , la bordure est mis en rouge,
 if(feedBackPhoneError.innerHTML != ""){
 	console.log("test=ok");
@@ -372,7 +372,7 @@ if(feedBackPhoneError.innerHTML != ""){
 	//si l'erreur disparait, la bordure reprend son style normal
 	phoneNumber.style.border= "";
 	}
-
+*/
 
   //convertit en Int(=>parseInt) (si format récupéré de userProfil considéré string ou autre type) 
 
@@ -758,15 +758,17 @@ submitOrder.addEventListener("click", function(event){
   	//si vide
   if(firstname.value==""){
     errorMessage.innerHTML="Le prénom ne peut être vide ";
-	firstname.style.border = "2px solid red";
+	feedBackFirstnameError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+	
+	//firstname.style.border = "2px solid red"; autre option non utilisée
     return false;
   }else{
 	firstname.style.border= "";
   }
  //Cas non vide , si au changement de la valeur apparait un message d'erreur (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
 if(feedBackFirstnameError.innerHTML!=""){
-	errorMessage.innerHTML="Veuillez corriger l'erreur du prénom ";
-	firstname.style.border = "2px solid red";
+	errorMessage.innerHTML="Veuillez corriger l'erreur du prénom ";//autre option non utilisée
+	//firstname.style.border = "2px solid red";
 	return false;
 }else{
 	firstname.style.border= "";
@@ -778,11 +780,3 @@ if(feedBackFirstnameError.innerHTML!=""){
 
 })
 
-  //Dans tous les cas, si il existe une erreur , la bordure est mis en rouge,
-if(feedBackPhoneError.innerHTML != ""){
-	console.log("test=ok");
-	phoneNumber.style.border = "2px solid red";
-	}else{
-	//si l'erreur disparait, la bordure reprend son style normal
-	phoneNumber.style.border= "";
-	}

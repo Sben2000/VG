@@ -122,6 +122,9 @@ let deliveryPrice = document.getElementById('deliveryPrice');
 let totalPrice =  document.getElementById('totalPrice');
 //Soumission du formulaire de commande
 let submitOrder = document.getElementById('submitOrder');
+//Message d'erreur et succès suite à submitOrder
+let errorMessage =  document.getElementById('errorMessage');
+let successMessage = document.getElementById('successMessage');
 
 /******************Functions /variables générales utilisées pour une ou plusieurs analyses du formulaire************/
 
@@ -208,6 +211,14 @@ console.log(matchMinPR);
 		
 		feedBackPeopleOtherInfo.innerHTML = "Quantité max atteinte";}
 
+  //Dans tous les cas, si il existe une erreur , la bordure est mis en rouge,
+if(feedBackPeopleError.innerHTML !=""){
+	peopleNbrSpec.style.border = "2px solid red";
+		return false;
+	}else{
+	//si l'erreur disparait, la bordure reprend son style normal
+	peopleNbrSpec.style.border= "";
+	}
 
 	}
 }
@@ -301,6 +312,7 @@ if (bordeauxDelivery>0){
 
 }
 
+
 //function de contrôle du numéro de téléphone
 function checkPhoneNumber(){
 
@@ -349,14 +361,25 @@ let matchDigitOK = phoneNumberTrim.match(regexDigitOK);
   //si il existe un de match entre 10 et 15 digits, enlever les messages d'erreurs
   if(matchDigitOK) {
 	feedBackPhoneError.innerHTML="";
+	
   }
-
+/*Option colorisation bordure si message d'erreur ou pas, non appliquée à ce stade pour ne pas surcharger avec le texte rouge
+    //Dans tous les cas, si il existe une erreur , la bordure est mis en rouge,
+if(feedBackPhoneError.innerHTML != ""){
+	console.log("test=ok");
+	phoneNumber.style.border = "2px solid red";
+	}else{
+	//si l'erreur disparait, la bordure reprend son style normal
+	phoneNumber.style.border= "";
+	}
+*/
 
   //convertit en Int(=>parseInt) (si format récupéré de userProfil considéré string ou autre type) 
 
   let phoneNumberTrimCleanValue = parseInt(phoneNumberTrim);
 
 }
+
 
 
 function checkWishedDate(){
@@ -646,7 +669,7 @@ let matchSixNumbers= adressTrim.match(regexSixNumbers);
 //regex permettant de détecter un match d'un numero ([\d])
 let regexNumber = /[\d]/g;
 let matchNumber= adressTrim.match(regexNumber);
-console.log(matchNumber);
+//console.log(matchNumber);
 
 //regex permettant de détecter un match correct entre 1 et 5 chiffres :
 let regexNumberLengthOK = /[\d]{1,5}/i;
@@ -731,12 +754,29 @@ submitOrder.addEventListener("click", function(event){
   //temporisation de la soumission après série de contrôles
   event.preventDefault();
 
-  //contrôle de la selection d'un thème
-  if(idTheme==false){
-    errorMessage.innerHTML="Veuillez sélectionner un thème ";
+  //contrôle du prénom
+  	//si vide
+  if(firstname.value==""){
+    errorMessage.innerHTML="Le prénom ne peut être vide ";
+	feedBackFirstnameError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+	
+	//firstname.style.border = "2px solid red"; autre option non utilisée
     return false;
+  }else{
+	firstname.style.border= "";
   }
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackFirstnameError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du prénom ";//autre option non utilisée
+	//firstname.style.border = "2px solid red";
+	return false;
+}else{
+	firstname.style.border= "";
+  }
+ //
+
 
 //Ouverture de la modale permettant de confirmer ou abandoner
 
 })
+
