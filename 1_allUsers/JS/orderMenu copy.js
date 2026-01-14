@@ -708,6 +708,9 @@ let choosenRange = e.target.value;
 
 //Affichage de la valeur séléctionnée
 feedBackWishedTimeSuccess.innerHTML = `Plage sélectionnée :<br> ${choosenRange}`
+//On enlève les éventuels messages d'erreurs
+feedBackWishedTimeError.innerHTML="";
+
 
 //On attribue à clean Value la plage sélectionnée validée
 
@@ -754,29 +757,137 @@ submitOrder.addEventListener("click", function(event){
   //temporisation de la soumission après série de contrôles
   event.preventDefault();
 
+   //contrôle du nom
+
+  	//si vide
+  if(name.value==""){
+    errorMessage.innerHTML="Le champs 'Nom' ne peut être vide ";
+	feedBackNameError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackNameError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du champs 'Nom' ";
+	return false;
+}
+
   //contrôle du prénom
   	//si vide
   if(firstname.value==""){
-    errorMessage.innerHTML="Le prénom ne peut être vide ";
+    errorMessage.innerHTML="Le champs 'Prénom' ne peut être vide ";
 	feedBackFirstnameError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
-	
-	//firstname.style.border = "2px solid red"; autre option non utilisée
     return false;
-  }else{
-	firstname.style.border= "";
   }
  //Cas non vide , si au changement de la valeur apparait un message d'erreur (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
 if(feedBackFirstnameError.innerHTML!=""){
-	errorMessage.innerHTML="Veuillez corriger l'erreur du prénom ";//autre option non utilisée
-	//firstname.style.border = "2px solid red";
+	errorMessage.innerHTML="Veuillez corriger l'erreur du champs 'Prénom' ";
 	return false;
-}else{
-	firstname.style.border= "";
+}
+
+ //contrôle du numéro de téléphone
+
+  	//si vide
+  if(phoneNumber.value==""){
+    errorMessage.innerHTML="Le champs 'Numéro de téléphone' ne peut être vide ";
+	feedBackPhoneError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
   }
- //
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur et tentative de submit (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackPhoneError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du N° de téléphone ";
+	return false;
+}
+
+ //contrôle de l'adresse
+
+  	//si vide
+  if(adress.value==""){
+    errorMessage.innerHTML="Le champs 'Adresse' ne peut être vide ";
+	feedBackAdressError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur et tentative de submit (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackAdressError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du champs 'Adresse' ";
+	return false;
+}
+
+ //contrôle de la ville
+
+  	//si vide
+  if(cityName.value==""){
+    errorMessage.innerHTML="Le champs 'Ville' ne peut être vide ";
+	feedBackCityNameError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur et tentative de submit (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackCityNameError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du champs 'Ville' ";
+	return false;
+}
+
+ //contrôle du code Postal
+
+  	//si vide
+  if(postalCode.value==""){
+    errorMessage.innerHTML="Le Code Postal ne peut être vide ";
+	feedBackPostalCodeError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur et tentative de submit (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackPostalCodeError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du champs 'Code Postal' ";
+	return false;
+}
+
+ //contrôle de la Date souhaitée
+
+  	//si vide
+  if(wishedDate.value==""){
+    errorMessage.innerHTML="La Date ne peut être vide ";
+	feedBackWishedDateError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur et tentative de submit (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackWishedDateError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du champs 'Date' ";
+	return false;
+}
+
+ //contrôle de la plage horaire souhaitée
+
+  	//si vide
+  if(wishedTime.value=="none"){
+    errorMessage.innerHTML="La plage horaire ne peut être vide ";
+	feedBackWishedTimeError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }else
+
+ //Cas non vide , si la confirmation de la plage horaire apparait 
+if(feedBackWishedTimeSuccess.innerHTML!=""){
+	//au click (ou prochain click,) on enlève les messages d'erreurs
+	errorMessage.innerHTML=" ";
+	feedBackWishedTimeError.innerHTML="";
+	return false;
+}
+
+
+  	//si vide
+  if(peopleNbrSpec.value ==""){
+    errorMessage.innerHTML="La nombre de personnes doit être indiqué ";
+	feedBackPeopleError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }
+ //Cas non vide , si au changement de la valeur apparait un message d'erreur et tentative de submit (cf.fonctions précédentes dans Intéractivité affichage avant soumission*)
+if(feedBackPeopleError.innerHTML!=""){
+	errorMessage.innerHTML="Veuillez corriger l'erreur du champs 'Nombre de personnes' ";
+	return false;
+}
 
 
 //Ouverture de la modale permettant de confirmer ou abandoner
 
 })
 
+ //contrôle du Nombre de personnes
+console.log(peopleNbrSpec.value=="");
