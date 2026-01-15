@@ -292,6 +292,7 @@ text-align: end;
 border: none; /*retrait des bordures par défaut sur les input*/
 border-bottom: 2px solid var(--elmDeco); /*ajout d'une bordure basse personalisée*/
 
+
 }
 #email{
     overflow:visible;
@@ -481,11 +482,69 @@ margin-bottom: 5px;
 
 #feedBackPeopleError, #feedBackPostalCodeError, #feedbackPhoneError{
     color: darkred;
+    text-align: center;
 
 }
 #feedBackOtherInfo{
     color: darkblue;
 }
+.peopleNbrSpec{
+    text-align: center;
+    margin: 0px auto;
+}
+.peopleNbrSpec label{
+    text-align: start;
+}
+
+
+/*******Modal de confirmation (la plupart du css est identique au css disconnect.css, ne sont repris ici que les petites différences via les id spécifiques*******************************/
+
+ #modalOrder{ 
+    display: block;/*ne pas afficher la modal par défaut lorsqu on ouvre la page, sera traité en display ="block"en JS*/
+   
+    }
+
+#orderConfTop h2{
+    margin: -20px 10px auto;
+}
+
+#imgCloseModalOrder{ /*style appliqué sur le bouton de fermeture Modal id="imgCloseModal" */
+    width: 35px;
+    height: 35px;
+    position: relative;/*se positionne par rapport à son parent Modal qui a une position fixe*/
+    left: 2px;
+    top: 2px;
+    z-index: 10; /*afin de mettre en prio l'élément en avant ds l'ordre des calques*/
+    cursor: pointer; 
+    
+}
+
+#SectionContentOrderConf{
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0,0.5);
+    margin: 20px;
+    justify-content: center;
+    padding: 40px;/*A augmenter si nécessaire pour augmenter la fenêtre visible*/
+    width: 95%;/*espace complet occupé jusqu'au max-width*/
+    justify-self: center;
+    word-break: break-all;
+    
+}
+
+#SectionContentOrderConf h3{
+    text-align: center;
+    margin: 10px 0px auto;
+}
+#SectionContentOrderConf .detailedInput {
+display: flex;
+justify-content: space-between;
+}
+
+#SectionContentOrderConf .detailedInput label{
+margin-top: 5px;
+}
+
+/********************************************Fin CSS Modal de deconnexion**********************************************/
 
 /*****************************************************GESTION RESPONSIVE*****************************************/
 
@@ -599,7 +658,43 @@ font-weight: 500;
 /*affichage du bloc joinUs récupéré du bloc de gauche*/
 #joinUsPhoneView{
     display: block;
+
 }
+/*modal de confirmation*/
+#modalOrder{
+    width: 350px;
+    height: 100%;
+    margin: 10px 2px;
+      
+
+}
+#modalContainerOrder{
+    width: 90%;
+    height: 100%;
+    overflow: auto;
+}
+
+#SectionContentOrderConf{
+    padding: 10px;
+}
+#SectionContentOrderConf .detailedInput {
+display: flex;
+flex-direction: column;
+margin: 0px auto;
+}
+
+#SectionContentOrderConf .detailedInput input{
+display: flex;
+justify-self: end;
+}
+
+#confirmOrderButtons{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
 
 }
 

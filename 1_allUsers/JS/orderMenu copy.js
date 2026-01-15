@@ -140,7 +140,7 @@ let bordeaux =[30072, 33000, 33100, 33200, 33300, 33800]
 //function de contrôle du minimum de Personne requis
 function minPersRequest(){
 //Trim de la valeur entrée par l'utilisateur
-let peopleNbrSpecTrim = peopleNbrSpec.value
+let peopleNbrSpecTrim = peopleNbrSpec.value.trim()
 
 
 /***Regex ci dessous ne fonctionne qu'avec un input = text pas avec un input = nombre *
@@ -190,7 +190,7 @@ console.log(matchMinPR);
 		return false;
 	}
 	//Nbr < min requis
-	if(isNaN(peopleNbrSpecCleanValue)== false && peopleNbrSpec.value< peopleNbrSpec.min){
+	if(isNaN(peopleNbrSpecCleanValue)== false && peopleNbrSpecCleanValue < peopleNbrSpec.min){
 		feedBackPeopleSuccess.innerHTML = "";
 		feedBackPeopleError.innerHTML = `Nbre Pers. min requis = ${peopleNbrReq}`;
 		feedBackPeopleOtherInfo.innerHTML = "";	
@@ -517,7 +517,7 @@ let firstnameTrim = firstname.value.trim();
 //Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!) - ou _ ou espace ou apostrophe ou toutes les lettres avec accent(-|_|\s|'|[À-ú])
 let regexNonWord = /(?!-|_|\s|'|[À-ú])[\W\d]/g;
 let matchNW = firstnameTrim.match(regexNonWord);
-console.log(matchNW);
+
 //console.log(matchNW);
 
 //si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
@@ -854,27 +854,10 @@ if(feedBackWishedDateError.innerHTML!=""){
 	return false;
 }
 
- //contrôle de la plage horaire souhaitée
-
-  	//si vide
-  if(wishedTime.value=="none"){
-    errorMessage.innerHTML="La plage horaire ne peut être vide ";
-	feedBackWishedTimeError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
-    return false;
-  }else
-
- //Cas non vide , si la confirmation de la plage horaire apparait 
-if(feedBackWishedTimeSuccess.innerHTML!=""){
-	//au click (ou prochain click,) on enlève les messages d'erreurs
-	errorMessage.innerHTML=" ";
-	feedBackWishedTimeError.innerHTML="";
-	return false;
-}
-
-
-  	//si vide
-  if(peopleNbrSpec.value ==""){
-    errorMessage.innerHTML="La nombre de personnes doit être indiqué ";
+//Contrôle du nbre de personne
+  	//si  vide 
+  if(peopleNbrSpec.value==false){
+    errorMessage.innerHTML="Le nombre de personnes doit être indiqué ";
 	feedBackPeopleError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
     return false;
   }
@@ -885,9 +868,27 @@ if(feedBackPeopleError.innerHTML!=""){
 }
 
 
+
+ //contrôle de la plage horaire souhaitée
+
+  	//si vide
+  if(wishedTime.value=="none"){
+    errorMessage.innerHTML="La plage horaire ne peut être vide ";
+	feedBackWishedTimeError.innerHTML="&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;&nbsp;&nbsp;&nbsp;&nbsp;&#x2B9D;"
+    return false;
+  }
+
+ //Cas non vide , si la confirmation de la plage horaire apparait 
+if(feedBackWishedTimeSuccess.innerHTML!=""){
+	//au click (ou prochain click,) on enlève les messages d'erreurs
+	errorMessage.innerHTML=" ";
+	feedBackWishedTimeError.innerHTML="";
+	return false;
+}
+
+
+
 //Ouverture de la modale permettant de confirmer ou abandoner
 
 })
 
- //contrôle du Nombre de personnes
-console.log(peopleNbrSpec.value=="");
