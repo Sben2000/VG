@@ -79,16 +79,16 @@ if (isset($_SESSION["user"])) {
 					<h3>Personne à joindre</h3>
 					<hr>
 					<div class="detailedInput fetch">
-						<label for="nom">Nom </label>
+						<label for="nomCheckedJS">Nom </label>
 						<div><br>
-							<input readonly type="text" id="name" name="nom" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
+							<input readonly type="text" id="name" name="nomCheckedJS" value="" placeholder="Nom de famille"
 								autocomplete="off" required>
 						</div>
 					</div>
 					<div class="detailedInput fetch">
-						<label for="prenom">Prénom </label>
+						<label for="prenomCheckedJS">Prénom </label>
 						<div><br>
-							<input readonly type="text" id='firstname' name="prenom" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
+							<input readonly type="text" id='firstname' name="prenomCheckedJS" value="" placeholder="Prénom"
 								autocomplete="off" required>
 						</div>
 					</div>
@@ -99,10 +99,10 @@ if (isset($_SESSION["user"])) {
 						</div>
 					</div>
 					<div class="detailedInput fetch">
-						<label for="tel">Numéro de téléphone </label>
+						<label for="telCheckedJS">Numéro de téléphone </label>
 						<div><br>
 							<!--mis en format text dans le JS pour présentation idem autres éléments-->
-							<input readonly type="text" id='phoneNumber' name="tel" value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required>
+							<input readonly type="text" id='phoneNumber' name="telCheckedJS" value="" placeholder="0123456789" autocomplete="off" required>
 						</div>
 					</div>
 
@@ -110,37 +110,37 @@ if (isset($_SESSION["user"])) {
 						<h3>Adresse de livraison</h3>
 						<hr>
 						<div class="detailedInput fetch">
-							<label for="adresse">Adresse </label>
+							<label for="adresseCheckedJS">Adresse </label>
 							<div><br>
-								<input readonly type="text" id="adress" name="adresse" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
+								<input readonly type="text" id="adress" name="adresseCheckedJS" value="" placeholder="rue/Allée/Av/Bvd..."
 									autocomplete="off">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
 							<label for="ville">Ville </label>
 							<div><br>
-								<input readonly type="text" id="cityName" name="ville" value="<?= @$userProfil->ville ?>" placeholder="Ville" autocomplete="off">
+								<input readonly type="text" id="cityName" name="villeCheckedJS" value="" placeholder="Ville" autocomplete="off">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
-							<label for="codePostal">Code Postal </label>
+							<label for="codePostalCheckedJS">Code Postal </label>
 							<div><br>
-								<input readonly type="text" id='postalCode' name="codePostal" value="<?= @$userProfil->code_postal ?>" placeholder="33XXX"
+								<input readonly type="text" id='postalCode' name="codePostalCheckedJS" value="" placeholder="33XXX"
 									autocomplete="off">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
-							<label for="datePresta">Date souhaitée</label>
+							<label for="datePrestaCheckedJS">Date souhaitée</label>
 							<div><br>
 								<!--mis en format text dans le JS pour présentation idem autres éléments-->
-								<input readonly type="text" name="datePresta" value="" min="<?= $tomorrow ?>" max="<?= $twoWeeks ?>" placeholder="YYYY-MM-DD" autocomplete="off" required>
+								<input readonly type="text" name="datePrestaCheckedJS" value="" min="<?= $tomorrow ?>" max="<?= $twoWeeks ?>" placeholder="YYYY-MM-DD" autocomplete="off" required>
 							</div>
 						</div>
 						<div class="detailedInput fetch">
-							<label for="heurePresta">plage horaire souhaitée </label>
+							<label for="heurePrestaCheckedJS">plage horaire souhaitée </label>
 							<div><br>
 								<!--mis en format text dans le JS pour présentation idem autres éléments-->
-								<input readonly type="text" name="heurePresta" value="" placeholder="XX:00 - YY:00" autocomplete="off" required>
+								<input readonly type="text" name="heurePrestaCheckedJS" value="" placeholder="XX:00 - YY:00" autocomplete="off" required>
 							</div>
 						</div>
 					</div>
@@ -148,51 +148,60 @@ if (isset($_SESSION["user"])) {
 							<h3>Menu et quantités</h3>
 							<hr>
 							<div class="detailedInput fetch">
-								<label for="menu">Menu sélectionné </label>
+								<label for="menuCheckedJS">Menu sélectionné </label>
 								<!--titre du plat ne peut être modifié-->
 								<div><br>
-									<input type="text" id="menuTitle" name="menu" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
+									<input type="text" id="menuTitle" name="menuCheckedJS" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
 								</div>
 							</div>
 							<div class="detailedInput peopleNbrSpec fetch">
-								<label for="nbrPers">Nombre de personnes </label>
+								<label for="nbrPersCheckedJS">Nombre de personnes </label>
 								<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
 								<div><br>
 									<!--mis en format text dans le JS pour présentation idem autres éléments-->
-									<input readonly type="text" id="peopleNbrSpec" name="nbrPers" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
+									<input readonly type="text" id="peopleNbrSpec" name="nbrPersCheckedJS" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
 								</div>
 							</div>
 							<h3>Tarif détaillé</h3>
 							<hr>
 							<div class="detailedInput fetch">
-								<label for="priceMenu">Prix du menu (&#x20AC TTC/pers): </label>
+								<label for="priceMenuCheckedJS">Prix du menu (&#x20AC TTC/pers): </label>
 								<div class="symbol">
 									<!--prix du plat ne peut être modifié-->
-									<input type="text" id="priceMenuDisp" name="priceMenu" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
+									<input type="text" id="priceMenuDisp" name="priceMenuCheckedJS" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
 								</div>
 							</div>
 							<div class="detailedInput fetch">
-								<label for="reductionRate">Réduction (%): </label>
+								<label for="reductionRateCheckedJS">Réduction (%): </label>
 								<div class="symbol">
-									<input type="text" id="reductionRate" name="reductionRate" value="" readonly required><span>%</span>
+									<input type="text" id="reductionRate" name="reductionRateCheckedJS" value="" readonly required><span>%</span>
 								</div>
 							</div>
 							<div class="detailedInput fetch">
-								<label for="deliveryPrice">Prix de la livraison (&#x20AC): </label>
+								<label for="deliveryPriceCheckedJS">Prix de la livraison (&#x20AC): </label>
 								<div class="symbol">
-									<input type="text" id="deliveryPrice" name="deliveryPrice" value="" readonly required><span>&#x20AC</span>
+									<input type="text" id="deliveryPrice" name="deliveryPriceCheckedJS" value="" readonly required><span>&#x20AC</span>
 								</div>
 							</div>
 							<div class="detailedInput fetch">
-								<label for="totalPrice">Prix total (&#x20AC TTC): </label>
+								<label for="totalPriceCheckedJS">Prix total (&#x20AC TTC): </label>
 								<div class="symbol">
-									<strong><input type="text" id="totalPrice" name="totalPrice" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
+									<strong><input type="text" id="totalPrice" name="totalPriceCheckedJS" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
 								</div>
+							</div>
+							<div class="recordDeliveryDatas" id="recordDeliveryDatas">
+							<!--
+								<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
+								<div>
+								<input type="checkbox" name="recordDeliveryDatas" checked>
+								<label for="recordDeliveryDatas" class="note">oui</label>
+								</div>
+							-->
 							</div>
 						</div>
 						<div class="modalInputs" id="confirmOrderButtons">
 							<input type="submit" name="backToOrder" value="Retour" id="backToOrder" />
-							<input type="submit" name="confirmOrder" value="Je confirme">
+							<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
 						</div>
 
 					</div>

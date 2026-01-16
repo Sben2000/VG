@@ -60,6 +60,172 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body>
+	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+	<!--Modal de confirmation affiché par le JS si la validation commande est ok-->
+
+	<div class="modal" id="modalOrder">
+		<div class="modalContainer" id="modalContainerOrder">
+			<div id="orderConfTop">
+				<img src="./includes/default_pictures/buttonClose.png" alt="imgCloseModal" id="imgCloseModalOrder">
+				<h2 id="h2Order">Résumé de commande</h2>
+			</div>
+
+			<form action="" method="POST">
+
+				<div id="SectionContentOrderConf">
+
+					<h3>Personne à joindre</h3>
+					<hr>
+					<div class="detailedInput fetch">
+						<label for="nomCheckedJS">Nom </label>
+						<div><br>
+							<input readonly type="text" id="name" name="nomCheckedJS" value="" placeholder="Nom de famille"
+								autocomplete="off" required>
+						</div>
+					</div>
+					<div class="detailedInput fetch">
+						<label for="prenomCheckedJS">Prénom </label>
+						<div><br>
+							<input readonly type="text" id='firstname' name="prenomCheckedJS" value="" placeholder="Prénom"
+								autocomplete="off" required>
+						</div>
+					</div>
+					<div class="detailedInput fetch">
+						<label for="email">Email du compte</label>
+						<div><br>
+							<input readonly type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
+						</div>
+					</div>
+					<div class="detailedInput fetch">
+						<label for="telCheckedJS">Numéro de téléphone </label>
+						<div><br>
+							<!--mis en format text dans le JS pour présentation idem autres éléments-->
+							<input readonly type="text" id='phoneNumber' name="telCheckedJS" value="" placeholder="0123456789" autocomplete="off" required>
+						</div>
+					</div>
+
+					<div class="orderFormDelivery">
+						<h3>Adresse de livraison</h3>
+						<hr>
+						<div class="detailedInput fetch">
+							<label for="adresseCheckedJS">Adresse </label>
+							<div><br>
+								<input readonly type="text" id="adress" name="adresseCheckedJS" value="" placeholder="rue/Allée/Av/Bvd..."
+									autocomplete="off">
+							</div>
+						</div>
+						<div class="detailedInput fetch">
+							<label for="ville">Ville </label>
+							<div><br>
+								<input readonly type="text" id="cityName" name="villeCheckedJS" value="" placeholder="Ville" autocomplete="off">
+							</div>
+						</div>
+						<div class="detailedInput fetch">
+							<label for="codePostalCheckedJS">Code Postal </label>
+							<div><br>
+								<input readonly type="text" id='postalCode' name="codePostalCheckedJS" value="" placeholder="33XXX"
+									autocomplete="off">
+							</div>
+						</div>
+						<div class="detailedInput fetch">
+							<label for="datePrestaCheckedJS">Date souhaitée</label>
+							<div><br>
+								<!--mis en format text dans le JS pour présentation idem autres éléments-->
+								<input readonly type="text" name="datePrestaCheckedJS" value="" min="<?= $tomorrow ?>" max="<?= $twoWeeks ?>" placeholder="YYYY-MM-DD" autocomplete="off" required>
+							</div>
+						</div>
+						<div class="detailedInput fetch">
+							<label for="heurePrestaCheckedJS">plage horaire souhaitée </label>
+							<div><br>
+								<!--mis en format text dans le JS pour présentation idem autres éléments-->
+								<input readonly type="text" name="heurePrestaCheckedJS" value="" placeholder="XX:00 - YY:00" autocomplete="off" required>
+							</div>
+						</div>
+					</div>
+						<div class="orderFormQuantity">
+							<h3>Menu et quantités</h3>
+							<hr>
+							<div class="detailedInput fetch">
+								<label for="menuCheckedJS">Menu sélectionné </label>
+								<!--titre du plat ne peut être modifié-->
+								<div><br>
+									<input type="text" id="menuTitle" name="menuCheckedJS" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
+								</div>
+							</div>
+							<div class="detailedInput peopleNbrSpec fetch">
+								<label for="nbrPersCheckedJS">Nombre de personnes </label>
+								<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
+								<div><br>
+									<!--mis en format text dans le JS pour présentation idem autres éléments-->
+									<input readonly type="text" id="peopleNbrSpec" name="nbrPersCheckedJS" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
+								</div>
+							</div>
+							<h3>Tarif détaillé</h3>
+							<hr>
+							<div class="detailedInput fetch">
+								<label for="priceMenuCheckedJS">Prix du menu (&#x20AC TTC/pers): </label>
+								<div class="symbol">
+									<!--prix du plat ne peut être modifié-->
+									<input type="text" id="priceMenuDisp" name="priceMenuCheckedJS" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
+								</div>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="reductionRateCheckedJS">Réduction (%): </label>
+								<div class="symbol">
+									<input type="text" id="reductionRate" name="reductionRateCheckedJS" value="" readonly required><span>%</span>
+								</div>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="deliveryPriceCheckedJS">Prix de la livraison (&#x20AC): </label>
+								<div class="symbol">
+									<input type="text" id="deliveryPrice" name="deliveryPriceCheckedJS" value="" readonly required><span>&#x20AC</span>
+								</div>
+							</div>
+							<div class="detailedInput fetch">
+								<label for="totalPriceCheckedJS">Prix total (&#x20AC TTC): </label>
+								<div class="symbol">
+									<strong><input type="text" id="totalPrice" name="totalPriceCheckedJS" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
+								</div>
+							</div>
+							<div class="recordDeliveryDatas" id="recordDeliveryDatas">
+							<!--
+								<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
+								<div>
+								<input type="checkbox" name="recordDeliveryDatas" checked>
+								<label for="recordDeliveryDatas" class="note">oui</label>
+								</div>
+							-->
+							</div>
+						</div>
+						<div class="modalInputs" id="confirmOrderButtons">
+							<input type="submit" name="backToOrder" value="Retour" id="backToOrder" />
+							<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
+						</div>
+
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
 	<?php include_once "includes/header.php" ?>
 	<div class="main">
 		<div class="separator">
@@ -244,11 +410,12 @@ if (isset($_SESSION["user"])) {
 							</div>
 						</div>
 					</section>
+
 					<section class="Section" id="orderSectionForm" class="orderSectionForm">
 						<div class="SectionContent">
 							<h2>Je précise ma commande et mes infos de livraison :</h2>
 
-							<form id="orderForm" method="POST" enctype="multipart/form-data">
+							<form id="orderForm" method="POST" enctype="multipart/form-data" action="#modalOrder">
 								<div class="orderFormInfo">
 									<div class="orderFormAdress">
 										<h3>Personne à joindre</h3>
@@ -267,7 +434,7 @@ if (isset($_SESSION["user"])) {
 										</div>
 										<div class="detailedInput fetch">
 											<label for="email">Email du compte</label>
-											<input type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
+											<input type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required readonly>
 										</div>
 										<div class="detailedInput">
 											<label for="tel">Numéro de téléphone </label>
@@ -307,31 +474,31 @@ if (isset($_SESSION["user"])) {
 											<p class="note" id="datePrestaInfo"><em><br>réservation possible à partir <br>du prochain jour ouvré <br> (sur 2 semaines, hors dimanche) </em></p>
 										</div>
 
-											
-											<!--<input type="time"  name="heurePresta" value="" autocomplete="off" required>-->
-											<div class="rollingMenuCriterias detailedInput">
-												<label for="heurePresta">plage horaire souhaitée </label>
-												<div><label>
-														<select name="selectFilter" id="wishedTime" class="filter wished">
-															<!--<option class="none" value="" disabled selected>Sélectionner</option>-->
-															<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
-															<option class="none" value="none" disabled selected>Selectionner &#x23F2;|</option>
-															<optgroup label="Service du Déjeuner ">
-																<option value="11h00-12h00">&#x2B1D; 11:00 - 12:00 </option>
-																<option value="12h00-13h00">&#x2B1D; 12:00 - 13:00 </option>
-																<option value="13h00-14h00">&#x2B1D; 13:00 - 14:00 </option>
-															<optgroup label="Service du Diner ">
-																<option value="18h-19h00">&#x2B1D; 18:00 - 19:00 </option>
-																<option value="19h00-20h00">&#x2B1D; 19:00 - 20:00 </option>
-																<option value="20h00-21h00">&#x2B1D; 20:00 - 21:00 </option>
-																<option value="21h00-22h00">&#x2B1D; 21:00 - 22:00 </option>
-															</optgroup>
-														</select>
-													</label></div>
-											</div>
-											<p id="feedBackWishedTimeSuccess" style="color: darkgreen;"></p>
-											<p id="feedBackWishedTimeError" style="color: darkred;"></p>
-										
+
+										<!--<input type="time"  name="heurePresta" value="" autocomplete="off" required>-->
+										<div class="rollingMenuCriterias detailedInput">
+											<label for="heurePresta">plage horaire souhaitée </label>
+											<div><label>
+													<select name="selectFilter" id="wishedTime" class="filter wished">
+														<!--<option class="none" value="" disabled selected>Sélectionner</option>-->
+														<!--la première option de la liste déroulante avec l'invitation à sélectionner-->
+														<option class="none" value="none" disabled selected>Selectionner &#x23F2;|</option>
+														<optgroup label="Service du Déjeuner ">
+															<option value="11h00-12h00">&#x2B1D; 11:00 - 12:00 </option>
+															<option value="12h00-13h00">&#x2B1D; 12:00 - 13:00 </option>
+															<option value="13h00-14h00">&#x2B1D; 13:00 - 14:00 </option>
+														<optgroup label="Service du Diner ">
+															<option value="18h-19h00">&#x2B1D; 18:00 - 19:00 </option>
+															<option value="19h00-20h00">&#x2B1D; 19:00 - 20:00 </option>
+															<option value="20h00-21h00">&#x2B1D; 20:00 - 21:00 </option>
+															<option value="21h00-22h00">&#x2B1D; 21:00 - 22:00 </option>
+														</optgroup>
+													</select>
+												</label></div>
+										</div>
+										<p id="feedBackWishedTimeSuccess" style="color: darkgreen;"></p>
+										<p id="feedBackWishedTimeError" style="color: darkred;"></p>
+
 									</div>
 									<div class="orderFormQuantity">
 										<h3>Menu et quantités</h3>
@@ -344,7 +511,7 @@ if (isset($_SESSION["user"])) {
 										<div class="detailedInput peopleNbrSpec">
 											<label for="nbrPers">Nombre de personnes </label>
 											<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
-											<input type="number" id="peopleNbrSpec" name="nbrPers" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>" >
+											<input type="number" id="peopleNbrSpec" name="nbrPers" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
 											<p id="feedBackPeopleSuccess" style="color: darkgreen;"></p>
 											<p id="feedBackPeopleError" style="color: darkred;"></p>
 											<p id="feedBackPeopleOtherInfo" style="color: darkblue;"></p>
@@ -384,21 +551,50 @@ if (isset($_SESSION["user"])) {
 									<input type="submit" name="submitOrder" value="Valider la commande" id="submitOrder" />
 								</div>
 								<div class="submitMessages">
-								<p id="successMessage" style="color: darkgreen;"></p>
-								<p id="errorMessage" style="color: darkred;"></p>
+									<p id="successMessage" style="color: darkgreen;"></p>
+									<p id="errorMessage" style="color: darkred;"></p>
 								</div>
 							</form>
 						</div>
-					</section>
+						<!--		<div class="modalGroup">
+							<div class="modal" id="modal">
+								<div class="modalContainer">
+									<img src="./includes/default_pictures/buttonClose.png" alt="imgCloseModal" id="imgCloseModal">
+									<h2>Je confirme la deconnexion</h2>
+									<form action="" method="POST">
+										<div class="modalInputs">
+											<input type="submit" name="disconnect" value="Me déconnecter">
+										</div>
+									</form>
+								</div>
+							</div>
 
+
+							<div class="modalGroup">
+								<div class="modal" id="modalDel">
+									<div class="modalContainer">
+										<img src="./includes/default_pictures/buttonClose.png" alt="imgCloseModal" id="imgCloseModalDel">
+										<h2 id="h2Del">Confirmez vous la <br> suppression du compte?</h2>
+										<form action="" method="POST">
+											<div class="modalInputs">
+												<input type="submit" name="deleteAccountConf" value="Je confirme la suppression">
+											</div>
+										</form>
+									</div>
+								</div>
+													-->
+
+
+					</section>
 				<?php } ?>
 				<section class="sectionContent" id="joinUsPhoneView">
 					<?= $contentJoinUs ?>
 				</section>
 			</div>
 		</div>
-
 	</div>
+
+
 	<?php require_once "includes/footer.php" ?>
 	<script type="module" src="./JS/orderMenu.js"></script>
 </body>

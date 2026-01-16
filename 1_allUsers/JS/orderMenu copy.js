@@ -125,6 +125,14 @@ let submitOrder = document.getElementById('submitOrder');
 //Message d'erreur et succès suite à submitOrder
 let errorMessage =  document.getElementById('errorMessage');
 let successMessage = document.getElementById('successMessage');
+//Variable liées à la modal de confirmation commande
+let modalOrder = document.getElementById('modalOrder');
+const imgCloseModalOrder = document.getElementById('imgCloseModalOrder');
+//Container de demande enregistrement coordonnées
+let recordDeliveryDatas = document.getElementById('recordDeliveryDatas');
+//Boutons de confirmation de commande ou de retour
+let confirmOrder = document.getElementById('confirmOrder');
+let backToOrder = document.getElementById('backToOrder');
 
 /******************Functions /variables générales utilisées pour une ou plusieurs analyses du formulaire************/
 
@@ -754,6 +762,7 @@ wishedTime.addEventListener("change", checkTime);
 
 //Function de contrôles à la soumission du formulaire
 submitOrder.addEventListener("click", function(event){
+
   //temporisation de la soumission après série de contrôles
   event.preventDefault();
 
@@ -883,12 +892,40 @@ if(feedBackWishedTimeSuccess.innerHTML!=""){
 	//au click (ou prochain click,) on enlève les messages d'erreurs
 	errorMessage.innerHTML=" ";
 	feedBackWishedTimeError.innerHTML="";
-	return false;
 }
 
 
 
-//Ouverture de la modale permettant de confirmer ou abandoner
+//Ouverture de la modal (si arrive jusque cette étape en passant les tests défauts)
+modalOrder.style.display ="block";
+
+
 
 })
+
+//Test =>ok , à reproduire avec les valeurs récupérées et modifiées//
+if(/*name.value == nameTrimCleanValue*/ 1!=1 || 2!=2 || 2!=3){
+recordDeliveryDatas.innerHTML=
+`
+	<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
+	<div>
+		<input type="checkbox" name="recordDeliveryDatas" checked>
+		<label for="recordDeliveryDatas" class="note">oui</label>
+	</div>
+`;
+}else{
+recordDeliveryDatas.innerHTML="";
+}
+;
+
+/*****************************Gestion de la Modal de confirmation de commande (fermeture , retour, confirmation)********************************/
+
+
+
+
+/*Gestion Fermeture de la modale de commande*/
+imgCloseModalOrder.addEventListener("click",()=>{
+     modalOrder.style.display = "none";
+})
+
 

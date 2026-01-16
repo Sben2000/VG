@@ -496,6 +496,12 @@ margin-bottom: 5px;
     text-align: start;
 }
 
+.recordDeliveryDatas{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px auto;
+}
 
 /*******Modal de confirmation (la plupart du css est identique au css disconnect.css, ne sont repris ici que les petites différences via les id spécifiques*******************************/
 

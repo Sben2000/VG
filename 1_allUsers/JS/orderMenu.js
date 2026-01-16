@@ -128,6 +128,11 @@ let successMessage = document.getElementById('successMessage');
 //Variable liées à la modal de confirmation commande
 let modalOrder = document.getElementById('modalOrder');
 const imgCloseModalOrder = document.getElementById('imgCloseModalOrder');
+//Container de demande enregistrement coordonnées
+let recordDeliveryDatas = document.getElementById('recordDeliveryDatas');
+//Boutons de confirmation de commande ou de retour
+let confirmOrder = document.getElementById('confirmOrder');
+let backToOrder = document.getElementById('backToOrder');
 
 /******************Functions /variables générales utilisées pour une ou plusieurs analyses du formulaire************/
 
@@ -898,6 +903,20 @@ modalOrder.style.display ="block";
 
 })
 
+//Test =>ok , à reproduire avec les valeurs récupérées et modifiées//
+if(/*name.value == nameTrimCleanValue*/ 1!=1 || 2!=2 || 2!=3){
+recordDeliveryDatas.innerHTML=
+`
+	<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
+	<div>
+		<input type="checkbox" name="recordDeliveryDatas" checked>
+		<label for="recordDeliveryDatas" class="note">oui</label>
+	</div>
+`;
+}else{
+recordDeliveryDatas.innerHTML="";
+}
+;
 
 /*****************************Gestion de la Modal de confirmation de commande (fermeture , retour, confirmation)********************************/
 
@@ -909,10 +928,4 @@ imgCloseModalOrder.addEventListener("click",()=>{
      modalOrder.style.display = "none";
 })
 
-/*Gestion Modal vue téléphone*/
-const disconnectPhone = document.querySelector(".disconnectPhone");
-disconnectPhone.addEventListener("click",()=>{
-    console.log('clicked');
-    modal.style.display ="block";
 
-})
