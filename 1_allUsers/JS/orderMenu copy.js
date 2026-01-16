@@ -128,11 +128,49 @@ let successMessage = document.getElementById('successMessage');
 //Variable liées à la modal de confirmation commande
 let modalOrder = document.getElementById('modalOrder');
 const imgCloseModalOrder = document.getElementById('imgCloseModalOrder');
+//formulaire de confirmation de commande
+let formToConfirmOrder = document.getElementById('formToConfirmOrder');
+//Div contenant les datas dans le formulaire de confirmation de commande
+let SectionContentOrderConf = document.getElementById('SectionContentOrderConf');
 //Container de demande enregistrement coordonnées
 let recordDeliveryDatas = document.getElementById('recordDeliveryDatas');
 //Boutons de confirmation de commande ou de retour
 let confirmOrder = document.getElementById('confirmOrder');
 let backToOrder = document.getElementById('backToOrder');
+
+/******input des éléments du formulaire de confirmation apparaissant en modal */
+//Le nom de famille
+let nameCheckedJS = document.getElementById('nameCheckedJS');
+//Le prénom
+let firstnameCheckedJS = document.getElementById('firstnameCheckedJS');
+//L'email
+let emailCheckedJS = document.getElementById('emailCheckedJS');
+//Le numéro de téléphone
+let phoneNumberCheckedJS = document.getElementById('phoneNumberCheckedJS');
+//L'adresse
+let adressCheckedJS = document.getElementById('adressCheckedJS');
+//La ville
+let cityNameCheckedJS = document.getElementById('cityNameCheckedJS');
+//Le code postal
+let postalCodeCheckedJS = document.getElementById('postalCodeCheckedJS');
+//La date souhaitée, la date max et min affichées
+let wishedDateCheckedJS = document.getElementById('wishedDateCheckedJS');
+//L'heure souhaitée
+let wishedTimeCheckedJS =  document.getElementById('wishedTimeCheckedJS');
+//Titre du menu
+let menuTitleCheckedJS = document.getElementById('menuTitleCheckedJS');
+//Nbre de personnes précisé
+let peopleNbrSpecCheckedJS = document.getElementById('peopleNbrSpecCheckedJS');
+//Prix affiché
+let priceMenuDispCheckedJS = document.getElementById('priceMenuDispCheckedJS');
+//Réduction accordée
+let reductionRateCheckedJS = document.getElementById('reductionRateCheckedJS');
+//Prix de livraison calculé
+let deliveryPriceCheckedJS = document.getElementById('deliveryPriceCheckedJS');
+//Prix total
+let totalPriceCheckedJS =  document.getElementById('totalPriceCheckedJS');
+
+
 
 /******************Functions /variables générales utilisées pour une ou plusieurs analyses du formulaire************/
 
@@ -219,16 +257,11 @@ console.log(matchMinPR);
 		
 		feedBackPeopleOtherInfo.innerHTML = "Quantité max atteinte";}
 
-  //Dans tous les cas, si il existe une erreur , la bordure est mis en rouge,
-if(feedBackPeopleError.innerHTML !=""){
-	peopleNbrSpec.style.border = "2px solid red";
-		return false;
-	}else{
-	//si l'erreur disparait, la bordure reprend son style normal
-	peopleNbrSpec.style.border= "";
 	}
 
-	}
+	//Attribution des valeurs nettoyée/finales aux variables à afficher dans la modal de confirmation
+	peopleNbrSpecCheckedJS.value = peopleNbrSpecCleanValue;
+	reductionRateCheckedJS.value = reductionRate.value;
 }
 
 //function de contrôle Code Postal
@@ -277,6 +310,9 @@ let matchSixDigit = postalCodeTrim.match(regexSixDigit);
 
   let postalCodeCleanValue = parseInt(postalCodeTrim);
 
+  //Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
+
+	postalCodeCheckedJS.value= postalCodeCleanValue;
 
 /***Construction d' iterateurs de tableaux pour vérifier si le code postal est eligible à la livraison***/
 
@@ -307,6 +343,7 @@ if (bordeauxDelivery>0){
     feedBackPostalCodeSuccess.innerHTML ="Livraison Offerte !";
 	//la valeur de la livraison est à 0
 	deliveryPrice.value = 0;
+	
 }else if(aggloDelivery>0){
 	feedBackPostalCodeError.innerHTML="";
     feedBackPostalCodeSuccess.innerHTML ="Votre commune bénéficie <br> de la livraison à 5&#x20AC";
@@ -317,6 +354,11 @@ if (bordeauxDelivery>0){
     feedBackPostalCodeSuccess.innerHTML ="";
 	return false
 }
+
+//Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
+
+	deliveryPriceCheckedJS.value= deliveryPrice.value;
+
 
 }
 
@@ -386,6 +428,10 @@ if(feedBackPhoneError.innerHTML != ""){
 
   let phoneNumberTrimCleanValue = parseInt(phoneNumberTrim);
 
+  //Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
+
+  phoneNumberCheckedJS.value = phoneNumberTrimCleanValue;
+
 }
 
 
@@ -445,11 +491,15 @@ let	wishedDateJSvalue = new Date(wishedDate.value);
 			</span>`;
 			feedBackWishedDateError.innerHTML = "";
 
-		// conclusion avec attribution de cleanValue à la valeur choisie
-		let wishedDateCleanValue = wishedDateJSvalue;
+		  //Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
+		wishedDateCheckedJS.value = 			
+						`${wishedDateJSvalue.getUTCDate() + "/"+
+						/*Note : .getUTCMonth() de 0 à 11 ==> ajouté +1)
+						En fonction de la valeur de .getUTCMonth, un 0 et ajouté ou pas au mois avant  (cf. fonction ternaire)*/
+							(wishedDateJSvalue.getUTCMonth()<9 ? "0" : "")+
+							+((wishedDateJSvalue.getUTCMonth())+1) + 
+							"/"+ wishedDateJSvalue.getUTCFullYear() }`;
 		}
-
-
 	}
 
 
@@ -502,9 +552,9 @@ let matchNameLengthOK = nameTrim.match(regexNameLengthOK);
   if(matchNameLengthOK) {
 	feedBackNameError.innerHTML="";
 
-//On attribue à clean Value la valeur du nom Trim validée
+//On attribue à nameCheckedJS la valeur du nom Trim validée
 
-  let nameTrimCleanValue = nameTrim;
+nameCheckedJS.value = nameTrim;
   }
 
 
@@ -563,9 +613,9 @@ let matchFirstnameLengthOK = firstnameTrim.match(regexFirstnameLengthOK);
   if(matchFirstnameLengthOK) {
 	feedBackFirstnameError.innerHTML="";
 
-//On attribue à clean Value la valeur du nom Trim validée
+  //Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
 
-  let firstnameTrimCleanValue = firstnameTrim;
+  firstnameCheckedJS.value = firstnameTrim;
   }
 
 }
@@ -617,9 +667,8 @@ let matchCityNameLengthOK = cityNameTrim.match(regexCityNameLengthOK);
   if(matchCityNameLengthOK) {
 	feedBackCityNameError.innerHTML="";
 
-//On attribue à clean Value la valeur du nom Trim validée
-
-  let cityNameTrimCleanValue = cityNameTrim;
+//Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
+ cityNameCheckedJS.value = cityNameTrim;
   }
 
 }
@@ -700,9 +749,9 @@ let matchNumberLengthOK = adressTrim.match(regexNumberLengthOK);
   if(matchAdressLengthOK && matchNumberLengthOK) {
 	feedBackAdressError.innerHTML="";
 
-//On attribue à clean Value la valeur du nom Trim validée
+//Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
 
-  let adressTrimCleanValue = adressTrim;
+adressCheckedJS.value = adressTrim;
   }
 
 }
@@ -720,9 +769,8 @@ feedBackWishedTimeSuccess.innerHTML = `Plage sélectionnée :<br> ${choosenRange
 feedBackWishedTimeError.innerHTML="";
 
 
-//On attribue à clean Value la plage sélectionnée validée
-
-  let wishedTimeleanValue = choosenRange;
+//Attribution de la valeur nettoyée/finale à la variable à afficher dans la modal de confirmation
+wishedTimeCheckedJS.value = choosenRange;
 
 }
 
@@ -896,12 +944,15 @@ if(feedBackWishedTimeSuccess.innerHTML!=""){
 
 
 
+
+
 //Ouverture de la modal (si arrive jusque cette étape en passant les tests défauts)
 modalOrder.style.display ="block";
 
 
+});
 
-})
+
 
 //Test =>ok , à reproduire avec les valeurs récupérées et modifiées//
 if(/*name.value == nameTrimCleanValue*/ 1!=1 || 2!=2 || 2!=3){

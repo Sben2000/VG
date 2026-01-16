@@ -72,7 +72,7 @@ if (isset($_SESSION["user"])) {
 				<h2 id="h2Order">Résumé de commande</h2>
 			</div>
 
-			<form action="" method="POST">
+			<form action="" method="POST" id="formToConfirmOrder">
 
 				<div id="SectionContentOrderConf">
 
@@ -81,28 +81,28 @@ if (isset($_SESSION["user"])) {
 					<div class="detailedInput fetch">
 						<label for="nomCheckedJS">Nom </label>
 						<div><br>
-							<input readonly type="text" id="name" name="nomCheckedJS" value="" placeholder="Nom de famille"
+							<input readonly type="text" id="nameCheckedJS" name="nomCheckedJS" value="" placeholder="Nom de famille"
 								autocomplete="off" required>
 						</div>
 					</div>
 					<div class="detailedInput fetch">
 						<label for="prenomCheckedJS">Prénom </label>
 						<div><br>
-							<input readonly type="text" id='firstname' name="prenomCheckedJS" value="" placeholder="Prénom"
+							<input readonly type="text" id='firstnameCheckedJS' name="prenomCheckedJS" value="" placeholder="Prénom"
 								autocomplete="off" required>
 						</div>
 					</div>
 					<div class="detailedInput fetch">
 						<label for="email">Email du compte</label>
 						<div><br>
-							<input readonly type="email" id='email' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
+							<input readonly type="email" id='emailCheckedJS' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
 						</div>
 					</div>
 					<div class="detailedInput fetch">
 						<label for="telCheckedJS">Numéro de téléphone </label>
 						<div><br>
 							<!--mis en format text dans le JS pour présentation idem autres éléments-->
-							<input readonly type="text" id='phoneNumber' name="telCheckedJS" value="" placeholder="0123456789" autocomplete="off" required>
+							<input readonly type="text" id='phoneNumberCheckedJS' name="telCheckedJS" value="" placeholder="0123456789" autocomplete="off" required>
 						</div>
 					</div>
 
@@ -112,20 +112,20 @@ if (isset($_SESSION["user"])) {
 						<div class="detailedInput fetch">
 							<label for="adresseCheckedJS">Adresse </label>
 							<div><br>
-								<input readonly type="text" id="adress" name="adresseCheckedJS" value="" placeholder="rue/Allée/Av/Bvd..."
+								<input readonly type="text" id="adressCheckedJS" name="adresseCheckedJS" value="" placeholder="rue/Allée/Av/Bvd..."
 									autocomplete="off">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
 							<label for="ville">Ville </label>
 							<div><br>
-								<input readonly type="text" id="cityName" name="villeCheckedJS" value="" placeholder="Ville" autocomplete="off">
+								<input readonly type="text" id="cityNameCheckedJS" name="villeCheckedJS" value="" placeholder="Ville" autocomplete="off">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
 							<label for="codePostalCheckedJS">Code Postal </label>
 							<div><br>
-								<input readonly type="text" id='postalCode' name="codePostalCheckedJS" value="" placeholder="33XXX"
+								<input readonly type="text" id='postalCodeCheckedJS' name="codePostalCheckedJS" value="" placeholder="33XXX"
 									autocomplete="off">
 							</div>
 						</div>
@@ -133,14 +133,14 @@ if (isset($_SESSION["user"])) {
 							<label for="datePrestaCheckedJS">Date souhaitée</label>
 							<div><br>
 								<!--mis en format text dans le JS pour présentation idem autres éléments-->
-								<input readonly type="text" name="datePrestaCheckedJS" value="" min="<?= $tomorrow ?>" max="<?= $twoWeeks ?>" placeholder="YYYY-MM-DD" autocomplete="off" required>
+								<input readonly type="text" id="wishedDateCheckedJS" name="datePrestaCheckedJS" value="" min="<?= $tomorrow ?>" max="<?= $twoWeeks ?>" placeholder="YYYY-MM-DD" autocomplete="off" required>
 							</div>
 						</div>
 						<div class="detailedInput fetch">
 							<label for="heurePrestaCheckedJS">plage horaire souhaitée </label>
 							<div><br>
 								<!--mis en format text dans le JS pour présentation idem autres éléments-->
-								<input readonly type="text" name="heurePrestaCheckedJS" value="" placeholder="XX:00 - YY:00" autocomplete="off" required>
+								<input readonly type="text" id="wishedTimeCheckedJS" name="heurePrestaCheckedJS" value="" placeholder="XX:00 - YY:00" autocomplete="off" required>
 							</div>
 						</div>
 					</div>
@@ -151,7 +151,7 @@ if (isset($_SESSION["user"])) {
 								<label for="menuCheckedJS">Menu sélectionné </label>
 								<!--titre du plat ne peut être modifié-->
 								<div><br>
-									<input type="text" id="menuTitle" name="menuCheckedJS" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
+									<input type="text" id="menuTitleCheckedJS" name="menuCheckedJS" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
 								</div>
 							</div>
 							<div class="detailedInput peopleNbrSpec fetch">
@@ -159,7 +159,7 @@ if (isset($_SESSION["user"])) {
 								<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
 								<div><br>
 									<!--mis en format text dans le JS pour présentation idem autres éléments-->
-									<input readonly type="text" id="peopleNbrSpec" name="nbrPersCheckedJS" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
+									<input readonly type="text" id="peopleNbrSpecCheckedJS" name="nbrPersCheckedJS" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
 								</div>
 							</div>
 							<h3>Tarif détaillé</h3>
@@ -168,25 +168,25 @@ if (isset($_SESSION["user"])) {
 								<label for="priceMenuCheckedJS">Prix du menu (&#x20AC TTC/pers): </label>
 								<div class="symbol">
 									<!--prix du plat ne peut être modifié-->
-									<input type="text" id="priceMenuDisp" name="priceMenuCheckedJS" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
+									<input type="text" id="priceMenuDispCheckedJS" name="priceMenuCheckedJS" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
 								</div>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="reductionRateCheckedJS">Réduction (%): </label>
 								<div class="symbol">
-									<input type="text" id="reductionRate" name="reductionRateCheckedJS" value="" readonly required><span>%</span>
+									<input type="text" id="reductionRateCheckedJS" name="reductionRateCheckedJS" value="" readonly required><span>%</span>
 								</div>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="deliveryPriceCheckedJS">Prix de la livraison (&#x20AC): </label>
 								<div class="symbol">
-									<input type="text" id="deliveryPrice" name="deliveryPriceCheckedJS" value="" readonly required><span>&#x20AC</span>
+									<input type="text" id="deliveryPriceCheckedJS" name="deliveryPriceCheckedJS" value="" readonly required><span>&#x20AC</span>
 								</div>
 							</div>
 							<div class="detailedInput fetch">
 								<label for="totalPriceCheckedJS">Prix total (&#x20AC TTC): </label>
 								<div class="symbol">
-									<strong><input type="text" id="totalPrice" name="totalPriceCheckedJS" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
+									<strong><input type="text" id="totalPriceCheckedJS" name="totalPriceCheckedJS" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
 								</div>
 							</div>
 							<div class="recordDeliveryDatas" id="recordDeliveryDatas">
@@ -204,8 +204,8 @@ if (isset($_SESSION["user"])) {
 							<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
 						</div>
 
-					</div>
-				</div>
+					</div> 
+
 			</form>
 		</div>
 	</div>
