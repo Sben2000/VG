@@ -177,16 +177,42 @@ let totalPriceCheckedJS =  document.getElementById('totalPriceCheckedJS');
 //Réduction de 10% dès 5 pers.
 
 let ReducDix = 10;
-
+//Réduction de 0% si inférieur à 5 pers.
+let ReducZero = 0;
 //Code postaux
 let agglo = [33440, 33810, 33370, 33530, 33130, 33290, 33000, 33270, 33110, 33520, 33560, 33150, 33320, 33270, 33170, 33185, 33310, 33127, 33700, 33290, 33600, 33160, 33440, 33160, 33440, 33320, 33400, 33140]
 let bordeaux =[30072, 33000, 33100, 33200, 33300, 33800]
 
 
+//function qui affiche le prix total si les éléments sont correctemt renseignés
+function finalPrice(){
+	//Calcul du prix final si la réduction, le prix de la livraison et le nbre de personnes ont déjà été évalués
+//Nettoyage et conversion des valeurs en Int ou Float (si string) pour les operations (et éviter ainsi des concaténations avec "+")
+let peopleNbrSpecTrim = peopleNbrSpec.value.trim();
+let peopleNbrSpecCleanValue = parseInt(peopleNbrSpecTrim);
+let reductionRateTrim = reductionRate.value.trim();
+let reductionRateCleanValue = parseFloat(reductionRateTrim);
+let deliveryPriceTrim = deliveryPrice.value.trim();
+let deliveryPriceCleanValue = parseFloat(deliveryPriceTrim);
+let priceMenuDispTrim = priceMenuDisp.value.trim();
+let priceMenuDispCleanValue = parseFloat(priceMenuDispTrim);
+//Condition d'affichage Total et calculs
+	//si les inputs ne sont pas vides
+	if(peopleNbrSpecCleanValue !="" && reductionRate.value !="" && deliveryPrice.value !=""){
+		//calcul en utilisant les équivalents numériques
+		let	reducPercent = 0.01 * (reductionRateCleanValue);
+		totalPrice.value = (peopleNbrSpecCleanValue * priceMenuDispCleanValue * ( 1- reducPercent) + deliveryPriceCleanValue).toFixed(2);
+		// on attribue également à totalPriceCheckedJS la valeur à affichée dans la modal de confirmation
+		totalPriceCheckedJS.value = totalPrice.value;
+	}else{
+		totalPrice.value ="";
+	};
+}
+
 //function de contrôle du minimum de Personne requis
 function minPersRequest(){
 //Trim de la valeur entrée par l'utilisateur
-let peopleNbrSpecTrim = peopleNbrSpec.value.trim()
+let peopleNbrSpecTrim = peopleNbrSpec.value.trim();
 
 
 /***Regex ci dessous ne fonctionne qu'avec un input = text pas avec un input = nombre *
@@ -255,13 +281,20 @@ console.log(matchMinPR);
 		if(peopleNbrSpecCleanValue == RemainingQty){
 		feedBackPeopleError.innerHTML ="" ;
 		
-		feedBackPeopleOtherInfo.innerHTML = "Quantité max atteinte";}
+		feedBackPeopleOtherInfo.innerHTML = "Quantité max atteinte";};
 
+	}else{
+		reductionRate.value = ReducZero;
 	}
 
 	//Attribution des valeurs nettoyée/finales aux variables à afficher dans la modal de confirmation
 	peopleNbrSpecCheckedJS.value = peopleNbrSpecCleanValue;
 	reductionRateCheckedJS.value = reductionRate.value;
+
+	//Lancement de la function finalPrice qui gérera l'affichage du total  en fonction des prix évalués ou non (livraison, nbre total de personnes*Menu, Réduction ) 
+	
+	finalPrice();
+
 }
 
 //function de contrôle Code Postal
@@ -359,6 +392,9 @@ if (bordeauxDelivery>0){
 
 	deliveryPriceCheckedJS.value= deliveryPrice.value;
 
+//Lancement de la function finalPrice qui gérera l'affichage du total  en fonction des prix évalués ou non (livraison, nbre total de personnes*Menu, Réduction ) 
+	
+	finalPrice();
 
 }
 
@@ -773,6 +809,8 @@ feedBackWishedTimeError.innerHTML="";
 wishedTimeCheckedJS.value = choosenRange;
 
 }
+
+
 
 /*******************Intéractivité affichage avant soumission***************************** */
 

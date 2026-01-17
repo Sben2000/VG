@@ -191,12 +191,12 @@ if (isset($_SESSION["user"])) {
 							</div>
 							<div class="recordDeliveryDatas" id="recordDeliveryDatas">
 							<!--
-								<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
+								<p class="note">Enregistrer sur mon espace les éventuels changement de coordonnées pour une prochaine livraison?</p>
 								<div>
 								<input type="checkbox" name="recordDeliveryDatas" checked>
 								<label for="recordDeliveryDatas" class="note">oui</label>
 								</div>
-							-->
+								-->
 							</div>
 						</div>
 						<div class="modalInputs" id="confirmOrderButtons">
@@ -541,7 +541,7 @@ if (isset($_SESSION["user"])) {
 										<div class="detailedInput fetch">
 											<label for="totalPrice">Prix total (&#x20AC TTC): </label>
 											<div class="symbol">
-												<strong><input type="text" id="totalPrice" name="totalPrice" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
+												<input type="text" id="totalPrice" name="totalPrice" value="" readonly required style="text-align: center;"><span>&#x20AC</span>
 											</div>
 										</div>
 									</div>
