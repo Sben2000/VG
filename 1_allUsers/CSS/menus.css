@@ -500,13 +500,13 @@ margin-bottom: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 20px auto;
+
 }
 
 /*******Modal de confirmation (la plupart du css est identique au css disconnect.css, ne sont repris ici que les petites différences via les id spécifiques*******************************/
 
  #modalOrder{ 
-    display: none;/*ne pas afficher la modal par défaut lorsqu on ouvre la page, sera traité en display ="block"en JS*/
+    display: none;/*none;/*ne pas afficher la modal par défaut lorsqu on ouvre la page, sera traité en display ="block"en JS*/
    
     }
 
@@ -548,6 +548,20 @@ justify-content: space-between;
 
 #SectionContentOrderConf .detailedInput label{
 margin-top: 5px;
+}
+
+
+#recordDeliveryDatas{
+display: none;
+margin: 20px 0px auto;
+font-size: 14px;
+}
+#recordDeliveryDatas p{
+margin: 20px 5px auto;
+font-size: 14px;
+}
+.recordDatasCheckBox{
+    text-align: end;
 }
 
 /********************************************Fin CSS Modal de deconnexion**********************************************/
@@ -667,7 +681,7 @@ font-weight: 500;
 
 /*affichage du bloc joinUs récupéré du bloc de gauche*/
 #joinUsPhoneView{
-    display: block;
+    display: none;
 
 }
 /*modal de confirmation*/
@@ -710,6 +724,9 @@ justify-self: end;
     margin: 20px auto;
 }
 
+#recordDeliveryDatas p{
+font-size: 12px;
+}
 }
 
 

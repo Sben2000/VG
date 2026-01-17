@@ -83,6 +83,8 @@ if (isset($_SESSION["user"])) {
 						<div><br>
 							<input readonly type="text" id="nameCheckedJS" name="nomCheckedJS" value="" placeholder="Nom de famille"
 								autocomplete="off" required>
+							<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+							<input type="hidden" id="nameHidden" name="nom" value="<?= @$userProfil->nom ?>">
 						</div>
 					</div>
 					<div class="detailedInput fetch">
@@ -90,6 +92,8 @@ if (isset($_SESSION["user"])) {
 						<div><br>
 							<input readonly type="text" id='firstnameCheckedJS' name="prenomCheckedJS" value="" placeholder="Prénom"
 								autocomplete="off" required>
+							<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+							<input type="hidden" id='firstnameHidden' name="prenomHidden" value="<?= @$userProfil->prenom ?>">
 						</div>
 					</div>
 					<div class="detailedInput fetch">
@@ -103,6 +107,8 @@ if (isset($_SESSION["user"])) {
 						<div><br>
 							<!--mis en format text dans le JS pour présentation idem autres éléments-->
 							<input readonly type="text" id='phoneNumberCheckedJS' name="telCheckedJS" value="" placeholder="0123456789" autocomplete="off" required>
+							<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+							<input type="hidden" inputmode="numeric" id='phoneNumberHidden' name="telHidden" value="<?= @$userProfil->telephone ?>">
 						</div>
 					</div>
 
@@ -114,12 +120,16 @@ if (isset($_SESSION["user"])) {
 							<div><br>
 								<input readonly type="text" id="adressCheckedJS" name="adresseCheckedJS" value="" placeholder="rue/Allée/Av/Bvd..."
 									autocomplete="off">
+								<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+								<input type="hidden" id="adressHidden" name="adresseHidden" value="<?= @$userProfil->adresse_postale ?>">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
 							<label for="ville">Ville </label>
 							<div><br>
 								<input readonly type="text" id="cityNameCheckedJS" name="villeCheckedJS" value="" placeholder="Ville" autocomplete="off">
+								<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+								<input type="hidden" id="cityNameHidden" name="villeHidden" value="<?= @$userProfil->ville ?>">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
@@ -127,6 +137,8 @@ if (isset($_SESSION["user"])) {
 							<div><br>
 								<input readonly type="text" id='postalCodeCheckedJS' name="codePostalCheckedJS" value="" placeholder="33XXX"
 									autocomplete="off">
+								<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+								<input type="hidden" id='postalCodeHidden' name="codePostalHidden" value="<?= @$userProfil->code_postal ?>">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
@@ -144,67 +156,65 @@ if (isset($_SESSION["user"])) {
 							</div>
 						</div>
 					</div>
-						<div class="orderFormQuantity">
-							<h3>Menu et quantités</h3>
-							<hr>
-							<div class="detailedInput fetch">
-								<label for="menuCheckedJS">Menu sélectionné </label>
-								<!--titre du plat ne peut être modifié-->
-								<div><br>
-									<input type="text" id="menuTitleCheckedJS" name="menuCheckedJS" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
-								</div>
+					<div class="orderFormQuantity">
+						<h3>Menu et quantités</h3>
+						<hr>
+						<div class="detailedInput fetch">
+							<label for="menuCheckedJS">Menu sélectionné </label>
+							<!--titre du plat ne peut être modifié-->
+							<div><br>
+								<input type="text" id="menuTitleCheckedJS" name="menuCheckedJS" value="<?= $menu->titre ?>" placeholder="réf.Menu..." readonly autocomplete="off">
 							</div>
-							<div class="detailedInput peopleNbrSpec fetch">
-								<label for="nbrPersCheckedJS">Nombre de personnes </label>
-								<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
-								<div><br>
-									<!--mis en format text dans le JS pour présentation idem autres éléments-->
-									<input readonly type="text" id="peopleNbrSpecCheckedJS" name="nbrPersCheckedJS" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
-								</div>
+						</div>
+						<div class="detailedInput peopleNbrSpec fetch">
+							<label for="nbrPersCheckedJS">Nombre de personnes </label>
+							<!--Dans le placeholder et la valeur min, est intégré directement la valeur min définie dans le menu. La valeur max correspond à la quantité restante-->
+							<div><br>
+								<!--mis en format text dans le JS pour présentation idem autres éléments-->
+								<input readonly type="text" id="peopleNbrSpecCheckedJS" name="nbrPersCheckedJS" value="" placeholder="<?= $menu->nombre_personne_minimum  ?>" autocomplete="off" min="<?= $menu->nombre_personne_minimum   ?>" max="<?= $menu->quantite_restante ?>">
 							</div>
-							<h3>Tarif détaillé</h3>
-							<hr>
-							<div class="detailedInput fetch">
-								<label for="priceMenuCheckedJS">Prix du menu (&#x20AC TTC/pers): </label>
-								<div class="symbol">
-									<!--prix du plat ne peut être modifié-->
-									<input type="text" id="priceMenuDispCheckedJS" name="priceMenuCheckedJS" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
-								</div>
+						</div>
+						<h3>Tarif détaillé</h3>
+						<hr>
+						<div class="detailedInput fetch">
+							<label for="priceMenuCheckedJS">Prix du menu (&#x20AC TTC/pers): </label>
+							<div class="symbol">
+								<!--prix du plat ne peut être modifié-->
+								<input type="text" id="priceMenuDispCheckedJS" name="priceMenuCheckedJS" value="<?= @$menu->prix_par_personne ?>" readonly required><span>&#x20AC</span>
 							</div>
-							<div class="detailedInput fetch">
-								<label for="reductionRateCheckedJS">Réduction (%): </label>
-								<div class="symbol">
-									<input type="text" id="reductionRateCheckedJS" name="reductionRateCheckedJS" value="" readonly required><span>%</span>
-								</div>
+						</div>
+						<div class="detailedInput fetch">
+							<label for="reductionRateCheckedJS">Réduction (%): </label>
+							<div class="symbol">
+								<input type="text" id="reductionRateCheckedJS" name="reductionRateCheckedJS" value="" readonly required><span>%</span>
 							</div>
-							<div class="detailedInput fetch">
-								<label for="deliveryPriceCheckedJS">Prix de la livraison (&#x20AC): </label>
-								<div class="symbol">
-									<input type="text" id="deliveryPriceCheckedJS" name="deliveryPriceCheckedJS" value="" readonly required><span>&#x20AC</span>
-								</div>
+						</div>
+						<div class="detailedInput fetch">
+							<label for="deliveryPriceCheckedJS">Prix de la livraison (&#x20AC): </label>
+							<div class="symbol">
+								<input type="text" id="deliveryPriceCheckedJS" name="deliveryPriceCheckedJS" value="" readonly required><span>&#x20AC</span>
 							</div>
-							<div class="detailedInput fetch">
-								<label for="totalPriceCheckedJS">Prix total (&#x20AC TTC): </label>
-								<div class="symbol">
-									<strong><input type="text" id="totalPriceCheckedJS" name="totalPriceCheckedJS" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
-								</div>
+						</div>
+						<div class="detailedInput fetch">
+							<label for="totalPriceCheckedJS">Prix total (&#x20AC TTC): </label>
+							<div class="symbol">
+								<strong><input type="text" id="totalPriceCheckedJS" name="totalPriceCheckedJS" value="" readonly required style="text-align: center;"></strong><span>&#x20AC</span>
 							</div>
-							<div class="recordDeliveryDatas" id="recordDeliveryDatas">
-							<!--
-								<p class="note">Enregistrer sur mon espace les éventuels changement de coordonnées pour une prochaine livraison?</p>
-								<div>
-								<input type="checkbox" name="recordDeliveryDatas" checked>
+						</div>
+						<div class="recordDeliveryDatas" id="recordDeliveryDatas">
+							<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
+							<div class="recordDatasCheckBox">
+								<input type="checkbox" name="recordDeliveryDatas" id="recordDatasCheckBox">
 								<label for="recordDeliveryDatas" class="note">oui</label>
-								</div>
-								-->
 							</div>
 						</div>
-						<div class="modalInputs" id="confirmOrderButtons">
-							<input type="submit" name="backToOrder" value="Retour" id="backToOrder" />
-							<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
-						</div>
+					</div>
+					<div class="modalInputs" id="confirmOrderButtons">
+						<input type="submit" name="backToOrder" value="Annuler" id="backToOrder" >
+						<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
+					</div>
 
-					</div> 
+				</div>
 
 			</form>
 		</div>

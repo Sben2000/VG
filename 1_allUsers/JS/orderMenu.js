@@ -170,7 +170,16 @@ let deliveryPriceCheckedJS = document.getElementById('deliveryPriceCheckedJS');
 //Prix total
 let totalPriceCheckedJS =  document.getElementById('totalPriceCheckedJS');
 
+//Liste des inputs cachés comportant les coordonnées originales de l'utilisateur enregistrés dans la dB
+let nameHidden = document.getElementById('nameHidden');
+let firstnameHidden = document.getElementById('firstnameHidden');
+let phoneNumberHidden = document.getElementById('phoneNumberHidden');
+let adressHidden = document.getElementById('adressHidden');
+let cityNameHidden = document.getElementById('cityNameHidden');
+let postalCodeHidden = document.getElementById('postalCodeHidden');
 
+//La checkBox pour confirmer l'enregistrement des coordonnées
+let recordDatasCheckBox = document.getElementById('recordDatasCheckBox');
 
 /******************Functions /variables générales utilisées pour une ou plusieurs analyses du formulaire************/
 
@@ -987,25 +996,35 @@ if(feedBackWishedTimeSuccess.innerHTML!=""){
 //Ouverture de la modal (si arrive jusque cette étape en passant les tests défauts)
 modalOrder.style.display ="block";
 
+//Affichage du block de proposition de sauvegarde des coordonnées si différence avec les données user ds la DB
+
+if(name.value != nameHidden.value || firstname.value != firstnameHidden.value || phoneNumber.value != phoneNumberHidden.value || 
+	adress.value != adressHidden.value || cityName.value != cityNameHidden.value || postalCode.value != postalCodeHidden.value)
+	{
+		recordDeliveryDatas.style.display ="block";
+		//on check par défaut la box pour enregistrement des nouvelles coordonnées
+		recordDatasCheckBox.checked = true;
+	}else{
+	recordDeliveryDatas.style.display ="none";
+	//La check box est décochée pour ne pas enregistrer de nouveau sur le compte user les mêmes coordonnées
+	recordDatasCheckBox.checked = false;
+	}
 
 });
 
 
+/**************Test Devellopeur :  message d'enregistrement coordonnées si différent de la DB et checked checkbox ***************************** */
 
-//Test =>ok , à reproduire avec les valeurs récupérées et modifiées//
-if(/*name.value == nameTrimCleanValue*/ 1!=1 || 2!=2 || 2!=3){
-recordDeliveryDatas.innerHTML=
-`
-	<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
-	<div>
-		<input type="checkbox" name="recordDeliveryDatas" checked>
-		<label for="recordDeliveryDatas" class="note">oui</label>
-	</div>
-`;
-}else{
-recordDeliveryDatas.innerHTML="";
-}
-;
+//Test =>ok , à reproduire dans le prevent Default ci dessus avec les valeurs récupérées et modifiées//
+//if( 1!=1 || 2!=2 || 2!=3){
+//recordDeliveryDatas.style.display ="block";
+//recordDatasCheckBox.checked = true;
+//}else{
+//recordDeliveryDatas.style.display ="none";
+//recordDatasCheckBox.checked = false;
+//}
+
+/******************************************************************************************************** */
 
 /*****************************Gestion de la Modal de confirmation de commande (fermeture , retour, confirmation)********************************/
 
@@ -1013,8 +1032,12 @@ recordDeliveryDatas.innerHTML="";
 
 
 /*Gestion Fermeture de la modale de commande*/
+//A travers l'image croix rouge
 imgCloseModalOrder.addEventListener("click",()=>{
      modalOrder.style.display = "none";
 })
 
-
+//A travers le bouton retour
+backToOrder.addEventListener("click",()=>{
+     modalOrder.style.display = "none";
+})
