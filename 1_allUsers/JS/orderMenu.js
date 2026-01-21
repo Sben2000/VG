@@ -1004,11 +1004,17 @@ if(name.value != nameHidden.value || firstname.value != firstnameHidden.value ||
 		recordDeliveryDatas.style.display ="block";
 		//on check par défaut la box pour enregistrement des nouvelles coordonnées
 		recordDatasCheckBox.checked = true;
+		//on attribue la valeur 1 à la checkBox
+		recordDatasCheckBox.value = "checked";
 	}else{
 	recordDeliveryDatas.style.display ="none";
 	//La check box est décochée pour ne pas enregistrer de nouveau sur le compte user les mêmes coordonnées
 	recordDatasCheckBox.checked = false;
+	//on attribue aucune valeur ou la valeur empty à la checkBox
+	recordDatasCheckBox.value = "empty";
 	}
+
+
 
 });
 
@@ -1041,3 +1047,8 @@ imgCloseModalOrder.addEventListener("click",()=>{
 backToOrder.addEventListener("click",()=>{
      modalOrder.style.display = "none";
 })
+
+
+
+
+
