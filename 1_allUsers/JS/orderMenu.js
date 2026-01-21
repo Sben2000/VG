@@ -6,6 +6,8 @@ mainNav();
 /**************************Gestion des redirections des boutons de la page****************************** */
 
 
+
+
 //Récupération du Bouton "previous page" et chargement de la page précédente au click
 let previousPage = document.querySelector("#closePage");
 previousPage.addEventListener("click", function(){
@@ -23,6 +25,12 @@ let cancelOrderProcess = document.querySelector('#cancelOrderProcess');
 let footer = document.querySelector('.footer');
 //fenêtre de commande à afficher/masquer
 let orderSectionForm = document.querySelector("#orderSectionForm");
+
+
+//Lors du chargement de la page, masquer le formulaire de commande (si pas déjà fait en css via display : none)
+window.addEventListener("load", () => {
+   orderSectionForm.style.display='none';
+});
 
 //Affichage au click
 orderButton.addEventListener('click', ()=>{
@@ -747,7 +755,7 @@ let regexTwoLetters = /[A-zÀ-ú]{2}/i;
 let matchTwoLetters= adressTrim.match(regexTwoLetters);
 
 //regex permettant de détecter un match correct entre 2 et 20 lettres :
-let regexAdressLengthOK = /[A-zÀ-ú]{2,20}/i;
+let regexAdressLengthOK = /[A-zÀ-ú]{2,30}/i;
 let matchAdressLengthOK = adressTrim.match(regexAdressLengthOK);
 
 //si il n'existe pas de nom d'au moins 2 lettres, envoi d'un message d'erreur
@@ -851,6 +859,14 @@ adress.addEventListener("change", checkAdress);
 
 //Affichage du message d'info Plage horaire en fonction de la valeur indiquée 
 wishedTime.addEventListener("change", checkTime);
+
+/**********Interactivité lorsque la page est chargée avec les données utilisateur déjà enregistrées (nécessaire au calcul du prix par ex)*********/
+
+//postalCode pour calcul prix de livraison(si déjà enregistré dans le compte user)
+if(postalCode.value !=""){
+	checkPostalCode();
+}
+
 
 /*******************Contrôle /Validation ou Rejet après soumission***************************** */
   //via event.preventDefault() => pour Prévenir l'action par défaut 

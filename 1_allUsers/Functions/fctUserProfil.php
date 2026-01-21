@@ -157,9 +157,21 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         if (is_string($nom)==FALSE){
         return "veuillez rentrer un nom composé de lettres";
         }
+
+        //si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+        $masque ="/(?!-|_|\s|'|[À-ú])[\W\d]/"; 
+        preg_match_all($masque, $nom, $resultat);
+        if (count($resultat[0])!=0){
+        return "Uniquement lettres, - ou _ou espace si nom composé";
+        }
+
     //Vérification de la longueur du nom
         if(strlen($nom)>20){
-            return "le nom ne peut dépasser 20 caractères";
+            return "le nom contient trop de caractères";
+        }
+
+            if(strlen($nom)<2){
+            return "le nom ne contient pas assez de caractères";
         }
 
         }
@@ -170,9 +182,20 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         if (is_string($prenom)==FALSE){
         return "veuillez rentrer un prénom composé de lettres";
         }
-    //Vérification de la longueur du numéro de tél
-        if(strlen($prenom)>15){
-            return "le prénom ne peut dépasser 15 caractères";
+        //si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+        $masque ="/(?!-|_|\s|'|[À-ú])[\W\d]/"; 
+        preg_match_all($masque, $prenom, $resultat);
+        if (count($resultat[0])!=0){
+        return "Uniquement lettres, - ou _ou espace si prénom composé";
+        }
+
+    //Vérification de la longueur du nom
+        if(strlen($prenom)>20){
+            return "le prénom contient trop de caractères";
+        }
+
+            if(strlen($prenom)<2){
+            return "le prénom ne contient pas assez de caractères";
         }
         }
 //Vérification du format téléphone si celui ci est complété (à l'origine vide):
@@ -180,7 +203,13 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
 
     //Vérification des caractères autorisés (via function php is_numeric)
         if (is_numeric($tel)==FALSE){
-        return "le format du numéro ne doit être composé que de chiffres";
+        return "le format du numéro ne doit être composé que de chiffres sans espace";
+        }
+        //si il existe un match ,(caractères non autorisés détéctés), envoi d'un message d'erreur
+        $masque ="/\D/"; 
+        preg_match_all($masque, $tel, $resultat);
+        if (count($resultat[0])!=0){
+        return "le format du numéro ne doit être composé que de chiffres sans espace";
         }
     //Vérification de la longueur du numéro de tél
         if(strlen($tel)>15){
@@ -198,21 +227,15 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
 
         //Format adresse
 
-        //Vérification des caractères autorisés (lettres (case insensitive) , - et _ ') uniquement (Upper&Lowercase)
-        $masque1 ="/[^a-z_0-9\-\']/i"; //classe:[], ne contenant pas: ^(interne), les caractères: aàz - _ ', minuscule ou majuscule:/i*
+        //Vérification des caractères autorisés )
+        $masque1 ="/(?!-|_|\s|'|\.|[À-ú]|[\d])[\W]/"; //Tout ce qui est un non word (\W) sauf (?!)- ou _ ou \.(point échappé) ou espace ou apostrophe ou toutes les lettres avec accent ou digit ou (-|_|\s|'|[À-ú] [\d])
          preg_match_all($masque1, $adresse, $resultat);
-        var_dump($resultat[0]);
+        //var_dump($resultat[0]);
         if (count($resultat[0])!=0){
-        return "les caractères spéciaux hormis  les tirets '-' '_' et apostrophe ' ne sont pas admis";
+        return "Adresse => uniquement N°, lettres, <br> - , _ , . ou espace ";
         }
 
-        //si ok =>Vérification des caractères minimum requis (lettres et num de rue) 
-        $masque ="(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$)";
-        preg_match_all($masque, $adresse, $result);
-        if (empty($result[0])){
-        echo "l'adresse doit comporter un numéro , un nom de rue, sont admis '-' et '_' ' , si pas de numéro de rue, noter 0";
-        }
-    //Vérification de la longueur de l'adresse
+     //Vérification de la longueur de l'adresse
         if(strlen($adresse)<4){
             return "veuillez svp indiquer une adresse complète ";
         }
@@ -226,10 +249,10 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
        if(!empty($ville)){
 
         //Format ville
-        //Vérification des caractères autorisés (lettres (case insensitive) , - et _ ') uniquement (Upper&Lowercase)
-        $masque ="/[^a-z_\-\']/i"; //classe:[], ne contenant pas: ^(interne), les caractères: aàz - _ ', minuscule ou majuscule:/i*
+        //Vérification des caractères autorisés 
+        $masque ="/(?!-|_|\s|'|[À-ú])[\W\d]/"; //Tout ce qui est un non word (\W) ou un digit(\d) sauf (?!)- ou _ ou espace ou apostrophe ou toutes les lettres avec accent(-|_|\s|'|[À-ú])
         preg_match_all($masque, $ville, $resultat);
-        var_dump($resultat[0]);
+        //var_dump($resultat[0]);
         if (count($resultat[0])!=0){
         return "la ville ne doit comporter que des lettres ,sont également admis les tirets '-' '_' et apostrophe '";
         }
@@ -238,7 +261,7 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
             return "veuillez svp indiquer le nom de ville complet";
         }
 
-        if(strlen($ville)>30){
+        if(strlen($ville)>20){
             return "le nom de ville est trop long, veuillez le réduire";
         }
 
@@ -249,6 +272,14 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         if (is_numeric($codePostal)==FALSE){
         return "Veuillez rentrer un code Postal numérique";
         }
+        //Vérification des caractères autorisés 
+        $masque ="/\D/"; //regex permettant de détecter tout les caractères non Digit ([^0-9])
+        preg_match_all($masque, $codePostal, $resultat);
+        //var_dump($resultat[0]);
+        if (count($resultat[0])!=0){
+        return "Veuillez rentrer un code Postal numérique sans espace ni caractères spéciaux";
+        }
+
             //Vérification de la longueur du code Postal 
             if(strlen($codePostal)!=5){
             return "veuillez svp indiquer un code Postal  à 5 chiffres, supprimez les espaces si nécessaires";
@@ -309,6 +340,7 @@ function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $vil
         $lastInserted =$query->rowCount();
         
         if($lastInserted>0){
+            header("location:userAccount.php");
             return "success"; //affichera le message associé dans le fichier d'execution de la réponse
         }else{
             return "l'enregistrement a échoué, veuillez recommencer";

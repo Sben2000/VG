@@ -141,7 +141,7 @@ if($recordDeliveryDatas == "checked"){
     $query->execute();
     $result = $query->fetch(PDO::FETCH_ASSOC);
     $ref2 =  $result["MAX(commande_id)"] +1;
-    
+
     //partie ref3 => //date du jour au format GMT (« Greenwich Mean Time » ) avec  AnMoisJour (année sur 2 digits)
     $ref3= gmdate("ymd");
         
@@ -151,58 +151,6 @@ if($recordDeliveryDatas == "checked"){
 
 //Date de la commande
 $dateOrder = gmdate("d/m/Y"); //date d'aujourd'hui au format GMT avec  jour/Mois/ Année(4digits)
-
-//menu_id (récupéré de la DB)
-    $sql ="SELECT menu_id FROM menu WHERE titre =:selectedMenu ";
-    $query = $conn->prepare($sql);
-    $query->bindParam(":selectedMenu", $selectedMenu, PDO::PARAM_STR);
-    $query->execute();
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-    $menuID =  $result["menu_id"];
-
-
-//Insertion des données de la commande dans la DB - table commande
- $sql = "INSERT INTO commande (menu_id, utilisateur_id, numero_commande, date_commande, date_prestation, heure_livraison, prix_livraison, prix_TTC, nbr_pers, nom_livraison, prenom_livraison, telephone_livraison, ville_livraison, pays_livraison, adresse_postale_livraison, code_postal_livraison, commande_id) 
- VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $query=$conn->prepare($sql);
-        $query->bindParam(1, $menuID, PDO::PARAM_INT);
-        $query->bindParam(2, $userID, PDO::PARAM_INT);
-        $query->bindParam(3, $refOrder, PDO::PARAM_STR);
-        $query->bindParam(4, $dateOrder, PDO::PARAM_STR);
-        $query->bindParam(5, $wishedDate, PDO::PARAM_STR);
-        $query->bindParam(6, $wishedTime, PDO::PARAM_STR);
-        $query->bindParam(7, $deliveryPrice, PDO::PARAM_STR);
-        $query->bindParam(8, $totalPrice, PDO::PARAM_STR);
-        $query->bindParam(9, $peopleNbrSpec, PDO::PARAM_STR);
-        $query->bindParam(10, $name, PDO::PARAM_STR);
-        $query->bindParam(11, $firstname, PDO::PARAM_STR);
-        $query->bindParam(12, $phoneNumber, PDO::PARAM_STR);
-        $query->bindParam(13, $cityName, PDO::PARAM_STR);
-        $query->bindParam(14, $country, PDO::PARAM_STR);
-        $query->bindParam(15, $adress, PDO::PARAM_STR);
-        $query->bindParam(16, $postalCode, PDO::PARAM_STR);
-        $query->bindParam(17, $ref2, PDO::PARAM_STR);//pour rappel: $ref2=$result["MAX(commande_id)"] +1 , soit incrémentation de l'id_commande
-        $query->execute();
-        $result = $query->fetchAll(PDO::FETCH_OBJ);
-
-        //Vérification que le dernier ID enregistré est > 0 (confirmation enregistrement)
-        $lastInserted = $conn->lastInsertId();
-        //si ce n'est pas le cas, envoi d'un message d'erreur
-        if(!$lastInserted>0){
-            return "l'enregistrement de la commande a échoué, veuillez recommencer"; //affichera le message associé dans le fichier d'execution de la réponse
-        }
-var_dump($result);
-//envoi d'un mail à l'utilisateur
-
-
-
-
-//envoi d'un mail à l'admin
-
-
-
-//message de succès renvoyé
-
 
 
 }

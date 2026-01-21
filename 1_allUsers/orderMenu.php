@@ -78,6 +78,7 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body>
+	<?php include_once "includes/header.php" ?>
 	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -244,19 +245,6 @@ if (isset($_SESSION["user"])) {
 
 
 	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-
-
-
-
-
-
-
-
-	<?php include_once "includes/header.php" ?>
 	<div class="main">
 		<div class="separator">
 			<h1 class="sectionTitle">Détails menu & commande</h1>
@@ -436,7 +424,7 @@ if (isset($_SESSION["user"])) {
 						<div class="SectionContent Criterias">
 							<div class="menuDetailedButtons">
 								<input type="submit" name="previousPage" value="&#x2B9C; Fermer la page" id="closePage" />
-								<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" onclick="location.reload()" />
+								<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" />
 							</div>
 						</div>
 					</section>

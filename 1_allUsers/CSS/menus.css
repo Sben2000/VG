@@ -507,7 +507,7 @@ margin-bottom: 5px;
 
  #modalOrder{ 
     display: none;/*none;/*ne pas afficher la modal par défaut lorsqu on ouvre la page, sera traité en display ="block"en JS*/
-   
+   top: 0%;
     }
 
 #orderConfTop h2{
@@ -646,7 +646,7 @@ p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch inp
     align-items: center;
 }
 #orderSectionForm{
-    display: block;
+    display: none;
 }
 
 .regimetheme{

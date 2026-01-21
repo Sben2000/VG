@@ -26,13 +26,31 @@ if (isset($_SESSION["user"])) {
 	if ($response != NULL) {
 		$userProfil = $response;
 	}
+
+    //execution de la function createUserOrder lors du submit "Je confirme"
+	//Note: variables traitées/nettoyées dans la function, $feedback=retour du traitement
+	    if(isset($_POST['confirmOrder'])){
+			//Attribution d'une valeur par défaut à $recordDeliveryDatas si la checkbox si n'existe pas (décochée par l'utilisateur)
+			if(empty($_POST['recordDeliveryDatas'])){
+			$recordDeliveryDatas ="notchecked";	
+			}else{
+			$recordDeliveryDatas = $_POST['recordDeliveryDatas'];
+			}
+		//function createUserOrder($userID, $name, $firstname, $email, $phoneNumber, $adress, $cityName, $postalCode,  $wishedDate, $wishedTime,  $selectedMenu, $peopleNbrSpec, $priceMenu, $reductionRate, $deliveryPrice, $totalPrice, $recordDeliveryDatas){
+	    $feedback = createUserOrder($_POST['userID'], $_POST['nomCheckedJS'], $_POST['prenomCheckedJS'], $_POST['email'], $_POST['telCheckedJS'], $_POST['adressCheckedJS'], $_POST['villeCheckedJS'], $_POST['codePostalCheckedJS'], $_POST['datePrestaCheckedJS'],  $_POST['heurePrestaCheckedJS'], $_POST['menuCheckedJS'], $_POST['nbrPersCheckedJS'], $_POST['priceMenuCheckedJS'], $_POST['reductionRateCheckedJS'], $_POST['deliveryPriceCheckedJS'], $_POST['totalPriceCheckedJS'], $recordDeliveryDatas);
+	
+    }
+
+
 }
+
+
 
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
 	<meta charset="UTF-8" />
@@ -60,6 +78,8 @@ if (isset($_SESSION["user"])) {
 </head>
 
 <body>
+	<?php include_once "includes/header.php" ?>
+
 	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -81,33 +101,36 @@ if (isset($_SESSION["user"])) {
 					<div class="detailedInput fetch">
 						<label for="nomCheckedJS">Nom </label>
 						<div><br>
-							<input readonly type="text" id="nameCheckedJS" name="nomCheckedJS" value="" placeholder="Nom de famille"
+							<input readonly type="text" id="nameCheckedJS" name="nomCheckedJS" value="<?= @$userProfil->nom ?>" placeholder="Nom de famille"
 								autocomplete="off" required>
-							<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+							<!--Si changement en JS, version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
 							<input type="hidden" id="nameHidden" name="nom" value="<?= @$userProfil->nom ?>">
+							<!--id du user en type hidden pour pour cibler le compte utilisateur-->
+							<input type="hidden" id="nameHidden" name="userID" value="<?= @$userProfil->utilisateur_id ?>">
 						</div>
 					</div>
 					<div class="detailedInput fetch">
 						<label for="prenomCheckedJS">Prénom </label>
 						<div><br>
-							<input readonly type="text" id='firstnameCheckedJS' name="prenomCheckedJS" value="" placeholder="Prénom"
+							<input readonly type="text" id='firstnameCheckedJS' name="prenomCheckedJS" value="<?= @$userProfil->prenom ?>" placeholder="Prénom"
 								autocomplete="off" required>
-							<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+							<!--Si changement en JS, version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
 							<input type="hidden" id='firstnameHidden' name="prenomHidden" value="<?= @$userProfil->prenom ?>">
 						</div>
 					</div>
-					<div class="detailedInput fetch">
+<!--					<div class="detailedInput fetch">
 						<label for="email">Email du compte</label>
 						<div><br>
-							<input readonly type="email" id='emailCheckedJS' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
+							<input readonly type="email" id='emailCheckedJS' name="email" value="<?//=@$userProfil->email?>" placeholder="Email" autocomplete="off" required>
 						</div>
 					</div>
 					<div class="detailedInput fetch">
 						<label for="telCheckedJS">Numéro de téléphone </label>
 						<div><br>
+-->
 							<!--mis en format text dans le JS pour présentation idem autres éléments-->
-							<input readonly type="text" id='phoneNumberCheckedJS' name="telCheckedJS" value="" placeholder="0123456789" autocomplete="off" required>
-							<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+						<!--	<input readonly type="text" id='phoneNumberCheckedJS' name="telCheckedJS" value="<?//= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required>-->
+							<!--Si changement en JS, version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
 							<input type="hidden" inputmode="numeric" id='phoneNumberHidden' name="telHidden" value="<?= @$userProfil->telephone ?>">
 						</div>
 					</div>
@@ -116,28 +139,28 @@ if (isset($_SESSION["user"])) {
 						<h3>Adresse de livraison</h3>
 						<hr>
 						<div class="detailedInput fetch">
-							<label for="adresseCheckedJS">Adresse </label>
+							<label for="adressCheckedJS">Adresse </label>
 							<div><br>
-								<input readonly type="text" id="adressCheckedJS" name="adresseCheckedJS" value="" placeholder="rue/Allée/Av/Bvd..."
+								<input readonly type="text" id="adressCheckedJS" name="adressCheckedJS" value="<?= @$userProfil->adresse_postale ?>" placeholder="rue/Allée/Av/Bvd..."
 									autocomplete="off">
-								<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
-								<input type="hidden" id="adressHidden" name="adresseHidden" value="<?= @$userProfil->adresse_postale ?>">
+								<!--Si changement en JS, version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+								<input type="hidden" id="adressHidden" name="adressHidden" value="<?= @$userProfil->adresse_postale ?>">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
 							<label for="ville">Ville </label>
 							<div><br>
-								<input readonly type="text" id="cityNameCheckedJS" name="villeCheckedJS" value="" placeholder="Ville" autocomplete="off">
-								<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+								<input readonly type="text" id="cityNameCheckedJS" name="villeCheckedJS" value="<?= @$userProfil->ville ?>" placeholder="Ville" autocomplete="off">
+								<!--Si changement en JS, version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
 								<input type="hidden" id="cityNameHidden" name="villeHidden" value="<?= @$userProfil->ville ?>">
 							</div>
 						</div>
 						<div class="detailedInput fetch">
 							<label for="codePostalCheckedJS">Code Postal </label>
 							<div><br>
-								<input readonly type="text" id='postalCodeCheckedJS' name="codePostalCheckedJS" value="" placeholder="33XXX"
+								<input readonly type="text" id='postalCodeCheckedJS' name="codePostalCheckedJS" value="<?= @$userProfil->code_postal ?>" placeholder="33XXX"
 									autocomplete="off">
-								<!--version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
+								<!--Si changement en JS, version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
 								<input type="hidden" id='postalCodeHidden' name="codePostalHidden" value="<?= @$userProfil->code_postal ?>">
 							</div>
 						</div>
@@ -204,7 +227,7 @@ if (isset($_SESSION["user"])) {
 						<div class="recordDeliveryDatas" id="recordDeliveryDatas">
 							<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
 							<div class="recordDatasCheckBox">
-								<input type="checkbox" name="recordDeliveryDatas" id="recordDatasCheckBox">
+								<input type="checkbox" checked name="recordDeliveryDatas" id="recordDatasCheckBox"  value="checked">
 								<label for="recordDeliveryDatas" class="note">oui</label>
 							</div>
 						</div>
@@ -236,7 +259,7 @@ if (isset($_SESSION["user"])) {
 
 
 
-	<?php include_once "includes/header.php" ?>
+
 	<div class="main">
 		<div class="separator">
 			<h1 class="sectionTitle">Détails menu & commande</h1>
