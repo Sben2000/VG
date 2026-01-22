@@ -179,8 +179,7 @@ require_once ("./Functions/fctAccount.php");
 							</thead>
 							<tbody>
 								<tr>
-									<!--mise au format date PHP via la fonction dinstanciation PHP-->
-									<td><?= @dateTime($v["date_commande"])?></td>
+									<td><?= @$v["date_commande"]?></td>
 									<td><?= @$v["statut"]?></td>
 									<td><?= @$v["prix_TTC"]?></td>
 								</tr>
@@ -213,7 +212,7 @@ require_once ("./Functions/fctAccount.php");
 							</tr>
 							<tr>
 								<th scope="row">date_presta</th>
-								<td><?= @dateTime($v["date_prestation"]) ?></td>
+								<td><?= @$v["date_prestation"] ?></td>
 							</tr>
 							<tr>
 								<th scope="row">heure_livraison</th>

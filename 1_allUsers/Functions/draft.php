@@ -46,3 +46,7 @@ $MMwishedDate = substr($wishedDate, 3,2);//MM
 $YYwishedDate = substr($wishedDate, 6,4);//YYYY
 $wishedDate = "{$YYwishedDate}-{$MMwishedDate}-{$DDwishedDate}";//YYYY-MM-dd
 echo $wishedDate;
+
+//Récupération de la date format SQL (YYYY-MM-dd) et mise au format dd/MM/YYYY
+
+strtotime("2026-01-29");

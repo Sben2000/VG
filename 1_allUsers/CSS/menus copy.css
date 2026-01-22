@@ -464,15 +464,6 @@ margin-bottom: 5px;
     bottom: 0;
 }
 
-.success{
-    color: darkgreen;
-    text-align: center;
-}
-
-.feedback{
-    justify-content: center;
-}
-
 #feedBackPeopleSuccess, #feedBackPeopleError, #feedBackPeopleOtherInfo, #feedBackPostalCodeSuccess, #feedBackPostalCodeError, #feedbackPhoneError, #feedBackWishedTimeSuccess, #feedBackWishedDateSuccess, #feedBackWishedDateError, #feedBackFirstnameError, #feedBackNameError, #feedBackCityNameError{
     text-align: center;
     font-size: 16px;
@@ -720,8 +711,6 @@ margin: 0px auto;
 display: flex;
 justify-self: end;
 }
-
-
 
 #confirmOrderButtons{
     display: flex;

@@ -27,21 +27,18 @@ if (isset($_SESSION["user"])) {
 		$userProfil = $response;
 	}
 
-    //execution de la function createUserOrder lors du submit "Je confirme"
+	//execution de la function createUserOrder lors du submit "Je confirme"
 	//Note: variables traitées/nettoyées dans la function, $feedback=retour du traitement
-	    if(isset($_POST['confirmOrder'])){
-			//Attribution d'une valeur par défaut à $recordDeliveryDatas si la checkbox si n'existe pas (décochée par l'utilisateur)
-			if(empty($_POST['recordDeliveryDatas'])){
-			$recordDeliveryDatas ="notchecked";	
-			}else{
+	if (isset($_POST['confirmOrder'])) {
+		//Attribution d'une valeur par défaut à $recordDeliveryDatas si la checkbox si n'existe pas (décochée par l'utilisateur)
+		if (empty($_POST['recordDeliveryDatas'])) {
+			$recordDeliveryDatas = "notchecked";
+		} else {
 			$recordDeliveryDatas = $_POST['recordDeliveryDatas'];
-			}
+		}
 		//function createUserOrder($userID, $name, $firstname, $email, $phoneNumber, $adress, $cityName, $postalCode,  $wishedDate, $wishedTime,  $selectedMenu, $peopleNbrSpec, $priceMenu, $reductionRate, $deliveryPrice, $totalPrice, $recordDeliveryDatas){
-	    $feedback = createUserOrder($_POST['userID'], $_POST['nomCheckedJS'], $_POST['prenomCheckedJS'], $_POST['email'], $_POST['telCheckedJS'], $_POST['adressCheckedJS'], $_POST['villeCheckedJS'], $_POST['codePostalCheckedJS'], $_POST['datePrestaCheckedJS'],  $_POST['heurePrestaCheckedJS'], $_POST['menuCheckedJS'], $_POST['nbrPersCheckedJS'], $_POST['priceMenuCheckedJS'], $_POST['reductionRateCheckedJS'], $_POST['deliveryPriceCheckedJS'], $_POST['totalPriceCheckedJS'], $recordDeliveryDatas);
-	
-    }
-
-
+		$feedback = createUserOrder($_POST['userID'], $_POST['nomCheckedJS'], $_POST['prenomCheckedJS'], $_POST['email'], $_POST['telCheckedJS'], $_POST['adressCheckedJS'], $_POST['villeCheckedJS'], $_POST['codePostalCheckedJS'], $_POST['datePrestaCheckedJS'],  $_POST['heurePrestaCheckedJS'], $_POST['menuCheckedJS'], $_POST['nbrPersCheckedJS'], $_POST['priceMenuCheckedJS'], $_POST['reductionRateCheckedJS'], $_POST['deliveryPriceCheckedJS'], $_POST['totalPriceCheckedJS'], $recordDeliveryDatas);
+	}
 }
 
 
@@ -225,13 +222,13 @@ if (isset($_SESSION["user"])) {
 						<div class="recordDeliveryDatas" id="recordDeliveryDatas">
 							<p class="note">Enregistrer sur mon espace les coordonnées pour une prochaine livraison?</p>
 							<div class="recordDatasCheckBox">
-								<input type="checkbox" checked name="recordDeliveryDatas" id="recordDatasCheckBox"  value="checked">
+								<input type="checkbox" checked name="recordDeliveryDatas" id="recordDatasCheckBox" value="checked">
 								<label for="recordDeliveryDatas" class="note">oui</label>
 							</div>
 						</div>
 					</div>
 					<div class="modalInputs" id="confirmOrderButtons">
-						<input type="submit" name="backToOrder" value="Annuler" id="backToOrder" >
+						<input type="submit" name="backToOrder" value="Annuler" id="backToOrder">
 						<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
 					</div>
 
@@ -425,6 +422,24 @@ if (isset($_SESSION["user"])) {
 							<div class="menuDetailedButtons">
 								<input type="submit" name="previousPage" value="&#x2B9C; Fermer la page" id="closePage" />
 								<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" />
+							</div>
+							<div class="feedback">
+								<?php
+								//retour du resultat $feedback affiché à l'utilisateur
+								//si le resultat de la function est success
+								if (@$feedback == "success") {
+								?>
+									<!--afficher : -->
+									<p class="success" style='color:green'><strong>La commande a bien été enregistrée !</strong></p>
+									<p class="success" style='color:green'>Un récapitulatif de celle ci vous sera envoyé par mail.</p>
+									<p class="success" style='color:green'>Nous revenons vers vous au plus vite pour vous confirmer sa validation.</p>
+								<?php
+								 }else {
+								?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur -->
+									<p class="error" style='color:darkred'><?= @$feedback ?></p>
+								<?php
+								}
+								?>
 							</div>
 						</div>
 					</section>

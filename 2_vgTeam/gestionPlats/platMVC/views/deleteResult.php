@@ -11,7 +11,7 @@
 
                 <?php
             }else{
-                ?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur dans registerUser()-->
+                ?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur -->
                     <p class="error" style ='color:darkred'><?=@$response?></p>
                 <?php
             }

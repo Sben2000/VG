@@ -192,25 +192,67 @@ $wishedDate = "{$YYwishedDate}-{$MMwishedDate}-{$DDwishedDate}";//YYYY-MM-dd
         $query->bindParam(17, $reductionRate, PDO::PARAM_STR);
         $query->bindParam(18, $ref2, PDO::PARAM_STR);//pour rappel: $ref2=$result["MAX(commande_id)"] +1 , soit incrémentation de l'id_commande
         $query->execute();
-        $result = $query->fetchAll(PDO::FETCH_OBJ);
 
-        //Vérification que le dernier ID enregistré est > 0 (confirmation enregistrement)
-        $lastInserted = $conn->lastInsertId();
+        //on vérifie qu'une ligne a bien été affectée (confirmant l'enregistrement dans la dB) 
+         $count=$query->rowCount();
         //si ce n'est pas le cas, envoi d'un message d'erreur
-        if(!$lastInserted>0){
+        if(!$count>0){
             return "l'enregistrement de la commande a échoué, veuillez recommencer"; //affichera le message associé dans le fichier d'execution de la réponse
         }
-var_dump($result);
+
+//Envoi du message à l'équipe Vite&Go
+
+
+        //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
+                
+            try{
+                $mail = new PHPMailer(true);
+                //on requiert la function sendMail() construite dans la classe PHPMailer dans laquelle sont passées les paramètres définis dans notre formulaire en concordance avec celles de la function
+                //$email est le destinataire =>équivalent à $recipient de la function
+                $recipient="soufyantestapp@gmail.com"; //Le destinataire est cette fois ci l'équipe Vite&Go dont le mail est enregistré dans PHP Mailer
+                $subject="Contact Utilisateur/Visiteur";//sujet envoyé dans le mail
+                 $body= 
+
+                "<p> Message de {$email}  </p><br>\r\n
+                 <p> Nom/Prénom {$name}/{$firstname}  </p><br>\r\n
+                <p>Message: </p>\r\n
+                <p>{$selectedMenu}</p>\r\n";
+                sendMail($mail, $subject,$recipient, $body);
+                } catch(Exception $e) {
+                return "Erreur d'envoi Message pour cause suivante :\n {$mail->ErrorInfo}, veuillez recommencer";
+            }; 
+
+    //Envoi du mail de confirmation à l'utilisateur
+
+
+  
 //envoi d'un mail à l'utilisateur
 
+//on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis    
+            try{
+                $mail = new PHPMailer(true);
+                //on requiert la function sendMail() construite dans la classe PHPMailer dans laquelle sont passées les paramètres définis dans notre formulaire en concordance avec celles de la function
+                //$email est le destinataire =>équivalent à $recipient de la function
+                            //éléments constituant l'email (sujet et corps) géré ensuite par la function sendMail() de PHPMailer
+                $recipient =$email;//destinataire défini dans la function
+                $subject="Confirmation d'envoi de votre message à Vite&Go";//sujet envoyé dans le mail
+                $body= "<p> Bonjour {$firstname}, nous vous confirmons l'envoi de votre message de ce jour à l'équipe Vite&GO.</p><br>\r\n
+                        <p>Nous reviendrons vers vous dès que possible - L'équipe Vite&Go </p>\r\n
+                        <hr><br>
+                        <p><strong><em><u>Récapitulatif de votre commande: </u></em></strong></p>\r\n
+                        <p><em>{$selectedMenu}</em></p>
+                        "; //texte du mail puis retour à la ligne , curseur en début de ligne
+            //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
+                sendMail($mail, $subject,$recipient, $body);
+                //Retourne success à cette dernière étape pour affichage à l'utilisateur
+                return "success";
+                } catch(Exception $e) {
+                return "Désolé, nous n'avons pas pu envoyer votre message, veuillez recommencer ! :\n {$mail->ErrorInfo}";
+            }; 
 
+            /*Si pas d'action utilisateur après message de succes, renvoi vers page d'acceuil après 10 secondes
+            header('Refresh:10; url=indexLocal.php');*/          
 
-
-//envoi d'un mail à l'admin
-
-
-
-//message de succès renvoyé
 
 
 

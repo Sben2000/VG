@@ -74,6 +74,15 @@ function fetchUserOrders($username){
 
 }
 
+// function d'instanciatiant d'une date (type SQL par ex) avec la class DateTime et mise au format souhaitée PHP .
+function dateTime($SQLdate){
+    $dateTime = new DateTime($SQLdate);
+    $datePHP = $dateTime->format("d/m/Y");// le mois avec un 0 en initial, le jour avec un 0 en initial, l’année sur 4 digit.
+    return $datePHP;
+
+}
+
+
 function updateUserProfil($userID,$username, $nom, $prenom, $tel, $adresse, $ville, $codePostal, $pays){
 
     

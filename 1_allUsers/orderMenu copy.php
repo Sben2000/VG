@@ -79,7 +79,6 @@ if (isset($_SESSION["user"])) {
 
 <body>
 	<?php include_once "includes/header.php" ?>
-
 	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
 
@@ -118,18 +117,17 @@ if (isset($_SESSION["user"])) {
 							<input type="hidden" id='firstnameHidden' name="prenomHidden" value="<?= @$userProfil->prenom ?>">
 						</div>
 					</div>
-<!--					<div class="detailedInput fetch">
+					<div class="detailedInput fetch">
 						<label for="email">Email du compte</label>
 						<div><br>
-							<input readonly type="email" id='emailCheckedJS' name="email" value="<?//=@$userProfil->email?>" placeholder="Email" autocomplete="off" required>
+							<input readonly type="email" id='emailCheckedJS' name="email" value="<?= @$userProfil->email ?>" placeholder="Email" autocomplete="off" required>
 						</div>
 					</div>
 					<div class="detailedInput fetch">
 						<label for="telCheckedJS">Numéro de téléphone </label>
 						<div><br>
--->
 							<!--mis en format text dans le JS pour présentation idem autres éléments-->
-						<!--	<input readonly type="text" id='phoneNumberCheckedJS' name="telCheckedJS" value="<?//= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required>-->
+							<input readonly type="text" id='phoneNumberCheckedJS' name="telCheckedJS" value="<?= @$userProfil->telephone ?>" placeholder="0123456789" autocomplete="off" required>
 							<!--Si changement en JS, version hidden pour comparaison avec données originales DB pour proposition ou pas de conserver les données modifiées dans le compte utilisateur-->
 							<input type="hidden" inputmode="numeric" id='phoneNumberHidden' name="telHidden" value="<?= @$userProfil->telephone ?>">
 						</div>
@@ -247,19 +245,6 @@ if (isset($_SESSION["user"])) {
 
 
 	<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<div class="main">
 		<div class="separator">
 			<h1 class="sectionTitle">Détails menu & commande</h1>
@@ -439,7 +424,7 @@ if (isset($_SESSION["user"])) {
 						<div class="SectionContent Criterias">
 							<div class="menuDetailedButtons">
 								<input type="submit" name="previousPage" value="&#x2B9C; Fermer la page" id="closePage" />
-								<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" onclick="location.reload()" />
+								<input type="submit" name="orderButton" value="Commander &#x2B9F;" id="orderButton" />
 							</div>
 						</div>
 					</section>

@@ -26,15 +26,16 @@ let footer = document.querySelector('.footer');
 //fenêtre de commande à afficher/masquer
 let orderSectionForm = document.querySelector("#orderSectionForm");
 
-/*
+
 //Lors du chargement de la page, masquer le formulaire de commande (si pas déjà fait en css via display : none)
 window.addEventListener("load", () => {
    orderSectionForm.style.display='none';
 });
-*/
+
 
 //Affichage au click
 orderButton.addEventListener('click', ()=>{
+	//ouverture du bloc
      orderSectionForm.style.display='block';
 });
 
