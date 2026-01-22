@@ -195,15 +195,21 @@ require_once ("./Functions/fctAccount.php");
 
 							<tr>
 								<th scope="row">prix du menu (TTC)</th>
-								<td><?= @$v["prix_TTC"] ?></td>
+								<td><?= @$v["prix_par_personne"] ?></td>
 							</tr>
 
 							<tr>
 								<th scope="row">nbre_pers</th>
 								<td><?= @$v["nbr_pers"] ?></td>
 							</tr>
-
-
+							<tr>
+								<th scope="row">reduction (%)</th>
+								<td><?= @$v["reduction"] ?></td>
+							</tr>
+							<tr>
+								<th scope="row">Livraison (en &#x20AC)</th>
+								<td><?= @$v["prix_livraison"] ?></td>
+							</tr>
 							<tr>
 								<th scope="row">date_presta</th>
 								<td><?= @$v["date_prestation"] ?></td>
@@ -211,14 +217,6 @@ require_once ("./Functions/fctAccount.php");
 							<tr>
 								<th scope="row">heure_livraison</th>
 								<td><?= @$v["heure_livraison"] ?></td>
-							</tr>
-							<tr>
-								<th scope="row">prêt_matériel</th>
-								<td><?= @$v["pret_materiel"] ?></td>
-							</tr>
-							<tr>
-								<th scope="row">restitution</th>
-								<td><?= @$v["restitution_materiel"] ?></td>
 							</tr>
 						</table>
 					</div>

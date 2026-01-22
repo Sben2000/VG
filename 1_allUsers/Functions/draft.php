@@ -23,3 +23,26 @@ $ref3= gmdate("ymd");
 echo "\n";
 echo $ref2."-".$ref3;
     
+
+$ref4 = gmdate("Y/m/d");
+echo "\n".$ref4;
+
+$ref5 = str_replace("/", "-", $ref4);
+echo "\n".$ref5;
+
+
+echo(substr($ref4, 0, 4));
+
+echo "\n";
+echo "\n";
+echo "\n";
+
+$wishedDate = "29/01/2026";
+//Préparation pour mise des dates au formats DATE SQL (YYYY-MM-dd)
+
+//date de prestation souhaitée ( au format dd/MM/YYYY)
+$DDwishedDate = substr($wishedDate, 0,2);//dd
+$MMwishedDate = substr($wishedDate, 3,2);//MM
+$YYwishedDate = substr($wishedDate, 6,4);//YYYY
+$wishedDate = "{$YYwishedDate}-{$MMwishedDate}-{$DDwishedDate}";//YYYY-MM-dd
+echo $wishedDate;

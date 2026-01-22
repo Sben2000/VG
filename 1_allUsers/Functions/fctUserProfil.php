@@ -43,7 +43,7 @@ function fetchUserOrders($username){
     
     //récupération des commandes passées par le user
 
-    $sql = "SELECT * FROM commande WHERE utilisateur_id = :user_id";
+    $sql = "SELECT * FROM commande WHERE utilisateur_id = :user_id ORDER BY commande_id DESC";
     $query = $conn->prepare($sql);
     $query->bindParam(":user_id", $userID, PDO::PARAM_INT);
     $query ->execute();

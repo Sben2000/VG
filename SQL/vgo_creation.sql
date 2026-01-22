@@ -168,6 +168,9 @@ ADD  pays_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON',
 ADD  adresse_postale_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON'; 
 ALTER TABLE commande Add COLUMN code_postal_livraison VARCHAR(50) DEFAULT '0000';
 
+/*Ajout d'une colonne reducion à la table commande*/
+ALTER TABLE commande Add COLUMN reduction VARCHAR(50) DEFAULT '0';
+
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/
