@@ -135,7 +135,7 @@ function registerAdmin($email, $username, $password, $confirm_password){
                 //$email est le destinataire =>équivalent à $recipient de la function
                 sendMail($mail, $subject,$recipient, $body);
                 } catch(Exception $e) {
-                return "Désolé, nous n'avons pas pu vous confirmer l'enregistrement par mail, veuillez recommencer ! :\n {$mail->ErrorInfo}";
+                return "Désolé, nous n'avons pas pu vous confirmer l'enregistrement par mail pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
     
 
@@ -291,7 +291,7 @@ function registerEmployee($email, $username, $password, $confirm_password){
                 //$email est le destinataire =>équivalent à $recipient de la function
                 sendMail($mail, $subject,$recipient, $body);
                 } catch(Exception $e) {
-                return "Désolé, nous n'avons pas pu vous confirmer l'enregistrement par mail, veuillez recommencer ! :\n {$mail->ErrorInfo}";
+                return "Désolé, nous n'avons pas pu vous confirmer l'enregistrement par mail pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
     
 

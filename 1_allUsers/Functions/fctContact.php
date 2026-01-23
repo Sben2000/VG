@@ -65,7 +65,7 @@ function contactUs($nom, $email, $message){
                 <p>{$message}</p>\r\n";
                 sendMail($mail, $subject,$recipient, $body);
                 } catch(Exception $e) {
-                return "Erreur d'envoi Message pour cause suivante :\n {$mail->ErrorInfo}, veuillez recommencer";
+                return "Erreur d'envoi Message pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
 
     //Envoi du mail de confirmation à l'utilisateur
@@ -89,7 +89,7 @@ function contactUs($nom, $email, $message){
                 sendMail($mail, $subject,$recipient, $body);
                 return "success";
                 } catch(Exception $e) {
-                return "Désolé, nous n'avons pas pu envoyer votre message, veuillez recommencer ! :\n {$mail->ErrorInfo}";
+                return "Désolé, nous n'avons pas pu envoyer votre message pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
 
 }

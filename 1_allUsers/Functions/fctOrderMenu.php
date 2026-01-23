@@ -148,6 +148,10 @@ if($recordDeliveryDatas == "checked"){
     //réf commande:
     $refOrder =$ref1 ."-".$ref2 . "-" . $ref3;
 
+//Mise au format des dates à envoyer par mail
+
+$wishedDateMail = $wishedDate;
+$dateOrderMail = gmdate("d/m/Y");
 
 //Date de la commande (au format DATE SQL: YYYY-MM-dd)
 $dateOrder = gmdate("Y-m-d"); //date d'aujourd'hui au format GMT    Année(4digits)-Mois-Jour
@@ -210,16 +214,45 @@ $wishedDate = "{$YYwishedDate}-{$MMwishedDate}-{$DDwishedDate}";//YYYY-MM-dd
                 //on requiert la function sendMail() construite dans la classe PHPMailer dans laquelle sont passées les paramètres définis dans notre formulaire en concordance avec celles de la function
                 //$email est le destinataire =>équivalent à $recipient de la function
                 $recipient="soufyantestapp@gmail.com"; //Le destinataire est cette fois ci l'équipe Vite&Go dont le mail est enregistré dans PHP Mailer
-                $subject="Contact Utilisateur/Visiteur";//sujet envoyé dans le mail
+                $subject="Commande en ligne crée- Menu  {$selectedMenu} -date souhaitée: {$wishedDateMail}";//sujet envoyé dans le mail
                  $body= 
 
-                "<p> Message de {$email}  </p><br>\r\n
-                 <p> Nom/Prénom {$name}/{$firstname}  </p><br>\r\n
-                <p>Message: </p>\r\n
-                <p>{$selectedMenu}</p>\r\n";
+                "<p> Commande de: <strong> {$name} {$firstname} </strong>
+                 <br> Email: {$email} 
+                 <br> Date de la commande: {$dateOrderMail}
+                 <br> Numéro de commande: {$refOrder}
+                 </p>
+                 \r\n
+                <p>&#x2B2A; <u><strong>Détails de la commande souhaitée: </strong><u></p>\r\n
+                    <p>Menu: {$selectedMenu}, 
+                    <br>Nbre de personnes: {$peopleNbrSpec},
+                    <br>Date souhaitée: {$wishedDateMail},
+                    <br>Plage horaire souhaitée: {$wishedTime},
+                </p>\r\n
+                <p>⬪ <u><strong>Coordonnées: </strong><u></p>\r\n
+                    <p>Nom: {$name}, 
+                    <br>Prénom: {$firstname},
+                    <br>Adresse: {$adress},
+                    <br>Ville: {$cityName},
+                    <br>Code Postal: {$postalCode},
+                    <br>Téléphone: {$phoneNumber},
+                </p>\r\n
+                <p>⬪ <u><strong>Prix: </strong><u></p>\r\n
+                    <p>Prix du menu: {$priceMenu}€, 
+                    <br>Réduction: {$reductionRate}%,
+                    <br>Prix de la livraison: {$deliveryPrice}€,
+                    <br>Prix total (TTC): {$totalPrice}€,
+                </p>\r\n 
+                
+                Merci de bien vouloir donner suite à cette commande en la validant ou en la refusant (en précisant le motif).\r\n
+                <br><br>
+                Cordialement,
+                <br>
+                L'équipe Vite&Go
+                ";
                 sendMail($mail, $subject,$recipient, $body);
                 } catch(Exception $e) {
-                return "Erreur d'envoi Message pour cause suivante :\n {$mail->ErrorInfo}, veuillez recommencer";
+                return "Erreur d'envoi de confirmation par mail pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
 
     //Envoi du mail de confirmation à l'utilisateur
@@ -235,26 +268,58 @@ $wishedDate = "{$YYwishedDate}-{$MMwishedDate}-{$DDwishedDate}";//YYYY-MM-dd
                 //$email est le destinataire =>équivalent à $recipient de la function
                             //éléments constituant l'email (sujet et corps) géré ensuite par la function sendMail() de PHPMailer
                 $recipient =$email;//destinataire défini dans la function
-                $subject="Confirmation d'envoi de votre message à Vite&Go";//sujet envoyé dans le mail
-                $body= "<p> Bonjour {$firstname}, nous vous confirmons l'envoi de votre message de ce jour à l'équipe Vite&GO.</p><br>\r\n
-                        <p>Nous reviendrons vers vous dès que possible - L'équipe Vite&Go </p>\r\n
-                        <hr><br>
-                        <p><strong><em><u>Récapitulatif de votre commande: </u></em></strong></p>\r\n
-                        <p><em>{$selectedMenu}</em></p>
+                $subject="Résumé de votre commande Vite&Go du {$dateOrderMail}- Menu  {$selectedMenu} - réf: {$refOrder}";//sujet envoyé dans le mail
+                $body= 
+                "<p> Bonjour {$firstname}, nous vous confirmons l'envoi de votre demande de commande  de ce jour à l'équipe Vite&GO.<br>
+                Nous reviendrons vers vous au plus vite pour vous informer de sa validation.<br>
+                Veuillez trouvez ci dessous le résumé de celle ci.</p><br><br>
+                \r\n
+
+                <p> Commande de: <strong> {$name} {$firstname} </strong>
+                 <br> Email: {$email} 
+                 <br> Date de la commande: {$dateOrderMail}
+                 <br> Numéro de commande: {$refOrder}
+                 </p>
+                 \r\n
+                <p>&#x2B2A; <u><strong>Détails de la commande souhaitée: </strong><u></p>\r\n
+                    <p>Menu: {$selectedMenu}, 
+                    <br>Nbre de personnes: {$peopleNbrSpec},
+                    <br>Date souhaitée: {$wishedDateMail},
+                    <br>Plage horaire souhaitée: {$wishedTime},
+                </p>\r\n
+                <p>⬪ <u><strong>Coordonnées: </strong><u></p>\r\n
+                    <p>Nom: {$name}, 
+                    <br>Prénom: {$firstname},
+                    <br>Adresse: {$adress},
+                    <br>Ville: {$cityName},
+                    <br>Code Postal: {$postalCode},
+                    <br>Téléphone: {$phoneNumber},
+                </p>\r\n
+                <p>⬪ <u><strong>Prix: </strong><u></p>\r\n
+                    <p>Prix du menu: {$priceMenu}€, 
+                    <br>Réduction: {$reductionRate}%,
+                    <br>Prix de la livraison: {$deliveryPrice}€,
+                    <br>Prix total (TTC): {$totalPrice}€,
+                </p>\r\n 
+                
+                
+                <br><br>
+                Cordialement,
+                <br>
+                L'équipe Vite&Go
                         "; //texte du mail puis retour à la ligne , curseur en début de ligne
             //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
                 sendMail($mail, $subject,$recipient, $body);
-                //Retourne success à cette dernière étape pour affichage à l'utilisateur
+
+                //Si pas d'action utilisateur après message de succes, renvoi vers page d'acceuil après 10 secondes
+                    header('Refresh:10; url=indexLocal.php');
+                //Enfin, Retourne success à cette dernière étape pour affichage message de validation à l'utilisateur
                 return "success";
                 } catch(Exception $e) {
-                return "Désolé, nous n'avons pas pu envoyer votre message, veuillez recommencer ! :\n {$mail->ErrorInfo}";
+                return "Désolé, nous n'avons pas pu envoyer votre message pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
 
-            /*Si pas d'action utilisateur après message de succes, renvoi vers page d'acceuil après 10 secondes
-            header('Refresh:10; url=indexLocal.php');*/          
-
-
-
+       
 
 }
 
