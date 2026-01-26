@@ -339,8 +339,8 @@ p, textarea, input, label,li{
         
     }
     .memberPicture{
-    height: auto;
-    max-width: 80%;
+    max-height: auto;
+    max-width: 720px;
     margin: 0px auto;
 
     }
@@ -372,7 +372,9 @@ p, textarea, input, label,li{
     height: auto;
 }
 
-
+.membertitle{
+    text-align: center;
+    }
 
 
 }
@@ -414,5 +416,8 @@ p, textarea, input, label,li{
     height: auto;
     width: 80%;
     }
+
+
+
 
 }

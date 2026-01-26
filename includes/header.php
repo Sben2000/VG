@@ -6,7 +6,7 @@
 		<!--<div class="brand">Vite&Go</div>-->
 		<div class="inlineLinks">
 			<div class="allUsers" id="allUsersLM">
-				<li><a href="./1_allUsers/indexLocal.php">Home</a></li>
+				<li><a href="./1_allUsers/indexLocal.php">Accueil</a></li>
 				<li><a href="./1_allUsers/menus.php">Nos menus</a></li>
 				<li><a href="./1_allUsers/contact.php">Contact</a></li>
 				<li class="					
@@ -87,7 +87,7 @@
 			<ul class="panelLinks">
 				<div class="allUsers" id="allUsersHM">
 					
-					<li><a href="./1_allUsers/indexLocal.php">Home</a></li>
+					<li><a href="./1_allUsers/indexLocal.php">Accueil</a></li>
 					<li><a href="./1_allUsers/menus.php">Nos menus</a></li>
 					<li><a href="./1_allUsers/contact.php">Contact</a></li>
 					<li class="					

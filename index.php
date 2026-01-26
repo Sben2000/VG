@@ -1,3 +1,9 @@
+
+<!--Redirection automatique vers l'indexLocal présent dans le dossier 1_allUsers-->
+<?php header("location: ./1_allUsers/indexLocal.php")?>
+
+
+<!--Si ne redirige pas vers l'indexLocal => affichage d'une page similaire permettant de réaliser les mêmes actions en mode desktop-->
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
@@ -26,13 +32,15 @@
 
 
 		<title>Acceuil</title>
+
 	</head>
 	<body>
 <?php require_once "./includes/header.php"?>
  <?php require_once "./1_allUsers/home.php"?>
 <?php require_once "./includes/footer.php"?>
 
-<script type="module"  src="./1_allUsers/JS/Home.js"></script>
+
+
 </body>
 </html>
 

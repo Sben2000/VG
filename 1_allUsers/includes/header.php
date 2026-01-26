@@ -13,7 +13,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 		<!--<div class="brand">Vite&Go</div>-->
 		<div class="inlineLinks">
 			<div class="allUsers" id="allUsersLM">
-				<li><a href="./indexLocal.php">Home</a></li>
+				<li><a href="./indexLocal.php">Accueil</a></li>
 				<li><a href="./menus.php">Nos menus</a></li>
 				<li><a href="./contact.php">Contact</a></li>
 				<li class="					
@@ -99,7 +99,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 			<ul class="panelLinks">
 				<div class="allUsers" id="allUsersHM">
 					
-					<li><a href="./indexLocal.php">Home</a></li>
+					<li><a href="./indexLocal.php">Accueil</a></li>
 					<li><a href="./menus.php">Nos menus</a></li>
 					<li><a href="./contact.php">Contact</a></li>
 					<li class="					
