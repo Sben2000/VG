@@ -6,7 +6,7 @@
         <!--Initialement ligne pour titre, désormais intégré au séparator, reserve pour autre div si besoin sans modif la structure de la section-->
         <div class="presBlocks">
             <div class="presLeft">
-                <img src="./includes/default_pictures/Vite&Go563px.png" alt="Vite&Go" />
+                <img src="./includes/default_pictures/PhotoFrame.jpg" alt="Vit&Go" />
             </div>
             <div class="presRight">
                 <h1>Bienvenue chez nous!</h1>
@@ -30,52 +30,34 @@
     <section class="ourTeam">
 
         <div class="teamMember">
-            <h3 class="memberTitle">José : Notre directeur</h3>
-            <img class="memberPicture" src="./includes/default_pictures/director.jpg" alt="placeholder image">
-            <p class="memberDesc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    ac velit non tortor aliquet tincidunt.
-            </p>
+            <h3 class="memberTitle">José : Notre Chef Cuisinier</h3>
+            <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
+            <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Julie : Notre Event Manager</h3>
-            <img class="memberPicture" src="./includes/default_pictures/eventManager.jpg" alt="placeholder image">
-            <p class="memberDesc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    ac velit non tortor aliquet tincidunt.
-            </p>
-        </div>
-        <div class="teamMember">
-            <h3 class="memberTitle">Jean : Notre Chef Cuisinier</h3>
-            <img class="memberPicture" src="./includes/default_pictures/chief.jpg" alt="placeholder image">
-            <p class="memberDesc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    ac velit non tortor aliquet tincidunt.
-            </p>
+            <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
+            <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Marc : Notre Aide Cuisinier 1</h3>
-            <img class="memberPicture" src="./includes/default_pictures/assistant1.jpg" alt="placeholder image">
-            <p class="memberDesc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    ac velit non tortor aliquet tincidunt.
-            </p>
+            <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
+            <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Sophie : Notre Aide Cuisinier 2</h3>
-            <img class="memberPicture" src="./includes/default_pictures/assistant2.jpg" alt="placeholder image">
-            <p class="memberDesc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    ac velit non tortor aliquet tincidunt.
-            </p>
+            <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
+            <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
+        </div>
+        <div class="teamMember">
+            <h3 class="memberTitle">Jean : Notre Serveur</h3>
+            <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
+            <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Franck : Notre Livreur</h3>
-            <img class="memberPicture" src="./includes/default_pictures/delivery.jpg" alt="placeholder image">
-            <p class="memberDesc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    ac velit non tortor aliquet tincidunt.
-            </p>
+            <img class="memberPicture" src="./includes/default_pictures/PIC_Bgd.png" alt="placeholder image">
+            <p class="memberDesc">Présentation succinte en 2/3phrases.</p>
         </div>
     </section>
     <div class="separator">

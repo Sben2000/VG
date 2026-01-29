@@ -140,7 +140,7 @@ h1, h2, a{
 }
 
 .memberTitle, .memberDesc{
-    margin: 10px auto;
+    margin: 10px 0;
               
 }
 
@@ -422,12 +422,10 @@ p, textarea, input, label,li{
     }
 
 .memberTitle h3{
-    margin: 0px auto;
+    margin: 10px auto;
     text-align: center;
     font-size: 14px;
     }
-.memberDesc{
-margin: 10px 15px 0px 15px;
-}
+
 
 }

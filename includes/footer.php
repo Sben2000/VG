@@ -1,7 +1,7 @@
 
 		<footer class="footer">
             <div class="footerLink">
-			<a href="./1_allUsers/indexLocal.php" >Home</a>
+			<a href="./1_allUsers/indexLocal.php" >Accueil</a>
 			<a href="./1_allUsers/Mlegales.php">Mentions Légales</a>
 			<a href="./1_allUsers/contact.php">Contact</a>
             </div>
