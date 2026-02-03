@@ -137,6 +137,11 @@ input[type="submit"]:hover {
 
 }
 
+footer{
+    position:fixed;
+    bottom: 0;
+}
+
     
 /*****************************************************GESTION RESPONSIVE*****************************************/
 

@@ -31,7 +31,7 @@
 		<link rel="stylesheet" href="./1_allUsers/CSS/disconnectMod.css" />
 
 
-		<title>Acceuil</title>
+		<title>Accueil</title>
 
 	</head>
 	<body>

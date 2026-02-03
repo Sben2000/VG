@@ -22,7 +22,7 @@
 	<link rel="stylesheet" href="./CSS/footer.css" />
 	<!--link css disconnect (modal)-->
 	<link rel="stylesheet" href="./CSS/disconnectMod.css" />
-	<title>Home</title>
+	<title>Accueil</title>
 </head>
 
 <body>
