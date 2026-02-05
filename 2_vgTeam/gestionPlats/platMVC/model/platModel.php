@@ -109,8 +109,8 @@ $imageTemp = $_FILES['image']['tmp_name'];
         //Nom Image
 
     function addTreatmentImageName($imageName){
-        if(strlen($imageName)>15){
-            return "le nom de l'image ne doit pas dépasser 15 caractères";
+        if(strlen($imageName)>20){
+            return "le nom de l'image ne doit pas dépasser 20 caractères";
         }
 
         if(strlen($imageName)<3){

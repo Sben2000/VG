@@ -26,7 +26,7 @@ $response =null;//avant de soumettre le fichier et d'avoir le retour de la funct
 //si le bouton de soumission d'ajout est activé 
 if(isset($_POST["addButton"])){
     //on récupère la valeur assignée à dishTitle
-        $dishTitle = $_POST['dishTitle'];
+        $dishTitle = ucfirst(strtolower($_POST['dishTitle']));
         //si un fichier chargée est détecté (détection nom de fichier)) , on execute la function createDishImage en récupérant dishTitle et les caractéristique de l'image
         if (!empty($_FILES['image']['name'])){
         $response = createDishImage($dishTitle, $_FILES['image']['name'], $_FILES['image']['size'], $_FILES['image']['tmp_name'], $_FILES['image']['type'] );
@@ -58,7 +58,7 @@ function updateAction(){//ressemble plus ou moins à la function createAction(){
 //si le bouton de soumission d'ajout est activé 
 if(isset($_POST["modifyButton"])){
     //on récupère la valeur assignée à dishTitle
-        $dishTitle = $_POST['dishTitle'];
+        $dishTitle =ucfirst(strtolower($_POST['dishTitle']));
     //on récupère la valeur de l'id
         $id = $_POST['id'];
         //si un fichier chargée est détecté (détection nom de fichier)) , on execute la function editDishImage en récupérant dishTitle et les caractéristique de l'image
