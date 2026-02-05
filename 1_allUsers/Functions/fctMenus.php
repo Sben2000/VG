@@ -85,7 +85,7 @@ function getMenusByThemeOnly($selectedTheme){
     JOIN theme ON menu.theme_id = theme.theme_id
     JOIN regime ON menu.regime_id = regime.regime_id
     WHERE quantite_restante > 0 AND menu.theme_id =:selectedTheme
-    ORDER BY menu_id DESC;
+    ORDER BY RAND();
     " ;
     $query = $conn->prepare($sql);
     $query->bindParam(":selectedTheme",$selectedTheme, PDO::PARAM_INT);
@@ -112,7 +112,7 @@ function getMenusByRegimeOnly($selectedRegime){
     JOIN theme ON menu.theme_id = theme.theme_id
     JOIN regime ON menu.regime_id = regime.regime_id
     WHERE quantite_restante > 0 AND menu.regime_id =:selectedRegime
-    ORDER BY menu_id DESC;
+      ORDER BY RAND();
     " ;
     $query = $conn->prepare($sql);
     $query->bindParam(":selectedRegime",$selectedRegime, PDO::PARAM_INT);
@@ -140,7 +140,7 @@ function getMenusByMaxPriceOnly($selectedMaxPrice){
     JOIN theme ON menu.theme_id = theme.theme_id
     JOIN regime ON menu.regime_id = regime.regime_id
     WHERE quantite_restante > 0 AND menu.prix_par_personne <=:selectedMaxPrice
-    ORDER BY menu_id DESC;
+      ORDER BY RAND();
     " ;
     $query = $conn->prepare($sql);
     $query->bindParam(":selectedMaxPrice",$selectedMaxPrice, PDO::PARAM_INT);
@@ -166,7 +166,7 @@ function getMenuUpperPrices($selectedPriceRange){
     JOIN theme ON menu.theme_id = theme.theme_id
     JOIN regime ON menu.regime_id = regime.regime_id
     WHERE quantite_restante > 0 AND menu.prix_par_personne > :selectedPriceRange
-    ORDER BY menu_id DESC;
+      ORDER BY RAND();
     " ;
     $query = $conn->prepare($sql);
     $query->bindParam(":selectedPriceRange",$selectedPriceRange, PDO::PARAM_INT);
@@ -192,7 +192,7 @@ function getMenusByPriceRange($selectedPriceRangeMin, $selectedPriceRangeMax){
     JOIN theme ON menu.theme_id = theme.theme_id
     JOIN regime ON menu.regime_id = regime.regime_id
     WHERE quantite_restante > 0 AND menu.prix_par_personne BETWEEN :selectedPriceRangeMin AND :selectedPriceRangeMax
-    ORDER BY menu_id DESC;
+      ORDER BY RAND();
     " ;
     $query = $conn->prepare($sql);
     $query->bindParam(":selectedPriceRangeMin",$selectedPriceRangeMin, PDO::PARAM_INT);

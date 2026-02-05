@@ -66,6 +66,29 @@ function getProposePlatByMenuID($menuID){
     return $result;
 }
 
+//function qui récupère dans les éventuels allergènes associés à chaque plat
+function getAllergenes($plat_id){
+    $pdo = DBconnection();
+    if(!$pdo){
+            return false;
+        }
+$sql =     "SELECT contient.allergene_id, contient.plat_id,  allergene.libelle,  plat.titre_plat FROM contient 
+JOIN allergene ON contient.allergene_id = allergene.allergene_id
+JOIN plat ON contient.plat_id = plat.plat_id
+WHERE contient.plat_id = :plat_id";
+$query = $pdo->prepare($sql);
+$query->bindParam(":plat_id", $plat_id, PDO::PARAM_INT);
+$query->execute();
+$result=$query->fetchAll(PDO::FETCH_OBJ);
+
+return $result;
+
+
+
+}
+
+
+
 
 /****Ajout de journée(s) à la date du jour (cours studi)***/
 

@@ -339,7 +339,10 @@ if (isset($_SESSION["user"])) {
 
 									<!--liste des plats associés-->
 									<div class="associatedDishes">
-										<h4>&nbsp;<span>Plat(s):&nbsp;</span></h4>
+										<h4>&nbsp;<span>Plat(s):&nbsp;</span></h4>					
+									
+									</br>
+
 										<?php
 										if ($associatedDishes == NULL) { ?>
 											<p class="note"><em>&#x2794; cf.description ci dessus ou nous contacter pour le détail</em></p>
@@ -347,13 +350,21 @@ if (isset($_SESSION["user"])) {
 										} else {
 											foreach ($associatedDishes as $associatedDish): ?>
 												<div class="associatedDishesDetails">
-
 													<p><?= $associatedDish->titre_plat ?></p>
 													<!--origine du code ci dessous :https://openclassrooms.com/forum/sujet/telecharger-une-image-blob-sur-dans-un-fichier et https://stackoverflow.com/questions/54638875/using-php-pdo-to-show-image-blob-from-mysql-database-in-html-image-tag-->
 													<img src="data:image/png;base64,<?= base64_encode($associatedDish->photo) ?>" width="120px" height="120px" />
+													<!--affichage des éventuels allergènes de chaque plat-->
+													<?php $allergs = getAllergenes($associatedDish->plat_id);
+                    								if ($allergs!=NULL){
+														?><p class="allergene"><u>Allerg. potentiels:</u></p><?php
+													foreach ($allergs as $allerg):?>
+													<div class="allergeneElements">
+														<span><em><?= $allerg->libelle ?></em></span>
+													</div>
+													<?php endforeach;}?>
 												</div>
-										<?php endforeach;
-										} ?>
+											<?php endforeach; 
+											}?>
 									</div>
 
 									<div class="regimetheme">

@@ -82,7 +82,7 @@ if (isset($_GET['themePanelID'])){
 											<?php
 											//récupère les themes de la db (les id en valeurs et libelles en écriture)
 											foreach ($themes as $theme): ?>
-												<option value="<?= $theme->theme_id ?>"><?= $theme->libelle ?></option>
+												<option value="<?= $theme->theme_id ?>"><?= ucfirst($theme->libelle) ?></option>
 											<?php endforeach; ?>
 										</optgroup>
 									</select>

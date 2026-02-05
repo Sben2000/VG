@@ -17,7 +17,7 @@ require_once './views/create.php';
 
 function storeAction()//insère les données ajoutées dans le create.php vers la base de données
 {
-$libelle = $_POST['libelle'];
+$libelle = strtolower($_POST['libelle']);
 $response = create($libelle);//fait appel à la fonction du Model pour créer les données ajoutées dans la DB 
 /*header('location: index.php?action=list');*/
 //on renvoit à la vue actuelle avec l'actualisation du message de succès ou d'échec
@@ -38,7 +38,7 @@ require_once './views/edit.php';//une fois l'id récupéré ,  appel à la page 
 function updateAction(){//ressemble plus ou moins à la function createAction(){}
 //var_dump($_POST);/*affiche les valeurs récupérées par le fichier './views/edit.php dans lequel on renvoi en action =update.php (situé à la racine) avec une method="post"*/
 //assignation de la valeur $_POST['libelle'] du fichier edit.php
-$libelle=$_POST['libelle'];
+$libelle=strtolower($_POST['libelle']);
 $id=$_POST['id'];
 //passage de la variable dans la function edit du Model
 $response = edit($id, $libelle);

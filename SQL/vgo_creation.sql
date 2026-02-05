@@ -171,6 +171,9 @@ ALTER TABLE commande Add COLUMN code_postal_livraison VARCHAR(50) DEFAULT '0000'
 /*Ajout d'une colonne reducion à la table commande*/
 ALTER TABLE commande Add COLUMN reduction VARCHAR(50) DEFAULT '0';
 
+/*Augmentation du nombre de caractères dans la description du menu*/
+ALTER TABLE menu MODIFY description VARCHAR(500) NOT NULL;
+
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/
