@@ -158,6 +158,8 @@ ALTER TABLE plat MODIFY photo MEDIUMBLOB ; /*passage de BLOB en MEDIUMBLOB pour 
 
 ALTER TABLE plat ADD COLUMN contentType VARCHAR(50); /*Ajouté pour  permettre préciser l'extension de la photo à afficher et eviter les doublons  (doublons de nom sur même type)*/
 
+ALTER TABLE commande MODIFY date_commande DATE ; /*suppression de la date courante par défaut car pose problème sur Docker et est géré en PHP */
+
 /*Ajouté à la commande si l'utilisateur souhaite faire livrer ailleurs que l'adresse indiqué sur son profil*/
 ALTER TABLE commande 
 ADD  nom_livraison VARCHAR(50) DEFAULT 'A COMPLETER SI LIVRAISON', 

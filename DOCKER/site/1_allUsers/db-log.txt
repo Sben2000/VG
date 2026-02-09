@@ -1,0 +1,222 @@
+30/11/2025_12:34:41 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:34:47 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:08 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:16 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:29 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:44 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:35:53 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:36:02 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_12:36:06 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+30/11/2025_13:13:09 :
+	 Erreur de connexion:SQLSTATE[HY000] [1049] Unknown database 'vgo' 
+05/12/2025_15:57:56 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:58:02 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:58:04 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:58:06 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:58:08 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:58:13 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:58:15 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:59:03 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:59:09 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:59:11 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:59:18 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:59:20 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_15:59:36 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:00:02 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:00:11 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:00:25 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:01:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:01:21 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:02:45 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:02:48 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:02:52 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_16:03:00 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_17:41:37 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+05/12/2025_17:41:39 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+09/02/2026_13:38:01 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:01 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:01 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:25 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:25 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:25 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:56 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:56 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:38:56 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:40:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:40:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:40:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:42:42 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:42:42 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_13:42:42 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.26.0.1' (using password: NO) 
+09/02/2026_14:35:50 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:35:50 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:35:50 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:35:55 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:35:55 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:35:55 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:36:02 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:36:02 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:36:02 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:36:36 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:36:36 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:36:36 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:37:03 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:37:03 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:37:03 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:37:31 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:37:31 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:37:31 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:38:16 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:38:23 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:39:31 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:39:32 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:39:32 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:05 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:05 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:05 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:12 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:12 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:12 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:31 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:31 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:31 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:38 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:38 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_14:56:38 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:03:59 :
+	 Erreur de connexion:SQLSTATE[HY000] [2006] MySQL server has gone away 
+09/02/2026_16:03:59 :
+	 Erreur de connexion:SQLSTATE[HY000] [2006] MySQL server has gone away 
+09/02/2026_16:03:59 :
+	 Erreur de connexion:SQLSTATE[HY000] [2006] MySQL server has gone away 
+09/02/2026_16:45:49 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:45:49 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:45:49 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:04 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:04 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:04 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:29 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:38 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:42 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:42 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:46:42 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:51:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:51:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:51:14 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:53:28 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:53:32 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:53:36 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:53:44 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:53:44 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:53:44 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:57:19 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:57:19 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
+09/02/2026_16:57:19 :
+	 Erreur de connexion:SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.20.0.1' (using password: NO) 
