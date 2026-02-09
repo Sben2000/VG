@@ -188,7 +188,7 @@ function loginUser($email,$password){
             return "Tous les champs doivent être complétés";
         }
     }
-
+    
     //fonction filter_var() avec option FILTER_VALIDATE_EMAIL pour vérifier 
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             return "le format de l'email entré n'est pas valide";

@@ -5,7 +5,7 @@ require_once "./Functions/fctAccount.php";
 	//Note: variables traitées/nettoyées dans la function, $response=retour du traitement
 
 	if(isset($_POST['login'])){
-	$response = loginUser($_POST['email'], $_POST['password']);
+	$response = loginUser(trim($_POST['email']), trim($_POST['password']));
 	
 }
 
