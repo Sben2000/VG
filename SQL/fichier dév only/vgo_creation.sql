@@ -176,6 +176,12 @@ ALTER TABLE commande Add COLUMN reduction VARCHAR(50) DEFAULT '0';
 /*Augmentation du nombre de caractères dans la description du menu*/
 ALTER TABLE menu MODIFY description VARCHAR(500) NOT NULL;
 
+
+ALTER TABLE utilisateur ADD COLUMN avis_id INT; /*Oubli lors de la construction de la table*/
+
+ALTER TABLE utilisateur
+  ADD CONSTRAINT utilisateur_avis_id_FK FOREIGN KEY(avis_id) REFERENCES avis (avis_id) ON UPDATE CASCADE; /*ajout clé étrangère suite à oubli précédent)*/
+
 /********AJOUT DE QUELQUES VALEURS SUR LES TABLES*********/
 
 /*Type de role*/

@@ -1,0 +1,44 @@
+Notes Maquette FIGMA – VG :
+
+1_Travail de Réflexion :
+Maquette VG
+		•plusieurs personnes peuvent se connecter ou non (différentes vues en fonction du niveau de connexion)
+		•Espace utilisateur avec info de l’utilisateur (mail, username,  nom, prénom, coordonnées,..)
+		•Plusieurs niveaux d’accès (User, TeamVG, admin)
+		•Page d’accueil : Présentation de l’Entreprise,Equipe,… 
+	Choix du Menu :
+		•Menu classique (Header) en vue ordinateur
+		•Menu burger en vue mobile
+	Page d’accueil (à détailler dans la maquette):
+		•info entreprise, 
+		•présentation de l’ équipe, 
+		•lieu, horaires et coordonnées,
+		•espace commentaires client
+
+
+2_Sujet Final Maquette FIGMA:
+
+ 	Maquetter la page d’accueil de l’entreprise ViteEtGourmand pour ordinateur et mobile en responsive.
+
+3_ Wireframe (maquette structurelle) Desktop&Phone
+
+	Cf. les fichiers dans le dossier Wireframe (Desktop&Phone)
+
+4_ Charte graphique
+
+	Cf. le fichier Charte graphique_VGO à la racine du dossier Maquette
+ 
+5_ Mockup Desktop&Phone
+
+	Cf. les fichiers dans le dossier MockUp(Desktop&Phone)
+
+6_Fichier Natif (figma) et Vue complète (Wireframe&Mockup)
+
+	Natif--> Cf le fichier à la racine du dossier : VGO_WF&Charte&MK_Complet-Phone&Desktop.fig
+	Export Pdf  Cf le fichier à la racine : Toutes Vues Accueil VGO_Figma_WF&MK.pdf
+
+7_Maquettes préliminaires HTML
+
+	Cf. le dossier HTML à la racine du dossier Maquette
+
+
