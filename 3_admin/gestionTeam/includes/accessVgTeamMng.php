@@ -30,8 +30,8 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 
 </style>
 
-<!--si la session est ouverte avec un compte admin ou Employé-->
-<?php if (isset($_SESSION['accessVgTeam']) ||isset($_SESSION['accessAdmin'])) { ?>
+<!--si la session est ouverte avec un compte admin seulement-->
+<?php if (isset($_SESSION['accessAdmin'])) { ?>
 	<!--Un message de Bienvenue est affiché avec son username-->
 	<p class="welcome" style="color:darkgreen">Accès autorisé</p>
 <?php
