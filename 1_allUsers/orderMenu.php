@@ -36,12 +36,19 @@ if (isset($_SESSION["user"])) {
 		} else {
 			$recordDeliveryDatas = $_POST['recordDeliveryDatas'];
 		}
-		//function createUserOrder($userID, $name, $firstname, $email, $phoneNumber, $adress, $cityName, $postalCode,  $wishedDate, $wishedTime,  $selectedMenu, $peopleNbrSpec, $priceMenu, $reductionRate, $deliveryPrice, $totalPrice, $recordDeliveryDatas){
+		//On vérifie si on a un token dans la session($_SESSION['csrf_tocken']), un token dans le formulaire posté ($_POST['_token']) et si les deux ne correspondent pas
+		if(empty($_SESSION['csrf_token']) || empty($_POST['_token']) || $_SESSION['csrf_token'] !== $_POST['_token']){
+			$feedback = 'Token invalide, veuillez fermer toutes les autres fenêtres et applications ouvertes et recommencer.';
+		}else{		
+		//Si token OK,function createUserOrder($userID, $name, $firstname, $email, $phoneNumber, $adress, $cityName, $postalCode,  $wishedDate, $wishedTime,  $selectedMenu, $peopleNbrSpec, $priceMenu, $reductionRate, $deliveryPrice, $totalPrice, $recordDeliveryDatas){
 		$feedback = createUserOrder($_POST['userID'], $_POST['nomCheckedJS'], $_POST['prenomCheckedJS'], $_POST['email'], $_POST['telCheckedJS'], $_POST['adressCheckedJS'], $_POST['villeCheckedJS'], $_POST['codePostalCheckedJS'], $_POST['datePrestaCheckedJS'],  $_POST['heurePrestaCheckedJS'], $_POST['menuCheckedJS'], $_POST['nbrPersCheckedJS'], $_POST['priceMenuCheckedJS'], $_POST['reductionRateCheckedJS'], $_POST['deliveryPriceCheckedJS'], $_POST['totalPriceCheckedJS'], $recordDeliveryDatas);
+		}
 	}
 }
-
-
+//Création d'un jeton de format héxadecimale composé de 32 octets aléatoires
+$token = bin2hex(random_bytes(32));
+//Attribution à la session ouverte (via header) d'une variable contenant la valeur du token (utilisé en condition précédente à comparer avec le token posté dans le formulaire de commande)
+$_SESSION['csrf_token'] = $token;
 
 
 ?>
@@ -229,6 +236,8 @@ if (isset($_SESSION["user"])) {
 					</div>
 					<div class="modalInputs" id="confirmOrderButtons">
 						<input type="submit" name="backToOrder" value="Annuler" id="backToOrder">
+						<!--Affiche la valeur du token sur la console uniquement et sera comparé à celui de la session-->
+						<input type = "hidden" name="_token" value = "<?= $token?>">
 						<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
 					</div>
 
