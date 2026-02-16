@@ -41,79 +41,91 @@ Les autres branches étant des branches de développement utilisées à certaine
 * Créer une base de données nommée `vgo` 
 * Identifier le fichier sql présent au chemin `SQL\vgo_last.sql`
 * Exécuter l’ensemble des requêtes du fichier ou Importer le fichier ` vgo_last.sql ` dans PhpMyAdmin 
-* Vérifier ensuite que la base de données `vgo` précédemment crée est alimentée des tables et données citées dans le fichier ` vgo_last.sql `
+* Vérifier ensuite que la base de données `vgo` précédemment créée est alimentée avec les tables et données citées dans le fichier ` vgo_last.sql `
 
 ## I.5 _ Connexion à la BDD
 
 
 Les fichiers config.php sont définis avec les valeurs de constantes suivantes afin de faciliter la connexion pour la démo:
 **DB credentials:**
-`define('DB_HOST','127.0.0.1');` **adresse localhost,**
-`define('DB_USER','root');` **par défaut nom d'utilisateur(pour la démo uniquement)**
-`define('DB_NAME','vgo');`**Nom de la BDD**
-`define('DB_PASS','');`**par défaut pas de MDP pour la démo (uniquement)**
+* `define('DB_HOST','127.0.0.1');` **adresse localhost,**
+* `define('DB_USER','root');` **par défaut nom d'utilisateur(pour la démo uniquement)**
+* `define('DB_NAME','vgo');`**Nom de la BDD**
+* `define('DB_PASS','');`**par défaut pas de MDP pour la démo (uniquement)**
 
 Assurez vous d’implémenter ces mêmes accès pour la Base de donnée créée .
+
 Si vous souhaitez par ailleurs personnaliser ces accès, veuillez modifier les fichiers config.php concernés et listés dans  le document du **dossier DOCKER** (fichier local Readme ou Instructions Docker à lire)=>`VG\DOCKER`
 
 ## I.6 _ Lancement de l’application
 
 * Placer le dossier `VG` dans `htdocs` (XAMPP) ou le dossier appropriée pour votre webserver 
 * Accéder à l'application via :
-`http://localhost/VG`
-
-Ou 
-
-`http://localhost/VG/index.php`
+`http://localhost/VG` ou `http://localhost/VG/index.php`
 
 
 ## I.7 _ Déploiement sur DOCKER :
--Aller dans le dossier  `VG\DOCKER`
--Lire et appliquer les instructions du fichier local (**Readme.md en local*** pour le résumé ou **Instructions Docker à lire** pour les détails)
+* -Aller dans le dossier  `VG\DOCKER`
+* -Lire et appliquer les instructions du fichier local (**Readme.md en local*** pour le résumé ou **Instructions Docker à lire** pour les détails)
 
 
-# ---------- II _ Compte de connexion :--------
+# ---------- II _ Compte de connexion --------
 
 **Si besoin, cf en détail les instructions fournies en partie 4.2 (Informations complémentaires) dans le document soumis pour évaluation :** 
 `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
 
 **En résumé ci-dessous :**
+
 **>>comptes administrateurs:<<**
-o	Utilisation d’un Compte existant possible:
-**>>>Email :**`    MrJose@vgo.fr    `**>>>Mot de passe :**`    José33000.      `
-**>>>Email :**`    MmeJulie@vgo.fr    `**>>>Mot de passe :**`    Julie33000.      `
+
+*	Utilisation d’un Compte existant possible:
+
+* -**>>>Email :**`    MrJose@vgo.fr    `**>>>Mot de passe :**`    José33000.      `
+* -**>>>Email :**`    MmeJulie@vgo.fr    `**>>>Mot de passe :**`    Julie33000.      `
+
 Ou 
-o	Créer un compte admin via  un **lien caché** mis en place uniquement pour les tests et évaluations (**sera supprimé lors de la mise en production et livraison**)
+
+*	Créer un compte admin via  un **lien caché** mis en place uniquement pour les tests et évaluations (**sera supprimé lors de la mise en production et livraison**)
+
 `http://localhost/VG/1_allUsers/fakeProfilVgTeam.php`
 
 **>>comptes employés:<<**
-o	Utilisation d’un Compte existant possible:
-**>>>Email :**`    ChefJean@vgo.fr    `**>>>Mot de passe :**`    Jean33000.      `
-**>>>Email :**`    CommisMarc@vgo.fr    `**>>>Mot de passe :**`    Marc33000.      `
+
+*	Utilisation d’un Compte existant possible:
+
+* -**>>>Email :**`    ChefJean@vgo.fr    `**>>>Mot de passe :**`    Jean33000.      `
+* -**>>>Email :**`    CommisMarc@vgo.fr    `**>>>Mot de passe :**`    Marc33000.      `
+
 Ou 
-•	créer un  compte employé en étant **connecté en tant qu’admin** puis en accédant depuis la nav bar à l’onglet **« gestion »** puis **« Employés »** . 
+*	Créer un  compte employé en étant **connecté en tant qu’admin** puis en accédant depuis la nav bar à l’onglet **« gestion »** puis **« Employés »** . 
+
 Ou 
 
-o	Créer un compte employé via  un le **raccourci caché** mis en place uniquement pour les tests et évaluations (**sera supprimé lors de la mise en production et livraison**)
+* Créer un compte employé via  un le **raccourci caché** mis en place uniquement pour les tests et évaluations (**sera supprimé lors de la mise en production et livraison**)
+
 `http://localhost/VG/1_allUsers/fakeProfilVgTeam.php`
 
+
 **>>comptes utilisateur:<<**
-o	Créer un compte utilisateur **via l’onglet connexion depuis le menu de navigation**, puis cliquer sur le **lien s’inscrire** (renvoyant au même chemin que le lien uri ci-dessous )
+
+*	Créer un compte utilisateur **via l’onglet connexion depuis le menu de navigation**, puis cliquer sur le **lien s’inscrire** (renvoyant au même chemin que le lien uri ci-dessous )
+
 Ou
-o	en entrant l’uri suivante dans votre navigateur :`http://localhost/VG/1_allUsers/signUP.php`
+
+*	en entrant l’uri suivante dans votre navigateur :`http://localhost/VG/1_allUsers/signUP.php`
 
 
-# III _ Résumé projet et des fonctions principales -
+# - III _ Résumé du projet et des fonctionnalités -
 
-**Cf . Partie 1 du document soumis pour évaluation** `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
+**->Cf . Partie 1 du document soumis pour évaluation** `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
 
 
 # ------ IV _ Charte graphique & Maquettes ------
 
-**Cf. dossier:** `VG/MaquetteVG` => débuter avec le document `Notes Maquette_à lire` (avec détails : .doc, .pdf ou en résumé : .txt)
+**->Cf. dossier:** `VG/MaquetteVG` => débuter avec le document `Notes Maquette_à lire` (avec détails : .doc, .pdf ou en résumé : .txt)
 
-# ------------------ #V _ MCD_MLD -----------------
+# ------------------ V _ MCD_MLD -----------------
 
-**Cf. dossier:** `VG/MCD_MLD` => débuter avec le document `Construction du MLD_Readme` (au choix en .doc ou  .pdf)
+**->Cf. dossier:** `VG/MCD_MLD` => débuter avec le document `Construction du MLD_Readme` (au choix en .doc ou  .pdf)
 
 
