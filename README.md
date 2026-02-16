@@ -1,10 +1,12 @@
 
 
-# Vite&Go - Application personnalisée d’une entreprise de restauration permettant la présentation de celle-ci et la création/commande de menu en ligne#
+**------------------------------------ #Vite&Go ------------------------**
+
+**Application personnalisée d’une entreprise de restauration permettant la présentation de celle-ci et la création/commande de menu en ligne**
 
 
 
-**####################################################################  I _ Déploiement #######################################################################################**
+**------------------------------  #I _ Déploiement ----------------------**
 
 
 ## I.1 _ Stack technique - Configuration utilisée et à avoir au minimum
@@ -28,7 +30,7 @@
 
 branche à prendre en compte : `main` => contient la version finale pour l'évaluation.
 
-Les autres branches étant des branches de développement utilisés à certaines périodes du projet (dév de fonctions/parties avant merge) et ne sont donc pas à prendre en compte pour évaluer celui ci.
+Les autres branches étant des branches de développement utilisées à certaines périodes du projet (dév de fonctions/parties avant merge) et ne sont donc pas à prendre en compte pour évaluer celui ci.
 
 ## I.3 _ Commandes à utiliser pour cloner le projet dans le terminal(bash/shell ou Ide)
 
@@ -70,7 +72,7 @@ Ou
 -Lire et appliquer les instructions du fichier local (**Readme.md en local*** pour le résumé ou **Instructions Docker à lire** pour les détails)
 
 
-**################################################################### II _ Compte de connexion : #######################################################################################**
+**-------------------------- #II _ Compte de connexion :-----------------**
 
 **Si besoin, cf en détail les instructions fournies en partie 4.2 (Informations complémentaires) dans le document soumis pour évaluation :** 
 `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
@@ -100,15 +102,17 @@ o	Créer un compte utilisateur **via l’onglet connexion depuis le menu de navi
 Ou
 o	en entrant l’uri suivante dans votre navigateur :`http://localhost/VG/1_allUsers/signUP.php`
 
-**###################################################### III _ Résumé du projet et des fonctionnalités principales :#####################################################################**
 
-**Cf . Partie 1 du document soumis pour évaluation:** `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
+**----------- #III _ Résumé du projet et des fonctionnalités principales --**
 
-**############################################################### IV _ Charte graphique & Maquettes : ###################################################################################**
+**Cf . Partie 1 du document soumis pour évaluation** `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
+
+
+**--------------------- #IV _ Charte graphique & Maquettes -----------------**
 
 **Cf. dossier:** `VG/MaquetteVG` => débuter avec le document `Notes Maquette_à lire` (avec détails : .doc, .pdf ou en résumé : .txt)
 
-**########################################################################## V _ MCD_MLD : ##############################################################################################**
+**--------------------------------- #V _ MCD_MLD ---------------------------**
 
 **Cf. dossier:** `VG/MCD_MLD` => débuter avec le document `Construction du MLD_Readme` (au choix en .doc ou  .pdf)
 
