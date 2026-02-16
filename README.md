@@ -64,7 +64,7 @@ Si vous souhaitez par ailleurs personnaliser ces accès, veuillez modifier les f
 `http://localhost/VG` ou `http://localhost/VG/index.php`
 
 
-## I.7 _ Déploiement sur DOCKER :
+## I.7 _ Déploiement sur DOCKER 
 * -Aller dans le dossier  `VG\DOCKER`
 * -Lire et appliquer les instructions du fichier local (**Readme.md en local*** pour le résumé ou **Instructions Docker à lire** pour les détails)
 
@@ -76,12 +76,12 @@ Si vous souhaitez par ailleurs personnaliser ces accès, veuillez modifier les f
 
 **En résumé ci-dessous :**
 
-**>>comptes administrateurs:<<**
+## II.1 _ comptes administrateurs
 
 *	Utilisation d’un Compte existant possible:
 
-* -**>>>Email :**`    MrJose@vgo.fr    `**>>>Mot de passe :**`    José33000.      `
-* -**>>>Email :**`    MmeJulie@vgo.fr    `**>>>Mot de passe :**`    Julie33000.      `
+  -**>>>Email :**`    MrJose@vgo.fr    `**>>>Mot de passe :**`    José33000.      `
+  -**>>>Email :**`    MmeJulie@vgo.fr    `**>>>Mot de passe :**`    Julie33000.      `
 
 Ou 
 
@@ -89,12 +89,12 @@ Ou
 
 `http://localhost/VG/1_allUsers/fakeProfilVgTeam.php`
 
-**>>comptes employés:<<**
+## II.2 _ comptes employés
 
 *	Utilisation d’un Compte existant possible:
 
-* -**>>>Email :**`    ChefJean@vgo.fr    `**>>>Mot de passe :**`    Jean33000.      `
-* -**>>>Email :**`    CommisMarc@vgo.fr    `**>>>Mot de passe :**`    Marc33000.      `
+  -**>>>Email :**`    ChefJean@vgo.fr    `**>>>Mot de passe :**`    Jean33000.      `
+  -**>>>Email :**`    CommisMarc@vgo.fr    `**>>>Mot de passe :**`    Marc33000.      `
 
 Ou 
 *	Créer un  compte employé en étant **connecté en tant qu’admin** puis en accédant depuis la nav bar à l’onglet **« gestion »** puis **« Employés »** . 
@@ -106,7 +106,7 @@ Ou
 `http://localhost/VG/1_allUsers/fakeProfilVgTeam.php`
 
 
-**>>comptes utilisateur:<<**
+## II.3 _ comptes utilisateur
 
 *	Créer un compte utilisateur **via l’onglet connexion depuis le menu de navigation**, puis cliquer sur le **lien s’inscrire** (renvoyant au même chemin que le lien uri ci-dessous )
 
@@ -115,7 +115,7 @@ Ou
 *	en entrant l’uri suivante dans votre navigateur :`http://localhost/VG/1_allUsers/signUP.php`
 
 
-# - III _ Résumé du projet et des fonctionnalités -
+#  III _ Résumé du projet et des fonctionnalités 
 
 **->Cf . Partie 1 du document soumis pour évaluation** `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
 
