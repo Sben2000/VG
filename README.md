@@ -80,9 +80,9 @@ Si vous souhaitez par ailleurs personnaliser ces accès, veuillez modifier les f
 
 *	Utilisation d’un Compte existant possible:
 
-  **>>>Email :**`    MrJose@vgo.fr    `**>>>Mot de passe :**`    José33000.      `
+  **>>>Email:**   `MrJose@vgo.fr`   **>>>Mot de passe:**   `José33000.`
 
-  **>>>Email :**`    MmeJulie@vgo.fr    `**>>>Mot de passe :**`    Julie33000.      `
+  **>>>Email:**  `MmeJulie@vgo.fr`   **>>>Mot de passe:**   `Julie33000.`
 
 Ou 
 
@@ -94,9 +94,9 @@ Ou
 
 *	Utilisation d’un Compte existant possible:
 
-  **>>>Email :**`    ChefJean@vgo.fr    `**>>>Mot de passe :**`    Jean33000.      `
+  **>>>Email:**  `ChefJean@vgo.fr`   **>>>Mot de passe:**  `Jean33000.`
 
-  **>>>Email :**`    CommisMarc@vgo.fr    `**>>>Mot de passe :**`    Marc33000.      `
+  **>>>Email:**  `CommisMarc@vgo.fr`  **>>>Mot de passe:**  `Marc33000.`
 
 Ou 
 *	Créer un  compte employé en étant **connecté en tant qu’admin** puis en accédant depuis la nav bar à l’onglet **« gestion »** puis **« Employés »** . 
