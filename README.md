@@ -1,12 +1,12 @@
 
 
-# ------------------------------------ #Vite&Go ------------------------
+# ------------------------------- Vite&Go ------------------------
 
 **Application personnalisée d’une entreprise de restauration permettant la présentation de celle-ci et la création/commande de menu en ligne**
 
 
 
-# --------------------------------  I _ Déploiement ----------------------
+# --------------------------- I _ Déploiement ----------------------
 
 
 ## I.1 _ Stack technique - Configuration utilisée et à avoir au minimum
@@ -72,7 +72,7 @@ Ou
 -Lire et appliquer les instructions du fichier local (**Readme.md en local*** pour le résumé ou **Instructions Docker à lire** pour les détails)
 
 
-# -------------------------- II _ Compte de connexion :-----------------**
+# -------------------- II _ Compte de connexion :-----------------**
 
 **Si besoin, cf en détail les instructions fournies en partie 4.2 (Informations complémentaires) dans le document soumis pour évaluation :** 
 `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
@@ -103,16 +103,16 @@ Ou
 o	en entrant l’uri suivante dans votre navigateur :`http://localhost/VG/1_allUsers/signUP.php`
 
 
-# ------------ III _ Résumé du projet et des fonctionnalités principales --**
+# ------ III _ Résumé du projet et des fonctionnalités principales --
 
 **Cf . Partie 1 du document soumis pour évaluation** `ECF_TPDeveloppeurWebEtWebMobile_copiearendre_BENSITEL_Soufyan`
 
 
-# --------------------- #IV _ Charte graphique & Maquettes -----------------**
+# --------------- #IV _ Charte graphique & Maquettes ----------------
 
 **Cf. dossier:** `VG/MaquetteVG` => débuter avec le document `Notes Maquette_à lire` (avec détails : .doc, .pdf ou en résumé : .txt)
 
-# --------------------------------- #V _ MCD_MLD ---------------------------**
+# --------------------------- #V _ MCD_MLD ---------------------------
 
 **Cf. dossier:** `VG/MCD_MLD` => débuter avec le document `Construction du MLD_Readme` (au choix en .doc ou  .pdf)
 
