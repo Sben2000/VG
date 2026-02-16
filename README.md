@@ -24,7 +24,11 @@
 
 ## I.2 _ Lien du projet à cloner
 
-`https://github.com/Sben2000/VG.git`
+`https://github.com/Sben2000/VG.git`  
+
+branche à prendre en compte : `main` => contient la version finale pour l'évaluation.
+
+Les autres branches étant des branches de développement utilisés à certaines périodes du projet (dév de fonctions/parties avant merge) et ne sont donc pas à prendre en compte pour évaluer celui ci.
 
 ## I.3 _ Commandes à utiliser pour cloner le projet dans le terminal(bash/shell ou Ide)
 
@@ -47,7 +51,7 @@ Les fichiers config.php sont définis avec les valeurs de constantes suivantes a
 `define('DB_NAME','vgo');`**Nom de la BDD**
 `define('DB_PASS','');`**par défaut pas de MDP pour la démo (uniquement)**
 
-Assurez vous d’implémenter ces mêmes accès pour la Base de donnée crée .
+Assurez vous d’implémenter ces mêmes accès pour la Base de donnée créée .
 Si vous souhaitez par ailleurs personnaliser ces accès, veuillez modifier les fichiers config.php concernés et listés dans  le document du **dossier DOCKER** (fichier local Readme ou Instructions Docker à lire)=>`VG\DOCKER`
 
 ## I.6 _ Lancement de l’application
