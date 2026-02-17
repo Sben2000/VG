@@ -4,3 +4,8 @@ php_flag display_errors on
 #Renvoi vers page 404 si non trouvée
 
 ErrorDocument 404 /vg/1_allUsers/includes/404.php
+
+#Gère les erreurs de session start() notamment sur Docker (mettre sur on si c'est le cas) en créant un buffer , message type : 
+#Warning: session_start(): Session cannot be started after headers have already been sent in /var/www/html
+
+php_flag output_buffering on
