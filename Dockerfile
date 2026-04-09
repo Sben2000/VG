@@ -1,0 +1,52 @@
+#Specification de la commande de pull image php apache correspondant (à ma version php utilisée)
+#=>version disponible via http://localhost/dashboard/phpinfo.php 
+FROM php:8.2.12-apache 
+
+#copy de notre dossier (site/) dans l'emplacement containerisé dédiée (/var/www/html)
+COPY site/ /var/www/html
+
+# Copie des fichiers de dépendances du serveur
+COPY NoSQL_mycomp/ ./NoSQL_mycomp/
+
+
+
+#Pour éviter les messages d’erreur apparaissant lors du démarrage de service (du type « ne trouve pas le nom de domaine du serveur spécifié » : could not reliably determine the server’s fully qualified domain name)
+RUN echo "serverName localhost" >> /etc/apache2/apache2.conf
+#Installation des extensions pdo , pdo_mysql et pecl mongodb pour permettre l'interactivité des fichiers php avec la dB mysql et mongodb à travers PDO (Voir :https://docs.docker.com/guides/php/develop/)
+RUN apt-get update && apt-get install -y libzip-dev unzip && docker-php-ext-install pdo pdo_mysql
+RUN apt-get install -y autoconf pkg-config libssl-dev
+RUN pecl install mongodb
+RUN echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini
+
+# Install composer (updated via entry point)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+#Création d'un fichier ini mongoDB dans le dossier de conf local php =>https://www.mongodb.com/community/forums/t/deploy-docker-container-with-php-mongodb-extension/110168/2
+#RUN echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini
+
+
+
+
+#(https://gist.github.com/quan-vu/25a1a07ec0f434094fb0246619b783d8)
+#Install MongoDB for PHP
+#RUN pecl install mongodb\
+#&& docker-php-ext-enable mongodb
+# && apk add curl-dev openssl-dev\
+#&& apk del build-dependencies build-base openssl-dev autoconf \
+#&& rm -rf /var/cache/apk/*
+
+#RUN apt-get install -y libcurl4-openssl-dev pkg-config libssl-dev
+
+#RUN echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini
+
+# Get latest Composer
+#COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Donner les droits à Apache
+#RUN chown -R www-data:www-data /var/www/html/
+#RUN chmod -R 755 /var/www/html/
+#RUN a2enmod rewrite
+
+
+#Nous exposons le port 80
+EXPOSE 80
+

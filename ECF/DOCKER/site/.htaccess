@@ -1,0 +1,10 @@
+#masquage des erreurs php dans la view (pour les faire apparaitre = on)
+php_flag display_errors off
+
+#Renvoi vers page 404 si non trouvée
+ErrorDocument 404 /vg/includes/404.php
+
+#Gère les erreurs de session start() notamment sur Docker (mettre sur on si c'est le cas) en créant un buffer , message type : 
+#Warning: session_start(): Session cannot be started after headers have already been sent in /var/www/html
+
+php_flag output_buffering on

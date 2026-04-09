@@ -1,0 +1,77 @@
+#E1: Message de docker: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion. 
+#version: '3.8'
+#E2: Chaque conteneur (service) commence par un nom unique
+services:
+  #le premier conteneur se nommera : « web »
+  web:
+    #Construit notre container sur base du dockerfile présent dans le même dossier (.), sinon indiquer le chemin relatif
+    #l'image du service web est défini dans le dockerfile (php:8.2.12-apache )
+    build: .
+      # « volumes » pour faire persister les données utilisées et générées par le conteneur.
+    volumes:
+      #on lie le volume du dossier "site" au chemin relatif ./site avec le volume docker :/var/www/html
+      - ./site:/var/www/html
+    #coté ordi on utilise le port 80 et coté conteneur 80 pour communiquer
+    ports:
+      - 80:80
+    #défini dans le fichier.env dév et prod =>source : https://labex.io/tutorials/docker-understanding-the-role-of-environment-variables-in-docker-compose-398444
+    ## Run in development environment: docker-compose --env-file=docker.env up -d
+    ## Run in production environment: docker-compose --env-file=production.env up -d
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_NAME=${DB_NAME}
+    depends_on:
+      - db
+      - mongo
+  #E4: le deuxième service « db » sert à connecter la base de données sur la base de l'image mysql
+  #pour plus d'info, voir les recomm de config mysql sur dockerhub (https://docs.docker.com/guides/databases/)
+  
+  db:
+    image: mysql:latest
+    #donner un nom au container
+    container_name: sql_mycomp
+    #restart permet la continuité de service, avec always : redémarre automatiquement en cas d'erreur 
+    restart: always
+    #On liste les variables d'environnement pour se connecter à la dB que l on va créer (même variables que dans le fichiers config.php)=>https://hub.docker.com/_/mysql
+    #Note : par défaut pas de MDP pour la démo et faciliter l'accès lors des tests (ne sera pas le cas en production/livraison)
+    environment:
+       MYSQL_DATABASE: ${DB_NAME}
+       MYSQL_ALLOW_EMPTY_PASSWORD: yes #pour la démo et test uniquement et pas la production/livraison
+      #données à utiliser par exemple en prod ou pour interroger mysql docker via bash (pour vérifier la présence des tables)
+       #A commenter si root et empty password
+       #MYSQL_ROOT_PASSWORD: ${DB_PASS} 
+       #MYSQL_USER: ${DB_USER}
+    #coté ordi on utilise le port 3306  et coté conteneur 3306 pour se connecter à la db
+    ports: 
+      - 3306:3306
+    
+    volumes:
+    #crée directement via l'entrypoint, la DB et les tables sur docker sur base du fichier de création sql présent dans le dossier cité ./SQL_mycomp  
+         #exemple réalisé selon les indications de ce lien: https://stackoverflow.com/questions/49573004/create-tables-on-docker-start
+       - ./SQL_mycomp:/docker-entrypoint-initdb.d
+    #Autre option possible: lier le volume sql local SQL_mycomp (./SQL_mycomp) : avec le volume docker /var/lib/mysql pour persister les données, il faudra cependant récupérer et replacer les tables et datas (ou les reconstruire via mysql)
+    #  - ./SQL_mycomp:/var/lib/mysql 
+
+  #E5: construction du service mongoDB basé sur la dernière image connue
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    restart: always
+    environment: #credentials pour acceder au service MongoDB
+      MONGO_INITDB_ROOT_USERNAME: ${userMongo}
+      MONGO_INITDB_ROOT_PASSWORD: ${pwdMongo}
+      #ME_CONFIG_MONGODB_URL: mongodb://user1:studi...@mongo:27017/" >> /tmp/mongodb/dd.yml
+      #MONGO_INITDB_DATABASE: jobOffers
+      #coté ordi on utilise le port 27017  et coté conteneur 27017 pour se connecter à la dbNoSQL MongoDB
+      MONGO_INITDB_DATABASE: jobOffers
+    ports:
+      - 27017:27017
+    volumes: #afin de persister les données de la DB en option après la suppression du container
+      - ./NoSQL_mycomp:/data/db
+      - ./NoSQL_mycomp/jobOffers.offers.json:/docker-entrypoint-initdb.d/init-data.json:ro
+
+
+    #Lancer le fichier.env dév ou prod =>source : https://labex.io/tutorials/docker-understanding-the-role-of-environment-variables-in-docker-compose-398444
+    ## Run in development environment: docker-compose --env-file=development.env up -d
+    ## Run in production environment: docker-compose --env-file=production.env up -d

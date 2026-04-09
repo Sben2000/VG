@@ -1,0 +1,528 @@
+
+
+
+
+
+/*********************************DEFAULT********************************************/
+:root{      /*palette couleurs*/
+
+    --dark-color:#222222;
+    --light-color:#dddddd;
+    --aliceblue: aliceblue;
+    /*--highlight-color: #eeeeee;*/
+    --rosy: rosybrown;
+    --elmDeco:#551A8B;
+    --TextClick:#fff;
+    --hover:#954dd7;
+    --rosyLight:rgb(205, 178, 178);
+}
+
+*{ /*par défaut si rien de précisé*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif, "Verdana"; /*police google font Montserrat appliquée par défaut, Verdana en seconde option */
+}
+
+p, input, label, td, th, button, option, optgroup,select{
+    font-size: 20px;
+}
+h1, h2,h3,h4, h5, h6, a, th, option,hr {
+    color: var(--elmDeco);
+}
+
+/*********************************NAV*******************************************/
+
+header{
+    text-decoration: none;
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
+    background-color: var(--rosyLight);
+    position:relative;
+    top: 0;
+    z-index: 1000;
+}
+nav{
+   
+    box-shadow: 0 5px 5px rgba(0,0,0,0.15);
+}
+.large-menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-items: center;/*Aligne chacun des éléments ("brand"+"links") verticalement au centre*/
+    z-index: 30;
+}
+
+.inlineLinks{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;/*définit un espace  équivalent entre les liens du menu*/
+        align-items: center;
+        text-align: center;
+    }
+.inlineLinks>li{
+    list-style: none;
+    margin: 0px 10px;
+    }
+
+.inlineLinks a{ /*Texte des liens se trouvant dans le menu des Liens*/
+    text-decoration: none;
+    display:inline-block;/*block ligne pour tout les textes de liens*/
+    padding: 5px 35px; /*écarte les liens entre eux de 35 px en élargissant leurs cellule et 10px en haut et bas */
+    transition : background-color 0.3s , color 0.3s; /*ajoute une transition background et color font lorsque le :hover sera appliqué*/
+    color: #551A8B;
+    font-size: 25px;
+    
+}
+nav a:hover,
+nav a.active{ /*lors du hover*/
+    background-color: #954dd7;
+    color: #fff;
+    border-radius: 3px; 
+
+}
+
+
+
+/*************************AUTRE-PAGE****************************************************/
+body{
+    background-color: var(--rosyLight);
+
+}
+
+/*OK*/
+.main{
+    width: 80%;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+
+.separator {
+    height: 3px;
+    background-color: var(--elmDeco);
+    width: 100%;
+    margin: 20px 0px;
+    position: relative;
+    
+}
+
+.sectionTitle{
+/*en réf au tag séparator parent précédent*/
+    position: absolute;
+    top:50%; /*place le texte à 50% en bas du centre du séparator*/
+    left: 50%;/*place le texte à 50% à la gauche du centre du séparator (droite du point de vue user)*/
+    transform: translate(-50%,-50%);/*on rattrape les 50% décalés auquel on rajoute 50% pour avoir le texte au centre exact , soit (-50%, -50%) */
+    z-index: 10;/*placé au dessus du séparator*/
+    background-color: var(--rosyLight);
+    font-family: "Lobster",Arial, Helvetica, sans-serif;
+    color: var(--elmDeco);
+}
+
+.note{
+    font-size: small;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+}
+
+.multiSectionsTop{
+display: flex;
+justify-content: space-between;
+}
+
+.multiSectionsBottom{
+display: flex;
+flex-direction: column;
+
+
+}
+
+.multiSectionsLeft{
+width: 50%;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+
+.multiSectionsRight{
+width: 50%;
+display: flex;
+flex-direction: column;
+align-content: flex-start;
+
+}
+
+
+.Section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 150px;
+    /*height:calc(100vh - 60px);/*réglage pour régler la position de la section à 60px de la totalité de la view height */
+
+}
+.multiSectionsBottom .Section{
+    margin-top: 50px;
+}
+
+
+.SectionContent{
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0,0.1);
+    justify-content: center;
+    padding: 40px;/*A augmenter si nécessaire pour plus d'espace*/
+    max-width: 600px; /*largeur maxi de la carte - convient également au format tel _à modifier si besoin*/
+    width: 100%;/*espace complet occupé jusqu'au max-width*/
+    
+}
+table {
+  /*border-collapse: collapse;*/
+  width: 100%;
+  border: 1px solid #ddd;
+  margin: 20px auto;
+}
+
+td, th {
+  border-bottom: 1px solid #ddd;
+
+  padding: 8px;
+  text-align: center;
+}
+td{
+    color: var(--dark-color);
+    font-weight: 600;
+}
+tr:nth-child(even){background-color: var(--rosyLight);}
+
+tr:hover {
+    background-color: rosybrown ;
+    
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: var(--rosy);
+  font-size: 20px;
+}
+
+
+input[type="text"], input[type="password"], input[type="textarea"], input[type="email"] {
+    max-width: 500px;/*en rapport avec la taille max du parent*/
+
+
+}
+
+.SectionContent h2{
+    margin-top: 0;
+    color: var(--elmDeco);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+.detailedInput label{
+    display: block;
+    font-weight: bold;
+    color: var(--elmDeco);
+    }
+
+.fetch input{
+background-color:rgb(205, 178, 178);
+display: flex;
+text-align: end;
+
+}
+/*OK*/
+input:not(input[type="submit"], input[type="file"]){ 
+    border: none; 
+    border-bottom: 2px solid var(--elmDeco);
+    resize: none; 
+    outline: none;
+    width: 30vw;/*largeur de 30 ViewWidth pour la police (30% largeur de la div parent (100% de l'écran dans notre cas)) */
+    margin-bottom: 20px;
+    padding: 12px;
+    margin-top: 10px;
+    
+}
+
+
+.requirement{
+    font-style: italic;
+    font-size: 12px;
+    color: darkblue;
+    margin-bottom: 20px;
+}
+
+.withRequirement{
+    margin-bottom: 10px;
+}
+
+img{
+    margin: 5px 0px;
+}
+
+.error{
+    color: darkred;
+}
+
+
+
+
+input[type="date"], input[type="time"],input[type="text"],input[type="tel"], input[type="email"]   {
+    color: var(--elmDeco);
+}
+/*OK*/
+a{
+    text-decoration: none;
+    color:var(--light-color);
+}
+button{ 
+    background-color: var(--rosy);
+    border-radius: 5px;
+    border: none;
+    padding: 10px;/*autour du texte*/
+    font-weight: 600;
+    color: var(--light-color);
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);/*ombre de 0px en hor, au top, et 5px vers le bas_opacité de 0.5 en noir)   */
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out;/*effet de 0.5s sur la fonction hover dédiée, ease-in-out = lent rapide-lent*/
+}
+
+.deleteButton{
+    background-color: darkred;
+
+}
+.deleteButton:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:red;
+    color: var(--TextClick);
+
+}
+
+.modifyButton{
+    background-color: darkgreen;
+
+}
+.modifyButton:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:green;
+    color: var(--TextClick);
+
+}
+
+.addButton{
+    background-color: darkblue;
+
+}
+.addButton:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:blue;
+    color: var(--TextClick);
+
+}
+
+.cancelButton {
+    background-color: goldenrod;
+
+}
+
+.cancelButton:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:yellowgreen;
+    color: var(--TextClick);
+
+}
+
+.deleteConfirmation{
+    display: flex;
+    flex-direction: row;
+}
+
+.backToListButton {
+    background-color: grey ;
+
+}
+
+.backToListButton:hover {
+    transform: translateY(-5px); /*fait monter l'élément de 5px sur Y lors du hover*/
+    background-color:darkgray;
+    color: var(--TextClick);
+
+}
+
+.idEmployee, .idPlat{
+background-color: rosybrown ;
+color:var(--elmDeco)
+}
+.password{
+    max-width:400px; 
+    overflow:scroll;
+
+}
+.linkedAllergenes{
+    display: flex;
+    flex-direction: column;
+}
+
+footer{
+    position:fixed;
+    bottom: 0;
+    margin-top: 20px;
+}
+
+
+.selectedPlat>input, .selectedAllergene>input{
+background-color: var(--rosyLight);
+}
+.selectedPlat>p,.selectedPlat>input, .selectedAllergene>p,.selectedAllergene>input{
+margin: 10px 0px;
+text-align: center;
+color: darkgreen;
+font-weight: 600;
+width: 50vw;
+}
+
+.selectedPlat, .selectedAllergene {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#startSelectedAllergene, #startSelectedPlat,#startSelectedAllergene>p, #startSelectedPlat>p{
+    align-items: start;
+    text-align: start;
+}
+
+.selectList{
+    margin: 20px 0px;
+
+}
+
+.toReplace{
+    color: darkred;
+}
+
+/*****************************************************GESTION RESPONSIVE*****************************************/
+
+/***************Au dessus 1100px: Affichage Ordinateur*/
+
+
+
+/*Autres Règles CSS défini plus haut par défaut
+
+/***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
+
+@media screen  and (max-width: 1100px) {
+
+/*Commun*/
+    body {
+        
+        margin: 0 auto;
+    }
+
+p,textarea input, label, td, a, button{
+        font-size: 14px;
+    }
+    h3, th{
+        font-size: 16px;
+    }
+
+/*Sections*/
+
+.multiSectionsTop{
+display: flex;
+flex-direction: column;
+
+}
+
+.multiSectionsBottom .Section{
+    margin-top: 30px;
+    display: flex;
+flex-direction: column;
+}
+
+
+input:not(input[type="submit"]), textarea{
+width: 55vw; /*augmenté pour convenir à la taille de l'écran*/
+}
+
+.multiSectionsLeft{
+width: 100%;
+display: flex;
+
+}
+
+
+.multiSectionsRight{
+width: 100%;
+display: flex;
+
+
+}
+
+.fetch input{
+display: flex;
+text-align: start;
+}
+
+}
+
+
+/******************Sous 700px: Affichage Téléphone*/
+
+@media screen and (max-width: 700px){
+
+/*Commun*/
+
+p, textarea, input, label, td,th, a, button, option, optgroup,select{
+        font-size: 12px;
+    }
+    h3{
+        font-size: 14px;
+    }
+    h1{
+        font-size: 20px;
+    }
+
+.actionButtons{
+    display: flex;
+    flex-direction: column;
+}
+
+.deleteConfirmation{
+    display: flex;
+    flex-direction: column;
+}
+
+.main{
+    width:95%;
+}
+/*
+.access{
+    table-layout: fixed;
+    width: 400px;
+}*/
+td{
+    overflow:scroll;
+}
+.firstC{
+width:  50px;
+}
+
+.requirement{
+width:  80%;
+}
+
+}
