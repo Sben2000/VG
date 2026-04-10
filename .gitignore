@@ -1,5 +1,5 @@
 #Ignorer les fichiers avec l'extension .env suivant contenant les ide originaux (seuls les examples sont montés)
-*.env
+.env
 #Ignorer le fichier deployment.env
 deployment.env
 #Ignorer le fichier docker.env
