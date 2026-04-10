@@ -27,21 +27,9 @@ ob_start(); //début de la récupération/lecture de tout ce qu il y a en aval(c
                     <th class="firstC">titre</th>
                     <td><?= $horaire['title'] ?></td>
                 </tr>
-                <tr class="firstC">
-                    <th class="firstC">Image</th>
-                    <td><img src="<?= "upload/" . $horaire['fileName'] ?>" width="180"></td>
-                </tr>
                 <tr>
-                    <th class="firstC">Description</th>
-                    <td><textarea id="inputContent" readonly><?= $horaire['description'] ?></textarea></td>
-                </tr>
-                <tr>
-                    <th class="firstC">Type de contrat</th>
-                    <td><?= $horaire['contract'] ?></td>
-                </tr>
-                <tr>
-                    <th class="firstC">Ville</th>
-                    <td><?= $horaire['city'] ?></td>
+                    <th class="firstC">Horaire détaillé</th>
+                    <td><?= $horaire['timeDetails'] ?></td>
                 </tr>
                 <tr>
                     <th class="firstC">Créée le</th>

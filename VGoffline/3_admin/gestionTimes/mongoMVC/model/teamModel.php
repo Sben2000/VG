@@ -36,42 +36,6 @@ function cleanAndCheckValue($value)
     }
 }
 
-/*******************************************Function imageValidation au champs image********************************************************************************/
-
-//définition de la function imageValidation et des arguments passés
-function imageValidation($imageName, $imageSize, $imageTemp)
-{
-    /***********************************Vérification présence image*****'*****************************************************/
-    if (empty($imageName)) {
-        return "Veuillez ajouter une image";
-    }
-    /***********************************Vérification de l'extension*****'*****************************************************/
-
-    //on vérifie que l'image uploadé est bien une image (extensions acceptés et type (même si l'extension est corrigée pour correspondre de façon malicieuse, le type d'origine est détécté)) 
-    //on utilise la classe fileinfo =>finfo avec le paramètre(FILEINFO_MIME_TYPE) pour vérifier ces données
-    $fileInfo = new finfo(FILEINFO_MIME_TYPE); //A media type (formerly known as a Multipurpose Internet Mail Extensions or MIME type) indicates the nature and format of a document, file, or assortment of bytes. MIME types are defined and standardized in IETF's RFC 6838
-
-    //en objet de la variable $fileInfo on requiert le type de media du fichier uploadé qui est placé dans le dossier temp, on assigne le résultat à la variable $mimeType
-    $mimeType = $fileInfo->file($imageTemp);
-
-    //on définit les types d'extensions autorisés dans un tableau
-    $allowedImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-
-    //on vérifie que le mimeType est inclus dans le tableau des extensions autorisés via la function in_array
-    if (in_array($mimeType, $allowedImageTypes) === false) {
-        //si l'extension du fichier n'est pas inclus dans celles autorisées:
-        return "seules les extensions jpeg, jpg, png, and gif files sont autorisées";
-    }
-    /***********************************Vérification de la taille du fichier*****************************************************/
-
-    //on définit la taille max du fichier autorisée (2MB):
-    $uploadedMaxSize = 2 * 1024 * 1024;
-    //si la taille de l'image uploadé est supérieur à 2MB, avertissement:
-    if ($imageSize > $uploadedMaxSize) {
-        return "la taille de l'image doit être inférieur à 2MB";
-    }
-}
-
 /****************************************ENSEMBLE DES FONCTIONS DE BASE DU MVC*********************************************** */
 
 /*La connection à la BDD NOSQL est réalisée via " ACCESSROOT."/mongoMVC/DB_NOSQL/dbMongo.php"
@@ -89,13 +53,13 @@ function latests_horaires()
     return $horaires;
 }
 
-function create($title, $description, $author, $city, $contract, $statut, $createdOn, $file) //function qui ajoute des libelles en récupérant les champs remplis
+function create($title, $timeDetails, $author, $statut, $createdOn) //function qui ajoute des libelles en récupérant les champs remplis
 {
 
     //on récupère la variable $collection définie à l'extérieur
     global $collection;
     //function qui s'applique uniquement aux datas alphanumériques (excluant le fichier file)
-    function checkDatas($title, $description, $author, $city, $contract, $statut, $createdOn)
+    function checkDatas($title, $timeDetails, $author, $statut, $createdOn)
     {
         //récupère l'ensemble des arguments placés dans la fonction dans $args 
         $args = func_get_args();
@@ -111,33 +75,13 @@ function create($title, $description, $author, $city, $contract, $statut, $creat
     //Associer les valeurs postées avec les clés de la collection pour créer un document
     $data = [
         'title' => $title,
-        'description' => $description,
+        'timeDetails' => $timeDetails,
         'author' => $author,
-        'city'  => $city,
-        'contract' => $contract,
         'statut' => $statut,
         //classe MongoDB pour créer la date du jour UTC
         'createdOn' => $createdOn
     ];
 
-    //Contrôle de la présence d'une image et de ses caractéristiques
-
-    //si le résultat de la fonction n'est pas vide ($error contient un retour), le contenu de l'erreur est retourné
-    if (!empty(imageValidation($file['name'], $file['size'], $file['tmp_name']))) {
-        return imageValidation($file['name'], $file['size'], $file['tmp_name']);
-    }
-
-    //si il existe un fichier à uploader
-    if ($file) {
-        //possibilité de créer des critères: size, extension,....pas fait dans notre cas
-        //si le fichier est avec son nom tmp est uploadé vers notre dossier upload avec son nom 
-        if (move_uploaded_file($file['tmp_name'], 'upload/' . $_FILES['file']['name'])) {
-            //ajouter à la clé $data['filename'] le nom du fichier uploadé;
-            $data['fileName'] = $file['name'];
-        } else {
-            return "Echec du chargement de l'image.";
-        }
-    }
 
     //Message de succès si la colletion a été enregistée dans la DB
     //n'est inséré qu'une collection $data à la fois
@@ -162,13 +106,13 @@ function view($id)
     return $horaire;
 }
 
-function edit($id, $title, $description, $author, $city, $contract, $statut, $createdOn, $file)
+function edit($id, $title, $timeDetails, $author,  $statut, $createdOn)
 { //edite les valeurs extraites de la fonction updateAction() du fichier controller qui a récupéré  les valeurs $_POST 
     //Nettoyage des valeurs de variables récupérées 
     //on récupère la variable $collection définie à l'extérieur
     global $collection;
-    //function qui s'applique uniquement aux datas alphanumériques (excluant le fichier file)
-    function checkDatas($title, $description, $author, $city, $contract, $statut, $createdOn)
+    //function qui s'applique uniquement aux datas alphanumériques 
+    function checkDatas($title, $timeDetails, $author, $statut, $createdOn)
     {
         //récupère l'ensemble des arguments placés dans la fonction dans $args 
         $args = func_get_args();
@@ -184,30 +128,12 @@ function edit($id, $title, $description, $author, $city, $contract, $statut, $cr
     //Associer les valeurs postées avec les clés de la collection pour créer un document
     $data = [
         'title' => $title,
-        'description' => $description,
+        'timeDetails' => $timeDetails,
         'author' => $author,
-        'city'  => $city,
-        'contract' => $contract,
         'statut' => $statut,
         'createdOn' => $createdOn
     ];
 
-    //Contrôle de la présence d'une image et de ses caractéristiques si modifié
-
-
-    if (!empty($file['name'])) {
-        //si le résultat de la fonction n'est pas vide ($error contient un retour), le contenu de l'erreur est retourné
-        if (!empty(imageValidation($file['name'], $file['size'], $file['tmp_name']))) {
-            return imageValidation($file['name'], $file['size'], $file['tmp_name']);
-        }
-        //si le fichier est avec son nom tmp est uploadé vers notre dossier upload avec son nom 
-        if (move_uploaded_file($file['tmp_name'], 'upload/' . $_FILES['file']['name'])) {
-            //ajouter à la clé $data['filename'] le nom du fichier uploadé;
-            $data['fileName'] = $file['name'];
-        } else {
-            return "Echec du chargement de l'image.";
-        }
-    }
 
     //n'est updaté qu'une collection $data à la fois dans l'objet id cité
     $result = $collection->updateOne($id, ['$set' => $data]); //$data inclue un set de clé/valeur sous forme []
@@ -233,15 +159,6 @@ function destroy($id) /*function qui supprime l'id get ($id = $_GET['id']) en ar
     if (!$horaireToDelete) {
         return "Horaire non trouvée.";
     };
-    //Si id , identifier si une image est liée auquel cas la supprimer
-    $fileName = 'upload/' . $horaireToDelete['fileName'];
-    if (file_exists($fileName)) {
-        //en cas d'echec de suppression
-        if (!unlink($fileName)) {
-            return "Echec de suppression de l'image.";
-            exit;
-        }
-    }
 
     //Supprimer la collection complète lié à 'id 
     $result = $collection->deleteOne($id);

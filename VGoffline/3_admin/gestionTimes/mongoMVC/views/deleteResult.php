@@ -5,7 +5,7 @@
             //retour du resultat $response affiché à l'utilisateur
             if(@$response == "success"){
                 ?>
-                <p class="success" style='color:green'><strong>L'accès a bien été supprimé</strong></p>
+                <p class="success" style='color:green'><strong>L'horaire a bien été supprimé</strong></p>
 
                 <?php
             }else{

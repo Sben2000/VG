@@ -19,42 +19,11 @@ ob_start(); //début de la récupération/lecture de tout ce qu il y a en aval(c
             <input type="text" id="title" name="title" class="withRequirement" minlength="3" maxlength="50" value="<?= $horaire['title'] ?>">
             <p class="requirement">requis: caract.: alphanum_- ,max:50 - min: 3</p>
         </div>
-        <!-- Text Area-->
-        <div>
-            <label for="description"><strong>Description de l'horaire: </strong></label><br>
-            <textarea id="descriptionEdit" name="description"  minlength="10" maxlength="200"><?= $horaire['description'] ?></textarea>
-                        <p class="requirement">requis: caract.: alphanum_- ,max:200 - min: 10</p>
-        </div>
         <!-- Text input-->
         <div>
-            <label for="contract"><strong>Type de contrat:</strong></label>
-            <select name="selectContract" id="selectContract" class="filter">
-                <option class="none" value="none" disabled selected>Selectionner un contrat</option>
-                <optgroup label="Types de contrat">
-                    <option value="CDI">CDI</option>
-                    <option value="CDD">CDD</option>
-                    <option value="Stage">Stage</option>
-                    <option value="Autre">Autre</option>
-                </optgroup>
-            </select><br>
-            <input type="text" id="contract" name="contract" class="withRequirement" value="<?= $horaire['contract'] ?>"readonly>
-        </div>
-        <!-- Text input-->
-        <div>
-            <label for="city"><strong>Ville:</strong></label>
-            <select name="selectCity" id="selectCity" class="filter">
-                <option class="none" value="none" disabled selected>Selectionner une ville</option>
-                <optgroup label="Ville">
-                    <option value="Paris">Paris</option>
-                    <option value="Lyon">Lyon</option>
-                    <option value="Marseille">Marseille</option>
-                    <option value="Bordeaux">Bordeaux</option>
-                    <option value="Lille">Lille</option>
-                    <option value="Autre">Autre</option>
-                </optgroup>
-            </select>
-            <br>
-            <input type="text" id="city" name="city" class="withRequirement" value="<?= $horaire['city'] ?>" readonly>
+            <label for="timeDetails"><strong>Horaire détaillé:</strong></label><br>
+            <input type="text" id="timeDetails" name="timeDetails" class="withRequirement" placeholder="" minlength="3" maxlength="50" value="<?= $horaire['timeDetails'] ?>">
+            <p class="requirement">requis: caract.: alphanum_- ,max:50 - min: 3</p>
         </div>
         <!-- Text input-->
         <div>
@@ -63,7 +32,7 @@ ob_start(); //début de la récupération/lecture de tout ce qu il y a en aval(c
         </div><br>
         <!-- File input-->
         <div>
-            <label for="statut"><strong>Statut:</strong></label>
+            <label for="statut"><strong>Statut d'édition:</strong></label>
             <select name="selectStatut" id="selectStatut" class="filter">
                 <option class="none" value="none" disabled selected>Selectionner un statut</option>
                 <optgroup label="Statut">

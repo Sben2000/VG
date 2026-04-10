@@ -39,7 +39,9 @@ h6,
 a,
 th,
 option,
-hr {
+hr,
+label
+{
 	color: var(--elmDeco);
 }
 
@@ -218,7 +220,7 @@ th {
 	padding-bottom: 12px;
 	background-color: var(--rosy);
 	font-size: 20px;
-	color: var(--rosy);
+	color: var(--elmDeco);
 }
 
 input[type='text'],
@@ -250,8 +252,7 @@ input[type='email'] {
 #inputContent,
 #description,
 #descriptionEdit {
-	width: 220px;
-	height: 200px;
+	height: 50px;
 	padding: 5px;
 	border-radius: 10px;
 	box-sizing: border-box;
@@ -395,7 +396,7 @@ button {
 
 .id {
 	background-color: var(--rosy);
-	color: var(--rosyLight);
+	color: var(--elmDeco);
 }
 .password {
 	max-width: 400px;
