@@ -1,8 +1,8 @@
 #Ignorer les fichiers avec l'extension .env suivant contenant les ide originaux (seuls les examples sont montés)
 .env
 #Ignorer les fichier deployment.env et docker.env situés à la racine
-/deployment.env
-/docker.env
+/deployment
+/docker
 #############################AUTRES################################3
 # Commentaires : les lignes commençant par "#" sont ignorées par Git
 
