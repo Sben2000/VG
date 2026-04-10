@@ -1,5 +1,5 @@
-#Ignorer les fichier .env suivant contenant les ide originaux (seuls les examples sont montés)
-.env
+#Ignorer les fichiers avec l'extension .env suivant contenant les ide originaux (seuls les examples sont montés)
+*.env
 
 #############################AUTRES################################3
 # Commentaires : les lignes commençant par "#" sont ignorées par Git
