@@ -119,13 +119,13 @@ function registerAdmin($email, $username, $password, $confirm_password){
         //Hashage&Encryption du mot de passe (en Bcrypt=>également algo par défaut PHP via PASSWORD_DEFAULT)
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         //echo "{$hashedPassword}\n"; vérification encrypt du mode passe , uncomment pour voir le résultat
-
+/*
          //Envoi de l'email de confirmation
 
             //éléments constituant l'email (sujet et corps) géré ensuite par la function sendMail() de PHPMailer
             $recipient =$email;//destinataire défini dans la function
-            $subject="Votre inscription chez Vite&Go";//sujet envoyé dans le mail
-            $body= "<p> Bonjour {$username}, nous vous confirmons votre inscription chez Vite&GO.</p><br>\r\n
+            $subject="Votre inscription chez myCompany";//sujet envoyé dans le mail
+            $body= "<p> Bonjour {$username}, nous vous confirmons votre inscription chez myCompany.</p><br>\r\n
                      <p>Bienvenue chez nous, nous espérons avoir de vos nouvelles très vite </p>\r\n"; //texte du mail puis retour à la ligne , curseur en début de ligne
         //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
                 
@@ -138,25 +138,40 @@ function registerAdmin($email, $username, $password, $confirm_password){
                 return "Désolé, nous n'avons pas pu vous confirmer l'enregistrement par mail pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
     
+*/
 
-        //Insertion des data finaux dans la DB (le cas échéant si tout est ok)
-        $sql = "INSERT INTO utilisateur (role_id, nom_utilisateur, password, email) VALUES (3, :username, :password, :email)";//role_id =3 =>adminAccess 
-        $query=$conn->prepare($sql);
-        $query->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
-        $query->bindParam(":username", $username, PDO::PARAM_STR);
-        $query->bindParam(":email", $email, PDO::PARAM_STR);
-        $query->execute();
+    //On récupère la valeur d'id du dernier email enregistré 
+    $sql = "SELECT MAX(utilisateur_id) FROM utilisateur ";
+    $query = $conn->prepare($sql);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    //id du prochain email
+    $nextUser =  $result["MAX(utilisateur_id)"] + 1;
 
-        //Vérification que le dernier ID enregistré est > 0 (confirmation enregistrement)
-        $lastInserted = $conn->lastInsertId();
 
-        if($lastInserted>0){
-            return "success"; //affichera le message associé dans le fichier d'execution de la réponse
-        }else{
-            return "l'enregistrement a échoué, veuillez recommencer";
-        }
+    //Insertion des data finaux dans la DB (le cas échéant si tout est ok)
+    $sql = "INSERT INTO utilisateur (utilisateur_id, role_id, nom_utilisateur, password, email) VALUES (:utilisateur_id, :role_id, :username, :password, :email)"; //role_id =1 =>utilisateut par défaut (allUsers)
+    $query = $conn->prepare($sql);
+    $role_admin = 3;
+    $query->bindParam(":role_id", $role_admin, PDO::PARAM_INT);
+    $query->bindParam(":utilisateur_id", $nextUser, PDO::PARAM_INT);
+    $query->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
+    $query->bindParam(":username", $username, PDO::PARAM_STR);
+    $query->bindParam(":email", $email, PDO::PARAM_STR);
+    $query->execute();
 
-        //envoi du mail de confirmation à l'utilisateur
+    //Vérification que le dernier ID incrémenté est enregistré dans la BDD
+    $sql = "SELECT utilisateur_id FROM  utilisateur WHERE utilisateur_id= :nextUser";
+    $query = $conn->prepare($sql);
+    $query->bindParam(":nextUser", $nextUser, PDO::PARAM_INT);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    //var_dump($result);
+    if (!empty($result)) {
+        return "success"; //affichera le message associé dans le fichier d'execution de la réponse
+    } else {
+        return "l'enregistrement a échoué, veuillez recommencer";
+    }
 
 
 }
@@ -276,12 +291,13 @@ function registerEmployee($email, $username, $password, $confirm_password){
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
         //echo "{$hashedPassword}\n"; vérification encrypt du mode passe , uncomment pour voir le résultat
 
+/*
          //Envoi de l'email de confirmation
 
             //éléments constituant l'email (sujet et corps) géré ensuite par la function sendMail() de PHPMailer
             $recipient =$email;//destinataire défini dans la function
-            $subject="Votre inscription chez Vite&Go";//sujet envoyé dans le mail
-            $body= "<p> Bonjour {$username}, nous vous confirmons votre inscription chez Vite&GO.</p><br>\r\n
+            $subject="Votre inscription chez myCompany";//sujet envoyé dans le mail
+            $body= "<p> Bonjour {$username}, nous vous confirmons votre inscription chez myCompany.</p><br>\r\n
                      <p>Bienvenue chez nous, nous espérons avoir de vos nouvelles très vite </p>\r\n"; //texte du mail puis retour à la ligne , curseur en début de ligne
         //on instancie un nouvel objet $mail de la classe PHPMailer du fichier requis
                 
@@ -294,30 +310,41 @@ function registerEmployee($email, $username, $password, $confirm_password){
                 return "Désolé, nous n'avons pas pu vous confirmer l'enregistrement par mail pour cause suivante :\n {$mail->ErrorInfo} (potentiellement blocage pare Feu)";
             }; 
     
+*/
 
-        //Insertion des data finaux dans la DB (le cas échéant si tout est ok)
-        $sql = "INSERT INTO utilisateur (role_id, nom_utilisateur, password, email) VALUES (2, :username, :password, :email)";//role_id =2 =>Employé (VgTeam)
-        $query=$conn->prepare($sql);
-        $query->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
-        $query->bindParam(":username", $username, PDO::PARAM_STR);
-        $query->bindParam(":email", $email, PDO::PARAM_STR);
-        $query->execute();
-
-        //Vérification que le dernier ID enregistré est > 0 (confirmation enregistrement)
-        $lastInserted = $conn->lastInsertId();
-
-        if($lastInserted>0){
-            return "success"; //affichera le message associé dans le fichier d'execution de la réponse
-        }else{
-            return "l'enregistrement a échoué, veuillez recommencer";
-        }
-
-        //envoi du mail de confirmation à l'utilisateur
+    //On récupère la valeur d'id du dernier email enregistré 
+    $sql = "SELECT MAX(utilisateur_id) FROM utilisateur ";
+    $query = $conn->prepare($sql);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    //id du prochain email
+    $nextUser =  $result["MAX(utilisateur_id)"] + 1;
 
 
+    //Insertion des data finaux dans la DB (le cas échéant si tout est ok)
+    $sql = "INSERT INTO utilisateur (utilisateur_id, role_id, nom_utilisateur, password, email) VALUES (:utilisateur_id, :role_id, :username, :password, :email)"; //role_id =1 =>utilisateut par défaut (allUsers)
+    $query = $conn->prepare($sql);
+    $role_employee = 2;
+    $query->bindParam(":role_id", $role_employee, PDO::PARAM_INT);
+    $query->bindParam(":utilisateur_id", $nextUser, PDO::PARAM_INT);
+    $query->bindParam(":password", $hashedPassword, PDO::PARAM_STR);
+    $query->bindParam(":username", $username, PDO::PARAM_STR);
+    $query->bindParam(":email", $email, PDO::PARAM_STR);
+    $query->execute();
+
+    //Vérification que le dernier ID incrémenté est enregistré dans la BDD
+    $sql = "SELECT utilisateur_id FROM  utilisateur WHERE utilisateur_id= :nextUser";
+    $query = $conn->prepare($sql);
+    $query->bindParam(":nextUser", $nextUser, PDO::PARAM_INT);
+    $query->execute();
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+    //var_dump($result);
+    if (!empty($result)) {
+        return "success"; //affichera le message associé dans le fichier d'execution de la réponse
+    } else {
+        return "l'enregistrement a échoué, veuillez recommencer";
+    }
 }
 
 
 
-
-//function loginUser
