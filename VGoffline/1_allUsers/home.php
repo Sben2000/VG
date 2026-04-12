@@ -1,3 +1,10 @@
+<?php
+//fichier de function récupérant les horaires d'ouvertures de la BDD Mongo
+require_once "./Functions/fctTimes.php";
+//Toutes les horaires d'ouvertures 
+$times = timesList();
+?>
+
 <div class="main">
     <div class="separator">
         <h1 class="sectionTitle">A propos de Nous</h1>

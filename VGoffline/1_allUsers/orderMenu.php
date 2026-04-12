@@ -1,6 +1,10 @@
 <?php
 //fichier de function traitant les détails affichés dans cette page
 require_once "./Functions/fctOrderMenu.php";
+//fichier de function récupérant les horaires d'ouvertures de la BDD Mongo
+require_once "./Functions/fctTimes.php";
+//Toutes les horaires d'ouvertures 
+$times = timesList();
 
 /*Si une réquête (en provenance de l'url encodé (clé menuID) de menu.php) est complétée avec une valeur de menuID :*/
 if (isset($_GET['menuID'])) {
