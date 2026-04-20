@@ -6,6 +6,21 @@ require_once "./Functions/fctTimes.php";
 //Toutes les horaires d'ouvertures 
 $times = timesList();
 
+
+/*récupère les horaires de la db Mongo pour les utiliser 2 fois 
+(1 fois dans la vue écran large et l'autre fois dans la vue phone)
+car pas possible d'utiliser 2 fois un foreach*/
+$timeTables = [];
+foreach ($times as $key => $time) {
+	$data = '<li>' . $time['title'] . ':</li>
+                <p>' . $time['timeDetails'] . '</p>';
+	array_push($timeTables, $data);
+};
+/* code testé et qui sera utilisé
+for($i=0; $i<count($timeTables);$i++){
+	echo($timeTables[$i]);
+}
+*/
 /*Si une réquête (en provenance de l'url encodé (clé menuID) de menu.php) est complétée avec une valeur de menuID :*/
 if (isset($_GET['menuID'])) {
 	/*la valeur décodé est alors récupéré est assigné à $menuID*/
@@ -41,11 +56,11 @@ if (isset($_SESSION["user"])) {
 			$recordDeliveryDatas = $_POST['recordDeliveryDatas'];
 		}
 		//On vérifie si on a un token dans la session($_SESSION['csrf_tocken']), un token dans le formulaire posté ($_POST['_token']) et si les deux ne correspondent pas
-		if(empty($_SESSION['csrf_token']) || empty($_POST['_token']) || $_SESSION['csrf_token'] !== $_POST['_token']){
+		if (empty($_SESSION['csrf_token']) || empty($_POST['_token']) || $_SESSION['csrf_token'] !== $_POST['_token']) {
 			$feedback = 'Token invalide, veuillez fermer toutes les autres fenêtres et applications ouvertes et recommencer.';
-		}else{		
-		//Si token OK,function createUserOrder($userID, $name, $firstname, $email, $phoneNumber, $adress, $cityName, $postalCode,  $wishedDate, $wishedTime,  $selectedMenu, $peopleNbrSpec, $priceMenu, $reductionRate, $deliveryPrice, $totalPrice, $recordDeliveryDatas){
-		$feedback = createUserOrder($_POST['userID'], $_POST['nomCheckedJS'], $_POST['prenomCheckedJS'], $_POST['email'], $_POST['telCheckedJS'], $_POST['adressCheckedJS'], $_POST['villeCheckedJS'], $_POST['codePostalCheckedJS'], $_POST['datePrestaCheckedJS'],  $_POST['heurePrestaCheckedJS'], $_POST['menuCheckedJS'], $_POST['nbrPersCheckedJS'], $_POST['priceMenuCheckedJS'], $_POST['reductionRateCheckedJS'], $_POST['deliveryPriceCheckedJS'], $_POST['totalPriceCheckedJS'], $recordDeliveryDatas);
+		} else {
+			//Si token OK,function createUserOrder($userID, $name, $firstname, $email, $phoneNumber, $adress, $cityName, $postalCode,  $wishedDate, $wishedTime,  $selectedMenu, $peopleNbrSpec, $priceMenu, $reductionRate, $deliveryPrice, $totalPrice, $recordDeliveryDatas){
+			$feedback = createUserOrder($_POST['userID'], $_POST['nomCheckedJS'], $_POST['prenomCheckedJS'], $_POST['email'], $_POST['telCheckedJS'], $_POST['adressCheckedJS'], $_POST['villeCheckedJS'], $_POST['codePostalCheckedJS'], $_POST['datePrestaCheckedJS'],  $_POST['heurePrestaCheckedJS'], $_POST['menuCheckedJS'], $_POST['nbrPersCheckedJS'], $_POST['priceMenuCheckedJS'], $_POST['reductionRateCheckedJS'], $_POST['deliveryPriceCheckedJS'], $_POST['totalPriceCheckedJS'], $recordDeliveryDatas);
 		}
 	}
 }
@@ -56,6 +71,8 @@ $_SESSION['csrf_token'] = $token;
 
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -241,7 +258,7 @@ $_SESSION['csrf_token'] = $token;
 					<div class="modalInputs" id="confirmOrderButtons">
 						<input type="submit" name="backToOrder" value="Annuler" id="backToOrder">
 						<!--Affiche la valeur du token sur la console uniquement et sera comparé à celui de la session-->
-						<input type = "hidden" name="_token" value = "<?= $token?>">
+						<input type="hidden" name="_token" value="<?= $token ?>">
 						<input type="submit" name="confirmOrder" value="Je confirme" id="confirmOrder">
 					</div>
 
@@ -277,7 +294,7 @@ $_SESSION['csrf_token'] = $token;
 				<section class="Section" id="absolute">
 					<?php
 					//Récupération du contenu de cette section pour l'afficher plus bas lors de la vue téléphone
-					$contentJoinUs = '
+					$contentJoinUsPart1 = '
 					<div class="SectionContent">
 						<div>
 							<h2 id="reachUsPanelTitle"><u>Nous joindre : </u></h2>
@@ -294,16 +311,14 @@ $_SESSION['csrf_token'] = $token;
 								</div>
 								<div class="reachUsPanelDetails">
 									
-										<h3>&#x25AA; Nos horaires:</h3>
-									
-									<li type ="circle">Restauration sur place:</li>
-									<p>Mardi au Samedi <br> de 12h-14h/19h-22h </p>
-									<div class="orderType">
-										<li>Commandes du restaurant:</li>
-										<p>Mardi au Samedi <br> de 9h-11h30/14h-18h</p>
-										<li>Commandes personnalisées:</li>
-										<p>Lundi au Vendredi <br> de 8h-11h30/15h-19h</p>
-									</div>
+										<h3>&#x25AA; Nos horaires:</h3>';;
+
+
+
+
+
+					$contentJoinUsPart2 =
+						'
 								</div>
 								<div class="reachUsPanelDetails" id="ourContact">
 									
@@ -325,9 +340,17 @@ $_SESSION['csrf_token'] = $token;
 					</div>
 				 '; ?>
 				</section>
+				<!--Affichage du contenu Part1-->
+				<?= $contentJoinUsPart1  ?>
+				<!--Affichage des horaires-->
+				<?php
+				for ($i = 0; $i < count($timeTables); $i++) {
+					echo ($timeTables[$i]);
+				}
+				?>
+				<!--Affichage du contenu Part2-->
+				<?= $contentJoinUsPart2  ?>
 
-				<!--Affichage du contenu-->
-				<?= $contentJoinUs  ?>
 			</div>
 			<div class="multiSectionsRight">
 				<section class="Section">
@@ -352,9 +375,9 @@ $_SESSION['csrf_token'] = $token;
 
 									<!--liste des plats associés-->
 									<div class="associatedDishes">
-										<h4>&nbsp;<span>Plat(s):&nbsp;</span></h4>					
-									
-									</br>
+										<h4>&nbsp;<span>Plat(s):&nbsp;</span></h4>
+
+										</br>
 
 										<?php
 										if ($associatedDishes == NULL) { ?>
@@ -368,16 +391,17 @@ $_SESSION['csrf_token'] = $token;
 													<img src="data:image/png;base64,<?= base64_encode($associatedDish->photo) ?>" width="120px" height="120px" />
 													<!--affichage des éventuels allergènes de chaque plat-->
 													<?php $allergs = getAllergenes($associatedDish->plat_id);
-                    								if ($allergs!=NULL){
-														?><p class="allergene"><u>Allerg. potentiels:</u></p><?php
-													foreach ($allergs as $allerg):?>
-													<div class="allergeneElements">
-														<span><em><?= $allerg->libelle ?></em></span>
-													</div>
-													<?php endforeach;}?>
+													if ($allergs != NULL) {
+													?><p class="allergene"><u>Allerg. potentiels:</u></p><?php
+																											foreach ($allergs as $allerg): ?>
+															<div class="allergeneElements">
+																<span><em><?= $allerg->libelle ?></em></span>
+															</div>
+													<?php endforeach;
+																										} ?>
 												</div>
-											<?php endforeach; 
-											}?>
+										<?php endforeach;
+										} ?>
 									</div>
 
 									<div class="regimetheme">
@@ -458,7 +482,7 @@ $_SESSION['csrf_token'] = $token;
 									<p class="success" style='color:green'>Un récapitulatif de celle ci vous sera envoyé par mail.</p>
 									<p class="success" style='color:green'>Nous revenons vers vous au plus vite pour vous confirmer sa validation.</p>
 								<?php
-								 }else {
+								} else {
 								?><!--sinon retourner le résultat de la sous function qui a soulevé une erreur -->
 									<p class="error" style='color:darkred'><?= @$feedback ?></p>
 								<?php
@@ -645,7 +669,16 @@ $_SESSION['csrf_token'] = $token;
 					</section>
 				<?php } ?>
 				<section class="sectionContent" id="joinUsPhoneView">
-					<?= $contentJoinUs ?>
+					<!--Affichage du contenu Part1-->
+					<?= $contentJoinUsPart1  ?>
+					<!--Affichage des horaires-->
+					<?php
+					for ($i = 0; $i < count($timeTables); $i++) {
+						echo ($timeTables[$i]);
+					}
+					?>
+					<!--Affichage du contenu Part2-->
+					<?= $contentJoinUsPart2  ?>
 				</section>
 			</div>
 		</div>

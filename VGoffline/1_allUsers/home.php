@@ -108,15 +108,13 @@ $times = timesList();
                         <u>
                             <h3>Nos horaires:</h3>
                         </u>
-                        <li>Pour vous restaurer chez nous</li>
-                        <p>Mardi au Samedi de 12h-14h/19h-22h </p>
-                        <li>Pour vos commandes</li>
-                        <div class="orderType">
-                            <li>Commandes du restaurant:</li>
-                            <p>Mardi au Samedi de 9h-11h30/14h-18h</p>
-                            <li>Commandes personnalisées:</li>
-                            <p>Lundi au Vendredi de 8h-11h30/15h-19h</p>
-                        </div>
+                        <?php
+                        //récupère les horaires de la db Mongo
+                        foreach ($times as $key=>$time):
+                        ?>
+                        <li><?= $time['title'] ?>:</li>
+                        <p>Du <?= $time['timeDetails'] ?></p>
+                        <?php endforeach; ?>
                     </ul>
                     <ul class="contact">
                         <u>
