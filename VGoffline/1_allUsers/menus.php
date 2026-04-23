@@ -206,7 +206,7 @@ if (isset($_GET['themePanelID'])){
 								<div class="menuLeft">
 									<!--cheminPhotoMenu&NomdePhoto affichée à l'intérieur du lien qui renvoi vers orderMenu.php pour afficher le menu seul-->
 									<a href="orderMenu.php?menuID=<?php echo urlencode($menu->menu_id) ?>" target="_blank">
-									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="" width="200px" >
+									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="<?php echo ($menu->titre)?>" width="200px" >
 									</a>
 								</div>
 								<div class="menuRight">

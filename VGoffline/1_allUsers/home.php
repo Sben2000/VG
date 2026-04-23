@@ -38,7 +38,7 @@ $times = timesList();
 
         <div class="teamMember">
             <h3 class="memberTitle">José : Notre directeur</h3>
-            <img class="memberPicture" src="./includes/default_pictures/director.jpg" alt="placeholder image">
+            <img class="memberPicture" src="./includes/default_pictures/director.jpg" alt="directeur Vite&Go">
             <p class="memberDesc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     ac velit non tortor aliquet tincidunt.
@@ -46,7 +46,7 @@ $times = timesList();
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Julie : Notre Event Manager</h3>
-            <img class="memberPicture" src="./includes/default_pictures/eventManager.jpg" alt="placeholder image">
+            <img class="memberPicture" src="./includes/default_pictures/eventManager.jpg" alt="event Manager Vite&Go">
             <p class="memberDesc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     ac velit non tortor aliquet tincidunt.
@@ -54,7 +54,7 @@ $times = timesList();
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Jean : Notre Chef Cuisinier</h3>
-            <img class="memberPicture" src="./includes/default_pictures/chief.jpg" alt="placeholder image">
+            <img class="memberPicture" src="./includes/default_pictures/chief.jpg" alt="chef cuisinier Vite&Go">
             <p class="memberDesc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     ac velit non tortor aliquet tincidunt.
@@ -62,7 +62,7 @@ $times = timesList();
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Marc : Notre Aide Cuisinier 1</h3>
-            <img class="memberPicture" src="./includes/default_pictures/assistant1.jpg" alt="placeholder image">
+            <img class="memberPicture" src="./includes/default_pictures/assistant1.jpg" alt="assistant cuisine 1 Vite&Go">
             <p class="memberDesc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     ac velit non tortor aliquet tincidunt.
@@ -70,7 +70,7 @@ $times = timesList();
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Sophie : Notre Aide Cuisinier 2</h3>
-            <img class="memberPicture" src="./includes/default_pictures/assistant2.jpg" alt="placeholder image">
+            <img class="memberPicture" src="./includes/default_pictures/assistant2.jpg" alt="assistant cuisine 2 Vite&Go">
             <p class="memberDesc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     ac velit non tortor aliquet tincidunt.
@@ -78,7 +78,7 @@ $times = timesList();
         </div>
         <div class="teamMember">
             <h3 class="memberTitle">Franck : Notre Livreur</h3>
-            <img class="memberPicture" src="./includes/default_pictures/delivery.jpg" alt="placeholder image">
+            <img class="memberPicture" src="./includes/default_pictures/delivery.jpg" alt="livreur Vite&Go">
             <p class="memberDesc">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
                     ac velit non tortor aliquet tincidunt.

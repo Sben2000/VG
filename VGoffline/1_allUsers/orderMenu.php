@@ -362,7 +362,7 @@ $_SESSION['csrf_token'] = $token;
 							<div class="menu">
 								<div class="menuLeft">
 									<!--cheminPhotoMenu&NomdePhoto-->
-									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="" width="200px">
+									<img src="<?php echo ($photoMenuPath . $menu->photo_menu) ?>" alt="<?php echo ($menu->titre)?>" width="200px">
 								</div>
 								<div class="menuRight">
 									<h3 class="choosenMenuTitle">
