@@ -8,7 +8,7 @@ CREATE TABLE horaire(
   heure_ouverture VARCHAR(50) NOT NULL DEFAULT 'cf.page d\' accueil',
   heure_fermeture VARCHAR(50) NOT NULL DEFAULT 'cf.page d\' accueil', 
   CONSTRAINT horaire_PK PRIMARY KEY (horaire_id)
-)ENGINE=InnoDB;
+);
 
 CREATE TABLE avis (
   avis_id INT NOT NULL AUTO_INCREMENT,
@@ -16,40 +16,40 @@ CREATE TABLE avis (
   description VARCHAR(50), /*pas de contrainte NOT NULL car facultatif et  sera vérifié */
   statut VARCHAR(50) DEFAULT 'A vérifier', /*par défaut ‘à vérifier’*/
   CONSTRAINT avis_PK PRIMARY KEY (avis_id)
-)ENGINE=InnoDB;
+);
 
 
 CREATE TABLE IF NOT EXISTS role (
   role_id INT NOT NULL AUTO_INCREMENT,
   libelle VARCHAR(50) NOT NULL DEFAULT 'allUsers',/*par défaut compte allUsers*/
   CONSTRAINT role_PK PRIMARY KEY (role_id)
-)ENGINE=InnoDB;
+);
 
 
 CREATE TABLE IF NOT EXISTS regime (
   regime_id INT NOT NULL AUTO_INCREMENT,
   libelle VARCHAR(50) NOT NULL DEFAULT 'non precisé',
   CONSTRAINT regime_PK PRIMARY KEY (regime_id)
-)ENGINE=InnoDB;
+);
 
 CREATE TABLE IF NOT EXISTS theme (
   theme_id INT NOT NULL AUTO_INCREMENT,
   libelle VARCHAR(50) NOT NULL DEFAULT 'non precisé',
   CONSTRAINT theme_PK PRIMARY KEY (theme_id)
-)ENGINE=InnoDB;
+);
 
 CREATE TABLE IF NOT EXISTS plat (
   plat_id INT NOT NULL AUTO_INCREMENT,
   titre_plat VARCHAR(50) NOT NULL , 
   photo BLOB ,/*peut etre null */
   CONSTRAINT plat_PK PRIMARY KEY (plat_id)
-)ENGINE=InnoDB;
+);
 
 CREATE TABLE IF NOT EXISTS allergene (
   allergene_id INT NOT NULL AUTO_INCREMENT,
   libelle VARCHAR(50) NOT NULL DEFAULT 'non precisé',/*par défaut pour ne pas avoir de valeur vide*/
   CONSTRAINT allergene_PK PRIMARY KEY (allergene_id)
-)ENGINE=InnoDB;
+);
 
 
 CREATE TABLE IF NOT EXISTS utilisateur (
@@ -66,7 +66,7 @@ nom_utilisateur VARCHAR(50) NOT NULL, /*ajouté , pas dans le MCD de départ, se
   role_id INT ,
   CONSTRAINT utilisateur_PK PRIMARY KEY (utilisateur_id),
   CONSTRAINT utilisateur_role_id_FK FOREIGN KEY (role_id) REFERENCES role (role_id)
-)ENGINE=InnoDB;
+);
 
 
 CREATE TABLE IF NOT EXISTS contient (
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS contient (
   CONSTRAINT contient_PK PRIMARY KEY (allergene_id, plat_id),/*Clé primaire dont la référence est composée des valeurs combinés des deux clés étrangères : Composite Key. Une même combinaison est unique et ne peut être reproduite*/
   CONSTRAINT contient_allergene_id_FK FOREIGN KEY (allergene_id) REFERENCES allergene (allergene_id),
   CONSTRAINT contient_plat_id_FK FOREIGN KEY (plat_id) REFERENCES plat (plat_id)
-)ENGINE=InnoDB;
+);
 
 
 CREATE TABLE IF NOT EXISTS menu (
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS menu (
   CONSTRAINT menu_PK PRIMARY KEY (menu_id),
   CONSTRAINT menu_regime_id_FK FOREIGN KEY (regime_id) REFERENCES regime (regime_id),
   CONSTRAINT menu_theme_id_FK FOREIGN KEY (theme_id) REFERENCES theme (theme_id)
-)ENGINE=InnoDB;
+);
 
 
 
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS propose (
   CONSTRAINT propose_PK PRIMARY KEY (menu_id, plat_id),/*Clé primaire dont la référence est composée des valeurs combinés des deux clés étrangères : Composite Key. Une même combinaison est unique et ne peut être reproduite*/
   CONSTRAINT propose_menu_id_FK FOREIGN KEY (menu_id) REFERENCES menu (menu_id),
   CONSTRAINT propose_plat_id_FK FOREIGN KEY (plat_id) REFERENCES plat (plat_id)
-)ENGINE=InnoDB;
+);
 
 
 CREATE TABLE IF NOT EXISTS commande (
@@ -119,7 +119,7 @@ restitution_materiel BOOLEAN NOT NULL DEFAULT FALSE,
   CONSTRAINT commande_PK PRIMARY KEY (commande_id),
   CONSTRAINT commande_menu_id_FK FOREIGN KEY (menu_id) REFERENCES menu (menu_id),
   CONSTRAINT commande_utilisateur_id_FK FOREIGN KEY (utilisateur_id) REFERENCES utilisateur (utilisateur_id)
-)ENGINE=InnoDB;
+);
 
 ALTER TABLE commande MODIFY statut VARCHAR(50) NOT NULL DEFAULT 'créée'; /**modification crée en créée (s'agissant de la commande)*/
 

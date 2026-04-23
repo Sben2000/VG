@@ -54,7 +54,7 @@
 						<li><a class="gestionLink" href="./2_vgTeam/gestionPlats/platMVC/index.php" target="_blank" id="gestPlatWindowLM">Plats</a></li>
 						<li><a class="gestionLink" href="./2_vgTeam/gestionLibelles/themeMVC/index.php" target="_blank" id="gestLibelleWindowLM">Libellés</a></li>						
 						<li><a class="gestionLink"  href="./2_vgTeam/menuPlatsAsso/menuPlatsMVC/index.php" target="_blank" id="menuPlatsWindowLM">Menu<->plat</a></li>
-						<li><a class="gestionLink" href="./1_allUsers/onProgress.php">Commandes</a></li>
+						<li><a class="gestionLink" href="../2_vgTeam/gestionOrders/ordersMVC/index.php" target="_blank" id="gestOrdersWindowLM">Commandes</a></li>
 						<div class="adminAccess
 							<?php
 						//Si   session avec niveau accès==2 ou accès==3 (employé, admin) active =>ajout class=show  sinon class= hide
@@ -134,7 +134,7 @@
 						<li><a href="./2_vgTeam/gestionPlats/platMVC/index.php" target="_blank" id="gestPlatWindowTM">Plats</a></li>
 						<li><a href="./2_vgTeam/gestionLibelles/themeMVC/index.php" target="_blank" id="gestLibelleWindowTM">Libellés</a></li>
 						<li><a  href="./2_vgTeam/menuPlatsAsso/menuPlatsMVC/index.php" target="_blank" id="menuPlatsWindowTM">Menu<->plat</a></li>						
-						<li><a  href="./1_allUsers/onProgress.php">Commandes</a></li>
+						<li><a href="./2_vgTeam/gestionOrders/ordersMVC/index.php" target="_blank" id="gestOrdersWindowTM">Commandes</a></li>
 						<div class="adminAccess<?php
 							//Si  PAS de session avec niveau accès>2 (admin Only) active =>ajout class= hide sinon class=show
 							if (!isset($_SESSION['accessAdmin'])) {

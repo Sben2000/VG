@@ -197,6 +197,21 @@ menuPlatsWindowTM.addEventListener('click', () => {
 window.open("../2_vgTeam/menuPlatsAsso/menuPlatsMVC/index.php", 'assoMenuPlats', 'width=500', 'height=500','left=200','top=200');
 });
 
+
+    //LargeOrders
+const gestOrdersWindowLM = document.getElementById("gestOrdersWindowLM");
+gestOrdersWindowLM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionOrders/ordersMVC/index.php", 'orders', 'width=500', 'height=500','left=200','top=200');
+});
+
+    //TelOrders
+const gestOrdersWindowTM = document.getElementById("gestOrdersWindowTM");
+gestOrdersWindowTM.addEventListener('click', () => {
+  //La fenêtre de destination sera ouverte avec les dimensions et positions spécifiées (si le navigateur n’est pas en plein écran) .
+window.open("../2_vgTeam/gestionOrders/ordersMVC/index.php", 'orders', 'width=500', 'height=500','left=200','top=200');
+});
+
 /******************************************************************************************************************************************************************* */
 
 
