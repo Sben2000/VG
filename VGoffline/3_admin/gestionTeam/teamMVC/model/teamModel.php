@@ -1,7 +1,7 @@
 <?php
 
 include_once "routes/rootPath.php";
-include_once ACCESSROOT."/DB/db.php";
+include_once __ROOT__."/DB/db.php";
 
 //accès à la fonction sendMail pour messages automatiques(Reset MotDePasse, Confirmation création de compte,...)
 require_once ACCESSROOT."/PHP_Mailer/SendMailFunction.php";
