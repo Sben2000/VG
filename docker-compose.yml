@@ -30,7 +30,7 @@ services:
   db:
     image: mysql:latest
     #donner un nom au container
-    container_name: sql_mycomp
+    container_name: sql_vgo
     #restart permet la continuité de service, avec always : redémarre automatiquement en cas d'erreur 
     restart: always
     #On liste les variables d'environnement pour se connecter à la dB que l on va créer (même variables que dans le fichiers config.php)=>https://hub.docker.com/_/mysql
@@ -49,7 +49,7 @@ services:
     volumes:
     #crée directement via l'entrypoint, la DB et les tables sur docker sur base du fichier de création sql présent dans le dossier cité ./SQL_mycomp  
          #exemple réalisé selon les indications de ce lien: https://stackoverflow.com/questions/49573004/create-tables-on-docker-start
-       - ./SQL_mycomp:/docker-entrypoint-initdb.d
+       - ./SQL:/docker-entrypoint-initdb.d
     #Autre option possible: lier le volume sql local SQL_mycomp (./SQL_mycomp) : avec le volume docker /var/lib/mysql pour persister les données, il faudra cependant récupérer et replacer les tables et datas (ou les reconstruire via mysql)
     #  - ./SQL_mycomp:/var/lib/mysql 
 
@@ -64,12 +64,12 @@ services:
       #ME_CONFIG_MONGODB_URL: mongodb://user1:studi...@mongo:27017/" >> /tmp/mongodb/dd.yml
       #MONGO_INITDB_DATABASE: jobOffers
       #coté ordi on utilise le port 27017  et coté conteneur 27017 pour se connecter à la dbNoSQL MongoDB
-      MONGO_INITDB_DATABASE: jobOffers
+      MONGO_INITDB_DATABASE: times
     ports:
       - 27017:27017
     volumes: #afin de persister les données de la DB en option après la suppression du container
-      - ./NoSQL_mycomp:/data/db
-      - ./NoSQL_mycomp/jobOffers.offers.json:/docker-entrypoint-initdb.d/init-data.json:ro
+      - ./NoSQL:/data/db
+      - ./NoSQL/vgo.times.json:/docker-entrypoint-initdb.d/init-data.json:ro
 
 
     #Lancer le fichier.env dév ou prod =>source : https://labex.io/tutorials/docker-understanding-the-role-of-environment-variables-in-docker-compose-398444

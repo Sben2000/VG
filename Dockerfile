@@ -6,7 +6,7 @@ FROM php:8.2.12-apache
 COPY site/ /var/www/html
 
 # Copie des fichiers de dépendances du serveur
-COPY NoSQL_mycomp/ ./NoSQL_mycomp/
+COPY NoSQL/ ./NoSQL/
 
 
 
