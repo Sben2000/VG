@@ -6,9 +6,12 @@ function DBconnection(){
 
     // Etablir la connection avec la BDD.
     try{
-        $conn = new PDO("mysql:host=".DB_HOST .";dbname=".DB_NAME, DB_USER, DB_PASS) or die();
+        //Old méthode avec cst du fichier config.php
+        //$conn = new PDO("mysql:host=".DB_HOST .";dbname=".DB_NAME, DB_USER, DB_PASS) or die();
+        //Méthode avec .env lié au fichier config.php
+        $conn = new PDO("mysql:host=".$_ENV["DB_HOST"] .";dbname=".$_ENV["DB_NAME"], $_ENV["DB_USER"], $_ENV["DB_PASS"], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")) or die();
         $conn ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //echo "successs"; POUR TEST UNIQUEMENT 
+        //return "successs"; //POUR TEST UNIQUEMENT 
         return $conn;
     }
     catch(PDOException $e){ // il est recommandé de ne pas afficher les erreurs de connexions à la DB mais de les enregistrer dans un log
@@ -21,5 +24,6 @@ function DBconnection(){
 
     }
 }
-
+/*Test de connection en décommentant la ligne ci dessous et return success /return echec ci dessus*/
+//echo DBconnection();
 ?>

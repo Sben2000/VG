@@ -1,7 +1,7 @@
 <?php
 //requête de la DB
 include_once "../routes/rootPath.php";
-include_once ACCESSROOT."/DB/db.php";
+include_once ACCESSROOT."/ordersMVC/DB/db.php";
 
 
 //function qui récupère l'ensemble des menus (ou les qtés sont > 0) de la DB intégrant les themes et regimes associés 

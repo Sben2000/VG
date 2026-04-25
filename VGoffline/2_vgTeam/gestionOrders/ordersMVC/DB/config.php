@@ -11,9 +11,9 @@ session_start();
     // define('DB_PASS','');/**/
 
 //Path
-define('__ROOT__', dirname(dirname(__DIR__))); //renvoi à la racine site=> ...\myStoreENV\site\1_allUsers
+define('__ROOTFILE__', dirname(dirname(__DIR__))); //renvoi à la racine site=> ...\myStoreENV\site\1_allUsers
 //On remonte d'un cran uniquement ici car ce dossier DB est à l'intérieur du dossier Functions pour combler la pb du fichier JS API FETCH à récupérer les mêmes chemins
-define('__ROOTER__', dirname(dirname(__ROOT__))); //renvoi à la racine site=> ...\myStoreENV\site
+define('__ROOTER__', dirname(dirname(__ROOTFILE__))); //renvoi à la racine site=> ...\myStoreENV\site
 //echo __ROOTER__;
 //Requérir le fichier autoload de dotenv
 require_once realpath(__ROOTER__."/vendor/autoload.php");//=>check via  echo  __ROOT__."/vendor/autoload.php";
