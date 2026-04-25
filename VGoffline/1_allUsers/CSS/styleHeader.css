@@ -309,6 +309,7 @@ header{
 
 .welcome{
 text-align: center;
+font-size: 25px;
 }
 /******************Sous 700px: Affichage Téléphone*/
 
@@ -331,6 +332,10 @@ text-align: center;
 header{
     display: flex;
     flex-direction: row;
+}
+.welcome{
+text-align: center;
+font-size: 20px;
 }
 
 }

@@ -193,6 +193,7 @@
 
 	</div>
 	<?php require_once "includes/footer.php" ?>
+	<script type="module" src="./JS/Mlegales.js"></script>
 </body>
 
 </html>

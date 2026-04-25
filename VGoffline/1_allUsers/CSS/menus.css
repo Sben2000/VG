@@ -621,8 +621,9 @@ p,textarea input, label, h3,a, .filter, option, .detailedInput label, .fetch inp
 }
 
 .multiSectionsCentral{
-    width: 133%;
+    width: 100%;
 }
+
 .multiSectionsLeft{
     display: none;
 }
@@ -813,6 +814,17 @@ p, textarea, input, label, .filter, option, optgroup, .detailedInput label, .fet
 
 }
 
+.SectionContent{
+    width: 300px;
+    align-content: center;
+    padding: 5px;
+}
 
+#resetFilters{
+
+    font-size: 14px;
+    align-self: center;
+    margin-top: 15px;
+}
 
 }

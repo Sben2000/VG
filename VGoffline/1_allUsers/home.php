@@ -112,7 +112,7 @@ $times = timesList();
                         //récupère les horaires de la db Mongo
                         foreach ($times as $key=>$time):
                         ?>
-                        <li><?= $time['title'] ?>:</li>
+                        <p>&#x2B9E;<strong><?= $time['title'] ?>:</strong></p>
                         <p>Du <?= $time['timeDetails'] ?></p>
                         <?php endforeach; ?>
                     </ul>
@@ -120,9 +120,11 @@ $times = timesList();
                         <u>
                             <h3>Nous contacter:</h3>
                         </u>
-                        <li>Pour vos services du jour</li>
-                        <p>&#x260E;: XX/XX/XX/XX/XX </p>
-                        <li>Pour vos commandes personnalisées</li>
+                        <p>&#x2B9E;<strong>Pour vos services du jour:</strong></p>
+                        <div class="orderTypeContact">
+                         <li>&#x260E;: <span> XX/XX/XX/XX/XX</span></li>
+                        </div>
+                        <p>&#x2B9E;<strong>Pour vos commandes personnalisées</strong></p>
                         <div class="orderTypeContact">
                             <li>&#x260E;: <span> XX/XX/XX/XX/XX</span></li>
                             <li>&#x40;: <span> XX@vit&go.fr</span></li>

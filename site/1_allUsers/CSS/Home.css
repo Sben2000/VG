@@ -238,6 +238,7 @@ h1, h2, a{
 
 .orderTypeContact li{
 font-weight: normal;
+font-size: 20px;
 }
 
 /***************************Nos retours clients****************************************/
@@ -380,6 +381,9 @@ p, textarea, input, label,li{
     font-size: 16px;
     }
 
+.orderTypeContact li{
+font-size: 14px;
+}    
 
 }
 
@@ -429,5 +433,11 @@ p, textarea, input, label,li{
 .memberDesc{
 margin: 10px 15px 0px 15px;
 }
+
+.orderType, .orderTypeContact{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
 
 }
