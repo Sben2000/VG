@@ -105,7 +105,7 @@ require_once "./Functions/fctAccount.php";
             if(@$response == "success"){
                 ?>
                 <p class="success" style='color:green'>Votre inscription a été enregistré avec succès!</p>
-                <p class="success" style='color:green'>Un mail de bienvenue vous a été envoyé :)</p>
+              <!--  <p class="success" style='color:green'>Un mail de bienvenue vous a été envoyé :)</p> -->
 
                 <?php
             }else{
