@@ -83,7 +83,7 @@ let fileType= file.type;
         let type = document.querySelector('#fileType')
   
         //if nok
-		if(fileType.includes(['image/jpeg, image/jpg, image/png']) ){ 
+		if(!fileType.includes(['image/jpeg, image/jpg, image/png']) ){ 
         //message affiché
         type.innerHTML=` ${fileType} => Type: Nok`;
         type.style.color="darkred";
