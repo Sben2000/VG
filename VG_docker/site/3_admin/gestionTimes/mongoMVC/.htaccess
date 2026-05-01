@@ -1,0 +1,8 @@
+#masquage des erreurs php dans la view ,pour les faire apparaitre = on
+
+php_flag display_errors on
+
+#Gère les erreurs de session  notamment sur Docker, mettre sur on si c'est le cas en créant un buffer , message apparaissant : 
+#Warning: session_start: Session cannot be started after headers have already been sent in /var/www/html
+
+php_flag output_buffering on

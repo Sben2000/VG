@@ -1,0 +1,48 @@
+.onProgress{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.onProgress>p{
+    color:orangered;
+    text-align: center;
+    margin: 50px auto;
+}
+
+.onProgress>img{
+    width: 600px;
+}
+
+.onProgress>span{
+    margin-top: 5px;
+    font-size: 10px;
+    font-style: italic;
+}
+
+
+/***************Spécificité Tablet :  Affichage Tablet(700px<A<1100px)********************/
+
+@media screen  and (max-width: 1100px) {
+
+
+
+}
+
+
+/******************Sous 700px: Affichage Téléphone*/
+
+@media screen and (max-width: 700px){
+
+.onProgress>img{
+    width: 300px;
+}
+
+.onProgress>span{
+
+    font-size: 8px;
+
+}
+
+
+}

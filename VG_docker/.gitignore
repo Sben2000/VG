@@ -1,0 +1,31 @@
+#Ignorer les fichiers avec l'extension .env suivant contenant les ide originaux (seuls les examples sont montés)
+.env
+#Ignorer les fichier deployment.env et docker.env situés à la racine
+deployment.env
+
+docker.env
+#############################AUTRES################################3
+# Commentaires : les lignes commençant par "#" sont ignorées par Git
+
+# * utilisé pour signifier tout les préfixes / suffixes suivi ou précédé de ce qui est annoté à ignorer
+
+# Ignorer les fichiers avec l'extension .log
+#*.log
+
+# Ignorer le répertoire "build"
+/build/
+
+# Ignorer le fichier "config.ini"
+#config.ini
+
+# Ignorer tous les fichiers et répertoires commençant par "temp_"
+temp_*
+
+# Ignorer tous les fichiers dans le répertoire "cache" et ses sous-répertoires
+cache/
+
+# Ignorer tous les fichiers portant le nom "backup" dans tous les répertoires
+**/backup
+
+# Ignorer tous les fichiers ayant "test" comme préfixe et ".txt" comme extension
+test*.txt

@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "69d93f44928195876a0b4136"
+  },
+  "title": "Pour vous restaurer chez nous",
+  "timeDetails": "Mardi au Samedi de 12h-14h/19h-22h",
+  "author": "Soufyan",
+  "statut": "Publier",
+  "createdOn": {
+    "$date": "2026-04-10T18:19:48.723Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69d93f7d928195876a0b4137"
+  },
+  "title": "Pour les commandes du restaurant",
+  "timeDetails": "Mardi au Samedi de 9h-11h30/14h-18h",
+  "author": "Soufyan",
+  "statut": "Publier",
+  "createdOn": {
+    "$date": "2026-04-10T18:20:45.096Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69d93fa9928195876a0b4138"
+  },
+  "title": "Pour les commandes personnalisées",
+  "timeDetails": "Lundi au Vendredi de 8h-11h30/15h-19h",
+  "author": "Soufyan",
+  "statut": "Publier",
+  "createdOn": {
+    "$date": "2026-04-10T18:21:29.195Z"
+  }
+}]

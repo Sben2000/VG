@@ -1,0 +1,4 @@
+17/12/2025_13:09:49 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
+17/12/2025_13:09:54 :
+	 Erreur de connexion:SQLSTATE[HY000] [2002] Aucune connexion n’a pu être établie car l’ordinateur cible l’a expressément refusée 
